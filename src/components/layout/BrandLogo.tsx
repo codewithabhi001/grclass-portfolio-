@@ -34,7 +34,7 @@ export const BrandLogo = forwardRef<HTMLAnchorElement, BrandLogoProps>(
               (isLight ? "text-background/40" : "text-muted-foreground")
             }
           >
-            Classification Society
+            Classified for standard
           </span>
         </div>
       </Link>

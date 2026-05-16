@@ -151,26 +151,6 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* Offices */}
-      <section className="border-t border-border bg-secondary-soft py-20">
-        <div className="container-page">
-          <span className="eyebrow text-secondary">Global presence</span>
-          <h2 className="h-display mt-3 text-[clamp(22px,2.2vw,32px)] text-primary">Six regional hubs. 120+ ports.</h2>
-          <div className="mt-12 grid gap-px bg-border md:grid-cols-2 lg:grid-cols-3">
-            {offices.map((o) => (
-              <div key={o.city} className="bg-card p-7">
-                <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent">{o.region}</div>
-                <h3 className="h-display mt-3 text-[20px] text-primary">{o.city}</h3>
-                <div className="mt-4 space-y-1.5 text-[13.5px] text-muted-foreground">
-                  <div>{o.address}</div>
-                  <div>{o.phone}</div>
-                  <div className="font-mono text-[11px] text-subtle">{o.hours}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </SiteShell>
   );
 };
