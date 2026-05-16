@@ -1,5 +1,5 @@
 /**
- * Final CTA — two-column dark band with image + invitation.
+ * Final CTA | two-column dark band with image + invitation.
  */
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";

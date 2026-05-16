@@ -1,5 +1,5 @@
 /**
- * Why GR Class — image left, checklist right, with floating stat tile.
+ * Why GR Class | image left, checklist right, with floating stat tile.
  */
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
@@ -17,7 +17,7 @@ export function WhyUs() {
           </h2>
           <p className="mt-5 text-[14.5px] font-light leading-[1.8] text-muted-foreground sm:text-[15px]">
             Our methodology is built around one principle: a vessel under our class should never wait
-            on us to sail. Every workflow — from survey scheduling to certificate issue — is
+            on us to sail. Every workflow | from survey scheduling to certificate issue | is
             engineered around fleet uptime.
           </p>
 

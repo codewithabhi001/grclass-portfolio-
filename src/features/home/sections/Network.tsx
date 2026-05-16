@@ -1,5 +1,5 @@
 /**
- * Network section — dark band with stats grid + status console.
+ * Network section | dark band with stats grid + status console.
  */
 import { networkStats } from "@/data/home";
 
@@ -19,7 +19,7 @@ export function Network() {
               Wherever your vessels call, we're already there.
             </h2>
             <p className="mt-5 max-w-md text-[14.5px] font-light leading-relaxed text-background/60 sm:text-[15px]">
-              From Rotterdam to Singapore, Houston to Dubai — our regional offices and exclusive
+              From Rotterdam to Singapore, Houston to Ajman | our regional offices and exclusive
               surveyor network keep your fleet compliant without delay.
             </p>
 
@@ -68,7 +68,7 @@ export function Network() {
                 "RTM 51.95°N",
                 "SIN 1.26°N",
                 "HOU 29.74°N",
-                "DXB 25.27°N",
+                "AJM 25.41°N",
                 "LON 51.50°N",
                 "TYO 35.65°N",
               ].map((c) => (

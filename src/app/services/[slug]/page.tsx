@@ -1,5 +1,5 @@
 /**
- * Service detail — dynamic route /services/:slug.
+ * Service detail | dynamic route /services/:slug.
  */
 import { Link, useParams, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -109,7 +109,7 @@ const ServiceDetailPage = () => {
       </section>
 
       {/* Related */}
-      <section className="border-t border-border bg-muted/40 py-20">
+      <section className="border-t border-border bg-secondary-soft py-20">
         <div className="container-page">
           <span className="eyebrow text-secondary">More from our practice</span>
           <h2 className="h-display mt-3 text-[clamp(22px,2vw,30px)] text-primary">Related services</h2>

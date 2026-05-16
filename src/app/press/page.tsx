@@ -59,7 +59,7 @@ const PressPage = () => (
         </aside>
       </div>
     </section>
-    <section className="border-t border-border bg-muted/40 py-12">
+    <section className="border-t border-border bg-secondary-soft py-12">
       <div className="container-page text-[12px] text-subtle">
         General enquiries: {site.email} · Press: press@grclass.com
       </div>

@@ -41,15 +41,15 @@ const NewsArticlePage = () => {
           </p>
           <h2 className="h-display pt-6 text-[22px] text-primary">Key takeaways</h2>
           <ul className="space-y-2 text-[15px] text-foreground/85">
-            <li>— Scope of applicability and effective date</li>
-            <li>— Recommended compliance timeline</li>
-            <li>— Documentation owners should prepare in advance</li>
-            <li>— Points of contact within the GR Class technical committee</li>
+            <li>| Scope of applicability and effective date</li>
+            <li>| Recommended compliance timeline</li>
+            <li>| Documentation owners should prepare in advance</li>
+            <li>| Points of contact within the GR Class technical committee</li>
           </ul>
         </article>
       </section>
 
-      <section className="border-t border-border bg-muted/40 py-16">
+      <section className="border-t border-border bg-secondary-soft py-16">
         <div className="container-page">
           <span className="eyebrow text-secondary">Related</span>
           <div className="mt-8 grid gap-px bg-border md:grid-cols-3">

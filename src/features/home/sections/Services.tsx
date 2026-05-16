@@ -1,5 +1,5 @@
 /**
- * Services grid — three editorial cards with photo, eyebrow, blurb.
+ * Services grid | three editorial cards with photo, eyebrow, blurb.
  */
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -8,7 +8,7 @@ import { services } from "@/data/home";
 
 export function Services() {
   return (
-    <section className="bg-muted/40 py-16 sm:py-20 md:py-28">
+    <section className="bg-secondary-soft py-16 sm:py-20 md:py-28">
       <div className="container-page">
         <div className="flex flex-col items-start justify-between gap-5 md:flex-row md:items-end md:gap-12">
           <div className="max-w-xl">
@@ -19,7 +19,7 @@ export function Services() {
           </div>
           <p className="max-w-md text-[14px] font-light leading-relaxed text-muted-foreground sm:text-[15px]">
             Each engagement is delivered by exclusive surveyors and signed under our recognised
-            organisation status — never sub-contracted.
+            organisation status | never sub-contracted.
           </p>
         </div>
 

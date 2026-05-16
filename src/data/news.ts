@@ -1,5 +1,5 @@
 /**
- * News & insight content — editorial bulletins.
+ * News & insight content | editorial bulletins.
  */
 export interface NewsItem {
   slug: string;
@@ -24,7 +24,7 @@ export const newsItems: NewsItem[] = [
     slug: "iacs-ur-z7-revision",
     category: "Rule Change",
     date: "2025-02-28",
-    title: "IACS UR Z7 revision adopted — survey scope expanded",
+    title: "IACS UR Z7 revision adopted | survey scope expanded",
     excerpt:
       "Effective 1 July 2025, the periodic survey scope under UR Z7 will include additional remote inspection provisions.",
     readTime: "4 min",
@@ -42,7 +42,7 @@ export const newsItems: NewsItem[] = [
     slug: "cii-2025-thresholds",
     category: "Industry",
     date: "2025-01-22",
-    title: "CII 2025 thresholds — what owners need to know",
+    title: "CII 2025 thresholds | what owners need to know",
     excerpt:
       "The reduction factor tightens to 5%. We summarise the operational levers that move the dial for bulk and tanker fleets.",
     readTime: "8 min",
@@ -60,7 +60,7 @@ export const newsItems: NewsItem[] = [
     slug: "mlc-2024-amendments",
     category: "Rule Change",
     date: "2024-11-30",
-    title: "MLC 2024 amendments — implementation timeline",
+    title: "MLC 2024 amendments | implementation timeline",
     excerpt:
       "Crew welfare, repatriation, and connectivity provisions enter force in stages through 2026. Audit checklist inside.",
     readTime: "7 min",

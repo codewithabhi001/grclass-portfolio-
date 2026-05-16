@@ -1,5 +1,5 @@
 /**
- * Hero stats strip — sits directly under the hero, uses navy band.
+ * Hero stats strip | sits directly under the hero, uses navy band.
  */
 import { Globe2, Anchor, Users, ShieldCheck } from "lucide-react";
 import { heroStats } from "@/data/home";

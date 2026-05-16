@@ -25,8 +25,8 @@ const ComingSoon = ({ eyebrow, title, subtitle }: ComingSoonProps) => (
           This section is being prepared.
         </h2>
         <p className="mt-4 text-[15px] font-light leading-relaxed text-muted-foreground">
-          The home page redesign is the V1 milestone. Inner pages — full service detail,
-          how-it-works, news, and verification — will follow the same editorial system.
+          The home page redesign is the V1 milestone. Inner pages | full service detail,
+          how-it-works, news, and verification | will follow the same editorial system.
         </p>
         <Link
           to="/"

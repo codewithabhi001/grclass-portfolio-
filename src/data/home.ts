@@ -25,27 +25,27 @@ export const trustTags = [
 
 export const services = [
   {
-    slug: "class-surveys",
-    eyebrow: "Surveys",
-    title: "Class Surveys",
+    slug: "classification-services",
+    eyebrow: "Classification",
+    title: "Classification Services",
     description:
-      "Periodic, intermediate, and special surveys covering hull integrity, machinery, and onboard systems against IACS unified requirements.",
+      "Comprehensive classification for newly built ships and existing vessels, ensuring safety and reliability throughout their lifecycle.",
     image: surveyImg,
   },
   {
-    slug: "statutory-certification",
-    eyebrow: "Certification",
-    title: "Statutory Certification",
+    slug: "statutory-services",
+    eyebrow: "Statutory",
+    title: "Statutory Services",
     description:
-      "Issuance of SOLAS, MARPOL, MLC and Load Line certificates on behalf of flag administrations, fully digital and verifiable.",
+      "Global compliance and certification on behalf of flag administrations, ensuring adherence to international maritime conventions.",
     image: certImg,
   },
   {
-    slug: "technical-advisory",
-    eyebrow: "Advisory",
-    title: "Technical Advisory",
+    slug: "environmental-services",
+    eyebrow: "Sustainability",
+    title: "Environmental Services",
     description:
-      "Independent expertise on newbuild specifications, retrofit projects, alternative fuels, and decarbonisation strategy.",
+      "Navigating the pathway to green shipping with expertise in energy efficiency and decarbonisation compliance.",
     image: advisoryImg,
   },
 ] as const;
@@ -61,7 +61,7 @@ export const aboutFeatures = [
   },
   {
     title: "Digital certification",
-    body: "Tamper-evident certificates verifiable in seconds via grclass.com/verify — accepted by port state control.",
+    body: "Tamper-evident certificates verifiable in seconds via grclass.com/verify | accepted by port state control.",
   },
 ];
 

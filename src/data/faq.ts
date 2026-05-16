@@ -1,5 +1,5 @@
 /**
- * FAQ content — grouped by topic.
+ * FAQ content | grouped by topic.
  */
 export interface FaqGroup {
   topic: string;

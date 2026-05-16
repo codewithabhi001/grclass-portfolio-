@@ -43,8 +43,9 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
             <a href={`tel:${site.phone}`} className="flex items-center gap-3 transition-colors hover:text-background">
               <Phone className="h-4 w-4 text-accent" /> {site.phone}
             </a>
-            <div className="flex items-center gap-3">
-              <MapPin className="h-4 w-4 text-accent" /> 30 St Mary Axe, London EC3A 8BF
+            <div className="flex items-start gap-3">
+              <MapPin className="mt-1 h-4 w-4 shrink-0 text-accent" />
+              <span className="leading-relaxed">{site.address}</span>
             </div>
           </div>
         </div>
@@ -72,12 +73,10 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
           </h4>
           <ul className="space-y-2.5 text-sm text-background/65">
             {[
-              "Class Surveys",
-              "Statutory Certification",
-              "Technical Advisory",
-              "Transfer of Class",
-              "Decarbonisation",
-              "Digital Verification",
+              "Classification Services",
+              "Statutory Services",
+              "Environmental Services",
+              "Support & Advisory",
             ].map((s) => (
               <li key={s} className="transition-colors hover:text-background">
                 {s}

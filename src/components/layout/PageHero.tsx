@@ -1,5 +1,5 @@
 /**
- * Reusable inner-page hero band — used by Services, About, Contact, etc.
+ * Reusable inner-page hero band | used by Services, About, Contact, etc.
  * Mirrors the original `.page-hero` block.
  */
 import { Link } from "react-router-dom";

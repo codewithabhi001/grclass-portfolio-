@@ -5,14 +5,14 @@
 @tailwind utilities;
 
 /* =========================================================
-   GR Class — Editorial Maritime Design System
+   GR Class | Editorial Maritime Design System
    All colors HSL. All tokens defined here.
    ========================================================= */
 
 @layer base {
   :root {
     /* Surface */
-    --background: 36 38% 98%;          /* ivory #FCFBF8 */
+    --background: 212 50% 96%;          /* distinct lite blue */
     --foreground: 217 71% 15%;         /* navy text */
 
     --card: 0 0% 100%;
@@ -21,19 +21,19 @@
     --popover: 0 0% 100%;
     --popover-foreground: 217 71% 15%;
 
-    /* Brand — Deep Navy */
+    /* Brand | Deep Navy */
     --primary: 217 71% 15%;            /* #0B2443 navy */
     --primary-foreground: 36 38% 98%;
     --primary-deep: 215 78% 11%;       /* #071830 navy3 */
     --primary-soft: 217 70% 20%;       /* #0F2E56 navy2 */
 
-    /* Brand — Brass / Gold accent */
+    /* Brand | Brass / Gold accent */
     --accent: 41 70% 41%;              /* #B5891F brass */
     --accent-foreground: 36 38% 98%;
     --accent-bright: 44 67% 50%;       /* #D4A82A */
     --accent-soft: 41 75% 95%;         /* #FBF6EB */
 
-    /* Secondary — ocean blue */
+    /* Secondary | ocean blue */
     --secondary: 207 100% 33%;         /* #005BAA */
     --secondary-foreground: 36 38% 98%;
     --secondary-soft: 209 75% 95%;     /* #EBF3FB */
@@ -106,6 +106,18 @@
 
 @layer base {
   * { @apply border-border; }
+  
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  *::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  * {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
   html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
   body {
     @apply bg-background text-foreground font-sans;
@@ -115,7 +127,7 @@
 }
 
 @layer components {
-  /* Page container — matches the original 64px gutter at large screens */
+  /* Page container | matches the original 64px gutter at large screens */
   .container-page {
     @apply mx-auto w-full px-5 sm:px-8 md:px-10 lg:px-14 xl:px-16;
     max-width: 1440px;

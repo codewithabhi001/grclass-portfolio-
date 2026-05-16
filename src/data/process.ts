@@ -1,5 +1,5 @@
 /**
- * How it Works — engagement timeline content.
+ * How it Works | engagement timeline content.
  */
 export const processSteps = [
   {

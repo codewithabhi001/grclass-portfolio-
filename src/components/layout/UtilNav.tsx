@@ -1,5 +1,5 @@
 /**
- * Top utility bar — language, careers, press, etc.
+ * Top utility bar | language, careers, press, etc.
  * Hidden on mobile to keep the header light.
  */
 import { utilNav } from "@/lib/site";

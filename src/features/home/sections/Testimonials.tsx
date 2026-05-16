@@ -1,5 +1,5 @@
 /**
- * Testimonials — three editorial cards on muted ivory background.
+ * Testimonials | three editorial cards on muted ivory background.
  */
 import { testimonials } from "@/data/home";
 import { Quote } from "lucide-react";
@@ -10,7 +10,7 @@ export function Testimonials() {
       <div className="max-w-2xl">
         <span className="eyebrow text-secondary">Trusted by Fleet Leaders</span>
         <h2 className="h-display mt-3 text-[clamp(24px,3.2vw,40px)] text-primary">
-          From bulkers to LNG carriers — measured in cycles, not promises.
+          From bulkers to LNG carriers | measured in cycles, not promises.
         </h2>
       </div>
 

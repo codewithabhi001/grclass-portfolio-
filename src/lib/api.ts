@@ -1,10 +1,10 @@
 /**
- * API client — thin wrapper around the GR Class backend.
+ * API client | thin wrapper around the GR Class backend.
  * Base URL is read from VITE_API_URL (see .env). Default falls back to
  * localhost so the UI stays functional during development without a server.
  *
  * NOTE: the backend is currently an external service. If a call fails
- * with a network error we log & rethrow — callers are expected to show
+ * with a network error we log & rethrow | callers are expected to show
  * a user-friendly toast.
  */
 
@@ -33,7 +33,7 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
   return data as T;
 }
 
-/* 1. Public — certificate verification */
+/* 1. Public | certificate verification */
 export const verifyCertificate = (certNumber: string) =>
   request<{
     certNumber: string;
@@ -46,7 +46,7 @@ export const verifyCertificate = (certNumber: string) =>
     expires?: string;
   }>(`/public/certificate/verify/${encodeURIComponent(certNumber)}`);
 
-/* 2. Surveyor application — S3 signed URL flow */
+/* 2. Surveyor application | S3 signed URL flow */
 export interface SurveyorUploadUrls {
   cv?: { url: string; key: string };
   idProof?: { url: string; key: string };

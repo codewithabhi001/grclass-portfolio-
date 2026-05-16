@@ -1,5 +1,5 @@
 /**
- * Contact — enquiry form + global office grid.
+ * Contact | enquiry form + global office grid.
  */
 import { useState, FormEvent } from "react";
 import { Mail, Phone, MapPin, Send, ArrowUpRight } from "lucide-react";
@@ -47,7 +47,7 @@ const ContactPage = () => {
       <PageHero
         eyebrow="Contact"
         title="Speak with a surveyor."
-        subtitle="Initial consultations are always complimentary. Tell us about the vessel and the certification objective — we'll respond within one business day."
+        subtitle="Initial consultations are always complimentary. Tell us about the vessel and the certification objective | we'll respond within one business day."
         breadcrumbs={[{ label: "Contact" }]}
       />
 
@@ -131,13 +131,13 @@ const ContactPage = () => {
                   <MapPin className="mt-0.5 h-4 w-4 text-accent" />
                   <div>
                     <div className="text-[11px] uppercase tracking-wider text-subtle">Headquarters</div>
-                    <div className="mt-0.5">30 St Mary Axe, London EC3A 8BF</div>
+                    <div className="mt-0.5">{site.address}</div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="mt-5 border border-border bg-accent-soft p-7">
+            <div className="mt-5 border border-border bg-secondary-soft p-7">
               <span className="font-mono text-[10px] uppercase tracking-wider text-accent">24/7 Emergency</span>
               <h4 className="h-display mt-3 text-[18px] text-primary">Damage surveyor dispatch</h4>
               <p className="mt-2 text-[13px] font-light text-foreground/80">
@@ -152,7 +152,7 @@ const ContactPage = () => {
       </section>
 
       {/* Offices */}
-      <section className="border-t border-border bg-muted/40 py-20">
+      <section className="border-t border-border bg-secondary-soft py-20">
         <div className="container-page">
           <span className="eyebrow text-secondary">Global presence</span>
           <h2 className="h-display mt-3 text-[clamp(22px,2.2vw,32px)] text-primary">Six regional hubs. 120+ ports.</h2>

@@ -1,5 +1,5 @@
 /**
- * How it Works — six-step engagement timeline.
+ * How it Works | six-step engagement timeline.
  */
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";

@@ -1,5 +1,5 @@
 /**
- * Verify — certificate authentication lookup.
+ * Verify | certificate authentication lookup.
  */
 import { useState, FormEvent } from "react";
 import { ShieldCheck, Search, CheckCircle2, AlertCircle, Calendar, Building2, Anchor } from "lucide-react";

@@ -69,11 +69,11 @@ const CareersPage = () => {
             <img src={careersImg} alt="Surveyor at work" className="h-full w-full object-cover" loading="lazy" />
             <div className="mt-6 border-l-[3px] border-accent bg-accent-soft px-5 py-4">
               <p className="text-[14px] italic leading-relaxed text-foreground/80">
-                "We invest in our surveyors' technical development — from IMO rule schools to specialist
+                "We invest in our surveyors' technical development | from IMO rule schools to specialist
                 alternative-fuels training."
               </p>
               <cite className="mt-2 block text-[10px] uppercase not-italic tracking-wider text-subtle">
-                — Office of the Chief Surveyor
+                | Office of the Chief Surveyor
               </cite>
             </div>
           </div>
@@ -133,12 +133,12 @@ const CareersPage = () => {
         </div>
       </section>
 
-      <section className="border-t border-border bg-muted/40 py-16">
+      <section className="border-t border-border bg-secondary-soft py-16">
         <div className="container-page grid gap-px bg-border md:grid-cols-3">
           {[
             { t: "Exclusive employment", b: "No sub-contracting. Every surveyor is a GR Class employee." },
             { t: "Continuous training", b: "IACS rule schools, alternative fuels, and digital platform certification." },
-            { t: "Global mobility", b: "Rotate across regional hubs — London, Singapore, Houston, Piraeus, Dubai, Yokohama." },
+            { t: "Global mobility", b: "Rotate across regional hubs | Ajman, London, Singapore, Houston, Piraeus, Yokohama." },
           ].map((n) => (
             <div key={n.t} className="bg-background p-7">
               <Briefcase className="h-5 w-5 text-accent" />

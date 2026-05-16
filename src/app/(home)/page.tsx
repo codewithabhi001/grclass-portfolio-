@@ -1,5 +1,5 @@
 /**
- * Home page composition — Next.js-style: a thin route file
+ * Home page composition | Next.js-style: a thin route file
  * that orders feature sections. All content lives in src/data/home.ts.
  */
 import { SiteShell } from "@/components/layout/SiteShell";

@@ -34,7 +34,7 @@ const InvestorsPage = () => (
       </div>
     </section>
 
-    <section className="border-t border-border bg-muted/40 py-20">
+    <section className="border-t border-border bg-secondary-soft py-20">
       <div className="container-page grid gap-12 md:grid-cols-12">
         <div className="md:col-span-5">
           <span className="eyebrow text-secondary">Governance</span>

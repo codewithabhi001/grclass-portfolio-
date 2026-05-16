@@ -1,5 +1,5 @@
 /**
- * Hero — full-bleed cinematic vessel with editorial gradient.
+ * Hero | full-bleed cinematic vessel with editorial gradient.
  * Video background + framer-motion content reveal.
  */
 import { motion } from "framer-motion";

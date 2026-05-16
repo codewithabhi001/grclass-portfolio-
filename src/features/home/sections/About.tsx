@@ -1,5 +1,5 @@
 /**
- * About section — split layout with vessel inspector image and feature list.
+ * About section | split layout with vessel inspector image and feature list.
  */
 import { motion } from "framer-motion";
 import aboutImg from "@/assets/about-surveyor.jpg";
@@ -83,7 +83,7 @@ export function About() {
               Our role is to keep that contract honest."
             </p>
             <cite className="mt-2 block text-[10px] uppercase not-italic tracking-wider text-subtle">
-              — Office of the Chief Surveyor
+              | Office of the Chief Surveyor
             </cite>
           </blockquote>
         </div>

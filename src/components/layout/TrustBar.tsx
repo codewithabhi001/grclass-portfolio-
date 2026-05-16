@@ -1,5 +1,5 @@
 /**
- * Trust strip beneath the hero — flag/certification chips on a dark band.
+ * Trust strip beneath the hero | flag/certification chips on a dark band.
  */
 import { trustTags } from "@/data/home";
 

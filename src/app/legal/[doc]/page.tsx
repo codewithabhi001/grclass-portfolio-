@@ -1,5 +1,5 @@
 /**
- * Legal — dynamic route covering /legal/privacy, /legal/terms, /legal/compliance.
+ * Legal | dynamic route covering /legal/privacy, /legal/terms, /legal/compliance.
  */
 import { useParams, Navigate, Link } from "react-router-dom";
 import { SiteShell } from "@/components/layout/SiteShell";

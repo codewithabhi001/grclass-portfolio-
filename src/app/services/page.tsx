@@ -1,5 +1,5 @@
 /**
- * Services index page — editorial grid of all GR Class practice areas.
+ * Services index page | editorial grid of all GR Class practice areas.
  */
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -13,7 +13,7 @@ const ServicesPage = () => (
     <PageHero
       eyebrow="Practice"
       title="Class, statutory, and advisory services for the modern fleet."
-      subtitle="Every engagement is delivered by exclusive surveyors and signed under our recognised organisation status — never sub-contracted."
+      subtitle="Every engagement is delivered by exclusive surveyors and signed under our recognised organisation status | never sub-contracted."
       breadcrumbs={[{ label: "Services" }]}
     />
 
@@ -54,7 +54,7 @@ const ServicesPage = () => (
       </div>
     </section>
 
-    <section className="border-t border-border bg-muted/40 py-20">
+    <section className="border-t border-border bg-secondary-soft py-20">
       <div className="container-page grid gap-10 md:grid-cols-12 md:items-end">
         <div className="md:col-span-7">
           <span className="eyebrow text-secondary">Tell us about your vessel</span>

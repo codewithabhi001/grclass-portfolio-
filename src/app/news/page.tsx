@@ -1,5 +1,5 @@
 /**
- * News & Insight — editorial listing with category filters.
+ * News & Insight | editorial listing with category filters.
  */
 import { useState } from "react";
 import { motion } from "framer-motion";

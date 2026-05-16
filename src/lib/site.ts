@@ -5,13 +5,14 @@
 
 export const site = {
   name: "GR Class",
-  tagline: "Maritime Classification & Certification",
+  tagline: "Classified for Standards",
   description:
-    "Statutory verification, vessel surveys, and digital certification trusted by flag states and ship owners across 120+ ports worldwide.",
+    "Recognized Organization (RO), Recognized Security Organization (RSO), and Classification Society (CS) authorized to offer statutory/class certification and services.",
   url: "https://grclass.com",
   ops: "https://ops.grclass.com",
   email: "contact@grclass.com",
   phone: "+44 20 7946 0123",
+  address: "B.C. 1304883, Ajman Free Zone C1 Building, Ajman District Business, Makani No – 4442612247, UAE",
 } as const;
 
 export const mainNav = [

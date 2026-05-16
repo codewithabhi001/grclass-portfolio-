@@ -1,5 +1,5 @@
 /**
- * FAQ — accordion grouped by topic.
+ * FAQ | accordion grouped by topic.
  */
 import { SiteShell } from "@/components/layout/SiteShell";
 import { PageHero } from "@/components/layout/PageHero";
@@ -63,7 +63,7 @@ const FaqPage = () => (
       </div>
     </section>
 
-    <section className="border-t border-border bg-muted/40 py-16">
+    <section className="border-t border-border bg-secondary-soft py-16">
       <div className="container-page flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
         <div>
           <h3 className="h-display text-[22px] text-primary">Still have questions?</h3>

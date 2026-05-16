@@ -1,8 +1,8 @@
 /**
- * About page content — leadership, milestones, values.
+ * About page content | leadership, milestones, values.
  */
 export const milestones = [
-  { year: "1998", title: "Founded", body: "Established in London as an independent classification practice serving North Sea operators." },
+  { year: "1998", title: "Founded", body: "Established as an independent classification practice serving the global maritime industry." },
   { year: "2004", title: "Recognised Organisation status", body: "Granted RO status by first flag administration; expanded into European trade." },
   { year: "2011", title: "Asia-Pacific expansion", body: "Regional hubs opened in Singapore, Hong Kong, and Yokohama." },
   { year: "2017", title: "Digital certification platform", body: "Launched the first fully tamper-evident digital certificate verification system in the industry." },

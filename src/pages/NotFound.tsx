@@ -1,23 +1,29 @@
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { SiteShell } from "@/components/layout/SiteShell";
+import { ArrowLeft } from "lucide-react";
 
 const NotFound = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    console.error("404 Error: User attempted to access non-existent route:", location.pathname);
-  }, [location.pathname]);
-
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">404</h1>
-        <p className="mb-4 text-xl text-muted-foreground">Oops! Page not found</p>
-        <a href="/" className="text-primary underline hover:text-primary/90">
-          Return to Home
-        </a>
+    <SiteShell>
+      <div className="flex min-h-[70vh] flex-col items-center justify-center px-4 py-20 text-center">
+        <span className="eyebrow text-secondary">Error 404</span>
+        <h1 className="h-display mt-4 text-[clamp(40px,5vw,80px)] text-primary">
+          Page not found.
+        </h1>
+        <p className="mt-6 max-w-md text-[16px] font-light leading-relaxed text-muted-foreground">
+          The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
+        </p>
+        <div className="mt-10">
+          <Link
+            to="/"
+            className="group inline-flex items-center gap-2 bg-accent px-8 py-4 text-sm font-semibold text-accent-foreground transition-colors hover:bg-accent-bright"
+          >
+            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+            Back to homepage
+          </Link>
+        </div>
       </div>
-    </div>
+    </SiteShell>
   );
 };
 
