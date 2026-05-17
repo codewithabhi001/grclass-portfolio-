@@ -64,8 +64,7 @@ export function Hero() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6 max-w-xl text-[15px] font-light leading-relaxed text-background/70 sm:text-base"
           >
-            Statutory verification, vessel surveys, and digital certification trusted by flag states
-            and ship owners across 120+ ports worldwide.
+            Our range of services includes the classification of newly built ships, as well as the classification and certification of existing vessels for continued safe operation.
           </motion.p>
 
           <motion.div
