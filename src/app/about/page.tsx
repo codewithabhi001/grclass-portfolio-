@@ -92,7 +92,7 @@ const AboutPage = () => (
       </div>
     </section>
 
-    {/* Leadership */}
+    {/* Leadership - Hidden as of now
     <section className="border-t border-border bg-primary py-20">
       <div className="container-page">
         <span className="eyebrow text-accent">Leadership</span>
@@ -117,6 +117,7 @@ const AboutPage = () => (
         </div>
       </div>
     </section>
+    */}
   </SiteShell>
 );
 
