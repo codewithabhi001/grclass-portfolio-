@@ -132,31 +132,6 @@ export function SiteHeader() {
                 <ShieldCheck className="h-4 w-4" /> Verify Certificate
               </Link>
             </div>
-
-            <div className="mt-8 border-t border-background/10 pt-6">
-              <div className="mb-3 font-mono text-[10px] uppercase tracking-wider text-background/40">
-                Resources
-              </div>
-              <div className="grid grid-cols-2 gap-3 text-[13px]">
-                <Link to="/vessel-search" onClick={() => setOpen(false)} className="text-background/70 hover:text-background">
-                  Vessel Search
-                </Link>
-                <Link to="/careers" onClick={() => setOpen(false)} className="text-background/70 hover:text-background">
-                  Careers
-                </Link>
-                <Link to="/press" onClick={() => setOpen(false)} className="text-background/70 hover:text-background">
-                  Press
-                </Link>
-                <Link to="/investors" onClick={() => setOpen(false)} className="text-background/70 hover:text-background">
-                  Investors
-                </Link>
-              </div>
-            </div>
-
-            <div className="mt-8 pt-6 text-[11px] text-background/40">
-              <div>{site.email}</div>
-              <div className="mt-1">{site.phone}</div>
-            </div>
           </nav>
         </div>
       )}

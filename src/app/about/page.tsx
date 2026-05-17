@@ -25,15 +25,16 @@ const AboutPage = () => (
             A recognised society with the response time of a modern operator.
           </h2>
           <p className="mt-6 text-[16px] font-light leading-relaxed text-muted-foreground">
-            GR Class is a Recognized Organization (RO), Recognized Security Organization (RSO), and Classification Society (CS) authorized to offer statutory/class certification and services. We are committed to ensuring the highest standards of safety, reliability, and environmental sustainability in the maritime industry.
+            GR Class welcomes you for your asset’s safety and compliances. GR Class is a Recognized Organization (RO), Recognized Security Organization (RSO), and Classification Society (CS) authorised to offer statutory/class certification and services.
           </p>
           <p className="mt-4 text-[16px] font-light leading-relaxed text-muted-foreground">
-            Our mission is ensuring marine safety and safeguarding lives and property at sea through a comprehensive approach that combines international regulations, advanced surveillance, and rigorous risk management to protect vessels and the marine environment.
+            We are committed to ensuring the highest standards of safety, reliability, and environmental sustainability in the maritime industry. Our team possesses strong technical expertise and professionalism, guaranteeing dedicated service to our clients.
           </p>
           <p className="mt-4 text-[16px] font-light leading-relaxed text-muted-foreground">
-            We deliberately keep the organisation lean: surveyors are exclusive employees, not
-            sub-contractors; rule changes are reviewed by a standing technical committee; and our
-            digital certification platform is built and operated in-house.
+            Our range of services includes the classification of newly built ships, as well as the classification and certification of existing vessels for continued safe operation. We also provide statutory certification services.
+          </p>
+          <p className="mt-4 text-[16px] font-light leading-relaxed text-muted-foreground">
+            We strive to be the trusted partner for ship owners and operators, offering reliable and cost-effective solutions tailored to their specific requirements.
           </p>
         </div>
         <div className="md:col-span-5">

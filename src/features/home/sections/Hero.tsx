@@ -77,7 +77,7 @@ export function Hero() {
               to="/contact"
               className="group inline-flex items-center justify-center gap-2 bg-accent px-6 py-3.5 text-sm font-semibold tracking-wide text-accent-foreground shadow-brass transition-all hover:bg-accent-bright hover:shadow-[0_12px_32px_hsl(var(--accent)/0.45)]"
             >
-              Start a Survey
+              Get in Touch
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
@@ -94,20 +94,6 @@ export function Hero() {
               <PlayCircle className="h-4 w-4 text-accent" />
               How it works
             </Link>
-          </motion.div>
-
-          {/* Inline micro-proof */}
-          <motion.div
-            variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-background/10 pt-6 text-[11px] text-background/55"
-          >
-            <span className="font-mono uppercase tracking-wider text-background/40">Trusted by</span>
-            {["Nordic Bulk", "Pacific Lines", "Atlantic Tankers", "Aegean LNG"].map((c) => (
-              <span key={c} className="font-display text-[13px] font-semibold tracking-wide text-background/75">
-                {c}
-              </span>
-            ))}
           </motion.div>
         </motion.div>
 

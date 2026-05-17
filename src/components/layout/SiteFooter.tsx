@@ -5,6 +5,7 @@ import { mainNav, site } from "@/lib/site";
 import { BrandLogo } from "./BrandLogo";
 import { subscribeNewsletter } from "@/lib/api";
 import { toast } from "sonner";
+import { servicesCatalogue } from "@/data/services";
 
 export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
   const [email, setEmail] = useState("");
@@ -72,14 +73,14 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
             Services
           </h4>
           <ul className="space-y-2.5 text-sm text-background/65">
-            {[
-              "Classification Services",
-              "Statutory Services",
-              "Environmental Services",
-              "Support & Advisory",
-            ].map((s) => (
-              <li key={s} className="transition-colors hover:text-background">
-                {s}
+            {servicesCatalogue.map((svc) => (
+              <li key={svc.slug}>
+                <Link
+                  to={`/services/${svc.slug}`}
+                  className="transition-colors hover:text-background block"
+                >
+                  {svc.title}
+                </Link>
               </li>
             ))}
           </ul>

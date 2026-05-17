@@ -1,8 +1,8 @@
 /**
  * Services index page | editorial grid of all GR Class practice areas.
  */
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { SiteShell } from "@/components/layout/SiteShell";
@@ -12,6 +12,24 @@ import { SurveyorApplicationModal } from "@/features/services/SurveyorApplicatio
 
 const ServicesPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const location = useLocation();
+  const [activeHash, setActiveHash] = useState("");
+
+  useEffect(() => {
+    if (location.hash) {
+      const hash = location.hash.replace("#", "");
+      setActiveHash(hash);
+      const element = document.getElementById(hash);
+      if (element) {
+        const timer = setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 150);
+        return () => clearTimeout(timer);
+      }
+    } else {
+      setActiveHash("");
+    }
+  }, [location]);
 
   return (
     <SiteShell>
@@ -24,38 +42,46 @@ const ServicesPage = () => {
 
       <section className="container-page py-20 md:py-24">
         <div className="grid gap-px bg-border md:grid-cols-2">
-          {servicesCatalogue.map((svc, i) => (
-            <motion.article
-              key={svc.slug}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: (i % 2) * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative overflow-hidden border-t-[3px] border-transparent bg-card transition-all duration-300 hover:border-accent hover:shadow-card"
-            >
-              <Link to={`/services/${svc.slug}`} className="block">
-                <div className="relative h-56 overflow-hidden bg-primary">
-                  <img
-                    src={svc.image}
-                    alt={svc.title}
-                    className="h-full w-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-fade-bottom" />
-                </div>
-                <div className="px-7 py-8">
-                  <span className="eyebrow text-secondary">{svc.eyebrow}</span>
-                  <h3 className="h-display mt-3 text-[22px] text-primary">{svc.title}</h3>
-                  <p className="mt-3 text-[14px] font-light leading-relaxed text-muted-foreground">
-                    {svc.tagline}
-                  </p>
-                  <div className="mt-6 flex items-center gap-1.5 text-[12px] font-medium text-secondary">
-                    Read scope <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          {servicesCatalogue.map((svc, i) => {
+            const isHighlighted = activeHash === svc.slug;
+            return (
+              <motion.article
+                key={svc.slug}
+                id={svc.slug}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: (i % 2) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className={`group relative overflow-hidden border-t-[3px] bg-card transition-all duration-500 ${
+                  isHighlighted
+                    ? "border-accent shadow-card scale-[1.01] ring-4 ring-accent/15 z-10"
+                    : "border-transparent hover:border-accent hover:shadow-card"
+                }`}
+              >
+                <Link to={`/services/${svc.slug}`} className="block">
+                  <div className="relative h-56 overflow-hidden bg-primary">
+                    <img
+                      src={svc.image}
+                      alt={svc.title}
+                      className="h-full w-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-fade-bottom" />
                   </div>
-                </div>
-              </Link>
-            </motion.article>
-          ))}
+                  <div className="px-7 py-8">
+                    <span className="eyebrow text-secondary">{svc.eyebrow}</span>
+                    <h3 className="h-display mt-3 text-[22px] text-primary">{svc.title}</h3>
+                    <p className="mt-3 text-[14px] font-light leading-relaxed text-muted-foreground">
+                      {svc.tagline}
+                    </p>
+                    <div className="mt-6 flex items-center gap-1.5 text-[12px] font-medium text-secondary">
+                      Read scope <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    </div>
+                  </div>
+                </Link>
+              </motion.article>
+            );
+          })}
         </div>
       </section>
 
