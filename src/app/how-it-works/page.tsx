@@ -59,7 +59,7 @@ const HowItWorksPage = () => (
           to="/contact"
           className="group mt-8 inline-flex items-center gap-2 bg-accent px-6 py-3.5 text-sm font-semibold text-accent-foreground transition-colors hover:bg-accent-bright"
         >
-          Speak with a surveyor
+          Speak with our team
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
         </Link>
       </div>

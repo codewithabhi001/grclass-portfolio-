@@ -17,14 +17,18 @@ const ContactPage = () => {
     e.preventDefault();
     const form = e.currentTarget;
     const fd = new FormData(form);
+    const vessel = String(fd.get("vessel") || "");
+    const baseMessage = String(fd.get("message") || "");
+    const finalMessage = vessel ? `${baseMessage}\n\n[Vessel Name / IMO: ${vessel}]` : baseMessage;
+
     const payload = {
-      name: String(fd.get("name") || ""),
+      full_name: String(fd.get("name") || ""),
       company: String(fd.get("company") || ""),
-      email: String(fd.get("email") || ""),
+      corporate_email: String(fd.get("email") || ""),
       phone: String(fd.get("phone") || ""),
-      vessel: String(fd.get("vessel") || ""),
       subject: String(fd.get("service") || "General enquiry"),
-      message: String(fd.get("message") || ""),
+      message: finalMessage,
+      source_page: "CONTACT",
     };
     setSubmitting(true);
     try {
@@ -46,7 +50,7 @@ const ContactPage = () => {
     <SiteShell>
       <PageHero
         eyebrow="Contact"
-        title="Speak with a surveyor."
+        title="Speak with our team."
         subtitle="Initial consultations are always complimentary. Tell us about the vessel and the certification objective | we'll respond within one business day."
         breadcrumbs={[{ label: "Contact" }]}
       />
@@ -108,7 +112,7 @@ const ContactPage = () => {
 
           {/* Sidebar */}
           <aside className="md:col-span-5 md:pl-10">
-            <div className="border border-border bg-card p-7">
+            <div className="sticky top-28 border border-border bg-card p-7">
               <h3 className="font-display text-[11px] font-bold uppercase tracking-[0.18em] text-secondary">
                 Direct lines
               </h3>
@@ -135,17 +139,6 @@ const ContactPage = () => {
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div className="mt-5 border border-border bg-secondary-soft p-7">
-              <span className="font-mono text-[10px] uppercase tracking-wider text-accent">24/7 Emergency</span>
-              <h4 className="h-display mt-3 text-[18px] text-primary">Damage surveyor dispatch</h4>
-              <p className="mt-2 text-[13px] font-light text-foreground/80">
-                For casualty or damage surveys, our regional duty surveyor responds within 4 hours.
-              </p>
-              <a href={`tel:${site.phone}`} className="mt-4 inline-flex items-center gap-2 text-[13px] font-semibold text-primary transition-colors hover:text-secondary">
-                Emergency line <ArrowUpRight className="h-4 w-4" />
-              </a>
             </div>
           </aside>
         </div>

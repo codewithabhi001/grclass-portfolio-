@@ -13,7 +13,7 @@ const FaqPage = () => (
     <PageHero
       eyebrow="Reference"
       title="Frequently asked questions."
-      subtitle="Answers on classification scope, costs, timelines, and digital verification. Don't see your question? Speak with a surveyor."
+      subtitle="Answers on classification scope, costs, timelines, and digital verification. Don't see your question? Speak with our team."
       breadcrumbs={[{ label: "FAQ" }]}
     />
 

@@ -4,7 +4,7 @@ import axios from "axios";
  * API client | thin wrapper around the GR Class backend.
  * Base URL is hardcoded as per instructions.
  */
-const API_BASE = "https://api.grclass.com";
+const API_BASE = "https://dev.api.grclass.com";
 
 const api = axios.create({
   baseURL: `${API_BASE}/api/v1`,
@@ -405,7 +405,20 @@ export async function searchVessel(imoNumber: string | number) {
   }
 }
 
-// 8. Direct Document Upload Helper
+// 8. Fetch Public Flags
+export async function fetchPublicFlags() {
+  try {
+    const data = await api.get<any>("/public/flags");
+    return data.data || data;
+  } catch (err: any) {
+    if (err && err.message && err.message.startsWith("Request failed")) {
+      err.message = "Failed to load flags.";
+    }
+    throw err;
+  }
+}
+
+// 9. Direct Document Upload Helper
 export const uploadSurveyorDocument = (
   entityType: string,
   entityId: string,
