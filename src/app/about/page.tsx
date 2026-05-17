@@ -67,7 +67,7 @@ const AboutPage = () => (
       </div>
     </section>
 
-    {/* Timeline */}
+    {/* Timeline - Hidden as of now
     <section className="container-page py-20 md:py-24">
       <span className="eyebrow text-secondary">Heritage</span>
       <h2 className="h-display mt-3 text-[clamp(24px,2.4vw,34px)] text-primary">Twenty-five years of independent classification.</h2>
@@ -91,6 +91,7 @@ const AboutPage = () => (
         ))}
       </div>
     </section>
+    */}
 
     {/* Leadership - Hidden as of now
     <section className="border-t border-border bg-primary py-20">
