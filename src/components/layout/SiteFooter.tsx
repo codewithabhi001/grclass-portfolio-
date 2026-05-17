@@ -53,7 +53,7 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
         {/* Sitemap */}
         <div className="md:col-span-2">
           <h4 className="mb-5 font-display text-[11px] font-bold uppercase tracking-[0.18em] text-accent">
-            Navigate
+            Quick Links
           </h4>
           <ul className="space-y-2.5 text-sm text-background/65">
             {mainNav.map((i) => (
@@ -90,21 +90,8 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
           <h4 className="mb-5 font-display text-[11px] font-bold uppercase tracking-[0.18em] text-accent">
             Operations
           </h4>
-          <a
-            href={site.ops}
-            className="group flex items-center justify-between border border-background/10 bg-background/[0.04] p-4 transition-colors hover:border-accent/40"
-          >
-            <div>
-              <div className="flex items-center gap-2 text-[13px] text-background/85">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                Surveyor Portal
-              </div>
-              <div className="mt-1 text-[11px] text-background/45">All systems operational</div>
-            </div>
-            <ArrowUpRight className="h-4 w-4 text-background/40 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
-          </a>
 
-          <form onSubmit={subscribe} className="mt-5">
+          <form onSubmit={subscribe} className="mt-2">
             <label className="block font-mono text-[10px] uppercase tracking-wider text-background/40">
               Technical bulletin
             </label>

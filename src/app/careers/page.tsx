@@ -4,11 +4,7 @@ import { SiteShell } from "@/components/layout/SiteShell";
 import { PageHero } from "@/components/layout/PageHero";
 import { toast } from "sonner";
 import careersImg from "@/assets/leader-3.jpg";
-import {
-  getSurveyorUploadUrls,
-  uploadToSignedUrl,
-  submitSurveyorApplication,
-} from "@/lib/api";
+import { submitSurveyorApplication } from "@/lib/api";
 
 const CareersPage = () => {
   const [cv, setCv] = useState<File | null>(null);
@@ -22,28 +18,25 @@ const CareersPage = () => {
     const fd = new FormData(form);
     setBusy(true);
     try {
-      const urls = await getSurveyorUploadUrls({
-        cv: cv ? { filename: cv.name, mimetype: cv.type } : undefined,
-        idProof: idProof ? { filename: idProof.name, mimetype: idProof.type } : undefined,
-        certificates: certs.map((c) => ({ filename: c.name, mimetype: c.type })),
-      });
-      if (cv && urls.cv) await uploadToSignedUrl(urls.cv.url, cv);
-      if (idProof && urls.idProof) await uploadToSignedUrl(urls.idProof.url, idProof);
-      if (urls.certificates) {
-        await Promise.all(certs.map((f, i) => uploadToSignedUrl(urls.certificates![i].url, f)));
-      }
-      await submitSurveyorApplication({
+      // Directly submit application by sending documents in base64 format in appropriate keys
+      const payload = {
         fullName: fd.get("fullName"),
+        full_name: fd.get("fullName"), // Support both casing conventions
         email: fd.get("email"),
         phone: fd.get("phone"),
         role: fd.get("role"),
         location: fd.get("location"),
         experience: Number(fd.get("experience") || 0),
+        years_of_experience: Number(fd.get("experience") || 0), // Support both casing conventions
         summary: fd.get("summary"),
-        cvKey: urls.cv?.key,
-        idProofKey: urls.idProof?.key,
-        certificateKeys: urls.certificates?.map((c) => c.key) || [],
+      };
+
+      await submitSurveyorApplication(payload, {
+        cv: cv,
+        id_proof: idProof,
+        certificates: certs.filter((c) => c && c.size > 0),
       });
+
       toast.success("Application received", { description: "Our talent team will be in touch." });
       form.reset();
       setCv(null); setIdProof(null); setCerts([]);
