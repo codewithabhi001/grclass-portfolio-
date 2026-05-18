@@ -11,8 +11,6 @@ import { newsItems as staticNewsItems } from "@/data/news";
 import newsHero from "@/assets/news-hero.jpg";
 import { fetchNews } from "@/lib/api";
 
-const categories = ["All", "Rule Change", "Bulletin", "Industry", "GR Class"] as const;
-
 const slugify = (text: string) => 
   text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
@@ -23,7 +21,6 @@ const getReadTime = (html: string) => {
 };
 
 const NewsPage = () => {
-  const [active, setActive] = useState<typeof categories[number]>("All");
   const [news, setNews] = useState<any[]>(staticNewsItems);
   const [loading, setLoading] = useState(true);
 
@@ -71,7 +68,7 @@ const NewsPage = () => {
     loadData();
   }, []);
 
-  const filtered = active === "All" ? news : news.filter((n) => n.category === active);
+  const sortedNews = [...news].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
     <SiteShell>
@@ -81,29 +78,6 @@ const NewsPage = () => {
         subtitle="Editorial-grade analysis from the GR Class technical committee and advisory practice."
         breadcrumbs={[{ label: "News" }]}
       />
-
-      {/* Filter bar */}
-      <section className="border-b border-border bg-background/80">
-        <div className="container-page flex flex-wrap items-center gap-1.5 py-5">
-          {categories.map((c) => (
-            <button
-              key={c}
-              onClick={() => setActive(c)}
-              className={
-                "px-4 py-2 text-[12px] font-medium tracking-wide transition-colors " +
-                (active === c
-                  ? "bg-primary text-primary-foreground"
-                  : "border border-border text-muted-foreground hover:border-accent hover:text-primary")
-              }
-            >
-              {c}
-            </button>
-          ))}
-          <div className="ml-auto font-mono text-[11px] uppercase tracking-wider text-subtle">
-            {loading ? "..." : `${filtered.length} article${filtered.length !== 1 ? "s" : ""}`}
-          </div>
-        </div>
-      </section>
 
       {loading ? (
         <section className="container-page py-16 animate-pulse">
@@ -128,14 +102,14 @@ const NewsPage = () => {
         </section>
       ) : (
         <>
-          {/* Featured */}
-          {active === "All" && filtered.length > 0 && (
+          {/* Featured (Most Recent) */}
+          {sortedNews.length > 0 && (
             <section className="container-page pt-16">
-              <Link to={`/news/${filtered[0].slug}`} className="group grid gap-10 border-b border-border pb-16 md:grid-cols-12">
+              <Link to={`/news/${sortedNews[0].slug}`} className="group grid gap-10 border-b border-border pb-16 md:grid-cols-12">
                 <div className="md:col-span-5">
                   <img 
-                    src={filtered[0].thumbnail_url || newsHero} 
-                    alt={filtered[0].title} 
+                    src={sortedNews[0].thumbnail_url || newsHero} 
+                    alt={sortedNews[0].title} 
                     className="aspect-[4/3] w-full object-cover" 
                     loading="lazy" 
                     onError={(e) => {
@@ -145,18 +119,18 @@ const NewsPage = () => {
                 </div>
                 <div className="md:col-span-7 md:py-4">
                   <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-wider">
-                    <span className="bg-accent px-2.5 py-1 text-accent-foreground">{filtered[0].category}</span>
+                    <span className="bg-accent px-2.5 py-1 text-accent-foreground">{sortedNews[0].category}</span>
                     <span className="text-subtle">Featured</span>
                   </div>
                   <h2 className="h-display mt-5 text-[clamp(24px,2.6vw,36px)] text-primary transition-colors group-hover:text-secondary">
-                    {filtered[0].title}
+                    {sortedNews[0].title}
                   </h2>
                   <p className="mt-4 max-w-xl text-[15px] font-light leading-relaxed text-muted-foreground">
-                    {filtered[0].excerpt}
+                    {sortedNews[0].excerpt}
                   </p>
                   <div className="mt-6 flex items-center gap-5 text-[12px] text-subtle">
-                    <span className="flex items-center gap-1.5"><Calendar className="h-3.5 w-3.5" /> {new Date(filtered[0].date).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</span>
-                    <span className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5" /> {filtered[0].readTime}</span>
+                    <span className="flex items-center gap-1.5"><Calendar className="h-3.5 w-3.5" /> {new Date(sortedNews[0].date).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</span>
+                    <span className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5" /> {sortedNews[0].readTime}</span>
                   </div>
                   <div className="mt-6 inline-flex items-center gap-1.5 text-[13px] font-medium text-secondary">
                     Read article <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -169,7 +143,7 @@ const NewsPage = () => {
           {/* Listing */}
           <section className="container-page py-16 md:py-20">
             <div className="grid gap-px bg-border md:grid-cols-2 lg:grid-cols-3">
-              {(active === "All" ? filtered.slice(1) : filtered).map((n, i) => (
+              {sortedNews.slice(1).map((n, i) => (
                 <motion.article
                   key={n.slug}
                   initial={{ opacity: 0, y: 16 }}
