@@ -1,9 +1,11 @@
 /**
  * Legal | dynamic route covering /legal/privacy, /legal/terms, /legal/compliance.
  */
+import { useState, useEffect } from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { PageHero } from "@/components/layout/PageHero";
+import { fetchPrivacyPolicy, fetchCompliance, fetchTermsAndConditions } from "@/lib/api";
 
 interface LegalDoc {
   slug: string;
@@ -117,18 +119,101 @@ const docs: Record<string, LegalDoc> = {
 
 const LegalPage = () => {
   const { doc } = useParams<{ doc: string }>();
-  const data = doc ? docs[doc.toLowerCase()] : undefined;
-  if (!data) return <Navigate to="/" replace />;
+  const docKey = doc?.toLowerCase() || "";
+  const staticData = docs[docKey];
+  
+  if (!staticData) return <Navigate to="/" replace />;
+
+  const [apiData, setApiData] = useState<{ title: string; body_html: string } | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let active = true;
+    async function loadData() {
+      setLoading(true);
+      setApiData(null);
+      try {
+        let res: any = null;
+        if (docKey === "privacy") {
+          res = await fetchPrivacyPolicy();
+        } else if (docKey === "compliance") {
+          res = await fetchCompliance();
+        } else if (docKey === "terms") {
+          res = await fetchTermsAndConditions();
+        }
+        
+        if (active) {
+          const content = res?.data || res;
+          if (content && content.body_html) {
+            setApiData({
+              title: content.title || staticData.title,
+              body_html: content.body_html,
+            });
+          }
+        }
+      } catch (err) {
+        console.error(`Failed to load ${docKey} from API, using static fallback.`, err);
+      } finally {
+        if (active) {
+          setLoading(false);
+        }
+      }
+    }
+    loadData();
+    return () => {
+      active = false;
+    };
+  }, [docKey]);
 
   const allDocs = Object.values(docs);
+  const displayTitle = apiData?.title || staticData.title;
 
   return (
     <SiteShell>
+      <style>{`
+        .dynamic-html-content section {
+          color: inherit !important;
+          font-family: inherit !important;
+          line-height: inherit !important;
+        }
+        .dynamic-html-content h2 {
+          color: hsl(var(--primary)) !important;
+          font-family: var(--font-display) !important;
+          font-weight: 800 !important;
+          font-size: clamp(20px, 2.2vw, 30px) !important;
+          border-bottom: 2px solid hsl(var(--accent)) !important;
+          padding-bottom: 8px !important;
+          margin-top: 2rem !important;
+          margin-bottom: 1.5rem !important;
+        }
+        .dynamic-html-content h2:first-of-type {
+          margin-top: 0 !important;
+        }
+        .dynamic-html-content h3 {
+          color: hsl(var(--secondary)) !important;
+          font-family: var(--font-display) !important;
+          font-weight: 700 !important;
+          font-size: 18px !important;
+          margin-top: 1.5rem !important;
+          margin-bottom: 0.75rem !important;
+        }
+        .dynamic-html-content p {
+          margin-bottom: 1rem !important;
+          line-height: 1.75 !important;
+          font-weight: 300 !important;
+          color: hsl(var(--muted-foreground)) !important;
+        }
+        .dynamic-html-content strong {
+          font-weight: 600 !important;
+          color: hsl(var(--foreground)) !important;
+        }
+      `}</style>
+
       <PageHero
-        eyebrow={data.eyebrow}
-        title={data.title}
-        subtitle={`Last updated ${data.updated}`}
-        breadcrumbs={[{ label: "Legal" }, { label: data.title }]}
+        eyebrow={staticData.eyebrow}
+        title={displayTitle}
+        subtitle={`Last updated ${staticData.updated}`}
+        breadcrumbs={[{ label: "Legal" }, { label: displayTitle }]}
       />
 
       <section className="container-page py-20 md:py-24">
@@ -143,7 +228,7 @@ const LegalPage = () => {
                       to={`/legal/${d.slug}`}
                       className={
                         "block border-l-2 pl-3 text-[13.5px] transition-colors " +
-                        (d.slug === data.slug
+                        (d.slug === staticData.slug
                           ? "border-accent text-primary"
                           : "border-transparent text-muted-foreground hover:border-border hover:text-primary")
                       }
@@ -157,22 +242,39 @@ const LegalPage = () => {
           </aside>
 
           <article className="md:col-span-9">
-            <div className="prose-editorial space-y-12">
-              {data.sections.map((s) => (
-                <section key={s.heading}>
-                  <h2 className="h-display border-b border-border pb-3 text-[20px] text-primary md:text-[24px]">
-                    {s.heading}
-                  </h2>
-                  <div className="mt-5 space-y-4">
-                    {s.body.map((p, i) => (
-                      <p key={i} className="text-[15px] font-light leading-[1.75] text-muted-foreground">
-                        {p}
-                      </p>
-                    ))}
-                  </div>
-                </section>
-              ))}
-            </div>
+            {loading ? (
+              <div className="space-y-8 animate-pulse">
+                <div className="h-6 bg-border-soft w-1/4 rounded"></div>
+                <div className="h-4 bg-border-soft w-full rounded"></div>
+                <div className="h-4 bg-border-soft w-full rounded"></div>
+                <div className="h-4 bg-border-soft w-5/6 rounded"></div>
+                <div className="h-6 bg-border-soft w-1/3 rounded mt-12"></div>
+                <div className="h-4 bg-border-soft w-full rounded"></div>
+                <div className="h-4 bg-border-soft w-4/5 rounded"></div>
+              </div>
+            ) : apiData && apiData.body_html ? (
+              <div
+                className="dynamic-html-content max-w-none text-[15px] font-light leading-[1.75] text-muted-foreground"
+                dangerouslySetInnerHTML={{ __html: apiData.body_html }}
+              />
+            ) : (
+              <div className="prose-editorial space-y-12">
+                {staticData.sections.map((s) => (
+                  <section key={s.heading}>
+                    <h2 className="h-display border-b border-border pb-3 text-[20px] text-primary md:text-[24px]">
+                      {s.heading}
+                    </h2>
+                    <div className="mt-5 space-y-4">
+                      {s.body.map((p, i) => (
+                        <p key={i} className="text-[15px] font-light leading-[1.75] text-muted-foreground">
+                          {p}
+                        </p>
+                      ))}
+                    </div>
+                  </section>
+                ))}
+              </div>
+            )}
           </article>
         </div>
       </section>

@@ -436,4 +436,82 @@ export const uploadSurveyorDocument = (
   });
 };
 
+// 10. Fetch FAQs - /api/v1/website/static-content/faq
+export async function fetchFAQs() {
+  try {
+    const data = await api.get<any>("/website/static-content/faq");
+    return data.data || data;
+  } catch (err: any) {
+    if (err && err.message && err.message.startsWith("Request failed")) {
+      err.message = "Failed to load FAQs.";
+    }
+    throw err;
+  }
+}
+
+// 11. Fetch News - /api/v1/website/static-content/news
+export async function fetchNews() {
+  try {
+    const data = await api.get<any>("/website/static-content/news");
+    return data.data || data;
+  } catch (err: any) {
+    if (err && err.message && err.message.startsWith("Request failed")) {
+      err.message = "Failed to load news.";
+    }
+    throw err;
+  }
+}
+
+// 12. Fetch Privacy Policy - /api/v1/website/static-content/privacy
+export async function fetchPrivacyPolicy() {
+  try {
+    const data = await api.get<any>("/website/static-content/privacy");
+    return data.data || data;
+  } catch (err: any) {
+    if (err && err.message && err.message.startsWith("Request failed")) {
+      err.message = "Failed to load Privacy Policy.";
+    }
+    throw err;
+  }
+}
+
+// 13. Fetch Compliance - /api/v1/website/static-content/terms-compliance
+export async function fetchCompliance() {
+  try {
+    const data = await api.get<any>("/website/static-content/terms-compliance");
+    return data.data || data;
+  } catch (err: any) {
+    if (err && err.message && err.message.startsWith("Request failed")) {
+      err.message = "Failed to load Compliance.";
+    }
+    throw err;
+  }
+}
+
+// 14. Fetch Terms and Conditions - /api/v1/website/static-content/terms-and-conditions
+export async function fetchTermsAndConditions() {
+  try {
+    const data = await api.get<any>("/website/static-content/terms-and-conditions");
+    return data.data || data;
+  } catch (err: any) {
+    if (err && err.message && err.message.startsWith("Request failed")) {
+      err.message = "Failed to load Terms and Conditions.";
+    }
+    throw err;
+  }
+}
+
+// 15. Fetch About Us - /api/v1/website/static-content/about-us
+export async function fetchAboutUs() {
+  try {
+    const data = await api.get<any>("/website/static-content/about-us");
+    return data.data || data;
+  } catch (err: any) {
+    if (err && err.message && err.message.startsWith("Request failed")) {
+      err.message = "Failed to load About Us.";
+    }
+    throw err;
+  }
+}
+
 export const apiBase = API_BASE;
