@@ -29,72 +29,74 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header
-      className={
-        "sticky top-0 z-50 border-b transition-all duration-300 " +
-        (scrolled
-          ? "border-background/10 bg-primary/95 backdrop-blur-md shadow-[0_4px_24px_hsl(var(--primary-deep)/0.4)]"
-          : "border-background/5 bg-primary")
-      }
-    >
-      <div className="container-page flex h-16 items-center justify-between gap-4 md:h-[72px] md:gap-6">
-        <BrandLogo variant="light" />
+    <>
+      <header
+        className={
+          "sticky top-0 z-50 border-b transition-all duration-300 " +
+          (scrolled
+            ? "border-background/10 bg-primary/95 backdrop-blur-md shadow-[0_4px_24px_hsl(var(--primary-deep)/0.4)]"
+            : "border-background/5 bg-primary")
+        }
+      >
+        <div className="container-page flex h-16 items-center justify-between gap-4 md:h-[72px] md:gap-6">
+          <BrandLogo variant="light" />
 
-        {/* Desktop nav */}
-        <nav className="hidden items-stretch lg:flex" aria-label="Primary">
-          {mainNav.map((item) => {
-            const active = pathname === item.href;
-            return (
-              <NavLink
-                key={item.href}
-                to={item.href}
-                className={
-                  "relative -mb-px flex items-center border-b-[3px] px-3.5 py-5 text-[13px] font-medium transition-colors " +
-                  (active
-                    ? "border-accent text-background"
-                    : "border-transparent text-background/75 hover:border-accent hover:text-background")
-                }
-              >
-                {item.label}
-              </NavLink>
-            );
-          })}
-        </nav>
+          {/* Desktop nav */}
+          <nav className="hidden items-stretch lg:flex" aria-label="Primary">
+            {mainNav.map((item) => {
+              const active = pathname === item.href;
+              return (
+                <NavLink
+                  key={item.href}
+                  to={item.href}
+                  className={
+                    "relative -mb-px flex items-center border-b-[3px] px-3.5 py-5 text-[13px] font-medium transition-colors " +
+                    (active
+                      ? "border-accent text-background"
+                      : "border-transparent text-background/75 hover:border-accent hover:text-background")
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              );
+            })}
+          </nav>
 
-        {/* Right cluster */}
-        <div className="flex items-center gap-2 md:gap-4">
-          <Link
-            to="/verify"
-            className="hidden items-center gap-1.5 text-[13px] text-background/70 transition-colors hover:text-background lg:flex"
-          >
-            <ShieldCheck className="h-4 w-4" /> Verify
-          </Link>
-          <a
-            href={site.ops}
-            className="hidden items-center gap-1.5 text-[13px] text-background/70 transition-colors hover:text-background xl:flex"
-          >
-            <UserRound className="h-4 w-4" /> Login
-          </a>
-          <Link
-            to="/contact"
-            className="hidden bg-accent px-4 py-2 text-[12.5px] font-semibold tracking-wide text-accent-foreground transition-colors hover:bg-accent-bright md:inline-block lg:px-5"
-          >
-            Get in touch
-          </Link>
-          <button
-            onClick={() => setOpen((o) => !o)}
-            className="flex h-10 w-10 items-center justify-center text-background lg:hidden"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+          {/* Right cluster */}
+          <div className="flex items-center gap-2 md:gap-4">
+            <Link
+              to="/verify"
+              className="hidden items-center gap-1.5 text-[13px] text-background/70 transition-colors hover:text-background lg:flex"
+            >
+              <ShieldCheck className="h-4 w-4" /> Verify
+            </Link>
+            <a
+              href={site.ops}
+              className="hidden items-center gap-1.5 text-[13px] text-background/70 transition-colors hover:text-background xl:flex"
+            >
+              <UserRound className="h-4 w-4" /> Login
+            </a>
+            <Link
+              to="/contact"
+              className="hidden bg-accent px-4 py-2 text-[12.5px] font-semibold tracking-wide text-accent-foreground transition-colors hover:bg-accent-bright md:inline-block lg:px-5"
+            >
+              Get in touch
+            </Link>
+            <button
+              onClick={() => setOpen((o) => !o)}
+              className="flex h-10 w-10 items-center justify-center text-background lg:hidden"
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+            >
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
 
       {/* Mobile menu */}
       {open && (
-        <div className="fixed inset-x-0 top-16 bottom-0 z-40 overflow-y-auto border-t border-background/10 bg-primary-deep lg:hidden">
+        <div className="fixed inset-x-0 top-16 md:top-[72px] bottom-0 z-40 overflow-y-auto border-t border-background/10 bg-primary-deep lg:hidden">
           <nav className="container-page flex flex-col py-4" aria-label="Mobile">
             {mainNav.map((item) => {
               const active = pathname === item.href;
@@ -135,6 +137,6 @@ export function SiteHeader() {
           </nav>
         </div>
       )}
-    </header>
+    </>
   );
 }
