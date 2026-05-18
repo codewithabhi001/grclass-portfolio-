@@ -4,7 +4,7 @@ import axios from "axios";
  * API client | thin wrapper around the GR Class backend.
  * Base URL is hardcoded as per instructions.
  */
-const API_BASE = "https://dev.api.grclass.com";
+const API_BASE = "https://api.grclass.com";
 
 const api = axios.create({
   baseURL: `${API_BASE}/api/v1`,
