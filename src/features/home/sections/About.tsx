@@ -62,20 +62,20 @@ export function About() {
         <div>
           <span className="eyebrow text-secondary">About GR Class</span>
           <h2 className="h-display mt-3 text-[clamp(24px,3.2vw,40px)] text-primary">
-            A modern classification society, built for today's fleets.
+            Classified for standards
           </h2>
           <p className="mt-5 text-[14.5px] font-light leading-[1.8] text-muted-foreground sm:text-[15px]">
-            GR Class welcomes you for your asset’s safety and compliances. GR Class is a Recognized Organization (RO), Recognized Security Organization (RSO), and Classification Society (CS) authorised to offer statutory/class certification and services.
+            GR class welcomes you for your asset’s safety and compliances. GR Class is a Recognized Organization (RO), Recognized Security Organization (RSO) and Classification Society (CS) authorized to offer statutory/class certification and services.
           </p>
           <p className="mt-4 text-[14.5px] font-light leading-[1.8] text-muted-foreground sm:text-[15px]">
-            We are committed to ensuring the highest standards of safety, reliability, and environmental sustainability in the maritime industry. Our team possesses strong technical expertise and professionalism, guaranteeing dedicated service to our clients.
+            We are committed to ensuring the highest standards of safety, reliability, and environmental sustainability in the maritime industry. Our team possesses technical expertise and professionalism guaranteeing dedicated serving our clients.
           </p>
-          {/* <p className="mt-4 text-[14.5px] font-light leading-[1.8] text-muted-foreground sm:text-[15px]">
+          <p className="mt-4 text-[14.5px] font-light leading-[1.8] text-muted-foreground sm:text-[15px]">
             Our range of services includes the classification of newly built ships, as well as the classification and certification of existing vessels for continued safe operation. We also provide statutory certification services.
           </p>
           <p className="mt-4 text-[14.5px] font-light leading-[1.8] text-muted-foreground sm:text-[15px]">
-            We strive to be the trusted partner for ship owners and operators, offering reliable and cost-effective solutions tailored to their specific requirements.
-          </p> */}
+            We strive to be the trusted partner for ship owners and operators, offering them reliable, cost-effective solutions tailored to their specific needs.
+          </p>
 
           <ul className="mt-7 hairline">
             {aboutFeatures.map((f, i) => (

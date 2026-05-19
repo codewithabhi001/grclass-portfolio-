@@ -29,7 +29,7 @@ export const services = [
     eyebrow: "Classification",
     title: "Classification Services",
     description:
-      "Comprehensive classification for newly built ships and existing vessels, ensuring safety and reliability throughout their lifecycle.",
+      "Comprehensive classification for newly built ships, transfer of class, and existing vessels, including offshore, yachts, and conversion projects.",
     image: surveyImg,
   },
   {
@@ -37,7 +37,7 @@ export const services = [
     eyebrow: "Statutory",
     title: "Statutory Services",
     description:
-      "Global compliance and certification on behalf of flag administrations, ensuring adherence to international maritime conventions.",
+      "Global compliance and certification on behalf of flag administrations, ensuring adherence to international maritime conventions like SOLAS and MARPOL.",
     image: certImg,
   },
   {
@@ -45,23 +45,31 @@ export const services = [
     eyebrow: "Sustainability",
     title: "Environmental Services",
     description:
-      "Navigating the pathway to green shipping with expertise in energy efficiency and decarbonisation compliance.",
+      "Navigating green shipping with expertise in Ballast Water Management, Ship Recycling (IHM), Energy Efficiency (EEDI/EEXI/CII), and EU MRV compliance.",
     image: advisoryImg,
+  },
+  {
+    slug: "other-services",
+    eyebrow: "Support",
+    title: "Other Services",
+    description:
+      "Providing critical compliance support, remote surveys, Port State Control performance oversight, and expert technical advisory services.",
+    image: surveyImg,
   },
 ] as const;
 
 export const aboutFeatures = [
   {
-    title: "Independent classification",
-    body: "Established under recognized organisation status with rigorous separation between class and commercial interests.",
+    title: "Mission",
+    body: "Ensuring Marine safety, safeguard of lives and property at sea. A comprehensive approach combining international regulations, advanced surveillance, rigorous training, and risk management.",
   },
   {
-    title: "Global surveyor network",
-    body: "150+ exclusive surveyors covering major ports across Europe, Asia, the Americas, and the Middle East.",
+    title: "Capabilities",
+    body: "Our geographical presence with certified surveyors makes GR class stronger. We maintain secure information systems to manage vessel data, survey statuses, and certificates.",
   },
   {
-    title: "Digital certification",
-    body: "Tamper-evident certificates verifiable in seconds via grclass.com/verify | accepted by port state control.",
+    title: "Expertise",
+    body: "We work with values, ethics, and standards. Our surveyors, auditors, and technical experts have decades of experience tackling complex maritime issues through clear procedures.",
   },
 ];
 

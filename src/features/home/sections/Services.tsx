@@ -14,7 +14,7 @@ export function Services() {
           <div className="max-w-xl">
             <span className="eyebrow text-secondary">Our Practice</span>
             <h2 className="h-display mt-3 text-[clamp(24px,3.2vw,40px)] text-primary">
-              Three core services. One unified standard.
+              Our core services. One unified standard.
             </h2>
           </div>
           <p className="max-w-md text-[14px] font-light leading-relaxed text-muted-foreground sm:text-[15px]">
@@ -23,7 +23,7 @@ export function Services() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-px bg-border sm:grid-cols-2 md:mt-14 md:grid-cols-3">
+        <div className="mt-10 grid gap-px bg-border sm:grid-cols-2 md:mt-14 lg:grid-cols-4">
           {services.map((svc, i) => (
             <motion.article
               key={svc.slug}
@@ -31,7 +31,7 @@ export function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative overflow-hidden border-t-[3px] border-transparent bg-card transition-all duration-300 hover:border-accent hover:shadow-card sm:last:col-span-2 md:last:col-span-1"
+              className="group relative overflow-hidden border-t-[3px] border-transparent bg-card transition-all duration-300 hover:border-accent hover:shadow-card"
             >
               <Link to={`/services/${svc.slug}`} className="block">
                 <div className="relative h-44 overflow-hidden bg-primary sm:h-48">

@@ -40,6 +40,31 @@ const ServiceDetailPage = () => {
               {svc.description}
             </p>
 
+            {svc.detailedContent && svc.detailedContent.map((section, idx) => (
+              <div key={idx} className="mt-10">
+                {section.heading && (
+                  <h3 className="h-display mb-4 text-[20px] text-primary">
+                    {section.heading}
+                  </h3>
+                )}
+                {section.paragraphs?.map((p, pIdx) => (
+                  <p key={pIdx} className="mb-4 text-[15px] font-light leading-relaxed text-muted-foreground">
+                    {p}
+                  </p>
+                ))}
+                {section.list && (
+                  <ul className="mb-4 space-y-2">
+                    {section.list.map((li, lIdx) => (
+                      <li key={lIdx} className="flex items-start gap-3 text-[14.5px] text-foreground/85">
+                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent flex-shrink-0" />
+                        <span>{li}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+
             <h2 className="h-display mt-12 text-[24px] text-primary">Scope of work</h2>
             <ul className="mt-5 space-y-3">
               {svc.scope.map((item) => (
