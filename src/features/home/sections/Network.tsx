@@ -3,6 +3,7 @@
  */
 import { useState, useEffect } from "react";
 import { fetchPublicFlags } from "@/lib/api";
+import { Flag } from "lucide-react";
 
 interface FlagItem {
   id: string;
@@ -32,6 +33,7 @@ const FALLBACK_FLAGS: FlagItem[] = [
 export function Network() {
   const [flags, setFlags] = useState<FlagItem[]>(FALLBACK_FLAGS);
   const [loading, setLoading] = useState(true);
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     async function loadFlags() {
@@ -82,13 +84,22 @@ export function Network() {
                     key={f.id}
                     className="group relative flex w-[110px] flex-col items-center justify-center border border-background/5 bg-background/[0.02] p-2.5 transition-all duration-300 hover:border-accent/30 hover:bg-background/[0.06]"
                   >
-                    <div className="relative aspect-[3/2] w-full max-w-[48px] overflow-hidden bg-background/5 border border-background/10 p-0.5 shadow-sm transition-transform duration-300 group-hover:scale-105">
-                      <img
-                        src={f.logo_url}
-                        alt={f.flag_state_name}
-                        className="h-full w-full object-contain"
-                        loading="lazy"
-                      />
+                    <div className="relative aspect-[3/2] w-full max-w-[48px] overflow-hidden bg-background/5 border border-background/10 p-0.5 shadow-sm transition-transform duration-300 group-hover:scale-105 flex items-center justify-center">
+                      {f.logo_url && !failedImages[f.id] ? (
+                        <img
+                          src={f.logo_url}
+                          alt={f.flag_state_name}
+                          className="h-full w-full object-contain animate-fade-in"
+                          onError={() => {
+                            setFailedImages((prev) => ({ ...prev, [f.id]: true }));
+                          }}
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center bg-background/10 text-background/30">
+                          <Flag className="h-4 w-4" />
+                        </div>
+                      )}
                     </div>
                     <span className="mt-2 text-[11.5px] font-semibold tracking-wide text-background/85 text-center truncate w-full">
                       {f.country}
