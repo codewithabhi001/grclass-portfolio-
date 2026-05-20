@@ -53,10 +53,10 @@ const ServiceDetailPage = () => {
                   </p>
                 ))}
                 {section.list && (
-                  <ul className="mb-4 space-y-2">
+                  <ul className={`mb-4 ${section.list.length > 8 ? "grid gap-x-6 gap-y-2 sm:grid-cols-2" : "space-y-2"}`}>
                     {section.list.map((li, lIdx) => (
                       <li key={lIdx} className="flex items-start gap-3 text-[14.5px] text-foreground/85">
-                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent flex-shrink-0" />
+                        <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-accent flex-shrink-0" />
                         <span>{li}</span>
                       </li>
                     ))}

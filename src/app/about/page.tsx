@@ -8,6 +8,7 @@ import { PageHero } from "@/components/layout/PageHero";
 import { milestones, leadership, values } from "@/data/about";
 import aboutImg from "@/assets/about-surveyor.jpg";
 import { fetchAboutUs } from "@/lib/api";
+import { ShieldCheck, Anchor, Award } from "lucide-react";
 
 const AboutPage = () => {
   const [aboutData, setAboutData] = useState<any>(null);
@@ -118,6 +119,68 @@ const AboutPage = () => {
               alt="GR Class surveyor on board"
               className="aspect-[4/5] w-full object-cover"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Pillars Section */}
+      <section className="border-t border-border bg-card py-20">
+        <div className="container-page">
+          <span className="eyebrow text-secondary">Pillars of Excellence</span>
+          <h2 className="h-display mt-3 text-[clamp(24px,2.4vw,34px)] text-primary">
+            Mission, Capabilities & Expertise
+          </h2>
+          <div className="mt-12 grid gap-8 md:grid-cols-3">
+            {/* Mission Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="group relative flex flex-col items-start border border-border bg-background p-8 transition-all duration-300 hover:shadow-card hover:border-accent"
+            >
+              <div className="flex h-12 w-12 items-center justify-center bg-accent-soft text-accent transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
+                <ShieldCheck className="h-6 w-6" />
+              </div>
+              <h3 className="h-display mt-6 text-[20px] text-primary">Mission</h3>
+              <p className="mt-4 text-[14.5px] font-light leading-relaxed text-muted-foreground">
+                Ensuring Marine safety, safeguard of lives and property at sea. A comprehensive approach combining international regulations (e.g., SOLAS, ISPS Code), advanced surveillance, rigorous training, and risk management to protect lives, vessels, and the marine environment.
+              </p>
+            </motion.div>
+
+            {/* Capabilities Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="group relative flex flex-col items-start border border-border bg-background p-8 transition-all duration-300 hover:shadow-card hover:border-accent"
+            >
+              <div className="flex h-12 w-12 items-center justify-center bg-accent-soft text-accent transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
+                <Anchor className="h-6 w-6" />
+              </div>
+              <h3 className="h-display mt-6 text-[20px] text-primary">Capabilities</h3>
+              <p className="mt-4 text-[14.5px] font-light leading-relaxed text-muted-foreground">
+                Being a Class, our geographical presence with certified surveyors makes GR Class stronger and technically capable, giving strength to survey capabilities to standardize regulatory and compliance capabilities. GR Class has good technical infrastructure, maintaining secure and reliable information systems to manage vessel data, survey statuses, and certificates.
+              </p>
+            </motion.div>
+
+            {/* Expertise Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="group relative flex flex-col items-start border border-border bg-background p-8 transition-all duration-300 hover:shadow-card hover:border-accent"
+            >
+              <div className="flex h-12 w-12 items-center justify-center bg-accent-soft text-accent transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
+                <Award className="h-6 w-6" />
+              </div>
+              <h3 className="h-display mt-6 text-[20px] text-primary">Expertise</h3>
+              <p className="mt-4 text-[14.5px] font-light leading-relaxed text-muted-foreground">
+                We work with values, ethics, and standards. We gain the trust of our valued customers, which builds GR Class with class standards to the next level. Our surveyors, auditors, and technical experts have decades of experience in assessing and verifying ship safety standards and tackling complex maritime issues through clear procedures and cost-effective support for ship operators.
+              </p>
+            </motion.div>
           </div>
         </div>
       </section>

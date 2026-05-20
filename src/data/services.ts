@@ -55,7 +55,7 @@ export const servicesCatalogue: ServiceDetail[] = [
       {
         heading: "Fleet in Services",
         paragraphs: [
-          "Gr ensure ships and maritime assets maintain safety, structural integrity, and regulatory compliance throughout their operational life. This involves periodic, annual, intermediate, and special surveys to verify technical standards and validity of certificates.",
+          "GR ensures ships and maritime assets maintain safety, structural integrity, and regulatory compliance throughout their operational life. This involves periodic, annual, intermediate, and special surveys to verify technical standards and validity of certificates.",
           "Application to GR Class is smooth yet standards compliant process and can be enacted by contacting either with the GR Head Office or your local GR branches.",
           "In order to commence the class admission process and to determine the applicable entry surveys requirements, the following information and documentation of the vessel should be transmitted to GR Class:"
         ],
@@ -96,7 +96,7 @@ export const servicesCatalogue: ServiceDetail[] = [
         paragraphs: [
           "Transfer of Class (ToC) is the formal process of moving a ship's classification from one classification society (losing society) to another (gaining society).",
           "Transferring an existing vessel to GR Class is a simple and inexpensive process. Owners may get in touch with any of our offices or place a request via the Class Entry Service Request Form.",
-          "We shall contact with the loosing society and obtain pertinent ship’s survey and certification history, and class related documentation and provide guidance on survey schedules so as to minimize disruptions to commercial and operational obligations of your ship."
+          "We shall contact with the losing society and obtain pertinent ship’s survey and certification history, and class related documentation and provide guidance on survey schedules so as to minimize disruptions to commercial and operational obligations of your ship."
         ]
       },
       {
@@ -369,7 +369,7 @@ export const servicesCatalogue: ServiceDetail[] = [
         heading: "Remote Surveys",
         paragraphs: [
           "We conduct remote survey and audit activities as new methods of supporting specific type of inspection assignments in locations where on-board access is not possible, to assist operational continuity for our fleet.",
-          "Our remote survey services aim to assisting that vessels remain compliant with classification and statutory requirements without disrupting operations. GR Class offered remote survey solutions include:"
+          "Our remote survey services aim to ensure that vessels remain compliant with classification and statutory requirements without disrupting operations. GR Class offered remote survey solutions include:"
         ],
         list: [
           "Occasional Surveys between scheduled surveys",
