@@ -117,16 +117,8 @@ async function request<T>(path: string, init: any = {}): Promise<T> {
 // 1. Verify Certificate
 export async function verifyCertificate(certNumber: string) {
   try {
-    return await api.get<any>(`/public/certificate/verify/${encodeURIComponent(certNumber)}`) as any as {
-      certNumber: string;
-      status: "valid" | "invalid";
-      vessel?: string;
-      imo?: string;
-      type?: string;
-      flag?: string;
-      issued?: string;
-      expires?: string;
-    };
+    const response = await api.get<any>(`/public/certificate/verify/${encodeURIComponent(certNumber)}`);
+    return response as any;
   } catch (err: any) {
     if (err && err.message && err.message.startsWith("Request failed")) {
       err.message = "Certificate not found or invalid.";

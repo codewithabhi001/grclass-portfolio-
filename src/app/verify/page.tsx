@@ -16,6 +16,7 @@ interface VerifyResult {
   flag?: string;
   issued?: string;
   expires?: string;
+  pdfUrl?: string;
 }
 
 const VerifyPage = () => {
@@ -31,14 +32,15 @@ const VerifyPage = () => {
     try {
       const data = await verifyCertificate(ref.trim());
       setResult({
-        status: data.status || "valid",
-        reference: (data.certNumber || ref.trim()).toUpperCase(),
-        vessel: data.vessel,
-        imo: data.imo,
+        status: data.status?.toLowerCase() === "valid" ? "valid" : "invalid",
+        reference: (data.certificate_number || data.certNumber || ref.trim()).toUpperCase(),
+        vessel: data.vessel?.vessel_name || (typeof data.vessel === 'string' ? data.vessel : undefined),
+        imo: data.vessel?.imo_number || data.imo,
         type: data.type,
         flag: data.flag,
-        issued: data.issued,
-        expires: data.expires,
+        issued: data.issue_date || data.issued,
+        expires: data.expiry_date || data.expires,
+        pdfUrl: data.pdf_url,
       });
     } catch (err) {
       // Dev fallback: any reference starting with GR- returns a sample valid result
@@ -47,15 +49,15 @@ const VerifyPage = () => {
       setResult(
         isValid
           ? {
-              status: "valid",
-              reference: ref.trim().toUpperCase(),
-              vessel: "MV Northern Star",
-              imo: "9482736",
-              type: "SOLAS Cargo Ship Safety Certificate",
-              flag: "Marshall Islands",
-              issued: "12 March 2024",
-              expires: "11 March 2029",
-            }
+            status: "valid",
+            reference: ref.trim().toUpperCase(),
+            vessel: "MV Northern Star",
+            imo: "9482736",
+            type: "SOLAS Cargo Ship Safety Certificate",
+            flag: "Marshall Islands",
+            issued: "12 March 2024",
+            expires: "11 March 2029",
+          }
           : { status: "invalid", reference: ref.trim() }
       );
       void err;
@@ -120,11 +122,32 @@ const VerifyPage = () => {
                     </div>
                   </div>
                   <dl className="mt-8 grid gap-6 md:grid-cols-2">
-                    <Detail icon={<Anchor className="h-4 w-4" />} label="Vessel" value={`${result.vessel} · IMO ${result.imo}`} />
-                    <Detail icon={<Building2 className="h-4 w-4" />} label="Flag state" value={result.flag!} />
-                    <Detail icon={<ShieldCheck className="h-4 w-4" />} label="Certificate type" value={result.type!} />
-                    <Detail icon={<Calendar className="h-4 w-4" />} label="Validity" value={`${result.issued} → ${result.expires}`} />
+                    {result.vessel && (
+                      <Detail icon={<Anchor className="h-4 w-4" />} label="Vessel" value={`${result.vessel}${result.imo ? ` · IMO ${result.imo}` : ''}`} />
+                    )}
+                    {result.flag && (
+                      <Detail icon={<Building2 className="h-4 w-4" />} label="Flag state" value={result.flag} />
+                    )}
+                    {result.type && (
+                      <Detail icon={<ShieldCheck className="h-4 w-4" />} label="Certificate type" value={result.type} />
+                    )}
+                    {(result.issued || result.expires) && (
+                      <Detail icon={<Calendar className="h-4 w-4" />} label="Validity" value={[result.issued, result.expires].filter(Boolean).join(" → ")} />
+                    )}
                   </dl>
+
+                  {result.pdfUrl && (
+                    <div className="mt-8">
+                      <a
+                        href={result.pdfUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 border border-accent/20 bg-accent/10 px-6 py-3 text-sm font-semibold text-accent transition-colors hover:bg-accent hover:text-white"
+                      >
+                        Download Certificate (PDF)
+                      </a>
+                    </div>
+                  )}
                 </div>
               ) : (
                 <div className="border-l-[3px] border-destructive bg-destructive/5 p-8">
