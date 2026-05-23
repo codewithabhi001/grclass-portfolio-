@@ -32,13 +32,16 @@ export function SiteHeader() {
     <>
       <header
         className={
-          "sticky top-0 z-50 border-b transition-all duration-300 " +
+          "sticky top-0 z-50 transition-all duration-300 " +
           (scrolled
-            ? "border-background/10 bg-primary/95 backdrop-blur-md shadow-[0_4px_24px_hsl(var(--primary-deep)/0.4)]"
-            : "border-background/5 bg-primary")
+            ? "bg-primary/[0.97] backdrop-blur-xl shadow-[0_2px_24px_rgba(0,0,0,0.25)]"
+            : "bg-primary")
         }
       >
-        <div className="container-page flex h-16 items-center justify-between gap-4 md:h-[72px] md:gap-6">
+        {/* Top accent line */}
+        <div className="h-[2px] w-full bg-gradient-to-r from-accent via-accent-bright to-accent" />
+
+        <div className="container-page flex h-16 items-center justify-between gap-4 md:h-20 md:gap-6">
           <BrandLogo variant="light" />
 
           {/* Desktop nav */}
@@ -50,41 +53,52 @@ export function SiteHeader() {
                   key={item.href}
                   to={item.href}
                   className={
-                    "relative -mb-px flex items-center border-b-[3px] px-3.5 py-5 text-[13px] font-medium transition-colors " +
+                    "group relative flex items-center px-4 text-[13.5px] font-semibold tracking-wide transition-colors duration-200 " +
                     (active
-                      ? "border-accent text-background"
-                      : "border-transparent text-background/75 hover:border-accent hover:text-background")
+                      ? "text-white"
+                      : "text-white/65 hover:text-white")
                   }
                 >
                   {item.label}
+                  {/* Active indicator — gold bar */}
+                  <span
+                    className={
+                      "absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] rounded-full bg-accent transition-all duration-300 " +
+                      (active ? "w-[60%] opacity-100" : "w-0 opacity-0 group-hover:w-[40%] group-hover:opacity-60")
+                    }
+                  />
                 </NavLink>
               );
             })}
           </nav>
 
           {/* Right cluster */}
-          <div className="flex items-center gap-2 md:gap-4">
+          <div className="flex items-center gap-1 md:gap-2">
             <Link
               to="/verify"
-              className="hidden items-center gap-1.5 text-[13px] text-background/70 transition-colors hover:text-background lg:flex"
+              className="hidden items-center gap-1.5 rounded-md px-3 py-2 text-[13px] font-medium text-white/60 transition-colors hover:bg-white/[0.06] hover:text-white lg:flex"
             >
               <ShieldCheck className="h-4 w-4" /> Verify
             </Link>
             <a
               href={site.ops}
-              className="hidden items-center gap-1.5 text-[13px] text-background/70 transition-colors hover:text-background xl:flex"
+              className="hidden items-center gap-1.5 rounded-md px-3 py-2 text-[13px] font-medium text-white/60 transition-colors hover:bg-white/[0.06] hover:text-white xl:flex"
             >
               <UserRound className="h-4 w-4" /> Login
             </a>
+
+            {/* Divider */}
+            <span className="hidden h-6 w-px bg-white/15 mx-2 xl:block" />
+
             <Link
               to="/contact"
-              className="hidden bg-accent px-4 py-2 text-[12.5px] font-semibold tracking-wide text-accent-foreground transition-colors hover:bg-accent-bright md:inline-block lg:px-5"
+              className="hidden items-center bg-accent px-5 py-2.5 text-[13px] font-bold tracking-wide text-accent-foreground shadow-brass transition-all hover:bg-accent-bright hover:shadow-[0_6px_20px_hsl(var(--accent)/0.4)] md:inline-flex"
             >
               Get in touch
             </Link>
             <button
               onClick={() => setOpen((o) => !o)}
-              className="flex h-10 w-10 items-center justify-center text-background lg:hidden"
+              className="flex h-10 w-10 items-center justify-center text-white/80 hover:text-white transition-colors lg:hidden"
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
             >
@@ -92,12 +106,15 @@ export function SiteHeader() {
             </button>
           </div>
         </div>
+
+        {/* Bottom border */}
+        <div className="h-px w-full bg-white/[0.08]" />
       </header>
 
       {/* Mobile menu */}
       {open && (
-        <div className="fixed inset-x-0 top-16 md:top-[72px] bottom-0 z-40 overflow-y-auto border-t border-background/10 bg-primary-deep lg:hidden">
-          <nav className="container-page flex flex-col py-4" aria-label="Mobile">
+        <div className="fixed inset-x-0 top-[66px] md:top-[82px] bottom-0 z-40 overflow-y-auto bg-primary-deep lg:hidden">
+          <nav className="container-page flex flex-col py-6" aria-label="Mobile">
             {mainNav.map((item) => {
               const active = pathname === item.href;
               return (
@@ -106,30 +123,30 @@ export function SiteHeader() {
                   to={item.href}
                   onClick={() => setOpen(false)}
                   className={
-                    "flex items-center justify-between border-b border-background/5 py-4 text-[15px] transition-colors " +
-                    (active ? "text-accent" : "text-background/85 hover:text-background")
+                    "flex items-center justify-between border-b border-white/[0.06] py-4 text-[15px] font-medium transition-colors " +
+                    (active ? "text-accent" : "text-white/75 hover:text-white")
                   }
                 >
                   <span>{item.label}</span>
-                  <span className="font-mono text-[10px] text-background/30">
+                  <span className="font-mono text-[10px] text-white/25">
                     {String(mainNav.indexOf(item) + 1).padStart(2, "0")}
                   </span>
                 </Link>
               );
             })}
 
-            <div className="mt-6 space-y-3">
+            <div className="mt-8 space-y-3">
               <Link
                 to="/contact"
                 onClick={() => setOpen(false)}
-                className="flex items-center justify-center bg-accent px-4 py-3.5 text-sm font-semibold text-accent-foreground"
+                className="flex items-center justify-center bg-accent px-4 py-3.5 text-sm font-bold text-accent-foreground"
               >
                 Get in touch
               </Link>
               <Link
                 to="/verify"
                 onClick={() => setOpen(false)}
-                className="flex items-center justify-center gap-2 border border-background/20 px-4 py-3 text-sm text-background"
+                className="flex items-center justify-center gap-2 border border-white/15 px-4 py-3 text-sm font-medium text-white/80"
               >
                 <ShieldCheck className="h-4 w-4" /> Verify Certificate
               </Link>
@@ -140,3 +157,4 @@ export function SiteHeader() {
     </>
   );
 }
+
