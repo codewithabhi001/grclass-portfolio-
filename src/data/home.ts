@@ -5,6 +5,7 @@
 import surveyImg from "@/assets/svc-survey.jpg";
 import certImg from "@/assets/svc-cert.jpg";
 import advisoryImg from "@/assets/svc-advisory.jpg";
+import careersHeroImg from "@/assets/careers-hero.jpg";
 
 export const heroStats = [
   { value: "40+", label: "Global Ports" },
@@ -52,7 +53,7 @@ export const services = [
     title: "Other Services",
     description:
       "Providing critical compliance support, remote surveys, Port State Control performance oversight, and expert technical advisory services.",
-    image: surveyImg,
+    image: careersHeroImg,
   },
 ] as const;
 

@@ -1,6 +1,30 @@
 import surveyImg from "@/assets/svc-survey.jpg";
 import certImg from "@/assets/svc-cert.jpg";
 import advisoryImg from "@/assets/svc-advisory.jpg";
+import careersHeroImg from "@/assets/careers-hero.jpg";
+import aboutSurveyorImg from "@/assets/about-surveyor.jpg";
+import whyPortImg from "@/assets/why-port.jpg";
+
+// Custom generated service images
+import fleetImg from "@/assets/svc-fleet-in-services.png";
+import newConstImg from "@/assets/svc-new-construction.png";
+import transferClassImg from "@/assets/svc-transfer-of-class.png";
+import yachtImg from "@/assets/svc-yacht-service.png";
+import offshoreImg from "@/assets/svc-offshore-service.png";
+import conversionImg from "@/assets/svc-conversion-projects.png";
+import planApprovalImg from "@/assets/svc-plan-approval.png";
+import flagStatutoryImg from "@/assets/svc-flag-statutory.png";
+import surveyCertImg from "@/assets/svc-survey-certification.png";
+import solasImg from "@/assets/svc-solas.png";
+import marpolImg from "@/assets/svc-marpol.png";
+import loadLineImg from "@/assets/svc-load-line.png";
+import tonnageImg from "@/assets/svc-tonnage.png";
+import moduImg from "@/assets/svc-modu.png";
+import ballastWaterImg from "@/assets/svc-ballast-water.png";
+import ihmRecyclingImg from "@/assets/svc-ihm-recycling.png";
+import energyEffImg from "@/assets/svc-energy-efficiency.png";
+
+
 
 /* ------------------------------------------------------------------ */
 /*  Interfaces                                                         */
@@ -43,7 +67,7 @@ export const servicesCatalogue: ServiceDetail[] = [
       "Maintaining safety and compliance throughout your vessel's operational life.",
     description:
       "GR ensures ships and maritime assets maintain safety, structural integrity, and regulatory compliance throughout their operational life. This involves periodic, annual, intermediate, and special surveys to verify technical standards and validity of certificates.",
-    image: surveyImg,
+    image: fleetImg,
     scope: [
       "Periodic Surveys",
       "Annual Surveys",
@@ -97,7 +121,7 @@ export const servicesCatalogue: ServiceDetail[] = [
       "From concept design to vessel delivery with full regulatory compliance.",
     description:
       "We are deeply structured and technically groomed to execute the concept design to the delivery of the vessel. We ensure compliance with pertinent regulatory, quality, and operational standards.",
-    image: surveyImg,
+    image: newConstImg,
     scope: [
       "Design Review",
       "Material Certification",
@@ -143,7 +167,7 @@ export const servicesCatalogue: ServiceDetail[] = [
       "A simple and cost-effective process to move your vessel to GR Class.",
     description:
       "Transfer of Class (ToC) is the formal process of moving a ship's classification from one classification society (losing society) to another (gaining society). Transferring an existing vessel to GR Class is a simple and inexpensive process.",
-    image: surveyImg,
+    image: transferClassImg,
     scope: [
       "Class Entry Assessment",
       "Documentation Transfer",
@@ -175,7 +199,7 @@ export const servicesCatalogue: ServiceDetail[] = [
     tagline: "Trusted classification for private and commercial yachts.",
     description:
       "We deliver trusted classification survey and certification services for private and commercial yachts, ensuring compliance with relevant classification standards, enhancing safety and reliable yacht performance.",
-    image: surveyImg,
+    image: yachtImg,
     scope: [
       "Yacht Classification",
       "Safety Surveys",
@@ -199,7 +223,7 @@ export const servicesCatalogue: ServiceDetail[] = [
       "Classification and technical solutions for offshore installations.",
     description:
       "We support the international offshore service by offering classification and technical solutions for MODUs, FPSOs and FSUs, Accommodation Platforms and other floating installations and mobile offshore units.",
-    image: surveyImg,
+    image: offshoreImg,
     scope: [
       "MODU Classification",
       "FPSO Certification",
@@ -237,7 +261,7 @@ export const servicesCatalogue: ServiceDetail[] = [
       "Ensuring compliance through every stage of vessel conversion.",
     description:
       "We ensure that a ship's conversion or modification project complies with stringent structural, safety, and environmental standards.",
-    image: surveyImg,
+    image: conversionImg,
     scope: [
       "Feasibility Assessment",
       "Design Approval",
@@ -272,7 +296,7 @@ export const servicesCatalogue: ServiceDetail[] = [
       "Verification of ship design, integrity, and regulatory documentation.",
     description:
       "We undertake reviews and approvals of manuals in accordance with our Classification Rules and Regulations as well as national and international standards.",
-    image: surveyImg,
+    image: planApprovalImg,
     scope: [
       "Plan Review",
       "Manual Approval",
@@ -316,7 +340,7 @@ export const servicesCatalogue: ServiceDetail[] = [
     title: "Flag Statutory Services",
     tagline: "Delegated statutory survey and certification services on behalf of flag administrations.",
     description: "As a Recognized Organization (RO) and Recognized Security Organization (RSO), GR Class is delegated by flag administrations to perform audits, surveys, and issue statutory certificates to ensure compliance with national and international codes.",
-    image: certImg,
+    image: flagStatutoryImg,
     scope: [
       "Flag State Delegations & Authorizations",
       "Recognized Organization (RO) Surveys",
@@ -349,7 +373,7 @@ export const servicesCatalogue: ServiceDetail[] = [
     title: "Survey & Certification",
     tagline: "Statutory surveys and certification as per international conventions.",
     description: "We carry out comprehensive statutory surveys and issue corresponding certificates, proving that your vessel meets all applicable safety and environmental regulations.",
-    image: certImg,
+    image: surveyCertImg,
     scope: [
       "Annual, Intermediate, and Renewal Surveys",
       "Statutory Inspections",
@@ -380,7 +404,7 @@ export const servicesCatalogue: ServiceDetail[] = [
     title: "SOLAS Compliance",
     tagline: "Safety of Life at Sea convention compliance and certification.",
     description: "Ensuring your vessels adhere to all SOLAS safety standards, covering life-saving appliances, fire protection, radio communications, and safety construction.",
-    image: certImg,
+    image: solasImg,
     scope: [
       "Safety Construction Surveys",
       "Safety Equipment Audits",
@@ -413,7 +437,7 @@ export const servicesCatalogue: ServiceDetail[] = [
     title: "MARPOL Compliance",
     tagline: "Prevention of pollution from ships compliance and certification.",
     description: "Complete survey and certification under MARPOL Annexes I to VI to prevent marine pollution by oil, sewage, garbage, and air emissions.",
-    image: certImg,
+    image: marpolImg,
     scope: [
       "Annex I: Prevention of Oil Pollution (IOPP)",
       "Annex II: Control of Noxious Liquid Substances (NLS)",
@@ -447,7 +471,7 @@ export const servicesCatalogue: ServiceDetail[] = [
     title: "Load Line Certification",
     tagline: "Vessel freeboard assignment and load line surveys.",
     description: "Calculation, assignment of freeboards, and annual/renewal surveys for the issuance of International Load Line Certificates as per the Load Line Convention.",
-    image: certImg,
+    image: loadLineImg,
     scope: [
       "Freeboard Calculation & Verification",
       "Weathertightness & Watertightness Audits",
@@ -478,7 +502,7 @@ export const servicesCatalogue: ServiceDetail[] = [
     title: "Tonnage Measurement",
     tagline: "Gross and net tonnage calculations and certification.",
     description: "Measurement and calculation of vessel volumes to determine Gross and Net Tonnages, and issuance of International Tonnage Certificates (ITC 1969).",
-    image: certImg,
+    image: tonnageImg,
     scope: [
       "Vessel Volume Calculations",
       "Gross Tonnage (GT) Assessments",
@@ -508,7 +532,7 @@ export const servicesCatalogue: ServiceDetail[] = [
     title: "MODU Certification",
     tagline: "Mobile Offshore Drilling Units safety certification.",
     description: "Surveys, audits, and certification of Mobile Offshore Drilling Units in compliance with the IMO MODU Code and flag-state requirements.",
-    image: certImg,
+    image: moduImg,
     scope: [
       "MODU Code Safety Surveys",
       "Offshore Drilling System Audits",
@@ -542,7 +566,7 @@ export const servicesCatalogue: ServiceDetail[] = [
     tagline: "Protecting the marine environment from invasive species.",
     description:
       "Ships that sail around the globe run the risk of carrying invasive aquatic species across the ocean, disrupting or harming marine ecosystems. The IMO introduced the BWM Convention requiring all vessels to implement management plans and improve treatment systems.",
-    image: advisoryImg,
+    image: ballastWaterImg,
     scope: [
       "BWM Plan Review",
       "Treatment System Certification",
@@ -565,7 +589,7 @@ export const servicesCatalogue: ServiceDetail[] = [
       "Managing hazardous materials for crew safety and regulatory compliance.",
     description:
       "Improper handling of hazardous materials can impact crew safety. Owners are faced with complying with EU Ship Recycling regulations and preparing for future IMO requirements.",
-    image: advisoryImg,
+    image: ihmRecyclingImg,
     scope: [
       "IHM Preparation",
       "EU SRR Compliance",
@@ -602,7 +626,7 @@ export const servicesCatalogue: ServiceDetail[] = [
     tagline: "EEDI, EEXI, and CII compliance for a sustainable fleet.",
     description:
       "Environmental regulations mandated by IMO under MARPOL Annex VI covering EEDI for new ships, EEXI for existing ships, CII rating scheme, and SEEMP management plans.",
-    image: advisoryImg,
+    image: energyEffImg,
     scope: [
       "EEDI Assessment",
       "EEXI Verification",
@@ -679,7 +703,7 @@ export const servicesCatalogue: ServiceDetail[] = [
     tagline: "24/7 emergency assessment for damaged vessels worldwide.",
     description:
       "Emergency Response Service providing speedy assessment of stability and longitudinal strength of damaged ships. All vessel data stored in computer systems for rapid analysis.",
-    image: advisoryImg,
+    image: surveyImg,
     scope: [
       "Emergency Assessment",
       "Stability Analysis",
@@ -718,7 +742,7 @@ export const servicesCatalogue: ServiceDetail[] = [
     tagline: "Critical compliance support for the maritime industry.",
     description:
       "We provide critical compliance support by setting technical standards, verifying vessel integrity, and conducting audits on behalf of flag states. We ensure ships meet global safety and environmental mandates, enabling operators to secure insurance, register vessels, and access ports without regulatory penalty.",
-    image: surveyImg,
+    image: careersHeroImg,
     scope: [
       "Technical Standards",
       "Vessel Integrity Verification",
@@ -742,7 +766,7 @@ export const servicesCatalogue: ServiceDetail[] = [
     tagline: "Maintaining compliance without disrupting operations.",
     description:
       "We conduct remote survey and audit activities to support inspection assignments where on-board access is not possible, assisting operational continuity.",
-    image: surveyImg,
+    image: aboutSurveyorImg,
     scope: [
       "Remote Inspection",
       "Documentation Review",
@@ -779,7 +803,7 @@ export const servicesCatalogue: ServiceDetail[] = [
     tagline: "Improving PSC performance across all regional MOUs.",
     description:
       "GR Class maintains strong oversight and emphasis on continuous PSC performance improvement with the aim to maintain and enhance long-term quality growth and competitiveness.",
-    image: surveyImg,
+    image: whyPortImg,
     scope: [
       "PSC Performance Analysis",
       "Detention Prevention",
@@ -811,7 +835,7 @@ export const servicesCatalogue: ServiceDetail[] = [
     tagline: "Expert marine engineering and operational optimization.",
     description:
       "We provide expert marine engineering, regulatory compliance, and operational optimization. By engaging with our clients and gaining in-depth understanding of their needs, our experts deliver tangible improvements to asset and business performance, safely and responsibly.",
-    image: surveyImg,
+    image: certImg,
     scope: [
       "Marine Engineering",
       "Regulatory Compliance",

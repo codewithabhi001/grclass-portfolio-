@@ -3,7 +3,7 @@
  */
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import advisoryImg from "@/assets/svc-advisory.jpg";
+import newsHeroImg from "@/assets/news-hero.jpg";
 
 export function CtaBand() {
   return (
@@ -11,8 +11,8 @@ export function CtaBand() {
       <div className="grid md:grid-cols-2">
         <div className="relative min-h-[260px] sm:min-h-[320px] md:min-h-[460px]">
           <img
-            src={advisoryImg}
-            alt="Maritime advisors reviewing vessel plans"
+            src={newsHeroImg}
+            alt="Maritime vessel at sea"
             className="h-full w-full object-cover"
             loading="lazy"
             width={1024}
