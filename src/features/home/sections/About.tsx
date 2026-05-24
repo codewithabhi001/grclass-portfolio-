@@ -38,7 +38,7 @@ export function About() {
               <div className="w-px bg-background/15" />
               <div>
                 <div className="font-display text-[22px] font-extrabold leading-none text-background sm:text-[26px]">
-                  IACS
+                  CLASS
                 </div>
                 <div className="mt-1 text-[9px] uppercase tracking-wider text-background/50">
                   Aligned ruleset

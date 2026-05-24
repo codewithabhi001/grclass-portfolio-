@@ -75,7 +75,7 @@ export const aboutFeatures = [
 export const whyPoints = [
   "Recognised by 5+ flag administrations including major open registries",
   "24/7 emergency surveyor dispatch from regional hubs",
-  "Full IACS-aligned rule set, updated quarterly",
+  "Full class-aligned ruleset, updated quarterly",
   "Audited annually under ISO 9001:2015 and ISO 14001",
   "Dedicated decarbonisation and alternative fuels practice",
 ];

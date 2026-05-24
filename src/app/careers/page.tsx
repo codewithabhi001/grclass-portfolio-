@@ -130,7 +130,7 @@ const CareersPage = () => {
         <div className="container-page grid gap-px bg-border md:grid-cols-3">
           {[
             { t: "Exclusive employment", b: "No sub-contracting. Every surveyor is a GR Class employee." },
-            { t: "Continuous training", b: "IACS rule schools, alternative fuels, and digital platform certification." },
+            { t: "Continuous training", b: "Class rule schools, alternative fuels, and digital platform certification." },
             { t: "Global mobility", b: "Rotate across regional hubs | Ajman, London, Singapore, Houston, Piraeus, Yokohama." },
           ].map((n) => (
             <div key={n.t} className="bg-background p-7">

@@ -39,7 +39,7 @@ const docs: Record<string, LegalDoc> = {
       {
         heading: "Data retention",
         body: [
-          "Survey records and certificates are retained for the lifetime of the vessel under class plus seven years, in line with IACS unified requirements.",
+          "Survey records and certificates are retained for the lifetime of the vessel under class plus seven years, in line with international unified requirements.",
           "Marketing contact data is retained until you withdraw consent.",
         ],
       },
@@ -96,9 +96,9 @@ const docs: Record<string, LegalDoc> = {
         ],
       },
       {
-        heading: "IACS observer status",
+        heading: "International alignment",
         body: [
-          "GR Class holds IACS Observer status and adopts IACS unified requirements in full. We participate in technical working groups including the Hull, Machinery, and Survey panels.",
+          "GR Class aligns with international class standards and adopts unified maritime safety requirements in full. We participate in technical discussions and peer-review panels covering Hull, Machinery, and Survey disciplines.",
         ],
       },
       {

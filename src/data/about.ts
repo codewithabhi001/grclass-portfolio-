@@ -15,13 +15,13 @@ import leaderCeo from "@/assets/careers-hero.jpg";
 
 export const leadership = [
   { name: "Dr. James Whitfield", role: "Chief Executive Officer", bio: "20 years in classification and flag-state delegation. Former IMO observer.", photo: leaderCeo },
-  { name: "Dr. Eleanor Whitfield", role: "Chair of the Technical Committee", bio: "Naval engineer leading rule-development and IACS unified requirement reviews.", photo: leader2 },
+  { name: "Dr. Eleanor Whitfield", role: "Chair of the Technical Committee", bio: "Naval engineer leading rule-development and class unified requirement reviews.", photo: leader2 },
   { name: "Sofia Lindqvist", role: "Director of Decarbonisation", bio: "Naval architect specialising in alternative fuels and lifecycle emissions.", photo: leader1 },
   { name: "Marcus Owen", role: "Director of Operations", bio: "Leads the digital platform, audit, and quality management programme.", photo: leader4 },
 ];
 
 export const values = [
   { title: "Independence", body: "We refuse engagements where commercial pressure could compromise classification integrity." },
-  { title: "Technical rigour", body: "Quarterly rule updates aligned to IACS unified requirements, peer-reviewed by our technical committee." },
+  { title: "Technical rigour", body: "Quarterly rule updates aligned to international unified requirements, peer-reviewed by our technical committee." },
   { title: "Owner partnership", body: "Long-term relationships built on plain-spoken advice and 24/7 surveyor availability." },
 ];

@@ -21,10 +21,10 @@ export const newsItems: NewsItem[] = [
     readTime: "6 min",
   },
   {
-    slug: "iacs-ur-z7-revision",
+    slug: "ur-z7-revision",
     category: "Rule Change",
     date: "2025-02-28",
-    title: "IACS UR Z7 revision adopted | survey scope expanded",
+    title: "Unified requirement UR Z7 revision adopted | survey scope expanded",
     excerpt:
       "Effective 1 July 2025, the periodic survey scope under UR Z7 will include additional remote inspection provisions.",
     readTime: "4 min",

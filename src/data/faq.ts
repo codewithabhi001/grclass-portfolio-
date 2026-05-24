@@ -15,8 +15,8 @@ export const faqs: FaqGroup[] = [
         a: "Cargo vessels (bulk, tanker, container, general cargo), offshore units, passenger vessels, and specialised craft from 500 GT upward. We do not currently classify naval or pleasure craft.",
       },
       {
-        q: "Does GR Class follow IACS rules?",
-        a: "We adopt IACS unified requirements and procedures in full, ensuring that our class rules conform to the highest safety and quality standards recognized globally.",
+        q: "Does GR Class follow standard class rules?",
+        a: "We adopt standard class unified requirements and procedures in full, ensuring that our class rules conform to the highest safety and quality standards recognized globally.",
       },
       {
         q: "Which flag administrations recognise GR Class?",
@@ -33,7 +33,7 @@ export const faqs: FaqGroup[] = [
       },
       {
         q: "Is there a minimum engagement period?",
-        a: "No. Owners can engage GR Class for a single survey, a transfer of class, or a multi-year fleet relationship. Transfer of class follows IACS PR 1A.",
+        a: "No. Owners can engage GR Class for a single survey, a transfer of class, or a multi-year fleet relationship. Transfer of class follows standard international class procedures.",
       },
       {
         q: "Are initial consultations chargeable?",

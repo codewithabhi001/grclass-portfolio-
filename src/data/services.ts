@@ -83,7 +83,7 @@ export const servicesCatalogue: ServiceDetail[] = [
       "Digital Records",
     ],
     duration: "Continuous throughout vessel life",
-    certifications: ["Class Certificate", "Hull & Machinery", "IACS Standards"],
+    certifications: ["Class Certificate", "Hull & Machinery", "International Standards"],
     category: "classification",
     detailedContent: [
       {
@@ -137,7 +137,7 @@ export const servicesCatalogue: ServiceDetail[] = [
     duration: "Project duration (typically 12-36 months)",
     certifications: [
       "Class Certificate",
-      "IACS Standards",
+      "International Standards",
       "Flag State Certification",
     ],
     category: "classification",
