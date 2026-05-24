@@ -1,20 +1,35 @@
 /**
  * Service detail | dynamic route /services/:slug.
+ * Now supports both main category pages and individual sub-service pages.
  */
 import { Link, useParams, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Check, Clock, ShieldCheck } from "lucide-react";
+import { ArrowRight, Check, Clock, ShieldCheck, Phone } from "lucide-react";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { PageHero } from "@/components/layout/PageHero";
 import { getServiceBySlug, servicesCatalogue } from "@/data/services";
+import { site } from "@/lib/site";
 
 const ServiceDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
+
+  // Redirect the old generic statutory slug to the category hash on the main services page
+  if (slug === "statutory-services") {
+    return <Navigate to="/services#statutory" replace />;
+  }
+
   const svc = slug ? getServiceBySlug(slug) : undefined;
 
   if (!svc) return <Navigate to="/services" replace />;
 
-  const otherServices = servicesCatalogue.filter((s) => s.slug !== svc.slug).slice(0, 3);
+  const otherServices = servicesCatalogue
+    .filter((s) => s.slug !== svc.slug && s.category === svc.category)
+    .slice(0, 3);
+  
+  // If same-category services are less than 3, fill with other categories
+  const moreServices = otherServices.length < 3
+    ? [...otherServices, ...servicesCatalogue.filter(s => s.slug !== svc.slug && s.category !== svc.category).slice(0, 3 - otherServices.length)]
+    : otherServices;
 
   return (
     <SiteShell>
@@ -25,9 +40,10 @@ const ServiceDetailPage = () => {
         breadcrumbs={[{ label: "Services", href: "/services" }, { label: svc.title }]}
       />
 
-      <section className="container-page py-20 md:py-24">
+      <section className="container-page py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-7">
+            {/* Hero image */}
             <motion.img
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -36,14 +52,17 @@ const ServiceDetailPage = () => {
               alt={svc.title}
               className="aspect-[16/10] w-full object-cover"
             />
+
+            {/* Description */}
             <p className="mt-8 text-[16px] font-light leading-relaxed text-muted-foreground">
               {svc.description}
             </p>
 
+            {/* Detailed Content Sections */}
             {svc.detailedContent && svc.detailedContent.map((section, idx) => (
               <div key={idx} className="mt-10">
                 {section.heading && (
-                  <h3 className="h-display mb-4 text-[20px] text-primary">
+                  <h3 className="h-display mb-4 text-[20px] text-primary border-l-[3px] border-accent pl-4">
                     {section.heading}
                   </h3>
                 )}
@@ -53,10 +72,10 @@ const ServiceDetailPage = () => {
                   </p>
                 ))}
                 {section.list && (
-                  <ul className={`mb-4 ${section.list.length > 8 ? "grid gap-x-6 gap-y-2 sm:grid-cols-2" : "space-y-2"}`}>
+                  <ul className={`mb-4 ${section.list.length > 10 ? "grid gap-x-6 gap-y-2 sm:grid-cols-2" : "space-y-2"}`}>
                     {section.list.map((li, lIdx) => (
                       <li key={lIdx} className="flex items-start gap-3 text-[14.5px] text-foreground/85">
-                        <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-accent flex-shrink-0" />
+                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent flex-shrink-0" />
                         <span>{li}</span>
                       </li>
                     ))}
@@ -65,7 +84,8 @@ const ServiceDetailPage = () => {
               </div>
             ))}
 
-            <h2 className="h-display mt-12 text-[24px] text-primary">Scope of work</h2>
+            {/* Scope of Work */}
+            <h2 className="h-display mt-12 text-[24px] text-primary">Scope of Work</h2>
             <ul className="mt-5 space-y-3">
               {svc.scope.map((item) => (
                 <li key={item} className="flex items-start gap-3 text-[14.5px] text-foreground/85">
@@ -75,6 +95,7 @@ const ServiceDetailPage = () => {
               ))}
             </ul>
 
+            {/* Deliverables */}
             <h2 className="h-display mt-12 text-[24px] text-primary">Deliverables</h2>
             <ul className="mt-5 space-y-3">
               {svc.deliverables.map((item) => (
@@ -89,6 +110,22 @@ const ServiceDetailPage = () => {
           {/* Sidebar */}
           <aside className="md:col-span-5 md:pl-8">
             <div className="sticky top-24 space-y-6">
+              {/* GR Class logo */}
+              <div className="flex items-center gap-4 mb-4">
+                <img
+                  src="/grclass-logo.webp"
+                  alt="GR Class"
+                  className="h-12 w-auto"
+                  style={{
+                    filter: "brightness(0) saturate(100%) invert(10%) sepia(60%) saturate(2800%) hue-rotate(200deg) brightness(90%) contrast(100%)"
+                  }}
+                />
+                <div>
+                  <div className="font-display text-[16px] font-extrabold tracking-[0.06em] text-primary">GR&nbsp;CLASS</div>
+                  <div className="text-[9px] uppercase tracking-[0.14em] text-primary/50">Classified for Standards</div>
+                </div>
+              </div>
+
               <div className="border border-border bg-card p-7">
                 <h3 className="font-display text-[11px] font-bold uppercase tracking-[0.18em] text-secondary">
                   Engagement
@@ -112,6 +149,15 @@ const ServiceDetailPage = () => {
                       </ul>
                     </div>
                   </div>
+                  <div className="flex items-start gap-3">
+                    <Phone className="mt-0.5 h-4 w-4 text-accent" />
+                    <div>
+                      <div className="text-[11px] uppercase tracking-wider text-subtle">Contact</div>
+                      <a href={`tel:${site.phone}`} className="mt-1 block text-[14px] font-semibold text-accent hover:text-accent-bright transition-colors">
+                        {site.phone}
+                      </a>
+                    </div>
+                  </div>
                 </div>
                 <Link
                   to="/contact"
@@ -128,30 +174,47 @@ const ServiceDetailPage = () => {
                   Initial scoping conversations are always complimentary. We'll confirm flag-state delegation and outline the workstream within 48 hours.
                 </p>
               </div>
+
+              {/* Contact info */}
+              <div className="border border-border bg-primary p-7">
+                <h3 className="font-display text-[11px] font-bold uppercase tracking-[0.18em] text-accent">
+                  Reach Us
+                </h3>
+                <div className="mt-4 space-y-3">
+                  <a href={`tel:${site.phone}`} className="flex items-center gap-3 text-[14px] text-background/80 hover:text-background transition-colors">
+                    <Phone className="h-4 w-4 text-accent" />
+                    {site.phone}
+                  </a>
+                  <a href={`mailto:${site.email}`} className="flex items-center gap-3 text-[14px] text-background/80 hover:text-background transition-colors">
+                    <ShieldCheck className="h-4 w-4 text-accent" />
+                    {site.email}
+                  </a>
+                </div>
+              </div>
             </div>
           </aside>
         </div>
       </section>
 
-      {/* Related */}
+      {/* Related Services */}
       <section className="border-t border-border bg-secondary-soft py-20">
         <div className="container-page">
           <span className="eyebrow text-secondary">More from our practice</span>
           <h2 className="h-display mt-3 text-[clamp(22px,2vw,30px)] text-primary">Related services</h2>
-          <div className="mt-10 grid gap-px bg-border md:grid-cols-3">
-            {otherServices.map((s) => (
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {moreServices.map((s) => (
               <Link
                 key={s.slug}
                 to={`/services/${s.slug}`}
-                className="group bg-card p-7 transition-colors hover:bg-card/70"
+                className="group bg-card border border-border p-7 transition-all hover:border-accent hover:shadow-card"
               >
                 <span className="eyebrow text-secondary">{s.eyebrow}</span>
                 <h3 className="h-display mt-3 text-[18px] text-primary">{s.title}</h3>
                 <p className="mt-2 text-[13.5px] font-light leading-relaxed text-muted-foreground">
                   {s.tagline}
                 </p>
-                <div className="mt-5 flex items-center gap-1.5 text-[12px] font-medium text-secondary">
-                  Read scope <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                <div className="mt-5 flex items-center gap-1.5 text-[12px] font-semibold text-accent">
+                  View Details <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                 </div>
               </Link>
             ))}

@@ -7,15 +7,13 @@ import certImg from "@/assets/svc-cert.jpg";
 import advisoryImg from "@/assets/svc-advisory.jpg";
 
 export const heroStats = [
-  { value: "120+", label: "Global Ports" },
-  { value: "40+", label: "Flag States" },
-  { value: "150+", label: "Surveyors" },
-  { value: "2,500+", label: "Certificates Issued" },
+  { value: "40+", label: "Global Ports" },
+  { value: "5+", label: "Flag States" },
+  { value: "20+", label: "Surveyors" },
+  { value: "20+", label: "Certificates Issued" },
 ] as const;
 
 export const trustTags = [
-  "IMO",
-  "IACS Observer",
   "ISO 9001:2015",
   "ISO 14001",
   "MLC 2006",
@@ -61,20 +59,20 @@ export const services = [
 export const aboutFeatures = [
   {
     title: "Mission",
-    body: "Ensuring Marine safety, safeguard of lives and property at sea. A comprehensive approach combining international regulations, advanced surveillance, rigorous training, and risk management.",
+    body: "Ensuring Marine safety, safeguard of lives and property at sea. A comprehensive approach combining international regulations (e.g., SOLAS, ISPS Code), advanced surveillance, rigorous training, and risk management to protect lives, vessels, and the marine environment.",
   },
   {
     title: "Capabilities",
-    body: "Our geographical presence with certified surveyors makes GR class stronger. We maintain secure information systems to manage vessel data, survey statuses, and certificates.",
+    body: "Being a Class, our geographical presence with certified surveyors makes GR Class stronger and technically capable, giving strength to survey capabilities to standardize regulatory and compliance capabilities. GR Class has good technical infrastructure, maintaining secure and reliable information systems to manage vessel data, survey statuses, and certificates.",
   },
   {
     title: "Expertise",
-    body: "We work with values, ethics, and standards. Our surveyors, auditors, and technical experts have decades of experience tackling complex maritime issues through clear procedures.",
+    body: "We work with values, ethics, and standards. We gain the trust from our valued customers and that builds GR Class with a class standard to the next level. Our surveyors, auditors and technical experts have decades of experience in assessing and verifying ship safety standards and tackling complex maritime issues through clear procedures and cost-effective support for ship operators.",
   },
 ];
 
 export const whyPoints = [
-  "Recognised by 40+ flag administrations including major open registries",
+  "Recognised by 5+ flag administrations including major open registries",
   "24/7 emergency surveyor dispatch from regional hubs",
   "Full IACS-aligned rule set, updated quarterly",
   "Audited annually under ISO 9001:2015 and ISO 14001",
@@ -106,8 +104,8 @@ export const testimonials = [
 ];
 
 export const networkStats = [
-  { n: "32", l: "Regional offices" },
-  { n: "120+", l: "Survey ports" },
-  { n: "40+", l: "Flag administrations" },
+  { n: "10", l: "Regional offices" },
+  { n: "40+", l: "Survey ports" },
+  { n: "5+", l: "Flag administrations" },
   { n: "24/7", l: "Emergency dispatch" },
 ];

@@ -22,7 +22,7 @@ const VesselSearchPage = () => {
     } catch (e2) {
       // dev fallback
       if (/^\d{7}$/.test(imo.trim())) {
-        setData({ imo: imo.trim(), name: "MV Northern Star", type: "Bulk Carrier", flag: "Marshall Islands", built: "2016", classStatus: "In class", owner: "Nordic Bulk Shipping" });
+        setData({ imo: imo.trim(), name: "MV Northern Star", type: "Bulk Carrier", flag: "Panama", built: "2016", classStatus: "In class", owner: "Nordic Bulk Shipping" });
       } else {
         setErr(e2 instanceof Error ? e2.message : "Vessel not found in our registry.");
       }

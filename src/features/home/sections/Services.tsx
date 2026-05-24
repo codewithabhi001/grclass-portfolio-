@@ -33,7 +33,7 @@ export function Services() {
               transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="group relative overflow-hidden border-t-[3px] border-transparent bg-card transition-all duration-300 hover:border-accent hover:shadow-card"
             >
-              <Link to={`/services/${svc.slug}`} className="block">
+              <Link to={`/services#${svc.slug.replace("-services", "")}`} className="block">
                 <div className="relative h-44 overflow-hidden bg-primary sm:h-48">
                   <img
                     src={svc.image}

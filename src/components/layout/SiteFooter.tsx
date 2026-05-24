@@ -7,6 +7,7 @@ import { subscribeNewsletter } from "@/lib/api";
 import { toast } from "sonner";
 import { servicesCatalogue } from "@/data/services";
 
+
 export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
   const [email, setEmail] = useState("");
   const [busy, setBusy] = useState(false);
@@ -32,8 +33,9 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
     <footer ref={ref} className="bg-primary text-background">
       <div className="container-page grid gap-10 py-14 sm:gap-12 md:grid-cols-12 md:py-16">
         {/* Brand block */}
-        <div className="md:col-span-4">
-          <BrandLogo variant="light" />
+        <div className="md:col-span-3">
+          <BrandLogo variant="light" size="large" layout="vertical" />
+          <div className="mb-2" />
           <p className="mt-6 max-w-sm text-sm font-light leading-relaxed text-background/55">
             {site.description}
           </p>
@@ -67,23 +69,100 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
           </ul>
         </div>
 
-        {/* Services */}
-        <div className="md:col-span-3">
+        {/* Services — grouped by category */}
+        <div className="md:col-span-4">
           <h4 className="mb-5 font-display text-[11px] font-bold uppercase tracking-[0.18em] text-accent">
             Services
           </h4>
-          <ul className="space-y-2.5 text-sm text-background/65">
-            {servicesCatalogue.map((svc) => (
-              <li key={svc.slug}>
-                <Link
-                  to={`/services/${svc.slug}`}
-                  className="transition-colors hover:text-background block"
-                >
-                  {svc.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
+            {/* Column 1: Classification & Other */}
+            <div className="space-y-6">
+              {/* Classification */}
+              <div>
+                <h5 className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-background/45">
+                  Classification
+                </h5>
+                <ul className="space-y-1.5 text-xs text-background/65">
+                  {servicesCatalogue
+                    .filter((s) => s.category === "classification")
+                    .map((svc) => (
+                      <li key={svc.slug}>
+                        <Link
+                          to={`/services/${svc.slug}`}
+                          className="transition-colors hover:text-background block"
+                        >
+                          {svc.title}
+                        </Link>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+              {/* Other */}
+              <div>
+                <h5 className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-background/45">
+                  Other Services
+                </h5>
+                <ul className="space-y-1.5 text-xs text-background/65">
+                  {servicesCatalogue
+                    .filter((s) => s.category === "other")
+                    .map((svc) => (
+                      <li key={svc.slug}>
+                        <Link
+                          to={`/services/${svc.slug}`}
+                          className="transition-colors hover:text-background block"
+                        >
+                          {svc.title}
+                        </Link>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Column 2: Statutory & Environmental */}
+            <div className="space-y-6">
+              {/* Statutory */}
+              <div>
+                <h5 className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-background/45">
+                  Statutory
+                </h5>
+                <ul className="space-y-1.5 text-xs text-background/65">
+                  {servicesCatalogue
+                    .filter((s) => s.category === "statutory")
+                    .map((svc) => (
+                      <li key={svc.slug}>
+                        <Link
+                          to={`/services/${svc.slug}`}
+                          className="transition-colors hover:text-background block"
+                        >
+                          {svc.title}
+                        </Link>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+              {/* Environmental */}
+              <div>
+                <h5 className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-background/45">
+                  Environmental
+                </h5>
+                <ul className="space-y-1.5 text-xs text-background/65">
+                  {servicesCatalogue
+                    .filter((s) => s.category === "environmental")
+                    .map((svc) => (
+                      <li key={svc.slug}>
+                        <Link
+                          to={`/services/${svc.slug}`}
+                          className="transition-colors hover:text-background block"
+                        >
+                          {svc.title}
+                        </Link>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Status */}
@@ -117,7 +196,7 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
           </form>
 
           <p className="mt-5 text-[11px] leading-relaxed text-background/40">
-            ISO 9001:2015 audited · IACS Observer · Founded 1998
+            ISO 9001:2015 & ISO 14001 Certified · Founded 2022
           </p>
         </div>
       </div>
@@ -125,7 +204,8 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
       <div className="border-t border-background/10">
         <div className="container-page flex flex-col items-start justify-between gap-3 py-5 text-[11px] text-background/40 md:flex-row md:items-center">
           <span>© {new Date().getFullYear()} {site.name}. All rights reserved.</span>
-          <div className="flex gap-6">
+          <div className="flex items-center gap-6">
+            <a href={`tel:${site.phone}`} className="transition-colors hover:text-background/70">{site.phone}</a>
             <Link to="/legal/privacy" className="transition-colors hover:text-background/70">Privacy</Link>
             <Link to="/legal/terms" className="transition-colors hover:text-background/70">Terms</Link>
             <Link to="/legal/compliance" className="transition-colors hover:text-background/70">Compliance</Link>

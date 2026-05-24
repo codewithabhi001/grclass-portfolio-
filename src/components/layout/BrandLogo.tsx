@@ -7,17 +7,41 @@ import { Link } from "react-router-dom";
 
 interface BrandLogoProps {
   variant?: "light" | "dark";
+  size?: "default" | "large";
+  layout?: "horizontal" | "vertical";
+  className?: string;
 }
 
+const sizeMap = {
+  default: {
+    logo: "h-16 w-auto md:h-[84px]",
+    brand: "text-[22px] md:text-[24px]",
+    tagline: "text-[10.5px] md:text-[11.5px]",
+  },
+  large: {
+    logo: "h-24 w-auto md:h-32",
+    brand: "text-[30px]",
+    tagline: "text-[12px] md:text-[13px]",
+  },
+} as const;
+
 export const BrandLogo = forwardRef<HTMLAnchorElement, BrandLogoProps>(
-  ({ variant = "light" }, ref) => {
+  ({ variant = "light", size = "default", layout = "horizontal", className = "" }, ref) => {
     const isLight = variant === "light";
+    const s = sizeMap[size];
+    const isVertical = layout === "vertical";
+    
     return (
-      <Link ref={ref} to="/" className="flex items-center gap-3 group" aria-label="GR Class | Home">
+      <Link
+        ref={ref}
+        to="/"
+        className={`flex ${isVertical ? "flex-col items-start gap-4" : "items-center gap-3"} group ${className}`}
+        aria-label="GR Class | Home"
+      >
         <img
           src="/grclass-logo.webp"
           alt="GR Class"
-          className="h-11 w-auto md:h-14"
+          className={s.logo}
           style={{
             filter: isLight
               ? "brightness(0) invert(1)"                                          /* white for dark bg */
@@ -27,7 +51,8 @@ export const BrandLogo = forwardRef<HTMLAnchorElement, BrandLogoProps>(
         <div className="leading-tight">
           <span
             className={
-              "block font-display text-[16px] font-extrabold tracking-[0.06em] " +
+              "block font-display font-extrabold tracking-[0.06em] " +
+              s.brand + " " +
               (isLight ? "text-background" : "text-primary")
             }
           >
@@ -35,11 +60,12 @@ export const BrandLogo = forwardRef<HTMLAnchorElement, BrandLogoProps>(
           </span>
           <span
             className={
-              "mt-0.5 block text-[8.5px] uppercase tracking-[0.14em] " +
+              "mt-0.5 block uppercase tracking-[0.14em] " +
+              s.tagline + " " +
               (isLight ? "text-background/40" : "text-primary/50")
             }
           >
-            Classified for standard
+            Classified for Standards
           </span>
         </div>
       </Link>
@@ -47,4 +73,3 @@ export const BrandLogo = forwardRef<HTMLAnchorElement, BrandLogoProps>(
   },
 );
 BrandLogo.displayName = "BrandLogo";
-

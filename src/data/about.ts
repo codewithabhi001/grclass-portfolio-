@@ -2,12 +2,10 @@
  * About page content | leadership, milestones, values.
  */
 export const milestones = [
-  { year: "1998", title: "Founded", body: "Established as an independent classification practice serving the global maritime industry." },
-  { year: "2004", title: "Recognised Organisation status", body: "Granted RO status by first flag administration; expanded into European trade." },
-  { year: "2011", title: "Asia-Pacific expansion", body: "Regional hubs opened in Singapore, Hong Kong, and Yokohama." },
-  { year: "2017", title: "Digital certification platform", body: "Launched the first fully tamper-evident digital certificate verification system in the industry." },
-  { year: "2021", title: "Decarbonisation practice", body: "Dedicated alternative fuels and EEXI/CII advisory team established." },
-  { year: "2024", title: "150+ surveyor network", body: "Surveyor footprint reached 120+ ports across 32 regional offices." },
+  { year: "2022", title: "Founded", body: "Established as an independent classification practice serving the global maritime industry." },
+  { year: "2023", title: "Flag State Recognition", body: "Granted RO/RSO status by major flag administrations, expanding statutory operations." },
+  { year: "2024", title: "Digital certification platform", body: "Launched the first fully tamper-evident digital certificate verification system in the industry." },
+  { year: "2025", title: "Surveyor Network", body: "Surveyor footprint reached 40+ ports across key maritime hubs." },
 ];
 
 import leader1 from "@/assets/leader-1.jpg";

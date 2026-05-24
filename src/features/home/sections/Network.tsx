@@ -53,20 +53,20 @@ export function Network() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-primary py-16 sm:py-20 md:py-28">
+    <section className="relative overflow-hidden bg-secondary-soft border-y border-border py-16 sm:py-20 md:py-28">
       {/* Ambient glow */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-40 right-0 h-[500px] w-[500px] rounded-full bg-accent/10 blur-[120px]"
+        className="pointer-events-none absolute -top-40 right-0 h-[500px] w-[500px] rounded-full bg-accent/5 blur-[120px]"
       />
       <div className="container-page">
         <div className="relative grid gap-10 md:grid-cols-12 md:items-center md:gap-12 lg:gap-16">
           <div className="md:col-span-5">
-            <span className="eyebrow text-accent">Global Network</span>
-            <h2 className="h-display mt-3 text-[clamp(24px,3.2vw,40px)] text-background">
+            <span className="eyebrow text-secondary">Global Network</span>
+            <h2 className="h-display mt-3 text-[clamp(24px,3.2vw,40px)] text-primary">
               Wherever your vessels call, we're already there.
             </h2>
-            <p className="mt-5 max-w-md text-[14.5px] font-light leading-relaxed text-background/60 sm:text-[15px]">
+            <p className="mt-5 max-w-md text-[14.5px] font-light leading-relaxed text-muted-foreground sm:text-[15px]">
               From Rotterdam to Singapore, Houston to Ajman | our regional offices and exclusive
               surveyor network keep your fleet compliant without delay.
             </p>
@@ -78,13 +78,13 @@ export function Network() {
                 <div className="h-6 w-6 animate-spin rounded-full border-2 border-accent border-t-transparent" />
               </div>
             ) : (
-              <div className="flex flex-wrap justify-center gap-3">
+              <div className="flex flex-wrap justify-center gap-4">
                 {flags.map((f) => (
                   <div
                     key={f.id}
-                    className="group relative flex w-[110px] flex-col items-center justify-center border border-background/5 bg-background/[0.02] p-2.5 transition-all duration-300 hover:border-accent/30 hover:bg-background/[0.06]"
+                    className="group relative flex w-[200px] flex-col items-center justify-center border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:border-accent hover:shadow-card hover:-translate-y-0.5"
                   >
-                    <div className="relative aspect-[3/2] w-full max-w-[48px] overflow-hidden bg-background/5 border border-background/10 p-0.5 shadow-sm transition-transform duration-300 group-hover:scale-105 flex items-center justify-center">
+                    <div className="relative aspect-[3/2] w-[110px] overflow-hidden bg-muted border border-border p-0.5 shadow-sm transition-transform duration-300 group-hover:scale-105 flex items-center justify-center">
                       {f.logo_url && !failedImages[f.id] ? (
                         <img
                           src={f.logo_url}
@@ -96,16 +96,19 @@ export function Network() {
                           loading="lazy"
                         />
                       ) : (
-                        <div className="flex h-full w-full items-center justify-center bg-background/10 text-background/30">
-                          <Flag className="h-4 w-4" />
+                        <div className="flex h-full w-full items-center justify-center bg-muted text-muted-foreground/45">
+                          <Flag className="h-6 w-6" />
                         </div>
                       )}
                     </div>
-                    <span className="mt-2 text-[11.5px] font-semibold tracking-wide text-background/85 text-center truncate w-full">
+                    <span className="mt-4 text-[15px] font-bold tracking-wide text-primary text-center truncate w-full">
                       {f.country}
                     </span>
-                    <span className="mt-0.5 text-[8.5px] font-medium uppercase tracking-wider text-background/35 text-center">
+                    <span className="mt-1 text-[11px] font-bold uppercase tracking-wider text-secondary text-center">
                       {f.authority_name}
+                    </span>
+                    <span className="mt-2.5 text-[11px] text-muted-foreground/80 text-center border-t border-border-soft pt-2 w-full truncate italic" title={f.flag_state_name}>
+                      {f.flag_state_name}
                     </span>
                   </div>
                 ))}

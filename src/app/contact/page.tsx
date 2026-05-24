@@ -9,6 +9,7 @@ import { offices } from "@/data/offices";
 import { site } from "@/lib/site";
 import { toast } from "sonner";
 import { submitContactEnquiry } from "@/lib/api";
+import { BrandLogo } from "@/components/layout/BrandLogo";
 
 const ContactPage = () => {
   const [submitting, setSubmitting] = useState(false);
@@ -110,9 +111,11 @@ const ContactPage = () => {
             </button>
           </form>
 
-          {/* Sidebar */}
           <aside className="md:col-span-5 md:pl-10">
             <div className="sticky top-28 border border-border bg-card p-7">
+              <div className="mb-6 pb-6 border-b border-border/60">
+                <BrandLogo variant="dark" size="default" />
+              </div>
               <h3 className="font-display text-[11px] font-bold uppercase tracking-[0.18em] text-secondary">
                 Direct lines
               </h3>

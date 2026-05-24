@@ -54,7 +54,7 @@ const VerifyPage = () => {
             vessel: "MV Northern Star",
             imo: "9482736",
             type: "SOLAS Cargo Ship Safety Certificate",
-            flag: "Marshall Islands",
+            flag: "Panama",
             issued: "12 March 2024",
             expires: "11 March 2029",
           }
@@ -171,7 +171,7 @@ const VerifyPage = () => {
             {[
               { t: "Tamper-evident", b: "Every digital certificate is cryptographically signed and traceable to issuance." },
               { t: "Instant", b: "Verification completes in under one second from any device." },
-              { t: "PSC accepted", b: "Recognised under Paris MoU, Tokyo MoU, USCG, and 40+ flag administrations." },
+              { t: "PSC accepted", b: "Issued under flag-state delegation and accepted by port state control regimes globally." },
             ].map((n) => (
               <div key={n.t} className="bg-background p-6">
                 <h4 className="h-display text-[15px] text-primary">{n.t}</h4>

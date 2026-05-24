@@ -7,48 +7,53 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, ShieldCheck, PlayCircle } from "lucide-react";
-import heroVideo from "@/assets/hero-v1.mp4";
+import heroImg from "@/assets/hero-vessel.jpg";
 
 export function Hero() {
   return (
     <section className="relative min-h-[100svh] w-full overflow-hidden bg-[#F6F4EB] sm:min-h-[720px] lg:h-[92vh] lg:min-h-[720px]">
 
-      {/* Video layer — full width on all screens */}
-      <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="h-full w-full object-cover object-right-bottom lg:object-[80%_60%]"
-          poster="/placeholder.svg"
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
-
-        {/* Concentric circles decoration — desktop only, centered on visible video */}
-        <div className="absolute inset-y-0 right-0 w-[55%] hidden items-center justify-center pointer-events-none opacity-30 overflow-hidden lg:flex">
-          <div className="absolute w-[140vh] aspect-square rounded-full border border-white/15" />
-          <div className="absolute w-[100vh] aspect-square rounded-full border border-white/25" />
-          <div className="absolute w-[60vh] aspect-square rounded-full border border-white/35" />
-        </div>
-
-        {/* Sparkle — desktop only */}
-        <div className="absolute bottom-10 right-10 opacity-70 hidden lg:block">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 0C12 6.62742 17.3726 12 24 12C17.3726 12 12 17.3726 12 24C12 17.3726 6.62742 12 0 12C6.62742 12 12 6.62742 12 0Z" />
-          </svg>
-        </div>
+      {/* Mobile/Tablet Background: full-bleed image */}
+      <div className="absolute inset-0 z-0 lg:hidden">
+        <img src={heroImg} alt="Maritime vessel" className="h-full w-full object-cover object-right-bottom" />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary-deep/95 via-primary-deep/70 to-primary-deep/40" />
       </div>
 
-      {/* Mobile/Tablet: gradient overlay for text readability */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-t from-primary-deep/95 via-primary-deep/70 to-primary-deep/40 lg:hidden" />
+      {/* Desktop Background: 50/50 Split Layout */}
+      <div className="absolute inset-0 z-0 hidden lg:grid lg:grid-cols-2">
+        {/* Left Column Background (Cream) */}
+        <div className="bg-[#F6F4EB] h-full w-full relative">
+          {/* Background Watermark Logo */}
+          <div className="absolute left-8 bottom-8 opacity-[0.025] pointer-events-none select-none z-[1]">
+            <img src="/grclass-logo.webp" alt="" className="h-[280px] w-auto" style={{ filter: "brightness(0)" }} />
+          </div>
+        </div>
 
-      {/* Desktop: cream wave SVG overlay (left side) */}
-      <div className="absolute inset-0 pointer-events-none z-[1] hidden lg:block">
-        <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" className="w-full h-full text-[#F6F4EB]">
-          <path d="M0,0 L780,0 C920,0 700,450 900,900 L0,900 Z" fill="currentColor" />
-        </svg>
+        {/* Right Column Background (Ship Image + Mask) */}
+        <div className="h-full w-full relative overflow-hidden bg-primary-deep">
+          <img src={heroImg} alt="Maritime vessel" className="h-full w-full object-cover object-[52%_50%] scale-105" />
+
+          {/* Beautiful Curved Wave Transition Mask */}
+          <div className="absolute top-0 bottom-0 left-0 w-[8vw] pointer-events-none text-[#F6F4EB] z-10">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full">
+              <path d="M0,0 L100,0 C40,30 40,70 100,100 L0,100 Z" fill="currentColor" />
+            </svg>
+          </div>
+
+          {/* Concentric circles decoration — centered on ship */}
+          <div className="absolute inset-y-0 right-0 w-[110%] flex items-center justify-center pointer-events-none opacity-20 overflow-hidden">
+            <div className="absolute w-[120vh] aspect-square rounded-full border border-white/10" />
+            <div className="absolute w-[80vh] aspect-square rounded-full border border-white/15" />
+            <div className="absolute w-[50vh] aspect-square rounded-full border border-white/20" />
+          </div>
+
+          {/* Sparkle */}
+          <div className="absolute bottom-10 right-10 opacity-70">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 0C12 6.62742 17.3726 12 24 12C17.3726 12 12 17.3726 12 24C12 17.3726 6.62742 12 0 12C6.62742 12 12 6.62742 12 0Z" />
+            </svg>
+          </div>
+        </div>
       </div>
 
       {/* Content Container */}
@@ -60,8 +65,9 @@ export function Hero() {
             hidden: {},
             show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
           }}
-          className="max-w-3xl lg:w-[60%]"
+          className="max-w-3xl lg:w-[43%]"
         >
+
           {/* Eyebrow badge */}
           <motion.div
             variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }}
@@ -71,14 +77,14 @@ export function Hero() {
             <span className="h-1.5 w-1.5 rounded-full bg-accent sm:h-2 sm:w-2" />
             RECOGNISED CLASSIFICATION SOCIETY
             <span className="hidden h-3 w-px bg-primary/20 sm:block" />
-            <span className="hidden sm:inline">EST. 1998</span>
+            <span className="hidden sm:inline">EST. 2022</span>
           </motion.div>
 
           {/* Heading */}
           <motion.h1
             variants={{ hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0 } }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="h-display max-w-[15ch] text-[clamp(36px,9vw,85px)] leading-[1.05] text-white lg:text-primary"
+            className="h-display max-w-[15ch] text-[clamp(32px,6vw,56px)] leading-[1.1] text-white lg:text-primary"
           >
             Maritime Classification
             <span className="block text-accent">

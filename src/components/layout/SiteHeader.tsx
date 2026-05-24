@@ -1,17 +1,21 @@
 /**
  * Primary site navigation. Sticky, navy, gold underline on hover.
  * Mobile: collapses behind a sheet trigger.
+ * Desktop: mega dropdown for Services.
  */
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { Menu, ShieldCheck, UserRound, X } from "lucide-react";
-import { mainNav, site } from "@/lib/site";
+import { ChevronDown, Menu, ShieldCheck, UserRound, X } from "lucide-react";
+import { mainNav, site, type NavItem } from "@/lib/site";
 import { BrandLogo } from "./BrandLogo";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [expandedMobile, setExpandedMobile] = useState<string | null>(null);
   const { pathname } = useLocation();
+  const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -27,6 +31,22 @@ export function SiteHeader() {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setOpen(false);
+    setShowDropdown(false);
+    setExpandedMobile(null);
+  }, [pathname]);
+
+  const openDropdown = useCallback(() => {
+    if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current);
+    setShowDropdown(true);
+  }, []);
+
+  const closeDropdown = useCallback(() => {
+    dropdownTimeout.current = setTimeout(() => setShowDropdown(false), 120);
+  }, []);
 
   return (
     <>
@@ -48,26 +68,71 @@ export function SiteHeader() {
           <nav className="hidden items-stretch lg:flex" aria-label="Primary">
             {mainNav.map((item) => {
               const active = pathname === item.href;
+              const hasChildren = !!item.children;
+
               return (
-                <NavLink
+                <div
                   key={item.href}
-                  to={item.href}
-                  className={
-                    "group relative flex items-center px-4 text-[13.5px] font-semibold tracking-wide transition-colors duration-200 " +
-                    (active
-                      ? "text-white"
-                      : "text-white/65 hover:text-white")
-                  }
+                  className="relative flex items-stretch"
+                  onMouseEnter={hasChildren ? openDropdown : undefined}
+                  onMouseLeave={hasChildren ? closeDropdown : undefined}
                 >
-                  {item.label}
-                  {/* Active indicator — gold bar */}
-                  <span
+                  <NavLink
+                    to={item.href}
                     className={
-                      "absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] rounded-full bg-accent transition-all duration-300 " +
-                      (active ? "w-[60%] opacity-100" : "w-0 opacity-0 group-hover:w-[40%] group-hover:opacity-60")
+                      "group relative flex items-center px-4 text-[13.5px] font-semibold tracking-wide transition-colors duration-200 " +
+                      (active
+                        ? "text-white"
+                        : "text-white/65 hover:text-white")
                     }
-                  />
-                </NavLink>
+                  >
+                    {item.label}
+                    {hasChildren && (
+                      <ChevronDown className={
+                        "ml-1 h-3.5 w-3.5 transition-transform duration-200 " +
+                        (showDropdown ? "rotate-180" : "")
+                      } />
+                    )}
+                    {/* Active indicator — gold bar */}
+                    <span
+                      className={
+                        "absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] rounded-full bg-accent transition-all duration-300 " +
+                        (active ? "w-[60%] opacity-100" : "w-0 opacity-0 group-hover:w-[40%] group-hover:opacity-60")
+                      }
+                    />
+                  </NavLink>
+
+                  {/* Mega Dropdown */}
+                  {hasChildren && showDropdown && (
+                    <div
+                      className="absolute left-1/2 -translate-x-1/2 top-full w-screen bg-primary-deep shadow-2xl z-50 animate-in fade-in duration-200"
+                      onMouseEnter={openDropdown}
+                      onMouseLeave={closeDropdown}
+                    >
+                      <div className="container-page grid grid-cols-4 gap-8 py-10">
+                        {item.children!.map((cat) => (
+                          <div key={cat.heading}>
+                            <h3 className="text-accent font-display text-[13px] font-bold uppercase tracking-[0.14em] mb-4">
+                              {cat.heading}
+                            </h3>
+                            <ul className="space-y-2.5">
+                              {cat.items.map((sub) => (
+                                <li key={sub.href + sub.label}>
+                                  <Link
+                                    to={sub.href}
+                                    className="text-[13.5px] text-white/70 hover:text-white transition-colors"
+                                  >
+                                    {sub.label}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
               );
             })}
           </nav>
@@ -117,21 +182,67 @@ export function SiteHeader() {
           <nav className="container-page flex flex-col py-6" aria-label="Mobile">
             {mainNav.map((item) => {
               const active = pathname === item.href;
+              const hasChildren = !!item.children;
+              const isExpanded = expandedMobile === item.href;
+
               return (
-                <Link
-                  key={item.href}
-                  to={item.href}
-                  onClick={() => setOpen(false)}
-                  className={
-                    "flex items-center justify-between border-b border-white/[0.06] py-4 text-[15px] font-medium transition-colors " +
-                    (active ? "text-accent" : "text-white/75 hover:text-white")
-                  }
-                >
-                  <span>{item.label}</span>
-                  <span className="font-mono text-[10px] text-white/25">
-                    {String(mainNav.indexOf(item) + 1).padStart(2, "0")}
-                  </span>
-                </Link>
+                <div key={item.href}>
+                  {hasChildren ? (
+                    <>
+                      <button
+                        onClick={() => setExpandedMobile(isExpanded ? null : item.href)}
+                        className={
+                          "flex w-full items-center justify-between border-b border-white/[0.06] py-4 text-[15px] font-medium transition-colors " +
+                          (active ? "text-accent" : "text-white/75 hover:text-white")
+                        }
+                      >
+                        <span>{item.label}</span>
+                        <ChevronDown className={
+                          "h-4 w-4 transition-transform duration-200 " +
+                          (isExpanded ? "rotate-180" : "")
+                        } />
+                      </button>
+                      {isExpanded && (
+                        <div className="border-b border-white/[0.06] pb-4">
+                          {item.children!.map((cat) => (
+                            <div key={cat.heading} className="mt-4 first:mt-2">
+                              <h4 className="text-accent font-display text-[11px] font-bold uppercase tracking-[0.14em] mb-2 px-3">
+                                {cat.heading}
+                              </h4>
+                              <ul className="space-y-1">
+                                {cat.items.map((sub) => (
+                                  <li key={sub.href + sub.label}>
+                                    <Link
+                                      to={sub.href}
+                                      onClick={() => setOpen(false)}
+                                      className="block px-3 py-1.5 text-[13.5px] text-white/60 hover:text-white transition-colors"
+                                    >
+                                      {sub.label}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <Link
+                      to={item.href}
+                      onClick={() => setOpen(false)}
+                      className={
+                        "flex items-center justify-between border-b border-white/[0.06] py-4 text-[15px] font-medium transition-colors " +
+                        (active ? "text-accent" : "text-white/75 hover:text-white")
+                      }
+                    >
+                      <span>{item.label}</span>
+                      <span className="font-mono text-[10px] text-white/25">
+                        {String(mainNav.indexOf(item) + 1).padStart(2, "0")}
+                      </span>
+                    </Link>
+                  )}
+                </div>
               );
             })}
 
@@ -157,4 +268,3 @@ export function SiteHeader() {
     </>
   );
 }
-

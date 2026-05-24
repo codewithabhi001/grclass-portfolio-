@@ -15,12 +15,12 @@ export const faqs: FaqGroup[] = [
         a: "Cargo vessels (bulk, tanker, container, general cargo), offshore units, passenger vessels, and specialised craft from 500 GT upward. We do not currently classify naval or pleasure craft.",
       },
       {
-        q: "Is GR Class an IACS member?",
-        a: "GR Class holds IACS Observer status. We adopt IACS unified requirements in full and participate in technical working groups, with full membership currently under review.",
+        q: "Does GR Class follow IACS rules?",
+        a: "We adopt IACS unified requirements and procedures in full, ensuring that our class rules conform to the highest safety and quality standards recognized globally.",
       },
       {
         q: "Which flag administrations recognise GR Class?",
-        a: "Forty-plus flag states delegate statutory work to GR Class, including major open registries. A complete list is available on request and updated quarterly.",
+        a: "GR Class is delegated statutory authority by 5 flag administrations, including major registries. A complete list is available on request.",
       },
     ],
   },
@@ -46,7 +46,7 @@ export const faqs: FaqGroup[] = [
     items: [
       {
         q: "How quickly can a surveyor be dispatched?",
-        a: "Within 24 hours to any of our 120+ covered ports. For emergency damage surveys, our regional duty surveyor responds within 4 hours.",
+        a: "Within 24 hours to any of our 40+ covered ports. For emergency damage surveys, our regional duty surveyor responds within 4 hours.",
       },
       {
         q: "How long does transfer of class take?",
@@ -67,7 +67,7 @@ export const faqs: FaqGroup[] = [
       },
       {
         q: "Are GR Class certificates accepted by port state control?",
-        a: "Yes. Our certificates are issued under flag-state delegation and are accepted by all major PSC regimes including Paris MoU, Tokyo MoU, and USCG.",
+        a: "Yes. Our certificates are issued under flag-state delegation and are fully accepted by port state control authorities worldwide.",
       },
     ],
   },

@@ -11,19 +11,76 @@ export const site = {
   url: "https://grclass.com",
   ops: "https://ops.grclass.com",
   email: "info@grclass.com",
-  phone: "+44 20 7946 0123",
-  address: "B.C. 1304883, Ajman Free Zone C1 Building, Ajman District Business, Makani No – 4442612247, UAE",
+  phone: "+971555324087",
+  address: "B.C. 1304883, Ajman Free Zone C1 Building, Ajman District Business, Makani No – 4442612247, UAE.",
 } as const;
 
-export const mainNav = [
+export interface NavItem {
+  label: string;
+  href: string;
+  children?: {
+    heading: string;
+    items: { label: string; href: string; desc?: string }[];
+  }[];
+}
+
+export const mainNav: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "How it Works", href: "/how-it-works" },
-  { label: "Services", href: "/services" },
+  {
+    label: "Services",
+    href: "/services",
+    children: [
+      {
+        heading: "Classification",
+        items: [
+          { label: "Fleet in Services", href: "/services/fleet-in-services" },
+          { label: "New Construction", href: "/services/new-construction" },
+          { label: "Transfer of Class", href: "/services/transfer-of-class" },
+          { label: "Yacht Service", href: "/services/yacht-service" },
+          { label: "Offshore Service", href: "/services/offshore-service" },
+          { label: "Conversion Projects", href: "/services/conversion-projects" },
+          { label: "Plan & Manual Approval", href: "/services/plan-approval" },
+        ],
+      },
+      {
+        heading: "Statutory Services",
+        items: [
+          { label: "Flag Statutory Services", href: "/services/flag-statutory-services" },
+          { label: "Survey & Certification", href: "/services/survey-certification" },
+          { label: "SOLAS", href: "/services/solas" },
+          { label: "MARPOL", href: "/services/marpol" },
+          { label: "Load Line", href: "/services/load-line" },
+          { label: "Tonnage", href: "/services/tonnage" },
+          { label: "MODU", href: "/services/modu" },
+        ],
+      },
+      {
+        heading: "Environmental",
+        items: [
+          { label: "Ballast Water Management", href: "/services/ballast-water-management" },
+          { label: "IHM & Ship Recycling", href: "/services/ihm-ship-recycling" },
+          { label: "Energy Efficiency", href: "/services/energy-efficiency" },
+          { label: "EU MRV Compliance", href: "/services/eu-mrv-compliance" },
+          { label: "Emergency Response", href: "/services/vessel-emergency-response" },
+        ],
+      },
+      {
+        heading: "Other Services",
+        items: [
+          { label: "Compliance Support", href: "/services/compliance-support" },
+          { label: "Remote Surveys", href: "/services/remote-surveys" },
+          { label: "Port State Control", href: "/services/port-state-control" },
+          { label: "Technical Advisory", href: "/services/technical-advisory" },
+        ],
+      },
+    ],
+  },
   { label: "About", href: "/about" },
   { label: "News", href: "/news" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
-] as const;
+];
 
 export const utilNav = [
   { label: "EN", href: "#" },
