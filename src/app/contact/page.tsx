@@ -1,48 +1,76 @@
 /**
  * Contact | enquiry form + global office grid.
  */
-import { useState, FormEvent, useRef } from "react";
-import { Mail, Phone, MapPin, Send, ArrowUpRight } from "lucide-react";
+import { useState, useRef } from "react";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { PageHero } from "@/components/layout/PageHero";
-import { offices } from "@/data/offices";
 import { site } from "@/lib/site";
 import { toast } from "sonner";
 import { submitContactEnquiry } from "@/lib/api";
 import { BrandLogo } from "@/components/layout/BrandLogo";
 import { Turnstile, TurnstileInstance } from '@marsidev/react-turnstile';
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+
+const formSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters.").max(100, "Name cannot exceed 100 characters."),
+  company: z.string().max(150, "Company cannot exceed 150 characters.").optional().or(z.literal("")),
+  email: z.string().email("Please enter a valid email address."),
+  phone: z.string().max(30, "Phone number cannot exceed 30 characters.").optional().or(z.literal("")),
+  vessel: z.string().optional().or(z.literal("")),
+  service: z.string().max(200).optional().or(z.literal("")),
+  message: z.string().min(10, "Message must be at least 10 characters long.").max(5000, "Message cannot exceed 5000 characters."),
+  website: z.string().max(200).optional().or(z.literal("")),
+});
+type FormValues = z.infer<typeof formSchema>;
 
 const ContactPage = () => {
   const [submitting, setSubmitting] = useState(false);
   const [captchaToken, setCaptchaToken] = useState("");
   const turnstileRef = useRef<TurnstileInstance>(null);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const fd = new FormData(form);
-    const vessel = String(fd.get("vessel") || "");
-    const baseMessage = String(fd.get("message") || "");
-    const finalMessage = vessel ? `${baseMessage}\n\n[Vessel Name / IMO: ${vessel}]` : baseMessage;
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      company: "",
+      email: "",
+      phone: "",
+      vessel: "",
+      service: "",
+      message: "",
+      website: "",
+    },
+  });
 
+  const onSubmit = async (data: FormValues) => {
+    const finalMessage = data.vessel ? `${data.message}\n\n[Vessel Name / IMO: ${data.vessel}]` : data.message;
     const payload = {
-      full_name: String(fd.get("name") || ""),
-      company: String(fd.get("company") || ""),
-      corporate_email: String(fd.get("email") || ""),
-      phone: String(fd.get("phone") || ""),
-      subject: String(fd.get("service") || "General enquiry"),
+      full_name: data.name,
+      company: data.company,
+      corporate_email: data.email,
+      phone: data.phone,
+      subject: data.service || "General enquiry",
       message: finalMessage,
       source_page: "CONTACT",
-      website: String(fd.get("website") || ""),
+      website: data.website,
       captcha_token: captchaToken,
     };
+
     setSubmitting(true);
     try {
       await submitContactEnquiry(payload);
       toast.success("Enquiry received", {
         description: "A senior surveyor will respond within one business day.",
       });
-      form.reset();
+      reset();
     } catch (err) {
       toast.error("Could not send enquiry", {
         description: err instanceof Error ? err.message : "Please email us directly.",
@@ -65,50 +93,70 @@ const ContactPage = () => {
       <section className="container-page py-20 md:py-24">
         <div className="grid gap-14 md:grid-cols-12">
           {/* Form */}
-          <form onSubmit={handleSubmit} className="md:col-span-7">
+          <form onSubmit={handleSubmit(onSubmit)} className="md:col-span-7">
             <span className="eyebrow text-secondary">Send an enquiry</span>
             <h2 className="h-display mt-3 text-[clamp(22px,2.2vw,30px)] text-primary">
               We respond within one business day.
             </h2>
 
             <div className="mt-10 grid gap-5 md:grid-cols-2">
-              <Field label="Full name" name="name" required />
-              <Field label="Company" name="company" required />
-              <Field label="Email" name="email" type="email" required />
-              <Field label="Phone" name="phone" type="tel" />
-              <Field label="Vessel name / IMO" name="vessel" className="md:col-span-2" />
+              <div className="">
+                <label className="block font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">Full name</label>
+                <input {...register("name")} className="mt-2 w-full border border-border bg-card px-4 py-3 text-[14px] text-foreground transition-colors focus:border-accent focus:outline-none" />
+                {errors.name && <p className="mt-1 text-xs text-red-500">{errors.name.message}</p>}
+              </div>
+              <div className="">
+                <label className="block font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">Company</label>
+                <input {...register("company")} className="mt-2 w-full border border-border bg-card px-4 py-3 text-[14px] text-foreground transition-colors focus:border-accent focus:outline-none" />
+                {errors.company && <p className="mt-1 text-xs text-red-500">{errors.company.message}</p>}
+              </div>
+              <div className="">
+                <label className="block font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">Email</label>
+                <input type="email" {...register("email")} className="mt-2 w-full border border-border bg-card px-4 py-3 text-[14px] text-foreground transition-colors focus:border-accent focus:outline-none" />
+                {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>}
+              </div>
+              <div className="">
+                <label className="block font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">Phone</label>
+                <input type="tel" {...register("phone")} className="mt-2 w-full border border-border bg-card px-4 py-3 text-[14px] text-foreground transition-colors focus:border-accent focus:outline-none" />
+                {errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone.message}</p>}
+              </div>
+              <div className="md:col-span-2">
+                <label className="block font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">Vessel name / IMO</label>
+                <input {...register("vessel")} className="mt-2 w-full border border-border bg-card px-4 py-3 text-[14px] text-foreground transition-colors focus:border-accent focus:outline-none" />
+                {errors.vessel && <p className="mt-1 text-xs text-red-500">{errors.vessel.message}</p>}
+              </div>
               <div className="md:col-span-2">
                 <label className="block font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">
                   Service of interest
                 </label>
                 <select
-                  name="service"
+                  {...register("service")}
                   className="mt-2 w-full border border-border bg-card px-4 py-3 text-[14px] text-foreground transition-colors focus:border-accent focus:outline-none"
-                  defaultValue=""
                 >
                   <option value="" disabled>Select a service…</option>
-                  <option>Class survey</option>
-                  <option>Statutory certification</option>
-                  <option>Technical advisory</option>
-                  <option>Transfer of class</option>
-                  <option>Other</option>
+                  <option value="Class survey">Class survey</option>
+                  <option value="Statutory certification">Statutory certification</option>
+                  <option value="Technical advisory">Technical advisory</option>
+                  <option value="Transfer of class">Transfer of class</option>
+                  <option value="Other">Other</option>
                 </select>
+                {errors.service && <p className="mt-1 text-xs text-red-500">{errors.service.message}</p>}
               </div>
               <div className="md:col-span-2">
                 <label className="block font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">
                   Message
                 </label>
                 <textarea
-                  name="message"
-                  required
+                  {...register("message")}
                   rows={5}
                   className="mt-2 w-full resize-none border border-border bg-card px-4 py-3 text-[14px] text-foreground transition-colors focus:border-accent focus:outline-none"
                 />
+                {errors.message && <p className="mt-1 text-xs text-red-500">{errors.message.message}</p>}
               </div>
 
               {/* Honeypot field - Invisible to real users */}
               <div style={{ display: 'none', position: 'absolute', opacity: 0 }}>
-                <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+                <input type="text" {...register("website")} tabIndex={-1} autoComplete="off" />
               </div>
 
               {/* Turnstile Invisible CAPTCHA */}
@@ -170,29 +218,5 @@ const ContactPage = () => {
     </SiteShell>
   );
 };
-
-const Field = ({
-  label,
-  name,
-  type = "text",
-  required,
-  className = "",
-}: {
-  label: string;
-  name: string;
-  type?: string;
-  required?: boolean;
-  className?: string;
-}) => (
-  <div className={className}>
-    <label className="block font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">{label}</label>
-    <input
-      type={type}
-      name={name}
-      required={required}
-      className="mt-2 w-full border border-border bg-card px-4 py-3 text-[14px] text-foreground transition-colors focus:border-accent focus:outline-none"
-    />
-  </div>
-);
 
 export default ContactPage;
