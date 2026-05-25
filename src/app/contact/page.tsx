@@ -10,9 +10,11 @@ import { site } from "@/lib/site";
 import { toast } from "sonner";
 import { submitContactEnquiry } from "@/lib/api";
 import { BrandLogo } from "@/components/layout/BrandLogo";
+import { Turnstile } from '@marsidev/react-turnstile';
 
 const ContactPage = () => {
   const [submitting, setSubmitting] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState("");
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,6 +32,8 @@ const ContactPage = () => {
       subject: String(fd.get("service") || "General enquiry"),
       message: finalMessage,
       source_page: "CONTACT",
+      website: String(fd.get("website") || ""),
+      captcha_token: captchaToken,
     };
     setSubmitting(true);
     try {
@@ -97,6 +101,19 @@ const ContactPage = () => {
                   required
                   rows={5}
                   className="mt-2 w-full resize-none border border-border bg-card px-4 py-3 text-[14px] text-foreground transition-colors focus:border-accent focus:outline-none"
+                />
+              </div>
+
+              {/* Honeypot field - Invisible to real users */}
+              <div style={{ display: 'none', position: 'absolute', opacity: 0 }}>
+                <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+              </div>
+
+              {/* Turnstile Invisible CAPTCHA */}
+              <div className="md:col-span-2">
+                <Turnstile 
+                  siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY || '1x00000000000000000000AA'} 
+                  onSuccess={(token) => setCaptchaToken(token)}
                 />
               </div>
             </div>
