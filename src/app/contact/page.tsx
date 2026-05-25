@@ -1,7 +1,7 @@
 /**
  * Contact | enquiry form + global office grid.
  */
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useRef } from "react";
 import { Mail, Phone, MapPin, Send, ArrowUpRight } from "lucide-react";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { PageHero } from "@/components/layout/PageHero";
@@ -10,11 +10,12 @@ import { site } from "@/lib/site";
 import { toast } from "sonner";
 import { submitContactEnquiry } from "@/lib/api";
 import { BrandLogo } from "@/components/layout/BrandLogo";
-import { Turnstile } from '@marsidev/react-turnstile';
+import { Turnstile, TurnstileInstance } from '@marsidev/react-turnstile';
 
 const ContactPage = () => {
   const [submitting, setSubmitting] = useState(false);
   const [captchaToken, setCaptchaToken] = useState("");
+  const turnstileRef = useRef<TurnstileInstance>(null);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -48,6 +49,7 @@ const ContactPage = () => {
       });
     } finally {
       setSubmitting(false);
+      turnstileRef.current?.reset();
     }
   };
 
@@ -112,6 +114,7 @@ const ContactPage = () => {
               {/* Turnstile Invisible CAPTCHA */}
               <div className="md:col-span-2">
                 <Turnstile 
+                  ref={turnstileRef}
                   siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY || '1x00000000000000000000AA'} 
                   onSuccess={(token) => setCaptchaToken(token)}
                 />
