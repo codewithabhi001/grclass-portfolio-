@@ -73,7 +73,7 @@ export function SiteHeader() {
               return (
                 <div
                   key={item.href}
-                  className="relative flex items-stretch"
+                  className="flex items-stretch"
                   onMouseEnter={hasChildren ? openDropdown : undefined}
                   onMouseLeave={hasChildren ? closeDropdown : undefined}
                 >
@@ -105,7 +105,7 @@ export function SiteHeader() {
                   {/* Mega Dropdown */}
                   {hasChildren && showDropdown && (
                     <div
-                      className="absolute left-1/2 -translate-x-1/2 top-full w-screen bg-primary-deep shadow-2xl z-50 animate-in fade-in duration-200"
+                      className="absolute left-0 w-full top-full bg-primary-deep shadow-2xl z-50 animate-in fade-in duration-200"
                       onMouseEnter={openDropdown}
                       onMouseLeave={closeDropdown}
                     >

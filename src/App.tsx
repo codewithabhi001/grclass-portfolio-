@@ -21,6 +21,7 @@ import PressPage from "./app/press/page.tsx";
 import InvestorsPage from "./app/investors/page.tsx";
 import VesselSearchPage from "./app/vessel-search/page.tsx";
 import NewsArticlePage from "./app/news/[slug]/page.tsx";
+import ProfilePage from "./app/profile/page.tsx";
 
 const queryClient = new QueryClient();
 
@@ -57,6 +58,7 @@ const App = () => (
           <Route path="/investors" element={<InvestorsPage />} />
           <Route path="/vessel-search" element={<VesselSearchPage />} />
           <Route path="/legal/:doc" element={<LegalPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

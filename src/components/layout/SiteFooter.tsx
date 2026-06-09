@@ -66,6 +66,11 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link to="/profile" className="transition-colors hover:text-background">
+                Company Profile
+              </Link>
+            </li>
           </ul>
         </div>
 

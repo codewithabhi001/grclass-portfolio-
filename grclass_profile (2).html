@@ -1,0 +1,2354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GR Class — Company Profile 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&family=Barlow+Condensed:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy:   #0b1f45;
+  --navy2:  #122356;
+  --navy3:  #0d2a6e;
+  --gold:   #c09030;
+  --goldb:  #d4a83a;
+  --white:  #ffffff;
+  --off:    #f5f3ef;
+  --light:  #eae7df;
+  --ink:    #1c1c1c;
+  --muted:  #555555;
+  --border: #d8d2c8;
+}
+
+html { font-family: 'Barlow', sans-serif; -webkit-font-smoothing: antialiased; }
+
+body {
+  background: #c8c4bc;
+  padding: 24px 16px;
+}
+
+/* ── PAGE ── */
+.page {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 32px;
+  background: var(--white);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 16px 60px rgba(0,0,0,0.2);
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 16/10;
+  min-height: 580px;
+}
+
+/* ════════════════════════════════
+   PAGE 1 — COVER
+════════════════════════════════ */
+.p1 {
+  height: 100%;
+  background: var(--navy);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+.p1-left {
+  background: var(--navy);
+  padding: 48px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+  border-right: 4px solid var(--gold);
+}
+
+.p1-logo-block { display: flex; flex-direction: column; gap: 8px; }
+
+.p1-logo-anchor {
+  width: 52px;
+  height: 52px;
+  margin-bottom: 4px;
+}
+
+.p1-logo-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 38px;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.p1-logo-name span { color: var(--goldb); }
+
+.p1-logo-sub {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-top: 2px;
+}
+
+.p1-iso {
+  display: inline-block;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.5);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  margin-top: 8px;
+  width: fit-content;
+}
+
+.p1-main {}
+
+.p1-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--goldb);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.p1-eyebrow::before {
+  content: '';
+  width: 28px; height: 2px;
+  background: var(--gold);
+}
+
+.p1-headline {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 44px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.p1-headline span { color: var(--goldb); display: block; }
+
+.p1-tagline {
+  margin-top: 16px;
+  font-size: 12px;
+  line-height: 1.65;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  max-width: 350px;
+}
+
+.p1-right {
+  position: relative;
+  background: var(--navy2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.p1-right-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.p1-right-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, var(--navy) 0%, transparent 60%);
+  z-index: 2;
+}
+
+.p1-iso-badge {
+  position: absolute;
+  top: 48px;
+  right: 48px;
+  z-index: 3;
+  color: var(--white);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: rgba(11, 31, 69, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 4px 12px;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+}
+
+.p1-stats-bar {
+  z-index: 3;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(6px);
+  border-top: 2px solid var(--gold);
+}
+
+.p1-stat {
+  padding: 16px 12px;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+}
+
+.p1-stat:last-child { border-right: none; }
+
+.p1-stat-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--goldb);
+  line-height: 1;
+}
+
+.p1-stat-label {
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-top: 2px;
+}
+
+/* ── SHARED LAYOUTS ── */
+.slide-grid-2 {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  height: 100%;
+}
+
+.slide-grid-2-rev {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  height: 100%;
+}
+
+.slide-padded {
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.sec-flag {
+  background: var(--navy);
+  display: inline-block;
+  padding: 6px 14px;
+  margin-bottom: 16px;
+  border-radius: 3px;
+}
+
+.sec-flag span {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--goldb);
+}
+
+.sec-heading {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: var(--navy);
+  letter-spacing: 0.02em;
+}
+
+.sec-heading.white { color: var(--white); }
+
+.sec-rule {
+  width: 44px; height: 2px;
+  background: var(--gold);
+  margin: 12px 0 16px;
+}
+
+.welcome-body {
+  font-size: 11px;
+  line-height: 1.65;
+  color: #334155;
+  margin-bottom: 16px;
+  max-width: 500px;
+}
+.welcome-body p + p { margin-top: 10px; }
+
+.welcome-footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding-top: 12px;
+}
+
+.welcome-sign {
+  font-family: 'Barlow', sans-serif;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.welcome-sign-sub {
+  font-size: 9px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.side-img-pane {
+  position: relative;
+  background: #cbd5e1;
+}
+
+.side-img-pane img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(115%);
+}
+
+.side-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(11,31,69,0.9) 0%, transparent 60%);
+}
+
+.side-img-text {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  color: var(--white);
+  z-index: 10;
+}
+
+.side-img-text .cat {
+  font-size: 8px;
+  font-family: monospace;
+  text-transform: uppercase;
+  color: var(--goldb);
+  letter-spacing: 0.2em;
+  display: block;
+}
+
+.side-img-text .title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* ════════════════════════════════
+   PAGE 3 — WHO WE ARE
+════════════════════════════════ */
+.p3-left {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.p3-fact-grid {
+  margin-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 12px;
+}
+
+.p3-fact-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 8px;
+  font-size: 9px;
+  padding: 4px 0;
+}
+
+.p3-fact-key {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--goldb);
+  letter-spacing: 0.15em;
+}
+
+.p3-fact-val {
+  color: rgba(255,255,255,0.8);
+}
+
+.p3-right {
+  background: #0f172a;
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.p3-right-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.2;
+  z-index: 1;
+}
+
+.p3-right-grad {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, #020617 0%, transparent 70%);
+  z-index: 2;
+}
+
+.p3-right-content {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.p3-desc {
+  font-size: 11.5px;
+  line-height: 1.7;
+  color: #cbd5e1;
+  margin-bottom: 12px;
+  font-weight: 300;
+}
+.p3-desc p + p { margin-top: 10px; }
+
+.p3-quote-block {
+  border-left: 4px solid var(--gold);
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-left: 4px solid var(--gold);
+  padding: 12px 16px;
+  border-radius: 0 4px 4px 0;
+  backdrop-filter: blur(4px);
+}
+
+.p3-quote-text {
+  font-size: 11.5px;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--goldb);
+}
+
+/* ════════════════════════════════
+   PAGE 4 — VISION & MISSION & VALUES
+════════════════════════════════ */
+.p4 {
+  display: grid;
+  grid-template-rows: 1.2fr 1fr;
+  height: 100%;
+}
+
+.p4-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.p4-vision-box {
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.p4-vision-text {
+  font-size: 14px;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--navy);
+}
+
+.p4-mission-box {
+  background: var(--navy);
+  color: var(--white);
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.p4-mission-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.p4-mission-list {
+  list-style: none;
+  font-size: 10px;
+  line-height: 1.6;
+  color: #cbd5e1;
+  position: relative;
+  z-index: 10;
+}
+
+.p4-mission-list li {
+  margin-bottom: 6px;
+  position: relative;
+  padding-left: 12px;
+}
+
+.p4-mission-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--goldb);
+  font-weight: bold;
+}
+
+.p4-bottom {
+  padding: 36px 40px;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.p4-values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.p4-value-card {
+  font-size: 9.5px;
+}
+
+.p4-value-card span {
+  display: block;
+  font-weight: 700;
+  color: var(--navy);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.p4-value-card p {
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* ════════════════════════════════
+   PAGE 5 — TRANSITION WHAT WE DO
+════════════════════════════════ */
+.p5-layout {
+  height: 100%;
+  background: var(--navy);
+  color: var(--white);
+  padding: 64px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.p5-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.p5-grad-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--navy) 10%, rgba(11,31,69,0.7) 100%);
+  z-index: 2;
+}
+
+.p5-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 16px;
+  position: relative;
+  z-index: 10;
+}
+
+.p5-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.p5-logo-wrap img {
+  height: 32px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+.p5-logo-wrap span {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--goldb);
+  letter-spacing: 0.1em;
+}
+
+.p5-meta {
+  font-size: 9px;
+  font-family: monospace;
+  color: #94a3b8;
+  letter-spacing: 0.15em;
+}
+
+.p5-main {
+  max-width: 600px;
+  position: relative;
+  z-index: 10;
+}
+
+.p5-headline {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 48px;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.p5-headline span {
+  color: var(--goldb);
+}
+
+.p5-desc {
+  margin-top: 16px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #cbd5e1;
+  font-weight: 300;
+}
+
+.p5-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 16px;
+  position: relative;
+  z-index: 10;
+}
+
+.p5-col-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 950;
+  color: var(--goldb);
+}
+
+.p5-col-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #94a3b8;
+  letter-spacing: 0.1em;
+  display: block;
+}
+
+/* ════════════════════════════════
+   PAGE 6 — CLASSIFICATION SERVICES
+════════════════════════════════ */
+.p6-services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.p6-card {
+  background: var(--white);
+  padding: 10px 12px;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  border-left: 3.5px solid var(--gold);
+}
+
+.p6-card-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--navy);
+  text-transform: uppercase;
+}
+
+.p6-card-desc {
+  font-size: 9px;
+  color: #64748b;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.p6-right {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.p6-right-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.p6-right-content {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.p6-right-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--goldb);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.p6-list {
+  list-style: none;
+  font-size: 9.5px;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+.p6-list li {
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.p6-list li::before {
+  content: '✓';
+  color: var(--goldb);
+  font-weight: bold;
+}
+
+.p6-highlight-box {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 12px;
+  border-radius: 4px;
+}
+
+.p6-highlight-title {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--goldb);
+  display: block;
+}
+
+.p6-highlight-text {
+  font-size: 9px;
+  color: #94a3b8;
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+/* ════════════════════════════════
+   PAGE 7 — STATUTORY SERVICES
+════════════════════════════════ */
+.p7-layout {
+  height: 100%;
+  background: var(--navy);
+  color: var(--white);
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.p7-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.p7-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+  padding-bottom: 12px;
+  z-index: 10;
+}
+
+.p7-header-tag {
+  background: #1e293b;
+  border: 1px solid #334155;
+  font-size: 9.5px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.p7-main {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 32px;
+  z-index: 10;
+}
+
+.p7-intro-text {
+  font-size: 11.5px;
+  color: #cbd5e1;
+  line-height: 1.65;
+  margin-bottom: 16px;
+}
+
+.p7-feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.p7-feature-item {
+  display: flex;
+  gap: 12px;
+}
+
+.p7-feature-icon {
+  background: rgba(192, 144, 48, 0.1);
+  color: var(--goldb);
+  border-radius: 4px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.p7-feature-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+.p7-feature-desc {
+  font-size: 9.5px;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+.p7-certs-card {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 16px;
+  border-radius: 6px;
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.p7-certs-title {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--goldb);
+  display: block;
+  margin-bottom: 10px;
+}
+
+.p7-certs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  font-size: 9px;
+  color: #cbd5e1;
+}
+
+.p7-cert-dot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.p7-cert-dot::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 55%;
+  background: var(--goldb);
+}
+
+.p7-footer-note {
+  font-size: 8px;
+  color: #64748b;
+  border-top: 1px solid #1e293b;
+  padding-top: 6px;
+  font-family: monospace;
+}
+
+/* ════════════════════════════════
+   PAGE 8 — ENVIRONMENTAL SERVICES
+════════════════════════════════ */
+.p8-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: auto 0;
+}
+
+.p8-card {
+  background: var(--white);
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  border-radius: 4px;
+  border-top: 3.5px solid var(--navy);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 240px;
+}
+
+.p8-card.alt {
+  border-top-color: var(--gold);
+}
+
+.p8-card-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--navy);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.p8-card-text {
+  font-size: 9.5px;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.p8-card-text ul {
+  list-style: none;
+  margin-top: 6px;
+}
+
+.p8-card-text li {
+  margin-bottom: 4px;
+}
+
+.p8-card-tag {
+  font-size: 8.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--goldb);
+  margin-top: 12px;
+}
+
+/* ════════════════════════════════
+   PAGE 9 — COMPLIANCE & SUPPORT
+════════════════════════════════ */
+.p9-cols {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 24px;
+  margin: auto 0;
+}
+
+.p9-left {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.p9-block-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--goldb);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.p9-block-desc {
+  font-size: 10px;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+.p9-adv-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.p9-adv-img {
+  width: 64px;
+  height: 64px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #334155;
+  flex-shrink: 0;
+}
+
+.p9-adv-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.p9-right-card {
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 16px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.p9-right-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--white);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.p9-right-list {
+  list-style: none;
+  font-size: 9px;
+  color: #94a3b8;
+}
+
+.p9-right-list li {
+  margin-bottom: 6px;
+  display: flex;
+  gap: 8px;
+}
+
+.p9-right-list li::before {
+  content: '✓';
+  color: var(--goldb);
+  font-weight: bold;
+}
+
+/* ════════════════════════════════
+   PAGE 10 — PLAN APPROVAL
+════════════════════════════════ */
+.p10-cols {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 24px;
+  margin: auto 0;
+}
+
+.p10-card-sub {
+  background: var(--white);
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.p10-card-sub-title {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--navy);
+  text-transform: uppercase;
+}
+
+.p10-card-sub-desc {
+  font-size: 8.5px;
+  color: #64748b;
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+.p10-badge-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.p10-badge {
+  background: #cbd5e1;
+  color: var(--navy);
+  font-size: 8px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.p10-right-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 16px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.p10-right-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.08;
+  z-index: 1;
+}
+
+.p10-right-content-wrap {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.p10-right-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--navy);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.p10-right-list {
+  list-style: none;
+  font-size: 9px;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.p10-right-list li {
+  margin-bottom: 6px;
+  display: flex;
+  gap: 8px;
+}
+
+.p10-right-list li span.num {
+  color: var(--gold);
+  font-weight: bold;
+}
+
+.p10-right-note {
+  background: rgba(11, 31, 69, 0.05);
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 8.5px;
+  color: var(--navy);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* ════════════════════════════════
+   PAGE 11 — WHY CHOOSE
+════════════════════════════════ */
+.p11-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: auto 0;
+}
+
+.p11-card {
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 16px;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.p11-card-bg {
+  position: absolute;
+  bottom: -8px;
+  right: 8px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 40px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.03);
+  line-height: 1;
+}
+
+.p11-card-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--goldb);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.p11-card-desc {
+  font-size: 9.5px;
+  color: #94a3b8;
+  line-height: 1.45;
+}
+
+.p11-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 8px;
+  color: #475569;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding-top: 8px;
+  font-family: monospace;
+}
+
+/* ════════════════════════════════
+   PAGE 12 — GEOGRAPHY
+════════════════════════════════ */
+.p12-left {
+  background: var(--white);
+  border-right: 1px solid #e2e8f0;
+}
+
+.p12-office-item {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.p12-office-icon {
+  color: var(--gold);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.p12-office-title {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--navy);
+  text-transform: uppercase;
+  display: block;
+}
+
+.p12-office-desc {
+  font-size: 9px;
+  color: #64748b;
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
+.p12-badge {
+  background: rgba(11, 31, 69, 0.05);
+  border: 1px solid rgba(11, 31, 69, 0.1);
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 8.5px;
+  color: #475569;
+  font-family: monospace;
+  margin-top: 12px;
+}
+
+.p12-right {
+  background: var(--navy3);
+  color: var(--white);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.p12-right-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--goldb);
+  text-transform: uppercase;
+}
+
+.p12-map-svg {
+  position: absolute;
+  inset: 0;
+  opacity: 0.15;
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+}
+
+.p12-legend-wrap {
+  text-align: right;
+  z-index: 10;
+  font-size: 9.5px;
+  color: #cbd5e1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.p12-legend-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.p12-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--goldb);
+  display: inline-block;
+}
+
+.p12-legend-dot.ping {
+  animation: pulse-dot 1.5s infinite;
+}
+
+@keyframes pulse-dot {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.4; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ════════════════════════════════
+   PAGE 13 — BACK COVER
+════════════════════════════════ */
+.p13 {
+  background: var(--navy);
+  color: var(--white);
+  padding: 64px 48px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.p13-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.18;
+  z-index: 1;
+}
+
+.p13-grad-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, #020617 10%, rgba(11,31,69,0.85) 100%);
+  z-index: 2;
+}
+
+.p13-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 16px;
+  position: relative;
+  z-index: 10;
+}
+
+.p13-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.p13-brand-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24px;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.p13-brand-title span {
+  color: var(--goldb);
+}
+
+.p13-brand-sub {
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.p13-cred {
+  text-align: right;
+}
+
+.p13-cred-primary {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--goldb);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.p13-cred-sub {
+  font-size: 8px;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-top: 2px;
+}
+
+.p13-main {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 48px;
+  position: relative;
+  z-index: 10;
+}
+
+.p13-block-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--goldb);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.p13-info-entry {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 11.5px;
+  color: #cbd5e1;
+}
+
+.p13-info-icon {
+  color: var(--goldb);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.p13-info-val {
+  line-height: 1.4;
+}
+
+.p13-info-val a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(212, 168, 58, 0.4);
+  font-family: monospace;
+}
+
+.p13-footer {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  z-index: 10;
+}
+
+.p13-web {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--white);
+  text-decoration: none;
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 2px;
+}
+
+.p13-copy {
+  font-size: 9px;
+  color: #64748b;
+  font-family: monospace;
+  margin-top: 8px;
+}
+
+.p13-tagline {
+  font-size: 9px;
+  color: #64748b;
+  font-family: monospace;
+}
+
+/* ── PRINT AND RESPONSIVE ── */
+@media (max-width: 820px) {
+  body { padding: 0; }
+  .page {
+    aspect-ratio: auto;
+    height: auto;
+    min-height: auto;
+    margin-bottom: 16px;
+  }
+  .p1, .slide-grid-2, .slide-grid-2-rev, .p4-top, .p5-grid, .p6-services-grid, .p7-main, .p8-cols, .p9-cols, .p10-cols, .p11-grid, .p13-main {
+    grid-template-columns: 1fr !important;
+  }
+  .p1-left::after { display: none; }
+  .p1-stats-bar { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 0 !important;
+  }
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    overflow: visible !important;
+  }
+  body {
+    background: #0b1f45 !important; /* Premium background color default */
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .page {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+    box-shadow: none !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 1 — COVER
+═══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="p1">
+    <div class="p1-left">
+      <div class="p1-logo-block">
+        <svg class="p1-logo-anchor" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="31" stroke="#c09030" stroke-width="1.2" opacity="0.35"/>
+          <circle cx="32" cy="32" r="25" stroke="#c09030" stroke-width="0.6" opacity="0.15"/>
+          <circle cx="32" cy="20" r="4" stroke="#c09030" stroke-width="1.8"/>
+          <line x1="32" y1="24" x2="32" y2="46" stroke="#c09030" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="23" y1="28" x2="41" y2="28" stroke="#c09030" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M23 46 C23 39 41 39 41 46" stroke="#c09030" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <line x1="23" y1="43" x2="23" y2="46" stroke="#c09030" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="41" y1="43" x2="41" y2="46" stroke="#c09030" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <div class="p1-logo-name">GR <span>Class</span></div>
+        <div class="p1-logo-sub">Maritime Classification Society</div>
+        <div class="p1-iso">Recognized Organization — RO</div>
+      </div>
+
+      <div class="p1-main">
+        <div class="p1-eyebrow">Company Profile 2026</div>
+        <div class="p1-headline">
+          Your Trusted<br/>
+          <span>Classification<br/>Partner</span>
+        </div>
+        <div class="p1-tagline">
+          A globally recognized Classification Society and Authorized Recognized Organization delivering statutory certification, vessel surveys, and digital compliance services.
+        </div>
+      </div>
+    </div>
+
+    <div class="p1-right">
+      <img src="src/assets/profile-cover-hero.png" alt="Sunset Cargo Vessel" class="p1-right-img" />
+      <div class="p1-right-overlay"></div>
+      <div class="p1-iso-badge">ISO 9001 CERTIFIED</div>
+
+      <div class="p1-stats-bar">
+        <div class="p1-stat">
+          <div class="p1-stat-val">120+</div>
+          <div class="p1-stat-label">Ports Worldwide</div>
+        </div>
+        <div class="p1-stat">
+          <div class="p1-stat-val">360°</div>
+          <div class="p1-stat-label">Vessel Coverage</div>
+        </div>
+        <div class="p1-stat">
+          <div class="p1-stat-val">100%</div>
+          <div class="p1-stat-label">Digital Certified</div>
+        </div>
+        <div class="p1-stat">
+          <div class="p1-stat-val">0</div>
+          <div class="p1-stat-label">PSC Detentions</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 2 — WELCOME
+═══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="slide-grid-2 text-slate-900">
+    <div class="slide-padded bg-white">
+      <div>
+        <div class="sec-flag"><span>Welcome to GR Class</span></div>
+        <h2 class="sec-heading">Leader's Message</h2>
+        <div class="sec-rule"></div>
+
+        <div class="welcome-body">
+          <p>As the lead representative at GR Class, I find the responsibilities and challenges in the marine safety and classification field to be truly inspiring.</p>
+          <p>Our maritime industry is constantly evolving, requiring us to rapidly adapt to new regulations, complex environmental targets, and advanced digital technologies.</p>
+          <p>The classification field is unique — it requires a deep understanding of marine structures, engineering safety, and the ability to verify technical compliances that withstand the harsh realities of the sea.</p>
+          <p>This commitment drives us to work with values, ethics, and standards. We strive to be the trusted partner for shipowners and operators, delivering swift, reliable, and cost-effective services globally.</p>
+        </div>
+      </div>
+
+      <div class="welcome-footer">
+        <div>
+          <div class="welcome-sign">GR Class Technical Board</div>
+          <div class="welcome-sign-sub">Classified for Standards</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-img-pane">
+      <img src="src/assets/about-surveyor.jpg" alt="Maritime Inspections" />
+      <div class="side-img-overlay"></div>
+      <div class="side-img-text">
+        <span class="cat">Certified Surveyor</span>
+        <span class="title">Maritime Inspections</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 3 — WHO WE ARE
+═══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="slide-grid-2-rev">
+    <div class="slide-padded p3-left">
+      <div>
+        <div class="sec-flag" style="background: rgba(255,255,255,0.1)"><span>Corporate Profile</span></div>
+        <h2 class="sec-heading white">Who<br/>We Are</h2>
+        <div class="sec-rule" style="background: var(--goldb)"></div>
+        <p class="text-xs font-light text-slate-300" style="line-height: 1.65;">
+          GR Class welcomes shipowners and operators for asset safety and compliances. We are a Recognized Organization (RO), Recognized Security Organization (RSO) and Classification Society (CS) authorized to offer statutory/class certification and services.
+        </p>
+      </div>
+
+      <div class="p3-fact-grid">
+        <div class="p3-fact-row">
+          <span class="p3-fact-key">Type</span>
+          <span class="p3-fact-val">Classification Society</span>
+        </div>
+        <div class="p3-fact-row">
+          <span class="p3-fact-key">Est</span>
+          <span class="p3-fact-val">2022</span>
+        </div>
+        <div class="p3-fact-row">
+          <span class="p3-fact-key">HQ</span>
+          <span class="p3-fact-val">Ajman Free Zone, UAE</span>
+        </div>
+        <div class="p3-fact-row">
+          <span class="p3-fact-key">Compliance</span>
+          <span class="p3-fact-val">Digital-first Portals</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="p3-right slide-padded">
+      <img src="src/assets/hero-vessel.jpg" alt="Vessel Background" class="p3-right-bg" />
+      <div class="p3-right-grad"></div>
+      
+      <div class="p3-right-content">
+        <div>
+          <div class="text-[9px] font-bold tracking-[0.25em] text-amber-500 mb-1">OVERVIEW</div>
+          <h3 class="sec-heading white" style="font-size: 24px;">A Globally Recognized Technical Authority</h3>
+          <div class="sec-rule" style="background: var(--goldb)"></div>
+
+          <div class="p3-desc">
+            <p>GR Class serves as a trusted independent classification society for shipowners, shipbuilders, managers, and flag state administrations. We provide objective technical assessments backed by rigorous procedures and modern digital infrastructure.</p>
+            <p>Our primary goal is to ensure the highest standards of safety, reliability, and environmental sustainability in the maritime industry.</p>
+          </div>
+        </div>
+
+        <div class="p3-quote-block">
+          <p class="p3-quote-text">
+            "We build trust with our customers through safety, ethics, and standards, lifting maritime classification to next-level excellence."
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 4 — VISION & MISSION
+═══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="p4">
+    <div class="p4-top">
+      <div class="p4-vision-box bg-white">
+        <div>
+          <div class="text-[9px] font-bold tracking-widest text-amber-600 uppercase mb-1">Our Direction</div>
+          <h3 class="sec-heading" style="font-size: 22px;">Vision</h3>
+          <div class="sec-rule"></div>
+        </div>
+        <p class="p4-vision-text">
+          "To be the most trusted and technically rigorous Classification Society globally, providing digital-first maritime compliance solutions that empower shipowners and flag states across every voyage."
+        </p>
+      </div>
+
+      <div class="p4-mission-box">
+        <img src="src/assets/careers-hero.jpg" alt="Bridge Operations" class="p4-mission-bg" />
+        <div>
+          <div class="text-[9px] font-bold tracking-widest text-amber-500 uppercase mb-1">Our Purpose</div>
+          <h3 class="sec-heading white" style="font-size: 22px;">Mission</h3>
+          <div class="sec-rule" style="background: var(--goldb)"></div>
+        </div>
+        <ul class="p4-mission-list">
+          <li>Safeguard lives, property, and the marine environment.</li>
+          <li>Deliver rapid, cost-effective, and standards-compliant statutory/class services.</li>
+          <li>Provide robust, round-the-clock technical support to ship operators globally.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="p4-bottom">
+      <div class="text-[9px] font-bold tracking-widest text-slate-400 uppercase mb-2">What We Stand For</div>
+      <div class="p4-values-grid">
+        <div class="p4-value-card">
+          <span>1. Integrity &amp; Ethics</span>
+          <p>Impartial, transparent, and standards-driven technical assessments.</p>
+        </div>
+        <div class="p4-value-card">
+          <span>2. Tech Excellence</span>
+          <p>Experienced surveyors, auditors, and engineering experts with decades of experience.</p>
+        </div>
+        <div class="p4-value-card">
+          <span>3. Operational Speed</span>
+          <p>24/7 service availability to minimize fleet disruption and commercial delays.</p>
+        </div>
+        <div class="p4-value-card">
+          <span>4. Digital Innovation</span>
+          <p>Advanced technical infrastructure, secure vessel databases, and digital certificates.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 5 — TRANSITION WHAT WE DO
+═══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="p5-layout">
+    <img src="src/assets/hero-vessel.jpg" alt="Cargo vessel at sea" class="p5-bg-img" />
+    <div class="p5-grad-overlay"></div>
+
+    <div class="p5-header">
+      <div class="p5-logo-wrap">
+        <svg style="height:32px; width:32px;" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="31" stroke="#d4a83a" stroke-width="1.8"/>
+          <line x1="32" y1="20" x2="32" y2="46" stroke="#d4a83a" stroke-width="1.8"/>
+          <path d="M23 44 C23 37 41 37 41 44" stroke="#d4a83a" stroke-width="1.8" fill="none"/>
+        </svg>
+        <span>GR Class</span>
+      </div>
+      <div class="p5-meta">SECTION 02 / SERVICE CAPABILITIES</div>
+    </div>
+
+    <div class="p5-main">
+      <h2 class="p5-headline">What<br/><span>We Do</span></h2>
+      <div class="sec-rule" style="background: var(--goldb); margin: 16px 0 20px;"></div>
+      <p class="p5-desc">
+        GR Class delivers comprehensive statutory, classification, environmental, and compliance support services. We assist shipowners and operators in maintaining safety, structural integrity, and regulatory compliance throughout the lifecycle of their marine assets.
+      </p>
+    </div>
+
+    <div class="p5-grid">
+      <div>
+        <span class="p5-col-num">01</span>
+        <span class="p5-col-label">Classification</span>
+      </div>
+      <div>
+        <span class="p5-col-num">02</span>
+        <span class="p5-col-label">Statutory</span>
+      </div>
+      <div>
+        <span class="p5-col-num">03</span>
+        <span class="p5-col-label">Environmental</span>
+      </div>
+      <div>
+        <span class="p5-col-num">04</span>
+        <span class="p5-col-label">Advisory Support</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 6 — CLASSIFICATION SERVICES
+═══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="slide-grid-2 text-slate-900">
+    <div class="slide-padded bg-white">
+      <div>
+        <div class="text-[9px] font-bold tracking-widest text-amber-600 uppercase mb-1">SERVICE CATEGORY 01</div>
+        <h2 class="sec-heading">Classification Services</h2>
+        <div class="sec-rule"></div>
+        <p class="text-xs text-slate-500 mb-3" style="line-height: 1.5;">
+          We ensure vessels and assets maintain structural integrity, machinery reliability, and technical compliance throughout their lifecycle.
+        </p>
+
+        <div class="p6-services-grid">
+          <div class="p6-card">
+            <span class="p6-card-title">Fleet in Services</span>
+            <p class="p6-card-desc">Periodic, annual, intermediate, and special surveys to verify tech standards.</p>
+          </div>
+          <div class="p6-card">
+            <span class="p6-card-title">New Construction</span>
+            <p class="p6-card-desc">From concept design plan approval to construction supervision and sea trials.</p>
+          </div>
+          <div class="p6-card">
+            <span class="p6-card-title">Transfer of Class</span>
+            <p class="p6-card-desc">Smooth, inexpensive admission process with minimal operations disruption.</p>
+          </div>
+          <div class="p6-card">
+            <span class="p6-card-title">Yacht &amp; Offshore</span>
+            <p class="p6-card-desc">Design approvals for private yachts, oil rigs, MODUs, and FPSOs.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-[9px] text-slate-400 font-mono flex items-center gap-2 border-t border-slate-200 pt-2" style="margin-top: 10px;">
+        <span>✓ Includes Conversion Projects &amp; Approval of structural drawings</span>
+      </div>
+    </div>
+
+    <div class="slide-padded p6-right">
+      <img src="src/assets/svc-fleet-in-services.png" alt="Fleet in Services" class="p6-right-img" />
+      <div class="p6-right-content">
+        <div>
+          <h3 class="p6-right-title">Entry Survey requirements</h3>
+          <p class="text-[10px] font-light text-slate-300 mb-3" style="line-height: 1.5;">
+            To commence the class admission process, the following ship documents must be transmitted to GR Class:
+          </p>
+          <ul class="p6-list" style="list-style: none;">
+            <li style="margin-bottom: 4px; font-size: 9.5px; color:#cbd5e1; display:flex; align-items:center; gap:6px;">✓ Updated ship survey status &amp; recommendations</li>
+            <li style="margin-bottom: 4px; font-size: 9.5px; color:#cbd5e1; display:flex; align-items:center; gap:6px;">✓ Copies of existing class &amp; statutory certificates</li>
+            <li style="margin-bottom: 4px; font-size: 9.5px; color:#cbd5e1; display:flex; align-items:center; gap:6px;">✓ Registry papers &amp; main plans (GA, structural)</li>
+            <li style="margin-bottom: 4px; font-size: 9.5px; color:#cbd5e1; display:flex; align-items:center; gap:6px;">✓ Trim &amp; stability booklet &amp; thickness reports</li>
+          </ul>
+        </div>
+
+        <div class="p6-highlight-box bg-slate-900" style="padding:10px; border-radius:4px;">
+          <span class="p6-highlight-title">Conversion Projects</span>
+          <p class="p6-highlight-text">We handle a 4-stage process: Feasibility &amp; Design Approval, Modification Survey, Commissioning &amp; sea trials, and Recertification.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 7 — STATUTORY SERVICES
+═══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="p7-layout">
+    <img src="src/assets/svc-solas.png" alt="Statutory" class="p7-bg-img" />
+    <div class="p7-header">
+      <div>
+        <div class="text-[9px] font-bold tracking-widest text-amber-500 uppercase mb-1">SERVICE CATEGORY 02</div>
+        <h2 class="sec-heading white">Statutory Services</h2>
+      </div>
+      <div class="p7-header-tag">Flag State Delegations</div>
+    </div>
+
+    <div class="p7-main">
+      <div>
+        <p class="p7-intro-text">
+          GR Class is fully authorized by Flag Administrations to perform technical surveys and inspections, and issue statutory certificates in accordance with international conventions and codes.
+        </p>
+
+        <div class="p7-feature-list">
+          <div class="p7-feature-item">
+            <div class="p7-feature-icon">✓</div>
+            <div>
+              <span class="p7-feature-title">SOLAS</span>
+              <p class="p7-feature-desc">Cargo Ship Safety Construction, Equipment, and Radio surveys.</p>
+            </div>
+          </div>
+          <div class="p7-feature-item">
+            <div class="p7-feature-icon">✓</div>
+            <div>
+              <span class="p7-feature-title">MARPOL</span>
+              <p class="p7-feature-desc">Oil pollution, sewage prevention, air emissions (Annex I - VI).</p>
+            </div>
+          </div>
+          <div class="p7-feature-item">
+            <div class="p7-feature-icon">✓</div>
+            <div>
+              <span class="p7-feature-title">Load Line &amp; Tonnage</span>
+              <p class="p7-feature-desc">Freeboard assignments and International Tonnage (ITC 69) calculations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p7-certs-card">
+        <span class="p7-certs-title">Principal Authorizations Include</span>
+        <div class="p7-certs-grid">
+          <div class="p7-cert-dot">Safety Construction (CCC)</div>
+          <div class="p7-cert-dot">Safety Equipment (CEC)</div>
+          <div class="p7-cert-dot">Safety Radio (CRC)</div>
+          <div class="p7-cert-dot">International Load Line (LL)</div>
+          <div class="p7-cert-dot">Tonnage Cert (ITC 69)</div>
+          <div class="p7-cert-dot">Oil Pollution (IOPP)</div>
+          <div class="p7-cert-dot">ISM Code Verification</div>
+          <div class="p7-cert-dot">ISPS Code (ISSC)</div>
+          <div class="p7-cert-dot">Maritime Labor (MLC 2006)</div>
+          <div class="p7-cert-dot">Energy Efficiency (IEEC)</div>
+        </div>
+        <span class="p7-footer-note">* Complete list of 36 statutory certifications is fully delegated &amp; managed.</span>
+      </div>
+    </div>
+
+    <div class="p7-footer-note" style="border:none; padding:0; color: rgba(255,255,255,0.4)">
+      GR CLASS — Classified for Standards
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 8 — ENVIRONMENTAL SERVICES
+═══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="slide-padded bg-[#f5f3ef] text-slate-900">
+    <div class="flex justify-between items-start border-b border-slate-300/80 pb-4">
+      <div>
+        <div class="text-[9px] font-bold tracking-widest text-amber-600 uppercase mb-1">SERVICE CATEGORY 03</div>
+        <h2 class="sec-heading">Environmental Services</h2>
+      </div>
+      <div style="font-size: 10px; color:#475569; font-weight:600;">Green Shipping &amp; Decarbonization</div>
+    </div>
+
+    <div class="p8-cols">
+      <div class="p8-card">
+        <div>
+          <span class="p8-card-title">BWM &amp; Ship Recycling</span>
+          <p class="p8-card-text">
+            Assisting owners in meeting the IMO Ballast Water Convention. Drawing BWM plans, certifying treatment systems. Providing IHM assessments and certification under Hong Kong Convention and EU Ship Recycling Regulation (EU SRR).
+          </p>
+        </div>
+        <span class="p8-card-tag">IMO &amp; EU SRR Compliant</span>
+      </div>
+
+      <div class="p8-card alt">
+        <div>
+          <span class="p8-card-title">Energy Efficiency</span>
+          <p class="p8-card-text">
+            Full suite support under MARPOL Annex VI:
+            <ul>
+              <li>• <strong>EEDI:</strong> Carbon efficiency check for newbuilds</li>
+              <li>• <strong>EEXI:</strong> Compliance index checks for older ships</li>
+              <li>• <strong>CII:</strong> Carbon Intensity ratings (A - E grades)</li>
+              <li>• <strong>SEEMP III:</strong> Action plans to reach carbon reduction</li>
+            </ul>
+          </p>
+        </div>
+        <span class="p8-card-tag">Decarbonization Pathways</span>
+      </div>
+
+      <div class="p8-card">
+        <div>
+          <span class="p8-card-title">EU MRV &amp; ERS</span>
+          <p class="p8-card-text">
+            <strong>EU MRV compliance</strong> support (Monitoring Plan assessment, emissions report checks) for ships over 400 GT calling EU ports.
+            <br/><br/>
+            <strong>Vessel Emergency Response Service (ERS):</strong> 24/7 computer stability &amp; strength calculations in case of vessel damage or grounding.
+          </p>
+        </div>
+        <span class="p8-card-tag">24/7 ERS Critical Support</span>
+      </div>
+    </div>
+
+    <div class="text-[9px] text-slate-400 font-mono">
+      GR CLASS — Classified for Standards
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 9 — COMPLIANCE & SUPPORT
+═══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="slide-padded bg-[#0b1f45] text-white">
+    <div class="flex justify-between items-start border-b border-white/10 pb-4">
+      <div>
+        <div class="text-[9px] font-bold tracking-widest text-amber-500 uppercase mb-1">SERVICE CATEGORY 04</div>
+        <h2 class="sec-heading white">Compliance &amp; Remote Support</h2>
+      </div>
+      <span class="text-[10px] text-slate-400 font-mono">Port State Control &amp; Remote Surveys</span>
+    </div>
+
+    <div class="p9-cols">
+      <div class="p9-left">
+        <div>
+          <span class="p9-block-title">Port State Control (PSC)</span>
+          <p class="p9-block-desc">
+            Recognizing the critical nature of PSC, we collaborate closely with Flag States and ship operators to improve fleets' records. We assist with <strong>PSC pre-arrival checklists</strong>, sharing detention prevention actions, and compliance with the latest Regional MOUs (Paris MoU, Tokyo MoU).
+          </p>
+        </div>
+        <div class="p9-adv-row">
+          <div class="p9-adv-img">
+            <img src="src/assets/why-port.jpg" alt="Port State" />
+          </div>
+          <div>
+            <span class="p9-block-title">Technical Advisory Services</span>
+            <p class="p9-block-desc" style="font-size: 9.5px;">
+              We provide expert marine engineering consultancy, operational optimization, and risk mitigation to help vessels operate safely with reduced cost.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="p9-right-card">
+        <div>
+          <span class="p9-right-title">Remote Survey Solutions</span>
+          <p class="p9-block-desc" style="font-size: 9px; color: #94a3b8; margin-bottom: 8px;">
+            We execute remote inspections to support operational continuity where onboard access is restricted or unavailable:
+          </p>
+          <ul class="p9-right-list">
+            <li>Occasional surveys between scheduled periods</li>
+            <li>Documentation-based remote approvals</li>
+            <li>Verification of minor deficiencies rectification</li>
+            <li>Interim audits for ISM, ISPS, &amp; MLC</li>
+          </ul>
+        </div>
+        <span style="font-size: 8px; color:#64748b; font-family:monospace; margin-top:8px;">* Subject to pertinent Flag Administration authorization.</span>
+      </div>
+    </div>
+
+    <div class="text-[9px] text-slate-500 font-mono">
+      GR CLASS — Classified for Standards
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 10 — PLAN APPROVAL
+═══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="slide-padded bg-[#f5f3ef] text-slate-900">
+    <div class="flex justify-between items-start border-b border-slate-300/80 pb-4">
+      <div>
+        <div class="text-[9px] font-bold tracking-widest text-amber-600 uppercase mb-1">PROCESS OVERVIEW</div>
+        <h2 class="sec-heading">Plan Approval &amp; Class Admission</h2>
+      </div>
+      <span class="text-[10px] text-slate-500 font-mono">Plans, Manuals &amp; Stability Verification</span>
+    </div>
+
+    <div class="p10-cols">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <span class="p10-card-sub-title" style="font-size: 11px; display:block; margin-bottom:4px;">Plan Approval Process</span>
+          <p class="p10-card-sub-desc" style="font-size: 9.5px; margin-bottom: 8px;">
+            Before construction, modification, or major repair of a vessel, our technical office verifies the structural plans and layout details:
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <div class="p10-card-sub">
+              <span class="p10-card-sub-title">Key Plans</span>
+              <p class="p10-card-sub-desc">GA blueprint, Midship, Shell expansion, Hatch covers.</p>
+            </div>
+            <div class="p10-card-sub">
+              <span class="p10-card-sub-title">Safety &amp; Systems</span>
+              <p class="p10-card-sub-desc">Fire control, LSA, fuel/ballast piping layouts.</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <span class="p10-card-sub-title" style="font-size: 11px; display:block; margin-bottom:4px;">Manual Approvals &amp; calculations</span>
+          <p class="p10-card-sub-desc" style="font-size: 9.5px;">We review and approve several critical marine manuals, including:</p>
+          <div class="p10-badge-wrap">
+            <span class="p10-badge">SOPEP / SMPEP</span>
+            <span class="p10-badge">BWMP (Ballast)</span>
+            <span class="p10-badge">STS Ops Manual</span>
+            <span class="p10-badge">Garbage Mgmt Plan</span>
+            <span class="p10-badge">Fire Control Plans</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="p10-right-card">
+        <img src="src/assets/svc-plan-approval.png" alt="Technical Blueprint Map" class="p10-right-bg-img" />
+        <div class="p10-right-content-wrap">
+          <div>
+            <span class="p10-right-title">Vessel Admission to Class</span>
+            <p class="p10-card-sub-desc" style="font-size: 9.5px; margin-bottom: 8px; color: #475569;">
+              Application to GR Class is a smooth process. Owners can submit entry requests directly. We will:
+            </p>
+            <ol class="p10-right-list">
+              <li><span class="num">1.</span> Obtain survey and cert history from the losing society.</li>
+              <li><span class="num">2.</span> Review registry documents &amp; stability booklets.</li>
+              <li><span class="num">3.</span> Coordinate vessel attendance to minimize disruption to commercial voyages.</li>
+            </ol>
+          </div>
+          <div class="p10-right-note">
+            Statutory certificates are issued on behalf of Flag States following completion of applicable technical surveys.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-[9px] text-slate-400 font-mono">
+      GR CLASS — Classified for Standards
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 11 — WHY CHOOSE
+═══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="slide-padded bg-[#0b1f45] text-white">
+    <div>
+      <div class="text-[9px] font-bold tracking-widest text-amber-500 uppercase mb-1">OUR ADVANTAGE</div>
+      <h2 class="sec-heading white">Why Choose GR Class</h2>
+      <div class="sec-rule"></div>
+    </div>
+
+    <div class="p11-grid">
+      <div class="p11-card">
+        <span class="p11-card-bg">01</span>
+        <span class="p11-card-title">Universal Acceptance</span>
+        <p class="p11-card-desc">Statutory certificates are recognized and accepted across major flag administrations and port state control regimes.</p>
+      </div>
+
+      <div class="p11-card">
+        <span class="p11-card-bg">02</span>
+        <span class="p11-card-title">Surveyor Network</span>
+        <p class="p11-card-desc">Technical experts and surveyors located globally — ensuring swift response and 24/7 operations support.</p>
+      </div>
+
+      <div class="p11-card">
+        <span class="p11-card-bg">03</span>
+        <span class="p11-card-title">Digital Workflows</span>
+        <p class="p11-card-desc">Vessel Owner and Administration Portals allow real-time certificate downloads and live status tracking.</p>
+      </div>
+
+      <div class="p11-card">
+        <span class="p11-card-bg">04</span>
+        <span class="p11-card-title">Zero Detentions</span>
+        <p class="p11-card-desc">Our pre-arrival checks and Port State Control advice ensure vessels operate without compliance penalty.</p>
+      </div>
+
+      <div class="p11-card">
+        <span class="p11-card-bg">05</span>
+        <span class="p11-card-title">Decade Experience</span>
+        <p class="p11-card-desc">Our surveyors and auditors have decades of experience in resolving complex engineering issues.</p>
+      </div>
+
+      <div class="p11-card">
+        <span class="p11-card-bg">06</span>
+        <span class="p11-card-title">Environmental Focus</span>
+        <p class="p11-card-desc">Supporting green transitions through energy index approvals, CII optimization, and emissions audits.</p>
+      </div>
+    </div>
+
+    <div class="p11-footer">
+      <span>GR CLASS — Classified for Standards</span>
+      <span>Est. 2022</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 12 — GEOGRAPHY
+═══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="slide-grid-2 text-slate-900">
+    <div class="slide-padded p12-left">
+      <div>
+        <div class="text-[9px] font-bold tracking-widest text-amber-600 uppercase mb-1">GLOBAL REACH</div>
+        <h2 class="sec-heading" style="font-size: 28px;">Geographical Presence</h2>
+        <div class="sec-rule"></div>
+        <p class="text-[10px] text-slate-600 mb-3" style="line-height: 1.5;">
+          Headquartered in Ajman, UAE, and supported by a global footprint of certified surveyors operating across strategic maritime hubs and ports.
+        </p>
+
+        <div class="p12-office-item">
+          <div class="p12-office-icon">📍</div>
+          <div>
+            <span class="p12-office-title">Head Office Address</span>
+            <span class="p12-office-desc">
+              B.C. 1304883, Ajman Free Zone C1 Building, Ajman District Business, Makani No – 4442612247, UAE.
+            </span>
+          </div>
+        </div>
+
+        <div class="p12-office-item">
+          <div class="p12-office-icon">🌐</div>
+          <div>
+            <span class="p12-office-title">Surveyor Networks</span>
+            <span class="p12-office-desc">
+              Middle East, Persian Gulf, Red Sea transit routes, Turkey, Singapore, and Europe.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="p12-badge">
+        Ajman Free Zone Registered Office<br/>B.C. Number: 1304883
+      </div>
+    </div>
+
+    <div class="p12-right">
+      <span class="p12-right-title">Global Marine Survey Coverage</span>
+      
+      <!-- Vector Map -->
+      <div style="position:relative; flex:1;">
+        <svg viewBox="0 0 800 400" class="p12-map-svg">
+          <path d="M50 100 Q100 80 150 110 T200 120 T250 150 L200 200 L150 210 Z" fill="white" />
+          <path d="M220 220 Q250 250 260 300 T240 370 L200 320 Z" fill="white" />
+          <path d="M380 80 Q450 70 550 90 T700 80 T750 120 L720 250 L600 280 L520 220 L480 350 L400 330 L370 200 Z" fill="white" />
+          <path d="M680 280 Q740 300 720 350 T650 320 Z" fill="white" />
+
+          <circle cx="485" cy="175" r="8" fill="#f59e0b" opacity="0.6"/>
+          <circle cx="485" cy="175" r="4" fill="#f59e0b" />
+          <circle cx="600" cy="225" r="4" fill="#f59e0b" />
+          <circle cx="460" cy="165" r="4" fill="#f59e0b" />
+          <circle cx="465" cy="140" r="4" fill="#f59e0b" />
+          <circle cx="430" cy="110" r="4" fill="#f59e0b" />
+        </svg>
+      </div>
+
+      <div class="p12-legend-wrap">
+        <div class="p12-legend-item">
+          <span class="p12-legend-dot ping"></span>
+          <span>Ajman Head Office (UAE)</span>
+        </div>
+        <div class="p12-legend-item">
+          <span class="p12-legend-dot" style="opacity:0.8"></span>
+          <span>Surveyors on-call across 120+ ports</span>
+        </div>
+        <div class="p12-legend-item">
+          <span class="p12-legend-dot" style="opacity:0.55"></span>
+          <span>Recognized by major Flag States</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 13 — BACK COVER
+═══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="p13">
+    <img src="src/assets/hero-vessel.jpg" alt="Vessel Cover Background" class="p13-bg-img" />
+    <div class="p13-grad-overlay"></div>
+    
+    <div class="p13-header">
+      <div class="p13-brand">
+        <svg style="height:36px; width:36px;" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="31" stroke="#d4a83a" stroke-width="1.8"/>
+          <line x1="32" y1="20" x2="32" y2="46" stroke="#d4a83a" stroke-width="1.8"/>
+          <path d="M23 44 C23 37 41 37 41 44" stroke="#d4a83a" stroke-width="1.8" fill="none"/>
+        </svg>
+        <div>
+          <span class="p13-brand-title">GR <span>Class</span></span>
+          <span class="p13-brand-sub">Classified for Standards</span>
+        </div>
+      </div>
+      <div class="p13-cred">
+        <div class="p13-cred-primary">Recognized Organization (RO)</div>
+        <div class="p13-cred-sub">ISO 9001 Certified</div>
+      </div>
+    </div>
+
+    <div class="p13-main">
+      <div>
+        <h3 class="p13-block-title">Head Office Location</h3>
+        <div class="p13-info-entry">
+          <span class="p13-info-icon">📍</span>
+          <span class="p13-info-val">
+            B.C. 1304883, Ajman Free Zone C1 Building, Ajman District Business, Makani No – 4442612247, UAE.
+          </span>
+        </div>
+        <div class="p13-info-entry">
+          <span class="p13-info-icon">📞</span>
+          <span class="p13-info-val font-semibold">+971555324087</span>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="p13-block-title">E-mail Channels</h3>
+        <div class="p13-info-entry">
+          <span class="p13-info-icon">✉️</span>
+          <span class="p13-info-val"><a href="mailto:info@grclass.com">info@grclass.com</a></span>
+        </div>
+        <div class="p13-info-entry">
+          <span class="p13-info-icon">✉️</span>
+          <span class="p13-info-val"><a href="mailto:operation@grclass.com">operation@grclass.com</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="p13-footer">
+      <div>
+        <a href="https://grclass.com" target="_blank" class="p13-web">www.grclass.com</a>
+        <div class="p13-copy">© 2026 GR Class. All rights reserved.</div>
+      </div>
+      <div class="p13-tagline">Navigating Safety. Certifying Excellence.</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
