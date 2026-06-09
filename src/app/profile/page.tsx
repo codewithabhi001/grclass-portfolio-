@@ -45,7 +45,7 @@ import svcPlanApproval from "@/assets/svc-plan-approval.png";
 import svcCert from "@/assets/svc-cert.jpg";
 
 export default function ProfilePage() {
-  const [slideMode, setSlideMode] = useState<boolean>(true);
+  const [slideMode, setSlideMode] = useState<boolean>(false);
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const [controlsVisible, setControlsVisible] = useState<boolean>(true);
   const totalSlides = 13;
@@ -67,9 +67,10 @@ export default function ProfilePage() {
         const newScale = Math.min(scaleX, scaleY, 1.0);
         setScale(newScale > 0.15 ? newScale : 0.15);
       } else {
-        // Scroll Mode: fit width of the screen
-        const scaleX = (w - 32) / BASE_WIDTH;
-        const newScale = Math.min(scaleX, 1.0);
+        // Scroll Mode: fit both width and height within viewport (accounting for header)
+        const scaleX = (w - 48) / BASE_WIDTH;
+        const scaleY = (h - 110) / BASE_HEIGHT; // Accounts for 70px header and 40px margin
+        const newScale = Math.min(scaleX, scaleY, 1.0);
         setScale(newScale > 0.15 ? newScale : 0.15);
       }
     };
@@ -209,12 +210,12 @@ export default function ProfilePage() {
 
       {/* Screen layout container (hidden during print) */}
       <div 
-        className="min-h-screen bg-slate-900 text-slate-100 flex flex-col font-sans overflow-x-hidden print:hidden"
+        className={`bg-[#0b1f45] text-slate-100 flex flex-col font-sans print:hidden ${!slideMode ? "h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth" : "h-screen overflow-hidden"}`}
         onMouseMove={handleMouseMove}
       >
-        {/* Top sticky navbar for controls (only visible in scroll mode) */}
+        {/* Top fixed navbar for controls (only visible in scroll mode) */}
         {!slideMode && (
-          <header className="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800 px-6 py-4 flex items-center justify-between shadow-md print:hidden animate-fade-in">
+          <header className="fixed top-0 left-0 right-0 z-50 bg-[#0b1f45]/90 backdrop-blur-md border-b border-slate-800/80 px-6 py-4 flex items-center justify-between shadow-md print:hidden animate-fade-in">
             <div className="flex items-center gap-3">
               <img src="/grclass-logo.webp" alt="GR Class" className="h-9 w-auto brightness-0 invert" />
               <div className="hidden sm:block h-6 w-px bg-slate-800"></div>
@@ -226,15 +227,15 @@ export default function ProfilePage() {
             <div className="flex items-center gap-4">
               <button
                 onClick={toggleMode}
-                className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-xs font-semibold uppercase tracking-wider text-slate-200 rounded-md border border-slate-700 transition-all"
+                className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 active:bg-slate-650 text-xs font-semibold uppercase tracking-wider text-slate-200 rounded-md border border-slate-700 transition-all shadow-sm group hover:border-amber-500/50"
               >
-                <Maximize2 className="h-4 w-4 text-amber-500" />
-                <span>Slideshow Mode</span>
+                <Maximize2 className="h-4 w-4 text-amber-500 group-hover:scale-110 transition-transform" />
+                <span>Full Screen</span>
               </button>
 
               <button
                 onClick={printProfile}
-                className="flex items-center gap-2 px-4 py-2 bg-amber-600 hover:bg-amber-500 active:bg-amber-700 text-xs font-semibold uppercase tracking-wider text-slate-950 rounded-md transition-all font-bold"
+                className="flex items-center gap-2 px-4 py-2 bg-amber-600 hover:bg-amber-500 active:bg-amber-700 text-xs font-semibold uppercase tracking-wider text-slate-950 rounded-md transition-all font-bold shadow-sm"
               >
                 <Printer className="h-4 w-4" />
                 <span>Print / PDF</span>
@@ -251,7 +252,7 @@ export default function ProfilePage() {
         )}
 
         {/* Main Container */}
-        <main className="flex-1 flex flex-col items-center justify-center">
+        <main className="flex-1 flex flex-col">
           {slideMode ? (
             /* FULL SCREEN SLIDESHOW MODE */
             <div className="fixed inset-0 w-screen h-screen bg-slate-950 flex items-center justify-center z-50 overflow-hidden select-none">
@@ -371,20 +372,12 @@ export default function ProfilePage() {
               )}
             </div>
           ) : (
-            /* SCROLL DOCUMENT MODE */
-            <div className="flex flex-col items-center justify-center w-full py-8">
+            /* SCROLL DOCUMENT MODE - SNAP SCROLLABLE */
+            <div className="flex flex-col w-full">
               {Array.from({ length: totalSlides }).map((_, i) => (
                 <div 
                   key={i} 
-                  style={{
-                    width: "100%",
-                    height: `${BASE_HEIGHT * scale}px`,
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    overflow: "hidden",
-                    marginBottom: "2rem"
-                  }}
+                  className="w-screen h-screen snap-start flex items-center justify-center overflow-hidden relative bg-[#0b1f45] pt-[70px] border-b border-slate-900/20"
                 >
                   <div 
                     style={{
@@ -394,7 +387,7 @@ export default function ProfilePage() {
                       transformOrigin: "center",
                       flexShrink: 0,
                       position: "relative",
-                      boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3)"
+                      boxShadow: "0 20px 50px rgba(0, 0, 0, 0.4)"
                     }}
                     className="rounded-lg overflow-hidden border border-slate-800"
                   >
