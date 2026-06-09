@@ -51,34 +51,6 @@ export default function ProfilePage() {
   const totalSlides = 13;
   const slideContainerRef = useRef<HTMLDivElement>(null);
   
-  const [scale, setScale] = useState<number>(1);
-  const BASE_WIDTH = 1100;
-  const BASE_HEIGHT = 688;
-
-  useEffect(() => {
-    const handleResize = () => {
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-      
-      if (slideMode) {
-        // Slideshow Mode: fit both width and height within viewport
-        const scaleX = (w - 48) / BASE_WIDTH;
-        const scaleY = (h - 96) / BASE_HEIGHT;
-        const newScale = Math.min(scaleX, scaleY, 1.0);
-        setScale(newScale > 0.15 ? newScale : 0.15);
-      } else {
-        // Scroll Mode: fit both width and height within viewport (accounting for header)
-        const scaleX = (w - 48) / BASE_WIDTH;
-        const scaleY = (h - 110) / BASE_HEIGHT; // Accounts for 70px header and 40px margin
-        const newScale = Math.min(scaleX, scaleY, 1.0);
-        setScale(newScale > 0.15 ? newScale : 0.15);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    handleResize();
-    return () => window.removeEventListener("resize", handleResize);
-  }, [slideMode]);
 
   // Keyboard controls for slideshow
   useEffect(() => {
@@ -126,13 +98,19 @@ export default function ProfilePage() {
   };
 
   // Custom styling specifically for the slides
-  const slideClass = "w-full h-full bg-card overflow-hidden flex flex-col justify-between relative select-none";
-  const printPageClass = "w-full max-w-[1100px] aspect-[16/10] bg-card border border-border rounded-lg overflow-hidden flex flex-col justify-between relative mb-8 page-break-after-always shadow-md";
+  const slideClass = "w-full h-full bg-card overflow-y-auto md:overflow-hidden flex flex-col justify-between relative select-none";
+  const printPageClass = "w-full min-h-screen md:h-[calc(100vh-73px)] bg-card overflow-y-auto md:overflow-hidden flex flex-col justify-between relative page-break-after-always";
 
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: `
         @media print {
+          /* Force colors and backgrounds to be exact */
+          * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+
           /* Hide all screen components */
           .print\\:hidden,
           header,
@@ -156,8 +134,6 @@ export default function ProfilePage() {
             height: 100vh !important;
             overflow: visible !important;
             background-color: #0b1f45 !important;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
           }
 
           /* Print slide page styling */
@@ -210,16 +186,14 @@ export default function ProfilePage() {
 
       {/* Screen layout container (hidden during print) */}
       <div 
-        className={`bg-[#0b1f45] text-slate-100 flex flex-col font-sans print:hidden ${!slideMode ? "h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth" : "h-screen overflow-hidden"}`}
+        className="min-h-screen bg-[#0b1f45] text-slate-100 flex flex-col font-sans overflow-x-hidden print:hidden"
         onMouseMove={handleMouseMove}
       >
         {/* Top fixed navbar for controls (only visible in scroll mode) */}
         {!slideMode && (
-          <header className="fixed top-0 left-0 right-0 z-50 bg-[#0b1f45]/90 backdrop-blur-md border-b border-slate-800/80 px-6 py-4 flex items-center justify-between shadow-md print:hidden animate-fade-in">
+          <header className="sticky top-0 z-50 bg-[#0b1f45]/90 backdrop-blur-md border-b border-slate-800/80 px-6 py-4 flex items-center justify-between shadow-md print:hidden animate-fade-in">
             <div className="flex items-center gap-3">
-              <img src="/grclass-logo.webp" alt="GR Class" className="h-9 w-auto brightness-0 invert" />
-              <div className="hidden sm:block h-6 w-px bg-slate-800"></div>
-              <div className="hidden sm:block text-xs font-mono uppercase tracking-widest text-slate-400">
+              <div className="text-xs font-mono uppercase tracking-widest text-slate-400">
                 Company Profile 2026
               </div>
             </div>
@@ -255,44 +229,22 @@ export default function ProfilePage() {
         <main className="flex-1 flex flex-col">
           {slideMode ? (
             /* FULL SCREEN SLIDESHOW MODE */
-            <div className="fixed inset-0 w-screen h-screen bg-slate-950 flex items-center justify-center z-50 overflow-hidden select-none">
+            <div className="fixed inset-0 w-screen h-screen bg-[#0b1f45] flex items-center justify-center z-50 overflow-hidden select-none">
               
-              {/* Fullscreen Slide Wrapper (holds visual layout space) */}
-              <div 
-                style={{
-                  width: "100%",
-                  height: `${BASE_HEIGHT * scale}px`,
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  overflow: "hidden"
-                }}
-              >
-                {/* Inner Slide (scaled) */}
-                <div 
-                  ref={slideContainerRef} 
-                  style={{
-                    width: `${BASE_WIDTH}px`,
-                    height: `${BASE_HEIGHT}px`,
-                    transform: `scale(${scale})`,
-                    transformOrigin: "center",
-                    flexShrink: 0,
-                    position: "relative"
-                  }}
-                >
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={currentSlide}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className={slideClass}
-                    >
-                      <SlideContent index={currentSlide} />
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
+              {/* The Fullscreen Slide */}
+              <div ref={slideContainerRef} className="w-full h-full relative">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentSlide}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className={slideClass}
+                  >
+                    <SlideContent index={currentSlide} />
+                  </motion.div>
+                </AnimatePresence>
               </div>
 
               {/* Floating Left Arrow */}
@@ -318,8 +270,6 @@ export default function ProfilePage() {
               {/* Floating Top Header Controls */}
               <div className={`absolute top-0 left-0 right-0 p-6 z-40 bg-gradient-to-b from-slate-950/80 to-transparent flex items-center justify-between transition-opacity duration-300 ${controlsVisible ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
                 <div className="flex items-center gap-3">
-                  <img src="/grclass-logo.webp" alt="GR Class" className="h-8 w-auto brightness-0 invert" />
-                  <div className="h-5 w-px bg-slate-800"></div>
                   <span className="text-[10px] font-mono uppercase tracking-widest text-slate-300">
                     Slide {currentSlide + 1} of {totalSlides}
                   </span>
@@ -372,27 +322,11 @@ export default function ProfilePage() {
               )}
             </div>
           ) : (
-            /* SCROLL DOCUMENT MODE - SNAP SCROLLABLE */
+            /* SCROLL DOCUMENT MODE */
             <div className="flex flex-col w-full">
               {Array.from({ length: totalSlides }).map((_, i) => (
-                <div 
-                  key={i} 
-                  className="w-screen h-screen snap-start flex items-center justify-center overflow-hidden relative bg-[#0b1f45] pt-[70px] border-b border-slate-900/20"
-                >
-                  <div 
-                    style={{
-                      width: `${BASE_WIDTH}px`,
-                      height: `${BASE_HEIGHT}px`,
-                      transform: `scale(${scale})`,
-                      transformOrigin: "center",
-                      flexShrink: 0,
-                      position: "relative",
-                      boxShadow: "0 20px 50px rgba(0, 0, 0, 0.4)"
-                    }}
-                    className="rounded-lg overflow-hidden border border-slate-800"
-                  >
-                    <SlideContent index={i} />
-                  </div>
+                <div key={i} className={printPageClass}>
+                  <SlideContent index={i} />
                 </div>
               ))}
             </div>
@@ -453,7 +387,7 @@ function SlideContent({ index }: { index: number }) {
 ═══════════════════════════════════════════════════════ */
 function Slide1Cover() {
   return (
-    <div className="w-full h-full bg-[#0b1f45] grid grid-cols-2 text-white relative overflow-hidden">
+    <div className="w-full h-full bg-[#0b1f45] grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 text-white relative overflow-hidden">
       {/* Left Pane */}
       <div className="p-12 md:p-16 flex flex-col justify-between relative z-10 border-r-4 border-amber-600 bg-[#0b1f45]/90 backdrop-blur-[2px]">
         <div className="flex flex-col gap-2">
@@ -510,7 +444,7 @@ function Slide1Cover() {
         </div>
 
         {/* Stats bar */}
-        <div className="z-20 bg-slate-950/85 border-t border-amber-600 grid grid-cols-4 divide-x divide-slate-800/50 text-center backdrop-blur-sm">
+        <div className="z-20 bg-slate-950/85 border-t border-amber-600 grid grid-cols-2 md:grid-cols-4 print:grid-cols-4 divide-y md:divide-y-0 md:divide-x print:divide-y-0 print:divide-x divide-slate-800/50 text-center backdrop-blur-sm">
           <div className="py-5 px-2">
             <span className="block font-serif font-black text-xl md:text-2xl text-amber-500">120+</span>
             <span className="text-[8px] md:text-[9px] tracking-wider text-slate-400 uppercase">Ports Worldwide</span>
@@ -538,7 +472,7 @@ function Slide1Cover() {
 ═══════════════════════════════════════════════════════ */
 function Slide2Welcome() {
   return (
-    <div className="w-full h-full bg-[#f5f3ef] text-slate-900 grid grid-cols-[1.2fr_0.8fr] relative overflow-hidden">
+    <div className="w-full h-full bg-[#f5f3ef] text-slate-900 grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] print:grid-cols-[1.2fr_0.8fr] relative overflow-hidden">
       {/* Welcome content */}
       <div className="p-12 md:p-16 flex flex-col justify-between">
         <div>
@@ -590,7 +524,7 @@ function Slide2Welcome() {
       </div>
 
       {/* Image Block */}
-      <div className="relative bg-slate-300">
+      <div className="relative bg-slate-300 min-h-[250px] md:min-h-0 print:min-h-0">
         <img
           src={aboutSurveyor}
           alt="Surveyor"
@@ -615,7 +549,7 @@ function Slide2Welcome() {
 ═══════════════════════════════════════════════════════ */
 function Slide3WhoWeAre() {
   return (
-    <div className="w-full h-full bg-white text-slate-900 grid grid-cols-[1.1fr_0.9fr] relative overflow-hidden">
+    <div className="w-full h-full bg-white text-slate-900 grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] print:grid-cols-[1.1fr_0.9fr] relative overflow-hidden">
       {/* Left pane - Dark Background */}
       <div className="bg-[#0b1f45] text-white p-12 md:p-16 flex flex-col justify-between">
         <div>
@@ -666,7 +600,7 @@ function Slide3WhoWeAre() {
       </div>
 
       {/* Right pane - Image + Details */}
-      <div className="relative flex flex-col justify-between bg-slate-900 text-white">
+      <div className="relative flex flex-col justify-between bg-slate-900 text-white min-h-[300px] md:min-h-0 print:min-h-0">
         <img
           src={heroVessel}
           alt="Cargo vessel at port"
@@ -709,9 +643,9 @@ function Slide3WhoWeAre() {
 ═══════════════════════════════════════════════════════ */
 function Slide4VisionMission() {
   return (
-    <div className="w-full h-full bg-[#f5f3ef] text-slate-900 grid grid-rows-[1.2fr_1fr] relative overflow-hidden">
+    <div className="w-full h-full bg-[#f5f3ef] text-slate-900 flex flex-col md:grid md:grid-rows-[1.2fr_1fr] print:grid print:grid-rows-[1.2fr_1fr] relative overflow-hidden">
       {/* Top half: Vision & Mission split */}
-      <div className="grid grid-cols-2 divide-x divide-slate-300/80 border-b border-slate-300/80">
+      <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 divide-y md:divide-y-0 md:divide-x print:divide-y-0 print:divide-x divide-slate-300/80 border-b border-slate-300/80">
         {/* Vision (Light) */}
         <div className="p-10 flex flex-col justify-between relative overflow-hidden">
           <div className="relative z-10">
@@ -792,7 +726,7 @@ function Slide4VisionMission() {
         <div className="text-[9px] font-bold tracking-widest text-slate-400 uppercase mb-2">
           What We Stand For
         </div>
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 print:grid-cols-4 gap-6">
           <div>
             <span className="block font-serif font-bold text-xs text-[#0b1f45] uppercase mb-1">
               1. Integrity & Ethics
@@ -866,7 +800,7 @@ function Slide5WhatWeDoIntro() {
         </p>
       </div>
 
-      <div className="grid grid-cols-4 gap-4 border-t border-white/10 pt-6 relative z-10">
+      <div className="grid grid-cols-2 md:grid-cols-4 print:grid-cols-4 gap-4 border-t border-white/10 pt-6 relative z-10">
         <div>
           <span className="block font-serif font-black text-xl text-amber-500">01</span>
           <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Classification</span>
@@ -893,7 +827,7 @@ function Slide5WhatWeDoIntro() {
 ═══════════════════════════════════════════════════════ */
 function Slide6Classification() {
   return (
-    <div className="w-full h-full bg-[#f5f3ef] text-slate-900 grid grid-cols-[1.1fr_0.9fr] relative overflow-hidden">
+    <div className="w-full h-full bg-[#f5f3ef] text-slate-900 grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] print:grid-cols-[1.1fr_0.9fr] relative overflow-hidden">
       {/* Classification details */}
       <div className="p-10 flex flex-col justify-between">
         <div>
@@ -957,7 +891,7 @@ function Slide6Classification() {
       </div>
 
       {/* Side Image & Conversion Highlight */}
-      <div className="bg-[#0b1f45] text-white p-10 flex flex-col justify-between relative">
+      <div className="bg-[#0b1f45] text-white p-10 flex flex-col justify-between relative min-h-[250px] md:min-h-0 print:min-h-0">
         <div className="absolute inset-0 opacity-15 pointer-events-none">
           <img src={svcFleet} alt="Vessel Survey" className="w-full h-full object-cover" />
         </div>
@@ -1043,7 +977,7 @@ function Slide7Statutory() {
       </div>
 
       {/* Main Content: Info & Grid layout */}
-      <div className="grid grid-cols-[1fr_1.2fr] gap-8 my-auto relative z-10">
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_1.2fr] print:grid-cols-[1fr_1.2fr] gap-8 my-auto relative z-10">
         <div className="flex flex-col justify-center">
           <p className="text-xs text-slate-300 leading-relaxed mb-4">
             GR Class is fully authorized by Flag Administrations to perform technical surveys and inspections, and issue statutory certificates in accordance with international conventions and codes.
@@ -1176,7 +1110,7 @@ function Slide8Environmental() {
       </div>
 
       {/* Content Columns */}
-      <div className="grid grid-cols-3 gap-6 my-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 print:grid-cols-3 gap-6 my-auto">
         {/* Ballast Water & IHM */}
         <div className="bg-white p-4 shadow-sm border-t-3 border-[#0b1f45] rounded flex flex-col justify-between min-h-[260px] relative overflow-hidden">
           <div className="absolute right-0 bottom-0 w-24 h-24 opacity-10 pointer-events-none">
@@ -1272,7 +1206,7 @@ function Slide9ComplianceOther() {
       </div>
 
       {/* Columns */}
-      <div className="grid grid-cols-[1.1fr_0.9fr] gap-8 my-auto">
+      <div className="grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] print:grid-cols-[1.1fr_0.9fr] gap-8 my-auto">
         <div className="space-y-4">
           <div>
             <span className="block text-xs font-bold text-amber-500 uppercase mb-1">
@@ -1344,7 +1278,7 @@ function Slide9ComplianceOther() {
 ═══════════════════════════════════════════════════════ */
 function Slide10PlanApproval() {
   return (
-    <div className="w-full h-full bg-[#f5f3ef] text-slate-900 grid grid-cols-[1.1fr_0.9fr] p-12 relative overflow-hidden">
+    <div className="w-full h-full bg-[#f5f3ef] text-slate-900 grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] print:grid-cols-[1.1fr_0.9fr] p-12 relative overflow-hidden">
       {/* Left Column: Plan Approval details */}
       <div className="flex flex-col justify-between h-full">
         {/* Slide Header with Logo */}
@@ -1412,7 +1346,7 @@ function Slide10PlanApproval() {
       </div>
 
       {/* Right Column: Admission Card + Visual Blueprint */}
-      <div className="bg-[#0b1f45] text-white p-6 rounded-lg border border-slate-700 flex flex-col justify-between relative overflow-hidden h-full">
+      <div className="bg-[#0b1f45] text-white p-6 rounded-lg border border-slate-700 flex flex-col justify-between relative overflow-hidden h-full min-h-[300px] md:min-h-0 print:min-h-0">
         {/* Schematic background watermark */}
         <img
           src={svcPlanApproval}
@@ -1489,7 +1423,7 @@ function Slide11WhyChoose() {
       </div>
 
       {/* Grid of Reasons */}
-      <div className="grid grid-cols-3 gap-6 my-auto relative z-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 print:grid-cols-3 gap-6 my-auto relative z-10">
         <div className="bg-slate-900/50 border border-slate-800 p-4 rounded relative overflow-hidden">
           <span className="absolute -bottom-2 right-2 font-serif text-5xl font-black text-slate-800/30">01</span>
           <span className="block text-xs font-bold text-amber-500 uppercase mb-1">
@@ -1565,7 +1499,7 @@ function Slide11WhyChoose() {
 ═══════════════════════════════════════════════════════ */
 function Slide12Geographical() {
   return (
-    <div className="w-full h-full bg-[#f5f3ef] text-slate-900 grid grid-cols-[0.8fr_1.2fr] relative overflow-hidden">
+    <div className="w-full h-full bg-[#f5f3ef] text-slate-900 grid grid-cols-1 md:grid-cols-[0.8fr_1.2fr] print:grid-cols-[0.8fr_1.2fr] relative overflow-hidden">
       {/* Left Pane - office presence */}
       <div className="p-10 bg-white border-r border-slate-200 flex flex-col justify-between">
         <div>
@@ -1623,7 +1557,7 @@ function Slide12Geographical() {
       </div>
 
       {/* Right Pane - World map visualization */}
-      <div className="bg-[#0d2a6e] relative p-10 flex flex-col justify-between text-white">
+      <div className="bg-[#0d2a6e] relative p-10 flex flex-col justify-between text-white min-h-[350px] md:min-h-0 print:min-h-0">
         <h3 className="font-serif font-bold text-sm text-amber-500 uppercase tracking-wider relative z-10">
           Global Marine Survey Coverage
         </h3>
@@ -1723,7 +1657,7 @@ function Slide13BackCover() {
       </div>
 
       {/* Main Grid: Details */}
-      <div className="grid grid-cols-[1.2fr_0.8fr] gap-12 my-auto relative z-10">
+      <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] print:grid-cols-[1.2fr_0.8fr] gap-12 my-auto relative z-10">
         {/* Office Contact Info */}
         <div className="space-y-4">
           <h3 className="font-serif text-lg font-bold text-amber-500 uppercase">
