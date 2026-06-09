@@ -458,16 +458,12 @@ function Slide1Cover() {
       <div className="p-12 md:p-16 flex flex-col justify-between relative z-10 border-r-4 border-amber-600 bg-[#0b1f45]/90 backdrop-blur-[2px]">
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-3">
-            <svg className="h-10 w-10 text-amber-500" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="32" cy="32" r="31" stroke="currentColor" strokeWidth="1.2" strokeOpacity="0.35"/>
-              <circle cx="32" cy="32" r="25" stroke="currentColor" strokeWidth="0.6" strokeOpacity="0.15"/>
-              <circle cx="32" cy="20" r="4" stroke="currentColor" strokeWidth="1.8"/>
-              <line x1="32" y1="24" x2="32" y2="46" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
-              <line x1="23" y1="28" x2="41" y2="28" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
-              <path d="M23 46 C23 39 41 39 41 46" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round"/>
-              <line x1="23" y1="43" x2="23" y2="46" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
-              <line x1="41" y1="43" x2="41" y2="46" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
-            </svg>
+            <img 
+              src="/grclass-logo.webp" 
+              alt="GR Class Logo" 
+              className="h-11 w-auto" 
+              style={{ filter: "brightness(0) invert(1)" }}
+            />
             <span className="font-serif text-2xl md:text-3xl font-black tracking-widest text-white uppercase">
               GR <span className="text-amber-500">Class</span>
             </span>
@@ -1701,13 +1697,12 @@ function Slide13BackCover() {
       {/* Top logo & credentials */}
       <div className="flex justify-between items-start border-b border-white/10 pb-6 relative z-10">
         <div className="flex items-center gap-3">
-          <svg className="h-10 w-10 text-amber-500" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="32" cy="32" r="31" stroke="currentColor" strokeWidth="1.2" strokeOpacity="0.35"/>
-            <circle cx="32" cy="20" r="4" stroke="currentColor" strokeWidth="1.8"/>
-            <line x1="32" y1="24" x2="32" y2="46" stroke="currentColor" strokeWidth="1.8"/>
-            <line x1="23" y1="28" x2="41" y2="28" stroke="currentColor" strokeWidth="1.8"/>
-            <path d="M23 46 C23 39 41 39 41 46" stroke="currentColor" strokeWidth="1.8" fill="none"/>
-          </svg>
+          <img 
+            src="/grclass-logo.webp" 
+            alt="GR Class Logo" 
+            className="h-11 w-auto" 
+            style={{ filter: "brightness(0) invert(1)" }}
+          />
           <div>
             <span className="font-serif text-2xl font-black uppercase text-white tracking-widest block">
               GR <span className="text-amber-500">Class</span>
