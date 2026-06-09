@@ -50,6 +50,34 @@ export default function ProfilePage() {
   const [controlsVisible, setControlsVisible] = useState<boolean>(true);
   const totalSlides = 13;
   const slideContainerRef = useRef<HTMLDivElement>(null);
+  
+  const [scale, setScale] = useState<number>(1);
+  const BASE_WIDTH = 1100;
+  const BASE_HEIGHT = 688;
+
+  useEffect(() => {
+    const handleResize = () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      
+      if (slideMode) {
+        // Slideshow Mode: fit both width and height within viewport
+        const scaleX = (w - 48) / BASE_WIDTH;
+        const scaleY = (h - 96) / BASE_HEIGHT;
+        const newScale = Math.min(scaleX, scaleY, 1.0);
+        setScale(newScale > 0.15 ? newScale : 0.15);
+      } else {
+        // Scroll Mode: fit width of the screen
+        const scaleX = (w - 32) / BASE_WIDTH;
+        const newScale = Math.min(scaleX, 1.0);
+        setScale(newScale > 0.15 ? newScale : 0.15);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, [slideMode]);
 
   // Keyboard controls for slideshow
   useEffect(() => {
@@ -228,20 +256,42 @@ export default function ProfilePage() {
             /* FULL SCREEN SLIDESHOW MODE */
             <div className="fixed inset-0 w-screen h-screen bg-slate-950 flex items-center justify-center z-50 overflow-hidden select-none">
               
-              {/* The Fullscreen Slide */}
-              <div ref={slideContainerRef} className="w-full h-full relative">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentSlide}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className={slideClass}
-                  >
-                    <SlideContent index={currentSlide} />
-                  </motion.div>
-                </AnimatePresence>
+              {/* Fullscreen Slide Wrapper (holds visual layout space) */}
+              <div 
+                style={{
+                  width: "100%",
+                  height: `${BASE_HEIGHT * scale}px`,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  overflow: "hidden"
+                }}
+              >
+                {/* Inner Slide (scaled) */}
+                <div 
+                  ref={slideContainerRef} 
+                  style={{
+                    width: `${BASE_WIDTH}px`,
+                    height: `${BASE_HEIGHT}px`,
+                    transform: `scale(${scale})`,
+                    transformOrigin: "center",
+                    flexShrink: 0,
+                    position: "relative"
+                  }}
+                >
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentSlide}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className={slideClass}
+                    >
+                      <SlideContent index={currentSlide} />
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
               </div>
 
               {/* Floating Left Arrow */}
@@ -322,10 +372,34 @@ export default function ProfilePage() {
             </div>
           ) : (
             /* SCROLL DOCUMENT MODE */
-            <div className="flex flex-col items-center justify-center w-full max-w-[1100px] py-8">
+            <div className="flex flex-col items-center justify-center w-full py-8">
               {Array.from({ length: totalSlides }).map((_, i) => (
-                <div key={i} className={printPageClass}>
-                  <SlideContent index={i} />
+                <div 
+                  key={i} 
+                  style={{
+                    width: "100%",
+                    height: `${BASE_HEIGHT * scale}px`,
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    overflow: "hidden",
+                    marginBottom: "2rem"
+                  }}
+                >
+                  <div 
+                    style={{
+                      width: `${BASE_WIDTH}px`,
+                      height: `${BASE_HEIGHT}px`,
+                      transform: `scale(${scale})`,
+                      transformOrigin: "center",
+                      flexShrink: 0,
+                      position: "relative",
+                      boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3)"
+                    }}
+                    className="rounded-lg overflow-hidden border border-slate-800"
+                  >
+                    <SlideContent index={i} />
+                  </div>
                 </div>
               ))}
             </div>
@@ -479,13 +553,26 @@ function Slide2Welcome() {
       {/* Welcome content */}
       <div className="p-12 md:p-16 flex flex-col justify-between">
         <div>
-          <div className="inline-block bg-[#0b1f45] text-amber-500 text-[8px] md:text-[9px] font-bold tracking-[0.25em] uppercase px-3 py-1 rounded mb-4">
+          {/* Slide Header with Logo */}
+          <div className="flex justify-between items-center border-b border-slate-300/60 pb-2 mb-4">
+            <div className="flex items-center gap-2">
+              <img src="/grclass-logo.webp" alt="GR Class" className="h-5 w-auto brightness-0" style={{ filter: "brightness(0)" }} />
+              <span className="font-serif text-[11px] font-bold tracking-widest text-[#0b1f45] uppercase">
+                GR <span className="text-amber-600">Class</span>
+              </span>
+            </div>
+            <span className="text-[8px] font-mono tracking-widest text-slate-500 uppercase">
+              Classified for Standards
+            </span>
+          </div>
+
+          <div className="inline-block bg-[#0b1f45] text-amber-500 text-[8px] md:text-[9px] font-bold tracking-[0.25em] uppercase px-3 py-1 rounded mb-3">
             Welcome to GR Class
           </div>
           <h2 className="font-serif font-black text-3xl md:text-4xl text-[#0b1f45] leading-none uppercase">
             Leader's Message
           </h2>
-          <div className="w-12 h-[2px] bg-amber-600 my-4"></div>
+          <div className="w-12 h-[2px] bg-amber-600 my-3"></div>
 
           <div className="space-y-4 text-xs md:text-sm font-normal text-slate-700 leading-relaxed max-w-[500px]">
             <p>
@@ -543,13 +630,26 @@ function Slide3WhoWeAre() {
       {/* Left pane - Dark Background */}
       <div className="bg-[#0b1f45] text-white p-12 md:p-16 flex flex-col justify-between">
         <div>
-          <div className="inline-block bg-white/10 text-amber-500 text-[8px] font-bold tracking-[0.25em] uppercase px-3 py-1 rounded mb-4">
+          {/* Slide Header with Logo */}
+          <div className="flex justify-between items-center border-b border-white/10 pb-2 mb-4">
+            <div className="flex items-center gap-2">
+              <img src="/grclass-logo.webp" alt="GR Class" className="h-5 w-auto brightness-0 invert" />
+              <span className="font-serif text-[11px] font-bold tracking-widest text-white uppercase">
+                GR <span className="text-amber-500">Class</span>
+              </span>
+            </div>
+            <span className="text-[8px] font-mono tracking-widest text-slate-400 uppercase">
+              Classified for Standards
+            </span>
+          </div>
+
+          <div className="inline-block bg-white/10 text-amber-500 text-[8px] font-bold tracking-[0.25em] uppercase px-3 py-1 rounded mb-3">
             Corporate Profile
           </div>
           <h2 className="font-serif font-black text-3xl md:text-4xl leading-tight uppercase">
             Who<br />We Are
           </h2>
-          <div className="w-12 h-[2px] bg-amber-500 my-4"></div>
+          <div className="w-12 h-[2px] bg-amber-500 my-3"></div>
           <p className="text-xs md:text-sm font-light text-slate-300 leading-relaxed">
             GR Class welcomes shipowners and operators for asset safety and compliances. We are a Recognized Organization (RO), Recognized Security Organization (RSO) and Classification Society (CS) authorized to offer statutory/class certification and services.
           </p>
@@ -626,15 +726,28 @@ function Slide4VisionMission() {
         {/* Vision (Light) */}
         <div className="p-10 flex flex-col justify-between relative overflow-hidden">
           <div className="relative z-10">
-            <div className="text-[9px] font-bold tracking-widest text-amber-600 uppercase mb-2">
+            {/* Slide Header with Logo */}
+            <div className="flex justify-between items-center border-b border-slate-300/60 pb-2 mb-3">
+              <div className="flex items-center gap-2">
+                <img src="/grclass-logo.webp" alt="GR Class" className="h-5 w-auto brightness-0" style={{ filter: "brightness(0)" }} />
+                <span className="font-serif text-[11px] font-bold tracking-widest text-[#0b1f45] uppercase">
+                  GR <span className="text-amber-600">Class</span>
+                </span>
+              </div>
+              <span className="text-[8px] font-mono tracking-widest text-slate-500 uppercase">
+                Vision
+              </span>
+            </div>
+
+            <div className="text-[9px] font-bold tracking-widest text-amber-600 uppercase mb-1">
               Our Direction
             </div>
             <h3 className="font-serif font-black text-2xl text-[#0b1f45] uppercase">
               Vision
             </h3>
-            <div className="w-8 h-[2px] bg-amber-600 my-3"></div>
+            <div className="w-8 h-[2px] bg-amber-600 my-2"></div>
           </div>
-          <p className="font-serif text-sm md:text-base font-semibold italic text-[#0b1f45] leading-relaxed relative z-10">
+          <p className="font-serif text-sm font-semibold italic text-[#0b1f45] leading-relaxed relative z-10">
             "To be the most trusted and technically rigorous Classification Society globally, providing digital-first maritime compliance solutions that empower shipowners and flag states across every voyage."
           </p>
         </div>
@@ -647,13 +760,26 @@ function Slide4VisionMission() {
             className="absolute inset-0 w-full h-full object-cover opacity-10 pointer-events-none"
           />
           <div className="relative z-10">
-            <div className="text-[9px] font-bold tracking-widest text-amber-500 uppercase mb-2">
+            {/* Slide Header with Logo */}
+            <div className="flex justify-between items-center border-b border-white/10 pb-2 mb-3">
+              <div className="flex items-center gap-2">
+                <img src="/grclass-logo.webp" alt="GR Class" className="h-5 w-auto brightness-0 invert" />
+                <span className="font-serif text-[11px] font-bold tracking-widest text-white uppercase">
+                  GR <span className="text-amber-500">Class</span>
+                </span>
+              </div>
+              <span className="text-[8px] font-mono tracking-widest text-slate-400 uppercase">
+                Mission
+              </span>
+            </div>
+
+            <div className="text-[9px] font-bold tracking-widest text-amber-500 uppercase mb-1">
               Our Purpose
             </div>
             <h3 className="font-serif font-black text-2xl text-white uppercase">
               Mission
             </h3>
-            <div className="w-8 h-[2px] bg-amber-500 my-3"></div>
+            <div className="w-8 h-[2px] bg-amber-500 my-2"></div>
           </div>
           <ul className="space-y-1.5 text-[10px] md:text-[11px] font-light text-slate-300 relative z-10">
             <li className="flex gap-2">
@@ -782,7 +908,20 @@ function Slide6Classification() {
       {/* Classification details */}
       <div className="p-10 flex flex-col justify-between">
         <div>
-          <div className="text-[9px] font-bold tracking-widest text-amber-600 uppercase mb-2">
+          {/* Slide Header with Logo */}
+          <div className="flex justify-between items-center border-b border-slate-300/60 pb-2 mb-4">
+            <div className="flex items-center gap-2">
+              <img src="/grclass-logo.webp" alt="GR Class" className="h-5 w-auto brightness-0" style={{ filter: "brightness(0)" }} />
+              <span className="font-serif text-[11px] font-bold tracking-widest text-[#0b1f45] uppercase">
+                GR <span className="text-amber-600">Class</span>
+              </span>
+            </div>
+            <span className="text-[8px] font-mono tracking-widest text-slate-500 uppercase">
+              Classified for Standards
+            </span>
+          </div>
+
+          <div className="text-[9px] font-bold tracking-widest text-amber-600 uppercase mb-1">
             SERVICE CATEGORY 01
           </div>
           <h2 className="font-serif font-black text-3xl text-[#0b1f45] uppercase">
@@ -886,8 +1025,21 @@ function Slide7Statutory() {
         <img src={svcSolas} alt="Solas certification" className="w-full h-full object-cover" />
       </div>
 
+      {/* Slide Header with Logo */}
+      <div className="flex justify-between items-center border-b border-white/10 pb-2 mb-4 relative z-10">
+        <div className="flex items-center gap-2">
+          <img src="/grclass-logo.webp" alt="GR Class" className="h-5 w-auto brightness-0 invert" />
+          <span className="font-serif text-[11px] font-bold tracking-widest text-white uppercase">
+            GR <span className="text-amber-500">Class</span>
+          </span>
+        </div>
+        <span className="text-[8px] font-mono tracking-widest text-slate-400 uppercase">
+          Classified for Standards
+        </span>
+      </div>
+
       {/* Header */}
-      <div className="flex justify-between items-start border-b border-white/10 pb-4 relative z-10">
+      <div className="flex justify-between items-start pb-4 relative z-10">
         <div>
           <div className="text-[9px] font-bold tracking-widest text-amber-500 uppercase mb-1">
             SERVICE CATEGORY 02
@@ -1005,8 +1157,21 @@ function Slide7Statutory() {
 function Slide8Environmental() {
   return (
     <div className="w-full h-full bg-[#f5f3ef] text-slate-900 p-12 flex flex-col justify-between relative overflow-hidden">
+      {/* Slide Header with Logo */}
+      <div className="flex justify-between items-center border-b border-slate-300/60 pb-2 mb-4">
+        <div className="flex items-center gap-2">
+          <img src="/grclass-logo.webp" alt="GR Class" className="h-5 w-auto brightness-0" style={{ filter: "brightness(0)" }} />
+          <span className="font-serif text-[11px] font-bold tracking-widest text-[#0b1f45] uppercase">
+            GR <span className="text-amber-600">Class</span>
+          </span>
+        </div>
+        <span className="text-[8px] font-mono tracking-widest text-slate-500 uppercase">
+          Classified for Standards
+        </span>
+      </div>
+
       {/* Header */}
-      <div className="flex justify-between items-start border-b border-slate-300/80 pb-4">
+      <div className="flex justify-between items-start pb-4">
         <div>
           <div className="text-[9px] font-bold tracking-widest text-amber-600 uppercase mb-1">
             SERVICE CATEGORY 03
@@ -1091,8 +1256,21 @@ function Slide8Environmental() {
 function Slide9ComplianceOther() {
   return (
     <div className="w-full h-full bg-[#0b1f45] text-white p-12 flex flex-col justify-between relative overflow-hidden">
+      {/* Slide Header with Logo */}
+      <div className="flex justify-between items-center border-b border-white/10 pb-2 mb-4 relative z-10">
+        <div className="flex items-center gap-2">
+          <img src="/grclass-logo.webp" alt="GR Class" className="h-5 w-auto brightness-0 invert" />
+          <span className="font-serif text-[11px] font-bold tracking-widest text-white uppercase">
+            GR <span className="text-amber-500">Class</span>
+          </span>
+        </div>
+        <span className="text-[8px] font-mono tracking-widest text-slate-400 uppercase">
+          Classified for Standards
+        </span>
+      </div>
+
       {/* Header */}
-      <div className="flex justify-between items-start border-b border-white/10 pb-4">
+      <div className="flex justify-between items-start pb-4">
         <div>
           <div className="text-[9px] font-bold tracking-widest text-amber-500 uppercase mb-1">
             SERVICE CATEGORY 04
@@ -1180,6 +1358,19 @@ function Slide10PlanApproval() {
     <div className="w-full h-full bg-[#f5f3ef] text-slate-900 grid grid-cols-[1.1fr_0.9fr] p-12 relative overflow-hidden">
       {/* Left Column: Plan Approval details */}
       <div className="flex flex-col justify-between h-full">
+        {/* Slide Header with Logo */}
+        <div className="flex justify-between items-center border-b border-slate-300/60 pb-2 mb-4">
+          <div className="flex items-center gap-2">
+            <img src="/grclass-logo.webp" alt="GR Class" className="h-5 w-auto brightness-0" style={{ filter: "brightness(0)" }} />
+            <span className="font-serif text-[11px] font-bold tracking-widest text-[#0b1f45] uppercase">
+              GR <span className="text-amber-600">Class</span>
+            </span>
+          </div>
+          <span className="text-[8px] font-mono tracking-widest text-slate-500 uppercase">
+            Classified for Standards
+          </span>
+        </div>
+
         <div>
           <div className="text-[9px] font-bold tracking-widest text-amber-600 uppercase mb-1">
             PROCESS OVERVIEW
@@ -1284,8 +1475,21 @@ function Slide11WhyChoose() {
         className="absolute inset-0 w-full h-full object-cover opacity-5 pointer-events-none"
       />
 
+      {/* Slide Header with Logo */}
+      <div className="flex justify-between items-center border-b border-white/10 pb-2 mb-4 relative z-10">
+        <div className="flex items-center gap-2">
+          <img src="/grclass-logo.webp" alt="GR Class" className="h-5 w-auto brightness-0 invert" />
+          <span className="font-serif text-[11px] font-bold tracking-widest text-white uppercase">
+            GR <span className="text-amber-500">Class</span>
+          </span>
+        </div>
+        <span className="text-[8px] font-mono tracking-widest text-slate-400 uppercase">
+          Classified for Standards
+        </span>
+      </div>
+
       {/* Header */}
-      <div>
+      <div className="relative z-10">
         <div className="text-[9px] font-bold tracking-widest text-amber-500 uppercase mb-1">
           OUR ADVANTAGE
         </div>
@@ -1376,6 +1580,19 @@ function Slide12Geographical() {
       {/* Left Pane - office presence */}
       <div className="p-10 bg-white border-r border-slate-200 flex flex-col justify-between">
         <div>
+          {/* Slide Header with Logo */}
+          <div className="flex justify-between items-center border-b border-slate-200 pb-2 mb-4">
+            <div className="flex items-center gap-2">
+              <img src="/grclass-logo.webp" alt="GR Class" className="h-5 w-auto brightness-0" style={{ filter: "brightness(0)" }} />
+              <span className="font-serif text-[11px] font-bold tracking-widest text-[#0b1f45] uppercase">
+                GR <span className="text-amber-600">Class</span>
+              </span>
+            </div>
+            <span className="text-[8px] font-mono tracking-widest text-slate-500 uppercase">
+              Classified for Standards
+            </span>
+          </div>
+
           <div className="text-[9px] font-bold tracking-widest text-amber-600 uppercase mb-1">
             GLOBAL REACH
           </div>
