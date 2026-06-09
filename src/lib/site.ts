@@ -12,7 +12,7 @@ export const site = {
   ops: "https://ops.grclass.com",
   email: "info@grclass.com",
   phone: "+971555324087",
-  address: "B.C. 1304883, Ajman Free Zone C1 Building, Ajman District Business, Makani No – 4442612247, UAE.",
+  address: "B.C. 1304883, C1 Building, Ajman District Business, Makani No – 4442612247, UAE.",
 } as const;
 
 export interface NavItem {

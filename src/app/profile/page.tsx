@@ -689,7 +689,7 @@ function Slide3WhoWeAre() {
           </div>
           <div className="grid grid-cols-[80px_1fr] gap-2 text-[10px] md:text-xs">
             <span className="font-bold tracking-wider text-amber-500 uppercase">HQ</span>
-            <span className="text-slate-300">Ajman Free Zone, UAE</span>
+            <span className="text-slate-300">Ajman, UAE</span>
           </div>
           <div className="grid grid-cols-[80px_1fr] gap-2 text-[10px] md:text-xs">
             <span className="font-bold tracking-wider text-amber-500 uppercase">Compliance</span>
@@ -1651,7 +1651,7 @@ function Slide12Geographical() {
 
         {/* Small badge */}
         <div className="bg-[#0b1f45]/5 p-2 rounded text-[8.5px] text-slate-500 leading-relaxed border border-slate-200 mt-2 font-mono">
-          Ajman Free Zone Registered Office<br />B.C. Number: 1304883
+          Ajman Registered Office<br />B.C. Number: 1304883
         </div>
       </div>
 
