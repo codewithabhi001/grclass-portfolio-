@@ -48,9 +48,18 @@ export default function ProfilePage() {
   const [slideMode, setSlideMode] = useState<boolean>(false);
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const [controlsVisible, setControlsVisible] = useState<boolean>(true);
+  const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
   const totalSlides = 13;
   const slideContainerRef = useRef<HTMLDivElement>(null);
-  
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 1024);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Keyboard controls for slideshow
   useEffect(() => {
@@ -130,16 +139,20 @@ export default function ProfilePage() {
           html, body {
             margin: 0 !important;
             padding: 0 !important;
-            width: 100vw !important;
-            height: 100vh !important;
+            width: 297mm !important;
+            height: 210mm !important;
+            min-width: 297mm !important;
+            min-height: 210mm !important;
             overflow: visible !important;
             background-color: #0b1f45 !important;
           }
 
           /* Print slide page styling */
           .print-slide-page {
-            width: 100vw !important;
-            height: 100vh !important;
+            width: 297mm !important;
+            height: 210mm !important;
+            min-width: 297mm !important;
+            min-height: 210mm !important;
             page-break-after: always !important;
             break-after: page !important;
             page-break-inside: avoid !important;
@@ -321,6 +334,30 @@ export default function ProfilePage() {
                 </div>
               )}
             </div>
+          ) : isSmallScreen ? (
+            /* GRID OVERVIEW MODE (3 COLUMNS HORIZONTALLY) */
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 w-full max-w-7xl mx-auto">
+              {Array.from({ length: totalSlides }).map((_, i) => (
+                <div 
+                  key={i} 
+                  className="cursor-pointer border border-slate-800 rounded-lg overflow-hidden shadow-lg hover:border-amber-500/50 hover:shadow-amber-500/10 hover:-translate-y-1 transition-all duration-300 bg-[#0b1f45]/50 group"
+                  onClick={() => {
+                    setCurrentSlide(i);
+                    setSlideMode(true);
+                  }}
+                >
+                  <ScaledSlide index={i} />
+                  <div className="bg-[#0c2049] p-3 text-center border-t border-slate-800/80 flex justify-between items-center">
+                    <span className="text-[10px] uppercase tracking-wider text-slate-400 font-mono">
+                      Page {i + 1}
+                    </span>
+                    <span className="text-[9px] text-amber-500 font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
+                      View Slide &rarr;
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
           ) : (
             /* SCROLL DOCUMENT MODE */
             <div className="flex flex-col w-full">
@@ -343,6 +380,68 @@ export default function ProfilePage() {
         ))}
       </div>
     </>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
+   SCALED SLIDE WRAPPER FOR HORIZONTAL GRID VIEW
+   Maintains exact desktop aspect ratio on small viewports
+═══════════════════════════════════════════════════════ */
+function ScaledSlide({ index }: { index: number }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+  const [parentHeight, setParentHeight] = useState(700);
+
+  useEffect(() => {
+    const updateScale = () => {
+      if (!containerRef.current) return;
+      const parentWidth = containerRef.current.getBoundingClientRect().width;
+      const baseWidth = 1120;
+      const baseHeight = 700;
+      const newScale = parentWidth / baseWidth;
+      setScale(newScale);
+      setParentHeight(baseHeight * newScale);
+    };
+
+    updateScale();
+    window.addEventListener("resize", updateScale);
+
+    let resizeObserver: ResizeObserver | null = null;
+    if (containerRef.current) {
+      resizeObserver = new ResizeObserver(() => {
+        updateScale();
+      });
+      resizeObserver.observe(containerRef.current);
+    }
+
+    return () => {
+      window.removeEventListener("resize", updateScale);
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
+    };
+  }, []);
+
+  return (
+    <div 
+      ref={containerRef} 
+      style={{ height: `${parentHeight}px` }} 
+      className="w-full relative overflow-hidden bg-card"
+    >
+      <div 
+        style={{ 
+          width: "1120px", 
+          height: "700px", 
+          transform: `scale(${scale})`, 
+          transformOrigin: "top left",
+          position: "absolute",
+          top: 0,
+          left: 0,
+        }}
+      >
+        <SlideContent index={index} />
+      </div>
+    </div>
   );
 }
 
@@ -387,7 +486,7 @@ function SlideContent({ index }: { index: number }) {
 ═══════════════════════════════════════════════════════ */
 function Slide1Cover() {
   return (
-    <div className="w-full h-full bg-[#0b1f45] grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 text-white relative overflow-hidden">
+    <div className="w-full min-h-full md:h-full bg-[#0b1f45] grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 text-white relative overflow-y-auto md:overflow-hidden">
       {/* Left Pane */}
       <div className="p-12 md:p-16 flex flex-col justify-between relative z-10 border-r-4 border-amber-600 bg-[#0b1f45]/90 backdrop-blur-[2px]">
         <div className="flex flex-col gap-2">
@@ -472,7 +571,7 @@ function Slide1Cover() {
 ═══════════════════════════════════════════════════════ */
 function Slide2Welcome() {
   return (
-    <div className="w-full h-full bg-[#f5f3ef] text-slate-900 grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] print:grid-cols-[1.2fr_0.8fr] relative overflow-hidden">
+    <div className="w-full min-h-full md:h-full bg-[#f5f3ef] text-slate-900 grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] print:grid-cols-[1.2fr_0.8fr] relative overflow-y-auto md:overflow-hidden">
       {/* Welcome content */}
       <div className="p-12 md:p-16 flex flex-col justify-between">
         <div>
@@ -549,7 +648,7 @@ function Slide2Welcome() {
 ═══════════════════════════════════════════════════════ */
 function Slide3WhoWeAre() {
   return (
-    <div className="w-full h-full bg-white text-slate-900 grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] print:grid-cols-[1.1fr_0.9fr] relative overflow-hidden">
+    <div className="w-full min-h-full md:h-full bg-white text-slate-900 grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] print:grid-cols-[1.1fr_0.9fr] relative overflow-y-auto md:overflow-hidden">
       {/* Left pane - Dark Background */}
       <div className="bg-[#0b1f45] text-white p-12 md:p-16 flex flex-col justify-between">
         <div>
@@ -643,7 +742,7 @@ function Slide3WhoWeAre() {
 ═══════════════════════════════════════════════════════ */
 function Slide4VisionMission() {
   return (
-    <div className="w-full h-full bg-[#f5f3ef] text-slate-900 flex flex-col md:grid md:grid-rows-[1.2fr_1fr] print:grid print:grid-rows-[1.2fr_1fr] relative overflow-hidden">
+    <div className="w-full min-h-full md:h-full bg-[#f5f3ef] text-slate-900 flex flex-col md:grid md:grid-rows-[1.2fr_1fr] print:grid print:grid-rows-[1.2fr_1fr] relative overflow-y-auto md:overflow-hidden">
       {/* Top half: Vision & Mission split */}
       <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 divide-y md:divide-y-0 md:divide-x print:divide-y-0 print:divide-x divide-slate-300/80 border-b border-slate-300/80">
         {/* Vision (Light) */}
@@ -770,7 +869,7 @@ function Slide4VisionMission() {
 ═══════════════════════════════════════════════════════ */
 function Slide5WhatWeDoIntro() {
   return (
-    <div className="w-full h-full bg-[#0b1f45] text-white p-16 flex flex-col justify-between relative overflow-hidden">
+    <div className="w-full min-h-full md:h-full bg-[#0b1f45] text-white p-16 flex flex-col justify-between relative overflow-y-auto md:overflow-hidden">
       {/* Background container ship overlay */}
       <img
         src={heroVessel}
@@ -827,7 +926,7 @@ function Slide5WhatWeDoIntro() {
 ═══════════════════════════════════════════════════════ */
 function Slide6Classification() {
   return (
-    <div className="w-full h-full bg-[#f5f3ef] text-slate-900 grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] print:grid-cols-[1.1fr_0.9fr] relative overflow-hidden">
+    <div className="w-full min-h-full md:h-full bg-[#f5f3ef] text-slate-900 grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] print:grid-cols-[1.1fr_0.9fr] relative overflow-y-auto md:overflow-hidden">
       {/* Classification details */}
       <div className="p-10 flex flex-col justify-between">
         <div>
@@ -942,7 +1041,7 @@ function Slide6Classification() {
 ═══════════════════════════════════════════════════════ */
 function Slide7Statutory() {
   return (
-    <div className="w-full h-full bg-[#0b1f45] text-white p-12 flex flex-col justify-between relative overflow-hidden">
+    <div className="w-full min-h-full md:h-full bg-[#0b1f45] text-white p-12 flex flex-col justify-between relative overflow-y-auto md:overflow-hidden">
       {/* Background icon */}
       <div className="absolute inset-0 opacity-10 pointer-events-none">
         <img src={svcSolas} alt="Solas certification" className="w-full h-full object-cover" />
@@ -1079,7 +1178,7 @@ function Slide7Statutory() {
 ═══════════════════════════════════════════════════════ */
 function Slide8Environmental() {
   return (
-    <div className="w-full h-full bg-[#f5f3ef] text-slate-900 p-12 flex flex-col justify-between relative overflow-hidden">
+    <div className="w-full min-h-full md:h-full bg-[#f5f3ef] text-slate-900 p-12 flex flex-col justify-between relative overflow-y-auto md:overflow-hidden">
       {/* Slide Header with Logo */}
       <div className="flex justify-between items-center border-b border-slate-300/60 pb-2 mb-4">
         <div className="flex items-center gap-2">
@@ -1178,7 +1277,7 @@ function Slide8Environmental() {
 ═══════════════════════════════════════════════════════ */
 function Slide9ComplianceOther() {
   return (
-    <div className="w-full h-full bg-[#0b1f45] text-white p-12 flex flex-col justify-between relative overflow-hidden">
+    <div className="w-full min-h-full md:h-full bg-[#0b1f45] text-white p-12 flex flex-col justify-between relative overflow-y-auto md:overflow-hidden">
       {/* Slide Header with Logo */}
       <div className="flex justify-between items-center border-b border-white/10 pb-2 mb-4 relative z-10">
         <div className="flex items-center gap-2">
@@ -1278,7 +1377,7 @@ function Slide9ComplianceOther() {
 ═══════════════════════════════════════════════════════ */
 function Slide10PlanApproval() {
   return (
-    <div className="w-full h-full bg-[#f5f3ef] text-slate-900 grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] print:grid-cols-[1.1fr_0.9fr] p-12 relative overflow-hidden">
+    <div className="w-full min-h-full md:h-full bg-[#f5f3ef] text-slate-900 grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] print:grid-cols-[1.1fr_0.9fr] p-12 relative overflow-y-auto md:overflow-hidden">
       {/* Left Column: Plan Approval details */}
       <div className="flex flex-col justify-between h-full">
         {/* Slide Header with Logo */}
@@ -1390,7 +1489,7 @@ function Slide10PlanApproval() {
 ═══════════════════════════════════════════════════════ */
 function Slide11WhyChoose() {
   return (
-    <div className="w-full h-full bg-[#0b1f45] text-white p-12 flex flex-col justify-between relative overflow-hidden">
+    <div className="w-full min-h-full md:h-full bg-[#0b1f45] text-white p-12 flex flex-col justify-between relative overflow-y-auto md:overflow-hidden">
       {/* Background container ship overlay */}
       <img
         src={aboutSurveyor}
@@ -1499,7 +1598,7 @@ function Slide11WhyChoose() {
 ═══════════════════════════════════════════════════════ */
 function Slide12Geographical() {
   return (
-    <div className="w-full h-full bg-[#f5f3ef] text-slate-900 grid grid-cols-1 md:grid-cols-[0.8fr_1.2fr] print:grid-cols-[0.8fr_1.2fr] relative overflow-hidden">
+    <div className="w-full min-h-full md:h-full bg-[#f5f3ef] text-slate-900 grid grid-cols-1 md:grid-cols-[0.8fr_1.2fr] print:grid-cols-[0.8fr_1.2fr] relative overflow-y-auto md:overflow-hidden">
       {/* Left Pane - office presence */}
       <div className="p-10 bg-white border-r border-slate-200 flex flex-col justify-between">
         <div>
@@ -1619,7 +1718,7 @@ function Slide12Geographical() {
 ═══════════════════════════════════════════════════════ */
 function Slide13BackCover() {
   return (
-    <div className="w-full h-full bg-[#0b1f45] text-white p-16 flex flex-col justify-between relative overflow-hidden">
+    <div className="w-full min-h-full md:h-full bg-[#0b1f45] text-white p-16 flex flex-col justify-between relative overflow-y-auto md:overflow-hidden">
       {/* Background Vessel Image */}
       <img
         src={heroVessel}
