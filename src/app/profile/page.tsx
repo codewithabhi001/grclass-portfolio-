@@ -49,7 +49,7 @@ export default function ProfilePage() {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const [controlsVisible, setControlsVisible] = useState<boolean>(true);
   const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
-  const totalSlides = 13;
+  const totalSlides = 16;
   const slideContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -471,10 +471,16 @@ function SlideContent({ index }: { index: number }) {
     case 9:
       return <Slide10PlanApproval />;
     case 10:
-      return <Slide11WhyChoose />;
+      return <Slide11HowWeConnect />;
     case 11:
-      return <Slide12Geographical />;
+      return <Slide12SoftwareInAction />;
     case 12:
+      return <Slide13WhyDifferent />;
+    case 13:
+      return <Slide11WhyChoose />;
+    case 14:
+      return <Slide12Geographical />;
+    case 15:
       return <Slide13BackCover />;
     default:
       return null;
@@ -1485,7 +1491,276 @@ function Slide10PlanApproval() {
 }
 
 /* ═══════════════════════════════════════════════════════
-   SLIDE 11 — WHY CHOOSE GR CLASS (THE ADVANTAGE)
+   SLIDE 11 — HOW WE CONNECT (SECTION DIVIDER)
+═══════════════════════════════════════════════════════ */
+function Slide11HowWeConnect() {
+  return (
+    <div className="w-full min-h-full md:h-full bg-[#0b1f45] text-white p-16 flex flex-col justify-between relative overflow-y-auto md:overflow-hidden">
+      <img
+        src={careersHero}
+        alt="Maritime operations background"
+        className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none"
+      />
+      <div className="absolute inset-0 bg-[#0b1f45]/80 z-0"></div>
+
+      <div className="flex justify-between items-center border-b border-white/10 pb-6 relative z-10">
+        <div className="flex items-center gap-3">
+          <img src="/grclass-logo.webp" alt="GR Class" className="h-8 w-auto brightness-0 invert" />
+          <span className="font-serif text-lg font-black uppercase text-amber-500">GR Class</span>
+        </div>
+        <span className="text-[9px] font-mono tracking-widest text-slate-400">
+          SECTION 03 / GR CLASS SOFTWARE
+        </span>
+      </div>
+
+      <div className="my-auto max-w-[650px] relative z-10">
+        <h2 className="font-serif font-black text-5xl md:text-6xl uppercase leading-none tracking-wide">
+          How<br />
+          <span className="text-amber-500 font-serif">We Connect</span>
+        </h2>
+        <div className="w-16 h-[3px] bg-amber-500 my-6"></div>
+        <p className="text-xs md:text-sm font-light text-slate-300 leading-relaxed">
+          GR Class Software is our proprietary operations platform — built exclusively for classification surveys, statutory services, and compliance workflows. Shipowners, surveyors, and GR Class teams work on one connected system at{" "}
+          <span className="text-amber-500 font-semibold">{site.ops.replace("https://", "")}</span>.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-white/10 pt-6 relative z-10">
+        <div>
+          <Cpu className="h-4 w-4 text-amber-500 mb-1" />
+          <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Client Portal</span>
+        </div>
+        <div>
+          <Activity className="h-4 w-4 text-amber-500 mb-1" />
+          <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Surveyor Mobile App</span>
+        </div>
+        <div>
+          <Layers className="h-4 w-4 text-amber-500 mb-1" />
+          <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Operations Dashboard</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
+   SLIDE 12 — GR CLASS SOFTWARE IN ACTION
+═══════════════════════════════════════════════════════ */
+function Slide12SoftwareInAction() {
+  const steps = [
+    {
+      num: "01",
+      title: "Service / Job Request",
+      desc: "Client submits via portal — informal service requests convert to formal certification jobs.",
+    },
+    {
+      num: "02",
+      title: "Document Upload & Verification",
+      desc: "Mandatory documents uploaded digitally; TO and GM verify in-system before approval.",
+    },
+    {
+      num: "03",
+      title: "Surveyor Assignment & Authorization",
+      desc: "GM assigns surveyor per certificate; TM authorizes survey before field work begins.",
+    },
+    {
+      num: "04",
+      title: "Field Survey (Mobile App)",
+      desc: "Surveyor GPS check-in, downloads auto-generated checklists, captures evidence on-site.",
+    },
+    {
+      num: "05",
+      title: "Technical Review",
+      desc: "TO and TM review survey report; status updates flow back to the client automatically.",
+    },
+    {
+      num: "06",
+      title: "Certificate Issue & Download",
+      desc: "Certified PDF available instantly in the client portal — no waiting for physical delivery.",
+    },
+  ];
+
+  const features = [
+    { icon: Activity, label: "Live job status & notifications" },
+    { icon: FileText, label: "Auto-generated survey checklists" },
+    { icon: Shield, label: "Secure document vault" },
+    { icon: FileSignature, label: "Integrated payments & invoicing" },
+    { icon: CheckCircle2, label: "Instant certificate download" },
+  ];
+
+  return (
+    <div className="w-full min-h-full md:h-full bg-[#f5f3ef] text-slate-900 grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] print:grid-cols-[1.1fr_0.9fr] p-12 relative overflow-y-auto md:overflow-hidden">
+      <div className="flex flex-col justify-between h-full pr-0 md:pr-6">
+        <div className="flex justify-between items-center border-b border-slate-300/60 pb-2 mb-4">
+          <div className="flex items-center gap-2">
+            <img src="/grclass-logo.webp" alt="GR Class" className="h-5 w-auto brightness-0" style={{ filter: "brightness(0)" }} />
+            <span className="font-serif text-[11px] font-bold tracking-widest text-[#0b1f45] uppercase">
+              GR <span className="text-amber-600">Class</span>
+            </span>
+          </div>
+          <span className="text-[8px] font-mono tracking-widest text-slate-500 uppercase">
+            Classified for Standards
+          </span>
+        </div>
+
+        <div>
+          <div className="text-[9px] font-bold tracking-widest text-amber-600 uppercase mb-1">
+            PLATFORM WORKFLOW
+          </div>
+          <h2 className="font-serif font-black text-2xl md:text-3xl text-[#0b1f45] uppercase leading-tight">
+            From Request to Certificate — Digitally
+          </h2>
+          <div className="w-12 h-[2px] bg-amber-600 my-3"></div>
+
+          <div className="space-y-2.5">
+            {steps.map((step) => (
+              <div key={step.num} className="flex gap-3 items-start">
+                <span className="font-serif font-black text-sm text-amber-600 flex-shrink-0 w-6">{step.num}</span>
+                <div>
+                  <span className="block text-[10px] font-bold text-[#0b1f45] uppercase">{step.title}</span>
+                  <p className="text-[9px] text-slate-600 leading-relaxed">{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="text-[9px] text-slate-400 font-mono mt-4">
+          GR CLASS — Classified for Standards
+        </div>
+      </div>
+
+      <div className="bg-[#0b1f45] text-white p-6 rounded-lg border border-slate-700 flex flex-col justify-between relative overflow-hidden h-full min-h-[300px] md:min-h-0 print:min-h-0 mt-6 md:mt-0">
+        <img
+          src={svcCert}
+          alt="Digital certification"
+          className="absolute inset-0 w-full h-full object-cover opacity-10 pointer-events-none"
+        />
+        <div className="absolute inset-0 bg-[#0b1f45]/90 z-0"></div>
+
+        <div className="relative z-10">
+          <span className="block text-xs font-bold text-amber-500 uppercase mb-2">
+            GR Class Software
+          </span>
+          <p className="text-[10px] text-slate-300 leading-relaxed mb-4">
+            One integrated platform connecting shipowners, surveyors, and GR Class operations — accessible at{" "}
+            <span className="text-amber-500 font-semibold">{site.ops.replace("https://", "")}</span>.
+          </p>
+
+          <div className="space-y-2.5">
+            {features.map((feat) => (
+              <div key={feat.label} className="flex items-center gap-2.5 bg-slate-900/50 border border-slate-800 p-2.5 rounded">
+                <feat.icon className="h-3.5 w-3.5 text-amber-500 flex-shrink-0" />
+                <span className="text-[9px] text-slate-300">{feat.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="relative z-10 bg-slate-900/80 p-2.5 rounded border border-slate-800 text-[8.5px] text-slate-400 leading-normal font-medium mt-3">
+          End-to-end traceability from first request to issued certificate — every step logged and visible.
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
+   SLIDE 13 — WHY WE'RE DIFFERENT
+═══════════════════════════════════════════════════════ */
+function Slide13WhyDifferent() {
+  const comparisons = [
+    {
+      num: "01",
+      traditional: "Email / phone requests",
+      grClass: "Self-service client portal — submit anytime",
+    },
+    {
+      num: "02",
+      traditional: "Manual status callbacks",
+      grClass: "Real-time dashboard + automatic updates",
+    },
+    {
+      num: "03",
+      traditional: "Paper checklists dispatched",
+      grClass: "Auto-generated digital checklists to surveyor app",
+    },
+    {
+      num: "04",
+      traditional: "Fragmented document exchange",
+      grClass: "Secure upload, verification & audit trail",
+    },
+    {
+      num: "05",
+      traditional: "Physical certificate wait",
+      grClass: "Instant digital certificate download",
+    },
+    {
+      num: "06",
+      traditional: "Multiple disconnected vendors",
+      grClass: "One integrated platform — request to certification",
+    },
+  ];
+
+  return (
+    <div className="w-full min-h-full md:h-full bg-[#0b1f45] text-white p-12 flex flex-col justify-between relative overflow-y-auto md:overflow-hidden">
+      <img
+        src={whyPort}
+        alt="Port operations background"
+        className="absolute inset-0 w-full h-full object-cover opacity-5 pointer-events-none"
+      />
+
+      <div className="flex justify-between items-center border-b border-white/10 pb-2 mb-4 relative z-10">
+        <div className="flex items-center gap-2">
+          <img src="/grclass-logo.webp" alt="GR Class" className="h-5 w-auto brightness-0 invert" />
+          <span className="font-serif text-[11px] font-bold tracking-widest text-white uppercase">
+            GR <span className="text-amber-500">Class</span>
+          </span>
+        </div>
+        <span className="text-[8px] font-mono tracking-widest text-slate-400 uppercase">
+          Classified for Standards
+        </span>
+      </div>
+
+      <div className="relative z-10">
+        <div className="text-[9px] font-bold tracking-widest text-amber-500 uppercase mb-1">
+          OUR DIFFERENTIATOR
+        </div>
+        <h2 className="font-serif font-black text-3xl uppercase">
+          Beyond Traditional Service Providers
+        </h2>
+        <div className="w-12 h-[2px] bg-amber-500 my-3"></div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 print:grid-cols-3 gap-4 my-auto relative z-10">
+        {comparisons.map((item) => (
+          <div key={item.num} className="bg-slate-900/50 border border-slate-800 p-4 rounded relative overflow-hidden">
+            <span className="absolute -bottom-2 right-2 font-serif text-5xl font-black text-slate-800/30">{item.num}</span>
+            <span className="block text-[8px] font-bold text-slate-500 uppercase mb-1">Traditional</span>
+            <p className="text-[9px] text-slate-500 leading-relaxed mb-2 line-through decoration-slate-600">
+              {item.traditional}
+            </p>
+            <span className="block text-[8px] font-bold text-amber-500 uppercase mb-1">GR Class Software</span>
+            <p className="text-[9.5px] text-slate-300 leading-relaxed">{item.grClass}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="relative z-10 border-t border-slate-800 pt-3">
+        <p className="text-[9.5px] text-slate-400 leading-relaxed text-center italic">
+          Easy accessibility for shipowners. Full traceability for GR Class teams. One system — end to end.
+        </p>
+        <div className="flex justify-between text-[8px] text-slate-500 font-mono mt-2">
+          <span>GR CLASS — Classified for Standards</span>
+          <span>{site.ops.replace("https://", "")}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
+   SLIDE 14 — WHY CHOOSE GR CLASS (THE ADVANTAGE)
 ═══════════════════════════════════════════════════════ */
 function Slide11WhyChoose() {
   return (
@@ -1549,7 +1824,7 @@ function Slide11WhyChoose() {
             Digital Workflows
           </span>
           <p className="text-[9.5px] text-slate-400 leading-relaxed">
-            Vessel Owner and Administration Portals allow real-time certificate downloads and live status tracking.
+            GR Class Software at ops.grclass.com — self-service job requests, live status tracking, and instant certificate downloads.
           </p>
         </div>
 
