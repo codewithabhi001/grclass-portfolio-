@@ -24,7 +24,10 @@ import {
   ChevronRight,
   Layers,
   Printer,
-  X
+  X,
+  Smartphone,
+  Zap,
+  WifiOff
 } from "lucide-react";
 
 // Import site-wide configurations (single source of truth for contact/address)
@@ -49,7 +52,7 @@ export default function ProfilePage() {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const [controlsVisible, setControlsVisible] = useState<boolean>(true);
   const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
-  const totalSlides = 16;
+  const totalSlides = 17;
   const slideContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -475,12 +478,14 @@ function SlideContent({ index }: { index: number }) {
     case 11:
       return <Slide12SoftwareInAction />;
     case 12:
-      return <Slide13WhyDifferent />;
+      return <Slide13SurveyorApp />;
     case 13:
-      return <Slide11WhyChoose />;
+      return <Slide14WhyDifferent />;
     case 14:
-      return <Slide12Geographical />;
+      return <Slide11WhyChoose />;
     case 15:
+      return <Slide12Geographical />;
+    case 16:
       return <Slide13BackCover />;
     default:
       return null;
@@ -1523,20 +1528,27 @@ function Slide11HowWeConnect() {
           GR Class Software is our proprietary operations platform — built exclusively for classification surveys, statutory services, and compliance workflows. Shipowners, surveyors, and GR Class teams work on one connected system at{" "}
           <span className="text-amber-500 font-semibold">{site.ops.replace("https://", "")}</span>.
         </p>
+        <p className="text-[10px] md:text-xs font-medium text-amber-500/90 leading-relaxed mt-4">
+          Maritime expertise + our own software = faster surveys, faster certificates, less waiting.
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-white/10 pt-6 relative z-10">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-white/10 pt-6 relative z-10">
         <div>
           <Cpu className="h-4 w-4 text-amber-500 mb-1" />
           <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Client Portal</span>
         </div>
         <div>
-          <Activity className="h-4 w-4 text-amber-500 mb-1" />
-          <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Surveyor Mobile App</span>
+          <Smartphone className="h-4 w-4 text-amber-500 mb-1" />
+          <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Surveyor App</span>
         </div>
         <div>
           <Layers className="h-4 w-4 text-amber-500 mb-1" />
           <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Operations Dashboard</span>
+        </div>
+        <div>
+          <Zap className="h-4 w-4 text-amber-500 mb-1" />
+          <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Fast Turnaround</span>
         </div>
       </div>
     </div>
@@ -1565,26 +1577,26 @@ function Slide12SoftwareInAction() {
     },
     {
       num: "04",
-      title: "Field Survey (Mobile App)",
-      desc: "Surveyor GPS check-in, downloads auto-generated checklists, captures evidence on-site.",
+      title: "Field Survey (Surveyor App)",
+      desc: "GPS-verified check-in, auto-filled checklists, photo evidence — works offline in port & syncs instantly.",
     },
     {
       num: "05",
       title: "Technical Review",
-      desc: "TO and TM review survey report; status updates flow back to the client automatically.",
+      desc: "Office reviews same-day digital report; client sees live status — no phone calls to chase updates.",
     },
     {
       num: "06",
       title: "Certificate Issue & Download",
-      desc: "Certified PDF available instantly in the client portal — no waiting for physical delivery.",
+      desc: "Auto-generated certificate PDF — client downloads instantly from portal when approved.",
     },
   ];
 
   const features = [
-    { icon: Activity, label: "Live job status & notifications" },
-    { icon: FileText, label: "Auto-generated survey checklists" },
-    { icon: Shield, label: "Secure document vault" },
-    { icon: FileSignature, label: "Integrated payments & invoicing" },
+    { icon: Zap, label: "Request to surveyor dispatch — hours, not days" },
+    { icon: Activity, label: "Live status & push notifications" },
+    { icon: FileText, label: "Auto-prefilled checklists per vessel" },
+    { icon: Shield, label: "Secure document vault & audit trail" },
     { icon: CheckCircle2, label: "Instant certificate download" },
   ];
 
@@ -1658,7 +1670,7 @@ function Slide12SoftwareInAction() {
         </div>
 
         <div className="relative z-10 bg-slate-900/80 p-2.5 rounded border border-slate-800 text-[8.5px] text-slate-400 leading-normal font-medium mt-3">
-          End-to-end traceability from first request to issued certificate — every step logged and visible.
+          No paper chase. No courier delays. Every step digital, logged, and visible — from first request to issued certificate.
         </div>
       </div>
     </div>
@@ -1666,39 +1678,156 @@ function Slide12SoftwareInAction() {
 }
 
 /* ═══════════════════════════════════════════════════════
-   SLIDE 13 — WHY WE'RE DIFFERENT
+   SLIDE 13 — SURVEYOR MOBILE APP
 ═══════════════════════════════════════════════════════ */
-function Slide13WhyDifferent() {
+function Slide13SurveyorApp() {
+  const appFeatures = [
+    {
+      icon: Compass,
+      title: "GPS Check-In",
+      desc: "Verified on-site presence at vessel — survey starts only when surveyor is at location.",
+    },
+    {
+      icon: WifiOff,
+      title: "Offline Surveys",
+      desc: "Works in ports & shipyards with poor signal. Data syncs automatically when back online.",
+    },
+    {
+      icon: FileText,
+      title: "Auto Checklists",
+      desc: "Pre-filled for certificate type & vessel data — no waiting for paper forms to arrive.",
+    },
+    {
+      icon: Activity,
+      title: "Photo Evidence",
+      desc: "Capture deck photos & upload directly — evidence reaches office in real time.",
+    },
+    {
+      icon: Smartphone,
+      title: "Live Dispatch",
+      desc: "Job alerts, in-app chat with office, and instant rework feedback — no email back-and-forth.",
+    },
+    {
+      icon: Zap,
+      title: "Same-Day Submit",
+      desc: "Digital survey report to office the same day — field work done, review starts immediately.",
+    },
+  ];
+
+  return (
+    <div className="w-full min-h-full md:h-full bg-[#f5f3ef] text-slate-900 grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr] print:grid-cols-[0.9fr_1.1fr] relative overflow-y-auto md:overflow-hidden">
+      {/* Left — hero panel */}
+      <div className="bg-[#0b1f45] text-white p-10 flex flex-col justify-between relative min-h-[320px] md:min-h-0 print:min-h-0">
+        <img
+          src={aboutSurveyor}
+          alt="Surveyor at work"
+          className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none"
+        />
+        <div className="absolute inset-0 bg-[#0b1f45]/85 z-0"></div>
+
+        <div className="relative z-10">
+          <div className="flex justify-between items-center border-b border-white/10 pb-2 mb-4">
+            <div className="flex items-center gap-2">
+              <img src="/grclass-logo.webp" alt="GR Class" className="h-5 w-auto brightness-0 invert" />
+              <span className="font-serif text-[11px] font-bold tracking-widest text-white uppercase">
+                GR <span className="text-amber-500">Class</span>
+              </span>
+            </div>
+            <span className="text-[8px] font-mono tracking-widest text-slate-400 uppercase">
+              Classified for Standards
+            </span>
+          </div>
+
+          <div className="text-[9px] font-bold tracking-widest text-amber-500 uppercase mb-1">
+            FIELD OPERATIONS
+          </div>
+          <h2 className="font-serif font-black text-2xl md:text-3xl uppercase leading-tight">
+            Surveyor<br />
+            <span className="text-amber-500">Mobile App</span>
+          </h2>
+          <div className="w-12 h-[2px] bg-amber-500 my-3"></div>
+          <p className="text-[10px] text-slate-300 leading-relaxed">
+            Our surveyors carry GR Class in their pocket. GPS-verified surveys, offline checklists, and instant digital reports — built for speed at sea and in port.
+          </p>
+        </div>
+
+        <div className="relative z-10 grid grid-cols-3 gap-2 mt-4 border-t border-white/10 pt-4">
+          <div className="text-center">
+            <span className="block font-serif font-black text-xl text-amber-500">GPS</span>
+            <span className="text-[7.5px] font-bold uppercase tracking-wider text-slate-400">Verified</span>
+          </div>
+          <div className="text-center border-x border-white/10">
+            <span className="block font-serif font-black text-xl text-amber-500">12+</span>
+            <span className="text-[7.5px] font-bold uppercase tracking-wider text-slate-400">Languages</span>
+          </div>
+          <div className="text-center">
+            <span className="block font-serif font-black text-xl text-amber-500">24/7</span>
+            <span className="text-[7.5px] font-bold uppercase tracking-wider text-slate-400">Sync</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Right — feature grid */}
+      <div className="p-10 flex flex-col justify-between">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {appFeatures.map((feat) => (
+            <div key={feat.title} className="bg-white border border-slate-200 p-3 rounded shadow-sm">
+              <feat.icon className="h-3.5 w-3.5 text-amber-600 mb-1.5" />
+              <span className="block text-[10px] font-bold text-[#0b1f45] uppercase mb-0.5">{feat.title}</span>
+              <p className="text-[9px] text-slate-600 leading-relaxed">{feat.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="bg-[#0b1f45]/5 border border-slate-200 rounded p-3 mt-4">
+          <span className="block text-[9px] font-bold text-amber-600 uppercase mb-1">Why we are faster</span>
+          <p className="text-[9.5px] text-slate-600 leading-relaxed">
+            Traditional societies rely on paper, phone calls, and manual data entry. GR Class surveyors complete digital checklists on-site, submit the same day, and the office reviews immediately — cutting weeks off every survey cycle.
+          </p>
+        </div>
+
+        <div className="text-[9px] text-slate-400 font-mono mt-3">
+          GR CLASS — Classified for Standards
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
+   SLIDE 14 — WHY WE'RE DIFFERENT
+═══════════════════════════════════════════════════════ */
+function Slide14WhyDifferent() {
   const comparisons = [
     {
       num: "01",
-      traditional: "Email / phone requests",
-      grClass: "Self-service client portal — submit anytime",
+      traditional: "Email / phone to request a survey",
+      grClass: "Self-service portal — submit 24/7, track live",
     },
     {
       num: "02",
-      traditional: "Manual status callbacks",
-      grClass: "Real-time dashboard + automatic updates",
+      traditional: "Days to dispatch a surveyor",
+      grClass: "Same-day assignment & authorization",
     },
     {
       num: "03",
-      traditional: "Paper checklists dispatched",
-      grClass: "Auto-generated digital checklists to surveyor app",
+      traditional: "Paper checklists sent by courier",
+      grClass: "Auto-generated checklists on surveyor app",
     },
     {
       num: "04",
-      traditional: "Fragmented document exchange",
-      grClass: "Secure upload, verification & audit trail",
+      traditional: "Survey report posted days later",
+      grClass: "Digital report submitted same day from vessel",
     },
     {
       num: "05",
-      traditional: "Physical certificate wait",
-      grClass: "Instant digital certificate download",
+      traditional: "Weeks waiting for certificate",
+      grClass: "Instant download when approved",
     },
     {
       num: "06",
-      traditional: "Multiple disconnected vendors",
-      grClass: "One integrated platform — request to certification",
+      traditional: "Multiple vendors, no single view",
+      grClass: "One system — client, surveyor & office connected",
     },
   ];
 
@@ -1727,20 +1856,23 @@ function Slide13WhyDifferent() {
           OUR DIFFERENTIATOR
         </div>
         <h2 className="font-serif font-black text-3xl uppercase">
-          Beyond Traditional Service Providers
+          Faster. Digital. Different.
         </h2>
         <div className="w-12 h-[2px] bg-amber-500 my-3"></div>
+        <p className="text-[10px] text-slate-400 leading-relaxed max-w-xl">
+          Our expertise is maritime compliance. Our advantage is the software we built for it — one team, one system, no delays.
+        </p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 print:grid-cols-3 gap-4 my-auto relative z-10">
         {comparisons.map((item) => (
           <div key={item.num} className="bg-slate-900/50 border border-slate-800 p-4 rounded relative overflow-hidden">
             <span className="absolute -bottom-2 right-2 font-serif text-5xl font-black text-slate-800/30">{item.num}</span>
-            <span className="block text-[8px] font-bold text-slate-500 uppercase mb-1">Traditional</span>
+            <span className="block text-[8px] font-bold text-slate-500 uppercase mb-1">Others</span>
             <p className="text-[9px] text-slate-500 leading-relaxed mb-2 line-through decoration-slate-600">
               {item.traditional}
             </p>
-            <span className="block text-[8px] font-bold text-amber-500 uppercase mb-1">GR Class Software</span>
+            <span className="block text-[8px] font-bold text-amber-500 uppercase mb-1">GR Class</span>
             <p className="text-[9.5px] text-slate-300 leading-relaxed">{item.grClass}</p>
           </div>
         ))}
@@ -1748,7 +1880,7 @@ function Slide13WhyDifferent() {
 
       <div className="relative z-10 border-t border-slate-800 pt-3">
         <p className="text-[9.5px] text-slate-400 leading-relaxed text-center italic">
-          Easy accessibility for shipowners. Full traceability for GR Class teams. One system — end to end.
+          Maritime expertise you can trust. Software that makes us faster than anyone else in the room.
         </p>
         <div className="flex justify-between text-[8px] text-slate-500 font-mono mt-2">
           <span>GR CLASS — Classified for Standards</span>
