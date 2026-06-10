@@ -17,10 +17,9 @@ import * as z from "zod";
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters.").max(100, "Name cannot exceed 100 characters."),
   company: z.string().max(150, "Company cannot exceed 150 characters.").optional().or(z.literal("")),
-  email: z.string().email("Please enter a valid email address."),
+  email: z.string().email("Please enter a valid corporate email address."),
   phone: z.string().max(30, "Phone number cannot exceed 30 characters.").optional().or(z.literal("")),
-  vessel: z.string().optional().or(z.literal("")),
-  service: z.string().max(200).optional().or(z.literal("")),
+  subject: z.string().max(200, "Subject cannot exceed 200 characters.").optional().or(z.literal("")),
   message: z.string().min(10, "Message must be at least 10 characters long.").max(5000, "Message cannot exceed 5000 characters."),
   website: z.string().max(200).optional().or(z.literal("")),
 });
@@ -43,22 +42,20 @@ const ContactPage = () => {
       company: "",
       email: "",
       phone: "",
-      vessel: "",
-      service: "",
+      subject: "",
       message: "",
       website: "",
     },
   });
 
   const onSubmit = async (data: FormValues) => {
-    const finalMessage = data.vessel ? `${data.message}\n\n[Vessel Name / IMO: ${data.vessel}]` : data.message;
     const payload = {
       full_name: data.name,
       company: data.company,
       corporate_email: data.email,
       phone: data.phone,
-      subject: data.service || "General enquiry",
-      message: finalMessage,
+      subject: data.subject,
+      message: data.message,
       source_page: "CONTACT",
       website: data.website,
       captcha_token: captchaToken,
@@ -111,7 +108,7 @@ const ContactPage = () => {
                 {errors.company && <p className="mt-1 text-xs text-red-500">{errors.company.message}</p>}
               </div>
               <div className="">
-                <label className="block font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">Email</label>
+                <label className="block font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">Corporate email</label>
                 <input type="email" {...register("email")} className="mt-2 w-full border border-border bg-card px-4 py-3 text-[14px] text-foreground transition-colors focus:border-accent focus:outline-none" />
                 {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>}
               </div>
@@ -121,26 +118,9 @@ const ContactPage = () => {
                 {errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone.message}</p>}
               </div>
               <div className="md:col-span-2">
-                <label className="block font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">Vessel name / IMO</label>
-                <input {...register("vessel")} className="mt-2 w-full border border-border bg-card px-4 py-3 text-[14px] text-foreground transition-colors focus:border-accent focus:outline-none" />
-                {errors.vessel && <p className="mt-1 text-xs text-red-500">{errors.vessel.message}</p>}
-              </div>
-              <div className="md:col-span-2">
-                <label className="block font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">
-                  Service of interest
-                </label>
-                <select
-                  {...register("service")}
-                  className="mt-2 w-full border border-border bg-card px-4 py-3 text-[14px] text-foreground transition-colors focus:border-accent focus:outline-none"
-                >
-                  <option value="" disabled>Select a service…</option>
-                  <option value="Class survey">Class survey</option>
-                  <option value="Statutory certification">Statutory certification</option>
-                  <option value="Technical advisory">Technical advisory</option>
-                  <option value="Transfer of class">Transfer of class</option>
-                  <option value="Other">Other</option>
-                </select>
-                {errors.service && <p className="mt-1 text-xs text-red-500">{errors.service.message}</p>}
+                <label className="block font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">Subject</label>
+                <input {...register("subject")} className="mt-2 w-full border border-border bg-card px-4 py-3 text-[14px] text-foreground transition-colors focus:border-accent focus:outline-none" />
+                {errors.subject && <p className="mt-1 text-xs text-red-500">{errors.subject.message}</p>}
               </div>
               <div className="md:col-span-2">
                 <label className="block font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">
