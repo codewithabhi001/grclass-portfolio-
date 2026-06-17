@@ -154,11 +154,13 @@ const VerifyPage = () => {
                       <div className="mt-0.5 font-mono text-[12px] text-subtle">{result.reference}</div>
                     </div>
                   </div>
+
                   <dl className="mt-8 grid gap-6 md:grid-cols-2">
-                    {result.vessel ? (
-                      <Detail icon={<Anchor className="h-4 w-4" />} label="Vessel" value={`${result.vessel}${result.imo ? ` · IMO ${result.imo}` : ''}`} />
-                    ) : (
-                      <Detail icon={<Anchor className="h-4 w-4" />} label="Scope" value="Company-Wide / Vessel Independent" />
+                    {result.vessel && (
+                      <Detail icon={<Anchor className="h-4 w-4" />} label="Vessel name" value={result.vessel} />
+                    )}
+                    {result.imo && (
+                      <Detail icon={<Anchor className="h-4 w-4" />} label="IMO number" value={result.imo} />
                     )}
                     {result.company && (
                       <Detail icon={<Building2 className="h-4 w-4" />} label="Company" value={result.company} />
