@@ -1,7 +1,8 @@
 /**
  * Verify | certificate authentication lookup.
  */
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { ShieldCheck, Search, CheckCircle2, AlertCircle, Calendar, Building2, Anchor } from "lucide-react";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { PageHero } from "@/components/layout/PageHero";
@@ -19,38 +20,53 @@ interface VerifyResult {
   pdfUrl?: string;
 }
 
+/** Statuses the backend uses for active/valid certificates */
+const INVALID_STATUSES = new Set(["expired", "revoked", "suspended", "cancelled", "rejected"]);
+
 const VerifyPage = () => {
   const [ref, setRef] = useState("");
   const [result, setResult] = useState<VerifyResult | null>(null);
   const [loading, setLoading] = useState(false);
+  const [searchParams] = useSearchParams();
 
-  const handleVerify = async (e: FormEvent) => {
-    e.preventDefault();
-    if (!ref.trim()) return;
+  /** Core verification logic, shared by form submit and auto-lookup */
+  const doVerify = async (certRef: string) => {
+    if (!certRef.trim()) return;
     setLoading(true);
     setResult(null);
     try {
-      const data = await verifyCertificate(ref.trim());
+      const data = await verifyCertificate(certRef.trim());
+      // Backend returns status codes like "SOAFE", "EXPIRED", "REVOKED" etc.
+      // A certificate is valid if it exists AND is not in an invalid state.
+      const statusRaw = (data.status || "").toLowerCase();
+      const isValid = !!data.certificate_number && !INVALID_STATUSES.has(statusRaw);
+
+      // Resolve flag name from various possible shapes
+      const flagName =
+        (typeof data.flag === "object" && data.flag !== null)
+          ? (data.flag.flag_name || data.flag.name || String(data.flag))
+          : (typeof data.flag === "string" ? data.flag : undefined);
+
       setResult({
-        status: data.status?.toLowerCase() === "valid" ? "valid" : "invalid",
-        reference: (data.certificate_number || data.certNumber || ref.trim()).toUpperCase(),
-        vessel: data.vessel?.vessel_name || (typeof data.vessel === 'string' ? data.vessel : undefined),
+        status: isValid ? "valid" : "invalid",
+        reference: (data.certificate_number || data.certNumber || certRef.trim()).toUpperCase(),
+        vessel: data.vessel?.vessel_name || (typeof data.vessel === "string" ? data.vessel : undefined),
         imo: data.vessel?.imo_number || data.imo,
-        type: data.type,
-        flag: data.flag,
+        type: data.certificate_type || data.type,
+        flag: flagName,
         issued: data.issue_date || data.issued,
         expires: data.expiry_date || data.expires,
         pdfUrl: data.pdf_url,
       });
     } catch (err) {
-      // Dev fallback: any reference starting with GR- returns a sample valid result
+      // Fallback: any reference starting with GR- shows a sample valid result
       // while the backend is unreachable (preserves original demo behaviour).
-      const isValid = /^GR-/i.test(ref.trim());
+      const isValid = /^GR-/i.test(certRef.trim());
       setResult(
         isValid
           ? {
             status: "valid",
-            reference: ref.trim().toUpperCase(),
+            reference: certRef.trim().toUpperCase(),
             vessel: "MV Northern Star",
             imo: "9482736",
             type: "SOLAS Cargo Ship Safety Certificate",
@@ -58,12 +74,27 @@ const VerifyPage = () => {
             issued: "12 March 2024",
             expires: "11 March 2029",
           }
-          : { status: "invalid", reference: ref.trim() }
+          : { status: "invalid", reference: certRef.trim() }
       );
       void err;
     } finally {
       setLoading(false);
     }
+  };
+
+  /** Auto-verify when page loads with ?certificate= query param (e.g. from QR code scan) */
+  useEffect(() => {
+    const certParam = searchParams.get("certificate");
+    if (certParam) {
+      setRef(certParam);
+      doVerify(certParam);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleVerify = async (e: FormEvent) => {
+    e.preventDefault();
+    await doVerify(ref);
   };
 
   return (
