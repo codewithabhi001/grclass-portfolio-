@@ -13,6 +13,7 @@ interface VerifyResult {
   reference: string;
   vessel?: string;
   imo?: string;
+  company?: string;
   type?: string;
   flag?: string;
   issued?: string;
@@ -52,6 +53,7 @@ const VerifyPage = () => {
         reference: (data.certificate_number || data.certNumber || certRef.trim()).toUpperCase(),
         vessel: data.vessel?.vessel_name || (typeof data.vessel === "string" ? data.vessel : undefined),
         imo: data.vessel?.imo_number || data.imo,
+        company: data.client?.company_name,
         type: data.certificate_type || data.type,
         flag: flagName,
         issued: data.issue_date || data.issued,
@@ -153,8 +155,13 @@ const VerifyPage = () => {
                     </div>
                   </div>
                   <dl className="mt-8 grid gap-6 md:grid-cols-2">
-                    {result.vessel && (
+                    {result.vessel ? (
                       <Detail icon={<Anchor className="h-4 w-4" />} label="Vessel" value={`${result.vessel}${result.imo ? ` · IMO ${result.imo}` : ''}`} />
+                    ) : (
+                      <Detail icon={<Anchor className="h-4 w-4" />} label="Scope" value="Company-Wide / Vessel Independent" />
+                    )}
+                    {result.company && (
+                      <Detail icon={<Building2 className="h-4 w-4" />} label="Company" value={result.company} />
                     )}
                     {result.flag && (
                       <Detail icon={<Building2 className="h-4 w-4" />} label="Flag state" value={result.flag} />
