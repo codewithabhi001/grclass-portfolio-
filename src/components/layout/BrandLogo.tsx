@@ -14,9 +14,9 @@ interface BrandLogoProps {
 
 const sizeMap = {
   default: {
-    logo: "h-16 w-auto md:h-[84px]",
-    brand: "text-[22px] md:text-[24px]",
-    tagline: "text-[10.5px] md:text-[11.5px]",
+    logo: "h-12 w-auto sm:h-16 md:h-18 lg:h-[88px]",
+    brand: "text-[16px] sm:text-[20px] md:text-[24px]",
+    tagline: "text-[7.5px] sm:text-[9.5px] md:text-[11.5px]",
   },
   large: {
     logo: "h-24 w-auto md:h-32",
@@ -35,7 +35,7 @@ export const BrandLogo = forwardRef<HTMLAnchorElement, BrandLogoProps>(
       <Link
         ref={ref}
         to="/"
-        className={`flex ${isVertical ? "flex-col items-start gap-4" : "items-center gap-3"} group ${className}`}
+        className={`flex ${isVertical ? "flex-col items-start gap-3 sm:gap-4" : "items-center gap-2.5 sm:gap-3"} group ${className}`}
         aria-label="GR Class | Home"
       >
         <img

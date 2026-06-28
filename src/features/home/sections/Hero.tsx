@@ -72,7 +72,7 @@ export function Hero() {
           <motion.div
             variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-5 inline-flex items-center gap-2.5 bg-[#EAE5D5]/90 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-primary sm:mb-6 sm:gap-3 sm:px-4 sm:py-2 sm:text-[11px] lg:bg-[#EAE5D5]"
+            className="mb-5 inline-flex items-center gap-2 bg-[#EAE5D5]/90 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.1em] text-primary sm:mb-6 sm:gap-3 sm:px-4 sm:py-2 sm:text-[11px] sm:tracking-[0.15em] lg:bg-[#EAE5D5]"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-accent sm:h-2 sm:w-2" />
             RECOGNISED CLASSIFICATION SOCIETY
@@ -84,7 +84,7 @@ export function Hero() {
           <motion.h1
             variants={{ hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0 } }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="h-display max-w-[15ch] text-[clamp(32px,6vw,56px)] leading-[1.1] text-white lg:text-primary"
+            className="h-display max-w-[15ch] text-[clamp(30px,7.5vw,56px)] leading-[1.05] text-white lg:text-primary"
           >
             Maritime Classification
             <span className="block text-accent">
@@ -96,7 +96,7 @@ export function Hero() {
           <motion.p
             variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-5 max-w-xl text-[15px] font-medium leading-relaxed text-white/80 sm:mt-6 sm:text-[16px] lg:text-primary/80 lg:text-lg"
+            className="mt-4 max-w-xl text-[14px] font-medium leading-relaxed text-white/85 sm:mt-6 sm:text-[16px] lg:text-primary/80 lg:text-lg"
           >
             Our range of services includes the classification of newly built ships, as well as the classification and certification of existing vessels for continued safe operation.
           </motion.p>
@@ -105,20 +105,20 @@ export function Hero() {
           <motion.div
             variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4"
+            className="mt-7 flex flex-col gap-2.5 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4"
           >
             <Link
               to="/contact"
-              className="group inline-flex items-center justify-center gap-2 bg-accent px-6 py-3.5 text-[14px] font-semibold tracking-wide text-accent-foreground shadow-brass transition-all hover:bg-accent-bright sm:px-8 sm:py-4 sm:text-[15px]"
+              className="group inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-accent px-5 py-3.5 text-[14px] font-semibold tracking-wide text-accent-foreground shadow-brass transition-all hover:bg-accent-bright sm:px-8 sm:py-4 sm:text-[15px]"
             >
               Get in Touch
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
               to="/verify"
-              className="inline-flex items-center justify-center gap-2 border border-white/25 bg-white/[0.06] px-6 py-3.5 text-[14px] font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/10 sm:px-8 sm:py-4 sm:text-[15px] lg:border-primary/20 lg:bg-primary lg:text-white lg:hover:bg-primary-deep"
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 border border-white/25 bg-white/[0.06] px-5 py-3.5 text-[14px] font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/10 sm:px-8 sm:py-4 sm:text-[15px] lg:border-primary/20 lg:bg-primary lg:text-white lg:hover:bg-primary-deep"
             >
-              <ShieldCheck className="h-5 w-5" />
+              <ShieldCheck className="h-4 w-4 sm:h-5 sm:w-5" />
               Verify Certificate
             </Link>
             <Link

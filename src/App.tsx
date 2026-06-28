@@ -1,9 +1,11 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
@@ -36,35 +38,38 @@ const ScrollToTop = () => {
 };
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/how-it-works" element={<HowItWorksPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/services/:slug" element={<ServiceDetailPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/news" element={<NewsPage />} />
-          <Route path="/news/:slug" element={<NewsArticlePage />} />
-          <Route path="/faq" element={<FaqPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/verify" element={<VerifyPage />} />
-          <Route path="/careers" element={<CareersPage />} />
-          <Route path="/press" element={<PressPage />} />
-          <Route path="/investors" element={<InvestorsPage />} />
-          <Route path="/vessel-search" element={<VesselSearchPage />} />
-          <Route path="/legal/:doc" element={<LegalPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <SmoothScroll />
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/how-it-works" element={<HowItWorksPage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/services/:slug" element={<ServiceDetailPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="/news/:slug" element={<NewsArticlePage />} />
+            <Route path="/faq" element={<FaqPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/verify" element={<VerifyPage />} />
+            <Route path="/careers" element={<CareersPage />} />
+            <Route path="/press" element={<PressPage />} />
+            <Route path="/investors" element={<InvestorsPage />} />
+            <Route path="/vessel-search" element={<VesselSearchPage />} />
+            <Route path="/legal/:doc" element={<LegalPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </HelmetProvider>
 );
 
 export default App;

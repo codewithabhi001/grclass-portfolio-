@@ -6,6 +6,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Anchor, ShieldCheck, Leaf, Wrench } from "lucide-react";
 import { SiteShell } from "@/components/layout/SiteShell";
+import { SEO } from "@/components/SEO";
 import { PageHero } from "@/components/layout/PageHero";
 import { servicesCatalogue, serviceCategories } from "@/data/services";
 import { SurveyorApplicationModal } from "@/features/services/SurveyorApplicationModal";
@@ -40,6 +41,11 @@ const ServicesPage = () => {
 
   return (
     <SiteShell>
+      <SEO 
+        title="Services | Classification & Statutory" 
+        description="Comprehensive maritime classification, statutory certification, and environmental services for global vessels." 
+        url="/services" 
+      />
       <PageHero
         eyebrow="Our Services"
         title="Comprehensive maritime classification, statutory, and advisory services."

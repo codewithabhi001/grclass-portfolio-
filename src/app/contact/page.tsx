@@ -9,6 +9,7 @@ import { site } from "@/lib/site";
 import { toast } from "sonner";
 import { submitContactEnquiry } from "@/lib/api";
 import { BrandLogo } from "@/components/layout/BrandLogo";
+import { SEO } from "@/components/SEO";
 import { Turnstile, TurnstileInstance } from '@marsidev/react-turnstile';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -80,6 +81,11 @@ const ContactPage = () => {
 
   return (
     <SiteShell>
+      <SEO 
+        title="Contact Us | Maritime Survey Booking" 
+        description="Get in touch with GR Class for vessel certification, statutory surveys, and maritime advisory. We respond within one business day." 
+        url="/contact" 
+      />
       <PageHero
         eyebrow="Contact"
         title="Speak with our team."

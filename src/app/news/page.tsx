@@ -10,6 +10,7 @@ import { PageHero } from "@/components/layout/PageHero";
 import { newsItems as staticNewsItems } from "@/data/news";
 import newsHero from "@/assets/news-hero.jpg";
 import { fetchNews } from "@/lib/api";
+import { SEO } from "@/components/SEO";
 
 const slugify = (text: string) => 
   text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -72,6 +73,11 @@ const NewsPage = () => {
 
   return (
     <SiteShell>
+      <SEO 
+        title="News & Insights | Maritime Updates" 
+        description="Stay updated with the latest maritime rule changes, technical bulletins, and industry briefings from the GR Class technical committee." 
+        url="/news" 
+      />
       <PageHero
         eyebrow="Newsroom"
         title="Rule changes, technical bulletins, and industry briefings."

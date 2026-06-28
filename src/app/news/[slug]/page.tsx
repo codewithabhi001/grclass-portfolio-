@@ -6,6 +6,7 @@ import { PageHero } from "@/components/layout/PageHero";
 import { newsItems as staticNewsItems } from "@/data/news";
 import newsHero from "@/assets/news-hero.jpg";
 import { fetchNews } from "@/lib/api";
+import { SEO } from "@/components/SEO";
 
 const slugify = (text: string) =>
   text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -98,6 +99,15 @@ const NewsArticlePage = () => {
 
   return (
     <SiteShell>
+      {item && (
+        <SEO 
+          title={item.title} 
+          description={item.excerpt || "News update from GR Class."} 
+          url={`/news/${item.slug}`} 
+          type="article"
+          image={item.thumbnail_url}
+        />
+      )}
       <style>{`
         .dynamic-html-content p {
           margin-bottom: 1.25rem !important;

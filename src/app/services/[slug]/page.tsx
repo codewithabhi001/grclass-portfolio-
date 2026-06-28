@@ -8,6 +8,7 @@ import { ArrowRight, Check, Clock, ShieldCheck, Phone } from "lucide-react";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { PageHero } from "@/components/layout/PageHero";
 import { getServiceBySlug, servicesCatalogue } from "@/data/services";
+import { SEO } from "@/components/SEO";
 import { site } from "@/lib/site";
 
 const ServiceDetailPage = () => {
@@ -33,6 +34,11 @@ const ServiceDetailPage = () => {
 
   return (
     <SiteShell>
+      <SEO 
+        title={`${svc.title} | ${svc.eyebrow}`} 
+        description={svc.tagline || svc.description} 
+        url={`/services/${svc.slug}`} 
+      />
       <PageHero
         eyebrow={svc.eyebrow}
         title={svc.title}

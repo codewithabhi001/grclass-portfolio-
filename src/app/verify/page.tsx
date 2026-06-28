@@ -6,6 +6,7 @@ import { useSearchParams } from "react-router-dom";
 import { ShieldCheck, Search, CheckCircle2, AlertCircle, Calendar, Building2, Anchor } from "lucide-react";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { PageHero } from "@/components/layout/PageHero";
+import { SEO } from "@/components/SEO";
 import { verifyCertificate } from "@/lib/api";
 
 interface VerifyResult {
@@ -101,6 +102,11 @@ const VerifyPage = () => {
 
   return (
     <SiteShell>
+      <SEO 
+        title="Verify Certificate | Digital Authentication" 
+        description="Instantly authenticate any GR Class maritime certificate using its reference number or QR code. Accepted globally by port state controls." 
+        url="/verify" 
+      />
       <PageHero
         eyebrow="Verification"
         title="Verify a GR Class certificate."

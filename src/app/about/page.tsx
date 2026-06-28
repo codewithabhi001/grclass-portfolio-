@@ -9,6 +9,7 @@ import { milestones, leadership, values } from "@/data/about";
 import aboutImg from "@/assets/about-surveyor.jpg";
 import { fetchAboutUs } from "@/lib/api";
 import { ShieldCheck, Anchor, Award, Target, Globe2, Users } from "lucide-react";
+import { SEO } from "@/components/SEO";
 
 const AboutPage = () => {
   const [aboutData, setAboutData] = useState<any>(null);
@@ -30,6 +31,11 @@ const AboutPage = () => {
 
   return (
     <SiteShell>
+      <SEO 
+        title="About Us | Heritage & Mission" 
+        description="Learn about GR Class, our heritage, our leadership, and our mission to provide uncompromising quality in maritime classification." 
+        url="/about" 
+      />
       <style>{`
         .dynamic-html-content section {
           color: inherit !important;

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { SiteShell } from "@/components/layout/SiteShell";
+import { SEO } from "@/components/SEO";
 import { TrustBar } from "@/components/layout/TrustBar";
 import { Hero } from "@/features/home/sections/Hero";
 import { StatsStrip } from "@/features/home/sections/StatsStrip";
@@ -17,6 +18,11 @@ const HomePage = () => {
 
   return (
     <SiteShell>
+      <SEO 
+        title="Maritime Classification & Certification" 
+        description="Recognised classification society delivering vessel surveys, statutory certification, and digital verification across 120+ ports worldwide." 
+        url="/" 
+      />
       <Hero />
       <StatsStrip />
       <TrustBar />
