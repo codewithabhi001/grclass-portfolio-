@@ -2033,34 +2033,37 @@ function Slide12Geographical() {
             Headquartered in Ajman, UAE, and supported by a global footprint of certified surveyors operating across strategic maritime hubs and ports.
           </p>
 
-          <div className="space-y-3 mt-4">
+          <div className="space-y-2.5 mt-3">
             <div className="flex gap-2">
               <MapPin className="h-4 w-4 text-amber-600 flex-shrink-0 mt-0.5" />
               <div>
-                <span className="block text-[10px] font-bold text-[#0b1f45] uppercase">Head Office Address</span>
-                <span className="text-[9.5px] text-slate-500 leading-relaxed block font-medium">
+                <span className="block text-[9.5px] font-bold text-[#0b1f45] uppercase">Head Office Address</span>
+                <span className="text-[9px] text-slate-500 leading-relaxed block font-medium">
                   {site.address}
                 </span>
               </div>
             </div>
 
-            {site.additionalOffices.map((office) => (
-              <div key={office.name} className="flex gap-2 border-t border-slate-100 pt-2">
-                <MapPin className="h-4 w-4 text-amber-600 flex-shrink-0 mt-0.5" />
-                <div>
-                  <span className="block text-[10px] font-bold text-[#0b1f45] uppercase">{office.name}</span>
-                  <span className="text-[9.5px] text-slate-500 leading-relaxed block font-medium">
-                    {office.address}
-                  </span>
-                </div>
+            {/* Additional Offices Grid */}
+            <div className="border-t border-slate-100 pt-2 flex flex-col gap-1.5">
+              <span className="block text-[9.5px] font-bold text-[#0b1f45] uppercase">Regional Offices</span>
+              <div className="grid grid-cols-3 gap-3">
+                {site.additionalOffices.map((office) => (
+                  <div key={office.name}>
+                    <span className="block text-[8.5px] font-bold text-amber-600 uppercase">{office.name}</span>
+                    <span className="text-[8px] text-slate-500 leading-normal block mt-0.5 font-medium">
+                      {office.address}
+                    </span>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
 
             <div className="flex gap-2 border-t border-slate-100 pt-2">
               <Globe className="h-4 w-4 text-amber-600 flex-shrink-0 mt-0.5" />
               <div>
-                <span className="block text-[10px] font-bold text-[#0b1f45] uppercase">Surveyor Networks</span>
-                <span className="text-[9px] text-slate-500 leading-normal block">
+                <span className="block text-[9.5px] font-bold text-[#0b1f45] uppercase">Surveyor Networks</span>
+                <span className="text-[8.5px] text-slate-500 leading-normal block">
                   Middle East, Persian Gulf, Red Sea transit routes, Turkey, Singapore, and Europe.
                 </span>
               </div>
@@ -2193,76 +2196,76 @@ function Slide13BackCover() {
       </div>
 
       {/* Main Grid: Details */}
-      <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] print:grid-cols-[1.2fr_0.8fr] gap-12 my-auto relative z-10">
-        {/* Office Contact Info */}
-        <div className="space-y-4">
-          <h3 className="font-serif text-lg font-bold text-amber-500 uppercase">
-            Office Locations
+      <div className="grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] print:grid-cols-[1.1fr_0.9fr] gap-10 my-auto relative z-10">
+        {/* Contact Info */}
+        <div className="space-y-5">
+          <h3 className="font-serif text-lg font-bold text-amber-500 uppercase tracking-wider">
+            Contact Details
           </h3>
-          <div className="space-y-3 text-xs">
-            <div className="flex items-start gap-2">
-              <MapPin className="h-4 w-4 text-amber-500 flex-shrink-0 mt-0.5" />
+          <div className="space-y-4 text-xs">
+            <div className="flex items-start gap-2.5">
+              <MapPin className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
               <div>
-                <span className="block text-[9px] font-bold text-amber-500 uppercase">Head Office (UAE)</span>
-                <span className="text-slate-300 leading-relaxed font-medium text-[11px] block mt-0.5">
+                <span className="block font-bold text-amber-500 uppercase text-[9px] tracking-wider">Head Office (UAE)</span>
+                <span className="text-slate-300 leading-relaxed font-medium block mt-1">
                   {site.address}
                 </span>
               </div>
             </div>
-            {site.additionalOffices.map((office) => (
-              <div key={office.name} className="flex items-start gap-2 border-t border-white/5 pt-2">
-                <MapPin className="h-4 w-4 text-amber-500 flex-shrink-0 mt-0.5" />
-                <div>
-                  <span className="block text-[9px] font-bold text-amber-500 uppercase">{office.name}</span>
-                  <span className="text-slate-300 leading-relaxed font-medium text-[11px] block mt-0.5">
-                    {office.address}
-                  </span>
-                </div>
+            <div className="flex items-center gap-2.5 pt-3 border-t border-white/5">
+              <Phone className="h-5 w-5 text-amber-500 flex-shrink-0" />
+              <div>
+                <span className="block font-bold text-amber-500 uppercase text-[9px] tracking-wider">Phone</span>
+                <span className="text-slate-300 font-mono font-semibold text-sm block mt-0.5">
+                  {site.phone}
+                </span>
               </div>
-            ))}
-            <div className="flex items-center gap-2 border-t border-white/5 pt-2">
-              <Phone className="h-4 w-4 text-amber-500 flex-shrink-0" />
-              <span className="text-slate-300 font-mono font-semibold">
-                {site.phone}
-              </span>
             </div>
           </div>
         </div>
 
-        {/* Digital Contact Channels */}
-        <div className="space-y-4">
-          <h3 className="font-serif text-lg font-bold text-amber-500 uppercase">
-            E-mail Channels
+        {/* Channels */}
+        <div className="space-y-5">
+          <h3 className="font-serif text-lg font-bold text-amber-500 uppercase tracking-wider">
+            Online Channels
           </h3>
-          <div className="space-y-2 text-xs font-mono">
-            <div className="flex items-center gap-2">
-              <Mail className="h-4 w-4 text-amber-500 flex-shrink-0" />
-              <a href={`mailto:${site.email}`} className="text-slate-300 hover:text-amber-500 transition-colors font-semibold">
-                {site.email}
-              </a>
+          <div className="space-y-4 text-xs">
+            <div className="flex items-start gap-2.5">
+              <Mail className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
+              <div>
+                <span className="block font-bold text-amber-500 uppercase text-[9px] tracking-wider">Email Enquiries</span>
+                <div className="space-y-1 font-mono mt-1">
+                  <a href={`mailto:${site.email}`} className="text-slate-300 hover:text-amber-500 transition-colors font-semibold block">
+                    {site.email}
+                  </a>
+                  <a href="mailto:operation@grclass.com" className="text-slate-300 hover:text-amber-500 transition-colors font-semibold block">
+                    operation@grclass.com
+                  </a>
+                </div>
+              </div>
             </div>
-            <div className="flex items-center gap-2">
-              <Mail className="h-4 w-4 text-amber-500 flex-shrink-0" />
-              <a href="mailto:operation@grclass.com" className="text-slate-300 hover:text-amber-500 transition-colors font-semibold">
-                operation@grclass.com
-              </a>
+            <div className="flex items-start gap-2.5 pt-3 border-t border-white/5">
+              <Globe className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
+              <div>
+                <span className="block font-bold text-amber-500 uppercase text-[9px] tracking-wider">Official Website</span>
+                <a
+                  href={site.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-serif font-black text-xl text-white hover:text-amber-500 transition-colors border-b border-amber-600 block mt-1.5 w-fit"
+                >
+                  {site.url.replace("https://", "www.")}
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Footer & Website */}
+      {/* Footer */}
       <div className="border-t border-white/10 pt-6 flex justify-between items-end relative z-10">
         <div>
-          <a
-            href={site.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-serif font-black text-2xl text-white hover:text-amber-500 transition-colors border-b-2 border-amber-600 pb-1"
-          >
-            {site.url.replace("https://", "www.")}
-          </a>
-          <span className="block text-[9px] text-slate-500 mt-3 font-mono">
+          <span className="block text-[9px] text-slate-500 font-mono">
             © 2026 GR Class. All rights reserved.
           </span>
         </div>
