@@ -2069,8 +2069,16 @@ function Slide12Geographical() {
         </div>
 
         {/* Small badge */}
-        <div className="bg-[#0b1f45]/5 p-2 rounded text-[8.5px] text-slate-500 leading-relaxed border border-slate-200 mt-2 font-mono">
-          Ajman Registered Office<br />B.C. Number: 1304883
+        <div className="mt-4 flex flex-col gap-2">
+          <div className="bg-[#0b1f45]/5 p-2 rounded text-[8.5px] text-slate-500 leading-relaxed border border-slate-200 font-mono">
+            Ajman Registered Office<br />B.C. Number: 1304883
+          </div>
+          <div className="bg-[#0b1f45]/5 p-2 rounded text-[8.5px] text-slate-500 leading-relaxed border border-slate-200">
+            <span className="block font-bold uppercase tracking-wider text-amber-600 text-[8px] mb-1 font-mono">We Are Certified With</span>
+            <div className="flex flex-wrap gap-x-2 gap-y-0.5 text-[#0b1f45] font-semibold">
+              <span>Vanuatu Flag</span> • <span>Cameroon Flag</span> • <span>Belize Flag</span> • <span>Honduras Flag</span>
+            </div>
+          </div>
         </div>
       </div>
 
