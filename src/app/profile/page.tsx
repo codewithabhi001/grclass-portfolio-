@@ -2044,7 +2044,19 @@ function Slide12Geographical() {
               </div>
             </div>
 
-            <div className="flex gap-2">
+            {site.additionalOffices.map((office) => (
+              <div key={office.name} className="flex gap-2 border-t border-slate-100 pt-2">
+                <MapPin className="h-4 w-4 text-amber-600 flex-shrink-0 mt-0.5" />
+                <div>
+                  <span className="block text-[10px] font-bold text-[#0b1f45] uppercase">{office.name}</span>
+                  <span className="text-[9.5px] text-slate-500 leading-relaxed block font-medium">
+                    {office.address}
+                  </span>
+                </div>
+              </div>
+            ))}
+
+            <div className="flex gap-2 border-t border-slate-100 pt-2">
               <Globe className="h-4 w-4 text-amber-600 flex-shrink-0 mt-0.5" />
               <div>
                 <span className="block text-[10px] font-bold text-[#0b1f45] uppercase">Surveyor Networks</span>
@@ -2085,6 +2097,12 @@ function Slide12Geographical() {
             {/* Ajman HQ */}
             <circle cx="485" cy="175" r="8" fill="#f59e0b" className="animate-ping" />
             <circle cx="485" cy="175" r="4" fill="#f59e0b" />
+            {/* India (Mumbai) */}
+            <circle cx="535" cy="195" r="4" fill="#f59e0b" />
+            {/* Greece (Piraeus) */}
+            <circle cx="450" cy="145" r="4" fill="#f59e0b" />
+            {/* Panama */}
+            <circle cx="210" cy="210" r="4" fill="#f59e0b" />
             {/* Singapore */}
             <circle cx="600" cy="225" r="4" fill="#f59e0b" />
             {/* Suez */}
@@ -2103,10 +2121,14 @@ function Slide12Geographical() {
           </div>
           <div>
             <span className="inline-block w-2.5 h-2.5 rounded-full bg-amber-500 mr-2 align-middle opacity-80"></span>
+            <span className="text-[10px] text-slate-300 align-middle">India, Greece & Panama Offices</span>
+          </div>
+          <div>
+            <span className="inline-block w-2.5 h-2.5 rounded-full bg-amber-500 mr-2 align-middle opacity-60"></span>
             <span className="text-[10px] text-slate-300 align-middle">Surveyors on-call across 120+ ports</span>
           </div>
           <div>
-            <span className="inline-block w-2.5 h-2.5 rounded-full bg-amber-500 mr-2 align-middle opacity-55"></span>
+            <span className="inline-block w-2.5 h-2.5 rounded-full bg-amber-500 mr-2 align-middle opacity-40"></span>
             <span className="text-[10px] text-slate-300 align-middle">Recognized by major Flag Administrations</span>
           </div>
         </div>
@@ -2167,16 +2189,30 @@ function Slide13BackCover() {
         {/* Office Contact Info */}
         <div className="space-y-4">
           <h3 className="font-serif text-lg font-bold text-amber-500 uppercase">
-            Head Office Location
+            Office Locations
           </h3>
           <div className="space-y-3 text-xs">
             <div className="flex items-start gap-2">
               <MapPin className="h-4 w-4 text-amber-500 flex-shrink-0 mt-0.5" />
-              <span className="text-slate-300 leading-relaxed font-medium">
-                {site.address}
-              </span>
+              <div>
+                <span className="block text-[9px] font-bold text-amber-500 uppercase">Head Office (UAE)</span>
+                <span className="text-slate-300 leading-relaxed font-medium text-[11px] block mt-0.5">
+                  {site.address}
+                </span>
+              </div>
             </div>
-            <div className="flex items-center gap-2">
+            {site.additionalOffices.map((office) => (
+              <div key={office.name} className="flex items-start gap-2 border-t border-white/5 pt-2">
+                <MapPin className="h-4 w-4 text-amber-500 flex-shrink-0 mt-0.5" />
+                <div>
+                  <span className="block text-[9px] font-bold text-amber-500 uppercase">{office.name}</span>
+                  <span className="text-slate-300 leading-relaxed font-medium text-[11px] block mt-0.5">
+                    {office.address}
+                  </span>
+                </div>
+              </div>
+            ))}
+            <div className="flex items-center gap-2 border-t border-white/5 pt-2">
               <Phone className="h-4 w-4 text-amber-500 flex-shrink-0" />
               <span className="text-slate-300 font-mono font-semibold">
                 {site.phone}

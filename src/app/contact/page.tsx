@@ -190,9 +190,17 @@ const ContactPage = () => {
                 </a>
                 <div className="flex items-start gap-3 text-foreground">
                   <MapPin className="mt-0.5 h-4 w-4 text-accent" />
-                  <div>
-                    <div className="text-[11px] uppercase tracking-wider text-subtle">Headquarters</div>
-                    <div className="mt-0.5">{site.address}</div>
+                  <div className="flex flex-col gap-4">
+                    <div>
+                      <div className="text-[11px] uppercase tracking-wider text-subtle">Headquarters</div>
+                      <div className="mt-0.5">{site.address}</div>
+                    </div>
+                    {site.additionalOffices.map((office) => (
+                      <div key={office.name} className="border-t border-border/40 pt-3">
+                        <div className="text-[11px] uppercase tracking-wider text-subtle">{office.name}</div>
+                        <div className="mt-0.5 leading-relaxed">{office.address}</div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

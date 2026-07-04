@@ -13,6 +13,20 @@ export const site = {
   email: "info@grclass.com",
   phone: "+971555324087",
   address: "B.C. 1304883, C1 Building, Ajman District Business, Makani No – 4442612247, UAE.",
+  additionalOffices: [
+    {
+      name: "India Office",
+      address: "Office No - 6, Hermes Atrium, Sector -11, CBD Belapur, Navi Mumbai, Maharashtra, India.",
+    },
+    {
+      name: "Greece Office",
+      address: "Notara Str. 110, Piraeus, 18535, Greece.",
+    },
+    {
+      name: "Panama Office",
+      address: "Edificio Global Plaza, Calle 50, Piso 21, Republic de Panama.",
+    },
+  ] as const,
 } as const;
 
 export interface NavItem {
