@@ -49,7 +49,10 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
             <div className="flex items-start gap-3">
               <MapPin className="mt-1 h-4 w-4 shrink-0 text-accent" />
               <div className="flex flex-col gap-3">
-                <span className="leading-relaxed">{site.address}</span>
+                <div>
+                  <span className="block text-[10px] font-bold uppercase tracking-wider text-accent mb-0.5">Head Office (UAE)</span>
+                  <span className="leading-relaxed text-background/70">{site.address}</span>
+                </div>
                 {site.additionalOffices.map((office) => (
                   <div key={office.name} className="border-t border-background/10 pt-2.5">
                     <span className="block text-[10px] font-bold uppercase tracking-wider text-accent mb-0.5">{office.name}</span>
