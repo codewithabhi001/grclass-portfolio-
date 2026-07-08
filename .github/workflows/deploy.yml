@@ -1,0 +1,36 @@
+name: Deploy Portfolio
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H "${{ secrets.EC2_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Deploy Portfolio
+        run: |
+          ssh -i ~/.ssh/id_ed25519 \
+            -o StrictHostKeyChecking=no \
+            -o BatchMode=yes \
+            ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
+            "set -e; \
+             cd /var/www/grclass-portfolio-; \
+             git fetch origin ${{ github.ref_name }}; \
+             git reset --hard origin/${{ github.ref_name }}; \
+             npm install --legacy-peer-deps; \
+             npm run build"
