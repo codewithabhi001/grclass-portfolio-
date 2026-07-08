@@ -15,6 +15,10 @@ export default {
         display: ['"Libre Franklin"', "ui-sans-serif", "system-ui", "sans-serif"],
         sans: ['"DM Sans"', "ui-sans-serif", "system-ui", "sans-serif"],
         mono: ['"DM Mono"', "ui-monospace", "monospace"],
+        // Explicit web serif so headings render identically on every device/OS.
+        // Gelasio is metric-compatible with Georgia (the design's original
+        // fallback), so it keeps the intended proportions without reflow.
+        serif: ["Gelasio", "Georgia", "Cambria", '"Times New Roman"', "serif"],
       },
       colors: {
         border: "hsl(var(--border))",

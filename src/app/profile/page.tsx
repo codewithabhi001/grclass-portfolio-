@@ -52,7 +52,7 @@ export default function ProfilePage() {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const [controlsVisible, setControlsVisible] = useState<boolean>(true);
   const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
-  const totalSlides = 17;
+  const totalSlides = 16;
   const slideContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -105,98 +105,208 @@ export default function ProfilePage() {
     setSlideMode(!slideMode);
   };
 
-  const printProfile = () => {
+  const printProfile = async () => {
+    // Wait for embedded fonts (and any decoding images) to finish so the
+    // print layout is measured with final glyph metrics — this prevents the
+    // font-swap reflow that otherwise shifts spacing between devices.
+    try {
+      if (typeof document !== "undefined" && document.fonts?.ready) {
+        await document.fonts.ready;
+      }
+      const imgs = Array.from(
+        document.querySelectorAll<HTMLImageElement>(".print-root img"),
+      );
+      await Promise.all(
+        imgs.map((img) =>
+          img.complete
+            ? Promise.resolve()
+            : img
+                .decode?.()
+                .catch(() => undefined) ?? Promise.resolve(),
+        ),
+      );
+    } catch {
+      /* Non-fatal: fall through to print regardless. */
+    }
     window.print();
   };
 
   // Custom styling specifically for the slides
   const slideClass = "w-full h-full bg-card overflow-y-auto md:overflow-hidden flex flex-col justify-between relative select-none";
-  const printPageClass = "w-full min-h-screen md:h-[calc(100vh-73px)] bg-card overflow-y-auto md:overflow-hidden flex flex-col justify-between relative page-break-after-always";
+  // Preview "paper" page: locked to the exact A4-landscape aspect ratio
+  // (297:210) so the on-screen document preview matches the printed PDF
+  // 1:1. Document mode only renders on desktop (>=1024px), where the same
+  // md:/lg: desktop layout that the PDF uses is already active.
+  const printPageClass = "w-full max-w-[1123px] mx-auto bg-card overflow-hidden relative shadow-2xl ring-1 ring-slate-800/60";
 
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: `
+        /* ============================================================
+           GR CLASS — PRODUCTION PRINT / PDF SYSTEM
+           Goal: byte-for-byte identical A4 landscape output on every
+           device and browser. The printed deck NEVER depends on the
+           screen viewport width, so no responsive breakpoint can change
+           the layout. Each slide is one fixed 297mm x 210mm page.
+           ============================================================ */
+
+        /* Fixed physical page — explicit dimensions are more consistent
+           across browsers than the "A4 landscape" keyword. */
+        @page {
+          size: 297mm 210mm;
+          margin: 0;
+        }
+
         @media print {
-          /* Force colors and backgrounds to be exact */
-          * {
+          /* Render every color/background exactly as designed. */
+          *,
+          *::before,
+          *::after {
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
           }
 
-          /* Hide all screen components */
-          .print\\:hidden,
-          header,
-          footer,
-          button,
-          nav,
-          .no-print {
-            display: none !important;
-          }
-          
-          /* Set A4 landscape page settings with zero margins */
-          @page {
-            size: A4 landscape;
-            margin: 0 !important;
-          }
-          
           html, body {
             margin: 0 !important;
             padding: 0 !important;
             width: 297mm !important;
-            height: 210mm !important;
-            min-width: 297mm !important;
-            min-height: 210mm !important;
-            overflow: visible !important;
-            background-color: #0b1f45 !important;
+            background: #0b1f45 !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
           }
 
-          /* Print slide page styling */
+          /* Hide every screen-only element. */
+          .print\\:hidden,
+          header,
+          footer,
+          nav,
+          button,
+          .no-print {
+            display: none !important;
+          }
+
+          /* Reveal the dedicated print document. */
+          .print-root { display: block !important; }
+
+          /* ---- The fixed page box: identical for every single page ---- */
           .print-slide-page {
             width: 297mm !important;
             height: 210mm !important;
             min-width: 297mm !important;
             min-height: 210mm !important;
+            max-width: 297mm !important;
+            max-height: 210mm !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+            position: relative !important;
+            display: block !important;
+            box-sizing: border-box !important;
             page-break-after: always !important;
             break-after: page !important;
             page-break-inside: avoid !important;
             break-inside: avoid !important;
-            position: relative !important;
-            overflow: hidden !important;
-            display: flex !important;
-            flex-direction: column !important;
-            justify-content: space-between !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            box-sizing: border-box !important;
-            background-color: #0b1f45 !important;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
+            background: #0b1f45 !important;
           }
-          
-          /* Scale adjustment to ensure layout fits within print viewport */
+          /* Never emit a trailing blank page after the last slide. */
+          .print-slide-page:last-child {
+            page-break-after: auto !important;
+            break-after: auto !important;
+          }
+
+          /* Slide root fills the page exactly (no borders/radius/shadow). */
           .print-slide-page > div {
             width: 100% !important;
             height: 100% !important;
             max-width: none !important;
-            max-height: none !important;
-            border: none !important;
+            max-height: 100% !important;
+            margin: 0 !important;
             border-radius: 0 !important;
             box-shadow: none !important;
-            margin: 0 !important;
-            padding: 0 !important;
+            overflow: hidden !important;
             box-sizing: border-box !important;
           }
 
-          /* Specific adjustments for backgrounds on print */
-          .print-slide-page .bg-\\[\\#f5f3ef\\] {
-            background-color: #f5f3ef !important;
+          /* Kill on-screen scroll containers so nothing is clipped/hidden. */
+          .print-root .overflow-y-auto { overflow: hidden !important; }
+
+          /* ========================================================
+             FORCE DESKTOP LAYOUT REGARDLESS OF DEVICE / VIEWPORT.
+             Tailwind md:/lg:/sm: utilities are min-width media queries
+             that resolve differently per device when printing. We pin
+             them to their desktop values (specificity .print-root .x
+             beats Tailwind's .x) so the PDF is identical everywhere.
+             ======================================================== */
+
+          /* Heights & overflow */
+          .print-root .md\\:h-full { height: 100% !important; }
+          .print-root .md\\:overflow-hidden { overflow: hidden !important; }
+
+          /* Grid display / rows */
+          .print-root .md\\:grid { display: grid !important; }
+          .print-root .md\\:grid-rows-\\[1\\.2fr_1fr\\] { grid-template-rows: 1.2fr 1fr !important; }
+
+          /* Padding & margin */
+          .print-root .md\\:p-16 { padding: 4rem !important; }
+          .print-root .md\\:p-12 { padding: 3rem !important; }
+          .print-root .md\\:pr-6 { padding-right: 1.5rem !important; }
+          .print-root .md\\:mt-0 { margin-top: 0 !important; }
+
+          /* Typography — locked to fixed sizes (independent of viewport).
+             Hero display headings are capped at 2.5rem so the longest word
+             ("CLASSIFICATION") always fits the A4 column width — larger sizes
+             overflow the fixed page box regardless of the chosen serif. */
+          .print-root .md\\:text-6xl,
+          .print-root .lg\\:text-6xl,
+          .print-root .md\\:text-5xl { font-size: 2.5rem !important; line-height: 1.05 !important; }
+          .print-root .md\\:text-4xl { font-size: 2.25rem !important; line-height: 2.5rem !important; }
+          .print-root .md\\:text-3xl { font-size: 1.875rem !important; line-height: 2.25rem !important; }
+          .print-root .md\\:text-2xl { font-size: 1.5rem !important; line-height: 2rem !important; }
+          .print-root .md\\:text-sm { font-size: 0.875rem !important; line-height: 1.25rem !important; }
+          .print-root .md\\:text-xs { font-size: 0.75rem !important; line-height: 1rem !important; }
+          .print-root .md\\:text-\\[9px\\] { font-size: 9px !important; }
+          .print-root .md\\:text-\\[10px\\] { font-size: 10px !important; }
+          .print-root .md\\:text-\\[11px\\] { font-size: 11px !important; }
+
+          /* Grid column templates (safety net where print: variants are absent) */
+          .print-root .md\\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+          .print-root .md\\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+          .print-root .md\\:grid-cols-4,
+          .print-root .sm\\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+          .print-root .sm\\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+          .print-root .md\\:grid-cols-\\[1\\.2fr_0\\.8fr\\] { grid-template-columns: 1.2fr 0.8fr !important; }
+          .print-root .md\\:grid-cols-\\[1\\.1fr_0\\.9fr\\] { grid-template-columns: 1.1fr 0.9fr !important; }
+          .print-root .md\\:grid-cols-\\[1fr_1\\.2fr\\] { grid-template-columns: 1fr 1.2fr !important; }
+          .print-root .md\\:grid-cols-\\[0\\.9fr_1\\.1fr\\] { grid-template-columns: 0.9fr 1.1fr !important; }
+          .print-root .md\\:grid-cols-\\[0\\.8fr_1\\.2fr\\] { grid-template-columns: 0.8fr 1.2fr !important; }
+
+          /* Neutralize mobile minimum-height on image panes → grid-cell height */
+          .print-root [class*="min-h-\\["] { min-height: 0 !important; }
+
+          /* Images: never overflow, keep aspect ratio, stay crisp. */
+          .print-root img {
+            max-width: 100% !important;
+            image-rendering: auto;
           }
-          .print-slide-page .bg-white {
-            background-color: #ffffff !important;
+          .print-root .object-cover { object-fit: cover !important; }
+          .print-root .object-contain { object-fit: contain !important; }
+
+          /* Keep atomic blocks together — no mid-element breaks. */
+          .print-root h1, .print-root h2, .print-root h3,
+          .print-root img, .print-root table, .print-root ul, .print-root ol {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
           }
-          .print-slide-page .bg-\\[\\#0b1f45\\] {
-            background-color: #0b1f45 !important;
+          .print-root p, .print-root li {
+            orphans: 3 !important;
+            widows: 3 !important;
           }
+
+          /* Preserve exact brand backgrounds in print. */
+          .print-slide-page .bg-\\[\\#f5f3ef\\] { background-color: #f5f3ef !important; }
+          .print-slide-page .bg-white { background-color: #ffffff !important; }
+          .print-slide-page .bg-\\[\\#0b1f45\\] { background-color: #0b1f45 !important; }
+          .print-slide-page .bg-\\[\\#0d2a6e\\] { background-color: #0d2a6e !important; }
         }
       `}} />
 
@@ -362,10 +472,14 @@ export default function ProfilePage() {
               ))}
             </div>
           ) : (
-            /* SCROLL DOCUMENT MODE */
-            <div className="flex flex-col w-full">
+            /* SCROLL DOCUMENT MODE — paper-accurate A4 preview */
+            <div className="flex flex-col items-center w-full gap-8 py-8 px-4 bg-slate-950/40">
               {Array.from({ length: totalSlides }).map((_, i) => (
-                <div key={i} className={printPageClass}>
+                <div
+                  key={i}
+                  className={printPageClass}
+                  style={{ aspectRatio: "297 / 210" }}
+                >
                   <SlideContent index={i} />
                 </div>
               ))}
@@ -375,7 +489,7 @@ export default function ProfilePage() {
       </div>
 
       {/* Print-only layout container (visible only on print) */}
-      <div className="hidden print:block bg-[#0b1f45]">
+      <div className="print-root hidden print:block bg-[#0b1f45]">
         {Array.from({ length: totalSlides }).map((_, i) => (
           <div key={i} className="print-slide-page">
             <SlideContent index={i} />
@@ -481,11 +595,13 @@ function SlideContent({ index }: { index: number }) {
       return <Slide13SurveyorApp />;
     case 13:
       return <Slide14WhyDifferent />;
+    // NOTE: <Slide11WhyChoose /> intentionally omitted to hit exactly 16
+    // pages — its content overlaps heavily with "Why We're Different"
+    // (Slide 14). The component is still defined below; add it back to a
+    // case here (and bump totalSlides to 17) to restore it.
     case 14:
-      return <Slide11WhyChoose />;
-    case 15:
       return <Slide12Geographical />;
-    case 16:
+    case 15:
       return <Slide13BackCover />;
     default:
       return null;
