@@ -19,9 +19,21 @@ const HomePage = () => {
   return (
     <SiteShell>
       <SEO 
-        title="Maritime Classification & Certification" 
-        description="Recognised classification society delivering vessel surveys, statutory certification, and digital verification across 120+ ports worldwide." 
+        title="Maritime Classification & Vessel Certification Society" 
+        description="GR Class is a Recognized Organization (RO) & Classification Society delivering statutory vessel surveys, digital certification & maritime compliance across 120+ ports worldwide." 
         url="/" 
+        schema={[
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://grclass.com"
+            }]
+          }
+        ]}
       />
       <Hero />
       <StatsStrip />

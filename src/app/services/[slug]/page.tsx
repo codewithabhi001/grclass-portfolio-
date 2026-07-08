@@ -38,6 +38,20 @@ const ServiceDetailPage = () => {
         title={`${svc.title} | ${svc.eyebrow}`} 
         description={svc.tagline || svc.description} 
         url={`/services/${svc.slug}`} 
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": svc.title,
+          "description": svc.tagline || svc.description,
+          "serviceType": svc.eyebrow,
+          "provider": {
+            "@type": "Organization",
+            "name": "GR Class",
+            "url": "https://grclass.com"
+          },
+          "areaServed": "Worldwide",
+          "url": `https://grclass.com/services/${svc.slug}`
+        }}
       />
       <PageHero
         eyebrow={svc.eyebrow}

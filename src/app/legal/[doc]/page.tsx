@@ -6,6 +6,7 @@ import { useParams, Navigate, Link } from "react-router-dom";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { PageHero } from "@/components/layout/PageHero";
 import { fetchPrivacyPolicy, fetchCompliance, fetchTermsAndConditions } from "@/lib/api";
+import { SEO } from "@/components/SEO";
 
 interface LegalDoc {
   slug: string;
@@ -208,6 +209,12 @@ const LegalPage = () => {
           color: hsl(var(--foreground)) !important;
         }
       `}</style>
+
+      <SEO 
+        title={`${displayTitle} | Legal`} 
+        description={`GR Class ${displayTitle.toLowerCase()} — last updated ${staticData.updated}. Read our full ${displayTitle.toLowerCase()} for maritime classification services.`} 
+        url={`/legal/${staticData.slug}`} 
+      />
 
       <PageHero
         eyebrow={staticData.eyebrow}

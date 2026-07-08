@@ -10,9 +10,24 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+# AI Search Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
 User-agent: *
 Allow: /
 
-# Sitemap Link
+# Sitemap & AI Files
 Sitemap: https://grclass.com/sitemap.xml
-

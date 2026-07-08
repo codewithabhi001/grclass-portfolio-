@@ -106,6 +106,28 @@ const NewsArticlePage = () => {
           url={`/news/${item.slug}`} 
           type="article"
           image={item.thumbnail_url}
+          datePublished={item.date}
+          schema={{
+            "@context": "https://schema.org",
+            "@type": "NewsArticle",
+            "headline": item.title,
+            "description": item.excerpt,
+            "datePublished": item.date,
+            "author": {
+              "@type": "Organization",
+              "name": "GR Class Technical Committee"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "GR Class",
+              "url": "https://grclass.com",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://grclass.com/grclass-logo.webp"
+              }
+            },
+            "mainEntityOfPage": `https://grclass.com/news/${item.slug}`
+          }}
         />
       )}
       <style>{`

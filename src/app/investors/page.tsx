@@ -1,6 +1,7 @@
 import { SiteShell } from "@/components/layout/SiteShell";
 import { PageHero } from "@/components/layout/PageHero";
 import { Download, TrendingUp } from "lucide-react";
+import { SEO } from "@/components/SEO";
 
 const kpis = [
   { k: "2,500+", l: "Active class certificates" },
@@ -17,6 +18,11 @@ const reports = [
 
 const InvestorsPage = () => (
   <SiteShell>
+    <SEO 
+      title="Investor Relations | Governance & Reports" 
+      description="GR Class investor relations: dual-board governance, audited annual reports, and quarterly disclosures for stakeholders." 
+      url="/investors" 
+    />
     <PageHero
       eyebrow="Investor Relations"
       title="Classification, built for long-term operators."

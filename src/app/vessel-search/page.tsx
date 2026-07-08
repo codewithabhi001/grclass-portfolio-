@@ -3,6 +3,7 @@ import { Search, Anchor, AlertCircle } from "lucide-react";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { PageHero } from "@/components/layout/PageHero";
 import { searchVessel } from "@/lib/api";
+import { SEO } from "@/components/SEO";
 
 interface Vessel { imo: string; name: string; type?: string; flag?: string; built?: string; classStatus?: string; owner?: string }
 
@@ -31,6 +32,11 @@ const VesselSearchPage = () => {
 
   return (
     <SiteShell>
+      <SEO 
+        title="Vessel Search | Class Status Registry" 
+        description="Look up any vessel by IMO number to confirm its current classification status with GR Class. Free, instant, and available 24/7." 
+        url="/vessel-search" 
+      />
       <PageHero
         eyebrow="Registry"
         title="Vessel search."

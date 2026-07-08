@@ -9,6 +9,7 @@ import { faqs as staticFaqs } from "@/data/faq";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { fetchFAQs } from "@/lib/api";
+import { SEO } from "@/components/SEO";
 
 const FaqPage = () => {
   const [faqs, setFaqs] = useState<any[]>(staticFaqs);
@@ -39,8 +40,28 @@ const FaqPage = () => {
     loadData();
   }, []);
 
+  // Build FAQPage schema from current FAQ data
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.flatMap(g => g.items.map((item: any) => ({
+      "@type": "Question",
+      "name": item.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.a
+      }
+    })))
+  };
+
   return (
     <SiteShell>
+      <SEO 
+        title="FAQ | Maritime Classification Questions" 
+        description="Answers to common questions about maritime classification scope, survey costs, timelines, and digital certificate verification with GR Class." 
+        url="/faq" 
+        schema={faqSchema}
+      />
       <PageHero
         eyebrow="Reference"
         title="Frequently asked questions."

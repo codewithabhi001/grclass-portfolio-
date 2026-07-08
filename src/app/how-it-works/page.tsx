@@ -7,9 +7,29 @@ import { ArrowRight, Clock } from "lucide-react";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { PageHero } from "@/components/layout/PageHero";
 import { processSteps } from "@/data/process";
+import { SEO } from "@/components/SEO";
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How Maritime Classification Works with GR Class",
+  "description": "A transparent six-step engagement model from initial scoping to certificate issue, used across class surveys, statutory work, and advisory mandates.",
+  "step": processSteps.map((step) => ({
+    "@type": "HowToStep",
+    "name": step.title,
+    "text": step.body,
+    "position": step.step
+  }))
+};
 
 const HowItWorksPage = () => (
   <SiteShell>
+    <SEO 
+      title="How it Works | Maritime Classification Process" 
+      description="From initial scoping to certificate issue — a transparent six-step engagement model for class surveys, statutory work, and advisory mandates at GR Class." 
+      url="/how-it-works" 
+      schema={howToSchema}
+    />
     <PageHero
       eyebrow="Process"
       title="From initial scoping to certificate issue."

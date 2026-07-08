@@ -2,6 +2,7 @@ import { SiteShell } from "@/components/layout/SiteShell";
 import { PageHero } from "@/components/layout/PageHero";
 import { Download, Mail } from "lucide-react";
 import { site } from "@/lib/site";
+import { SEO } from "@/components/SEO";
 
 const releases = [
   { date: "2025-03-12", title: "GR Class publishes ammonia fuel readiness bulletin TB-2025-04" },
@@ -12,6 +13,11 @@ const releases = [
 
 const PressPage = () => (
   <SiteShell>
+    <SEO 
+      title="Press & Media | Maritime News" 
+      description="Press releases, media resources, and technical bulletins from GR Class. Contact our press office for interviews and industry commentary." 
+      url="/press" 
+    />
     <PageHero
       eyebrow="Press & Media"
       title="News, bulletins, and media resources."
