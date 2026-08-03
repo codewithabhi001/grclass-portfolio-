@@ -111,7 +111,27 @@ async function prerender() {
     }
   }
 
-  // 4. Cleanup
+  // 4. Generate sitemap.xml
+  console.log('Generating sitemap.xml...');
+  const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${allRoutes.map(route => `  <url>
+    <loc>https://grclass.com${route}</loc>
+    <changefreq>${route === '/' ? 'weekly' : 'monthly'}</changefreq>
+    <priority>${route === '/' ? '1.0' : '0.8'}</priority>
+  </url>`).join('\n')}
+</urlset>`;
+  fs.writeFileSync(path.join(distPath, 'sitemap.xml'), sitemapXml);
+
+  // 5. Generate robots.txt
+  console.log('Generating robots.txt...');
+  const robotsTxt = `User-agent: *
+Allow: /
+
+Sitemap: https://grclass.com/sitemap.xml`;
+  fs.writeFileSync(path.join(distPath, 'robots.txt'), robotsTxt);
+
+  // 6. Cleanup
   console.log('Closing browser and server...');
   await browser.close();
   server.close();

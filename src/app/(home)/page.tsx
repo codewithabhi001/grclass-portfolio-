@@ -32,6 +32,42 @@ const HomePage = () => {
               "name": "Home",
               "item": "https://grclass.com"
             }]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "GR Class",
+            "alternateName": "GR Class Maritime",
+            "url": "https://grclass.com",
+            "logo": "https://grclass.com/grclass-logo.webp",
+            "description": "Recognized Organization (RO), Recognized Security Organization (RSO), and Classification Society (CS) offering statutory/class certification and vessel survey services.",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+971555324087",
+              "contactType": "customer service",
+              "email": "info@grclass.com",
+              "areaServed": "Worldwide"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "B.C. 1304883, C1 Building, Ajman District Business, Makani No – 4442612247",
+              "addressLocality": "Ajman",
+              "addressCountry": "AE"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/company/grclass/"
+            ]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "GR Class",
+            "url": "https://grclass.com",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://grclass.com/vessel-search?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
           }
         ]}
       />

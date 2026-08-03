@@ -86,7 +86,7 @@ export function Hero() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="h-display max-w-[15ch] text-[clamp(30px,7.5vw,56px)] leading-[1.05] text-white lg:text-primary"
           >
-            Maritime Classification
+            GR Class Maritime Classification
             <span className="block text-accent">
               &amp; Certification.
             </span>
