@@ -1,5 +1,7 @@
+"use client";
+
 import { FormEvent, forwardRef, useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Mail, Phone, MapPin, ArrowUpRight, Send } from "lucide-react";
 import { mainNav, site } from "@/lib/site";
 import { BrandLogo } from "./BrandLogo";
@@ -61,13 +63,13 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
           <ul className="space-y-2.5 text-sm text-background/65">
             {mainNav.map((i) => (
               <li key={i.href}>
-                <Link to={i.href} className="transition-colors hover:text-background">
+                <Link href={i.href} className="transition-colors hover:text-background">
                   {i.label}
                 </Link>
               </li>
             ))}
             <li>
-              <Link to="/profile" className="transition-colors hover:text-background">
+              <Link href="/profile" className="transition-colors hover:text-background">
                 Company Profile
               </Link>
             </li>
@@ -93,7 +95,7 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
                     .map((svc) => (
                       <li key={svc.slug}>
                         <Link
-                          to={`/services/${svc.slug}`}
+                          href={`/services/${svc.slug}`}
                           className="transition-colors hover:text-background block"
                         >
                           {svc.title}
@@ -113,7 +115,7 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
                     .map((svc) => (
                       <li key={svc.slug}>
                         <Link
-                          to={`/services/${svc.slug}`}
+                          href={`/services/${svc.slug}`}
                           className="transition-colors hover:text-background block"
                         >
                           {svc.title}
@@ -137,7 +139,7 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
                     .map((svc) => (
                       <li key={svc.slug}>
                         <Link
-                          to={`/services/${svc.slug}`}
+                          href={`/services/${svc.slug}`}
                           className="transition-colors hover:text-background block"
                         >
                           {svc.title}
@@ -157,7 +159,7 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
                     .map((svc) => (
                       <li key={svc.slug}>
                         <Link
-                          to={`/services/${svc.slug}`}
+                          href={`/services/${svc.slug}`}
                           className="transition-colors hover:text-background block"
                         >
                           {svc.title}
@@ -211,9 +213,16 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
           <span>© {new Date().getFullYear()} {site.name}. All rights reserved.</span>
           <div className="flex items-center gap-6">
             <a href={`tel:${site.phone}`} className="transition-colors hover:text-background/70">{site.phone}</a>
-            <Link to="/legal/privacy" className="transition-colors hover:text-background/70">Privacy</Link>
-            <Link to="/legal/terms" className="transition-colors hover:text-background/70">Terms</Link>
-            <Link to="/legal/compliance" className="transition-colors hover:text-background/70">Compliance</Link>
+            <Link href="/legal/privacy" className="transition-colors hover:text-background/70">Privacy</Link>
+            <Link href="/legal/terms" className="transition-colors hover:text-background/70">Terms</Link>
+            <Link href="/legal/compliance" className="transition-colors hover:text-background/70">Compliance</Link>
+            <div className="flex items-center gap-3 border-l border-white/20 pl-6 ml-2">
+              <a href="https://facebook.com/grclass" target="_blank" rel="noopener" className="transition-colors hover:text-background/70">Facebook</a>
+              <a href="https://x.com/grclass" target="_blank" rel="noopener" className="transition-colors hover:text-background/70">X</a>
+              <a href="https://instagram.com/grclass" target="_blank" rel="noopener" className="transition-colors hover:text-background/70">Instagram</a>
+              <a href="https://linkedin.com/company/grclass" target="_blank" rel="noopener" className="transition-colors hover:text-background/70">LinkedIn</a>
+              <a href="https://youtube.com/@grclass" target="_blank" rel="noopener" className="transition-colors hover:text-background/70">YouTube</a>
+            </div>
           </div>
         </div>
       </div>

@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * Network section | centered header with delegated flag administrations in a borderless cluster.
  */
@@ -163,7 +165,7 @@ export function Network() {
                   <div className="relative aspect-[3/2] w-[90px] sm:w-[100px] overflow-hidden rounded bg-muted shadow-[0_4px_10px_rgba(0,0,0,0.06)] border border-border-soft transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_8px_16px_rgba(0,0,0,0.12)] flex items-center justify-center">
                     {logo && !failedImages[f.id] ? (
                       <img
-                        src={logo}
+                        src={typeof logo === "string" ? logo : (logo as any).src}
                         alt={f.flag_state_name}
                         className="h-full w-full object-cover animate-fade-in"
                         onError={() => {

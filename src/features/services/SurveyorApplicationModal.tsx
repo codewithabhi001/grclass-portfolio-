@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, FormEvent, useRef } from "react";
 import {
   Dialog,

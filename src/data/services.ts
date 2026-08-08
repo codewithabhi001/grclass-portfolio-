@@ -1,3 +1,4 @@
+import { StaticImageData } from "next/image";
 import surveyImg from "@/assets/svc-survey.jpg";
 import certImg from "@/assets/svc-cert.jpg";
 import advisoryImg from "@/assets/svc-advisory.jpg";
@@ -42,7 +43,7 @@ export interface ServiceDetail {
   title: string;
   tagline: string;
   description: string;
-  image: string;
+  image: StaticImageData | string;
   scope: string[];
   deliverables: string[];
   duration: string;

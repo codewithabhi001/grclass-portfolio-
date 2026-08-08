@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { ArrowLeft } from "lucide-react";
 
@@ -15,7 +15,7 @@ const NotFound = () => {
         </p>
         <div className="mt-10">
           <Link
-            to="/"
+            href="/"
             className="group inline-flex items-center gap-2 bg-accent px-8 py-4 text-sm font-semibold text-accent-foreground transition-colors hover:bg-accent-bright"
           >
             <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />

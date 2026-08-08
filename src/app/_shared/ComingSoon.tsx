@@ -4,7 +4,7 @@
  */
 import { SiteShell } from "@/components/layout/SiteShell";
 import { PageHero } from "@/components/layout/PageHero";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 interface ComingSoonProps {
@@ -29,7 +29,7 @@ const ComingSoon = ({ eyebrow, title, subtitle }: ComingSoonProps) => (
           how-it-works, news, and verification | will follow the same editorial system.
         </p>
         <Link
-          to="/"
+          href="/"
           className="group mt-8 inline-flex items-center gap-2 bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground transition-colors hover:bg-accent-bright"
         >
           Back to home <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

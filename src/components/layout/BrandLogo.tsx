@@ -3,7 +3,7 @@
  * Uses forwardRef so parent components (Radix, motion) can attach refs safely.
  */
 import { forwardRef } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 interface BrandLogoProps {
   variant?: "light" | "dark";
@@ -34,13 +34,13 @@ export const BrandLogo = forwardRef<HTMLAnchorElement, BrandLogoProps>(
     return (
       <Link
         ref={ref}
-        to="/"
+        href="/"
         className={`flex ${isVertical ? "flex-col items-start gap-3 sm:gap-4" : "items-center gap-2.5 sm:gap-3"} group ${className}`}
         aria-label="GR Class | Home"
       >
         <img
           src="/grclass-logo.webp"
-          alt="GR Class"
+          alt="GR Class Classification Society Logo"
           className={s.logo}
           style={{
             filter: isLight
