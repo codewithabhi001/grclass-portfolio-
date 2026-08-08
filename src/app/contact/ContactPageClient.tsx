@@ -147,7 +147,7 @@ const ContactPageClient = () => {
               <div className="md:col-span-2">
                 <Turnstile 
                   ref={turnstileRef}
-                  siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY || '1x00000000000000000000AA'} 
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA'} 
                   onSuccess={(token) => setCaptchaToken(token)}
                 />
               </div>
