@@ -1,7 +1,7 @@
 /**
  * Final CTA | two-column dark band with image + invitation.
  */
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import newsHeroImg from "@/assets/news-hero.jpg";
 
@@ -11,7 +11,7 @@ export function CtaBand() {
       <div className="grid md:grid-cols-2">
         <div className="relative min-h-[260px] sm:min-h-[320px] md:min-h-[460px]">
           <img
-            src={newsHeroImg}
+            src={typeof newsHeroImg === "string" ? newsHeroImg : (newsHeroImg as any).src}
             alt="Maritime vessel at sea"
             className="h-full w-full object-cover"
             loading="lazy"
@@ -32,14 +32,14 @@ export function CtaBand() {
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <Link
-              to="/contact"
+              href="/contact"
               className="group inline-flex items-center justify-center gap-2 bg-accent px-6 py-3.5 text-sm font-semibold tracking-wide text-accent-foreground shadow-brass transition-all hover:bg-accent-bright hover:shadow-[0_12px_32px_hsl(var(--accent)/0.45)]"
             >
               Request consultation
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
-              to="/services"
+              href="/services"
               className="inline-flex items-center justify-center gap-2 border border-background/25 px-6 py-3.5 text-sm font-medium text-background transition-colors hover:border-background hover:bg-background/5"
             >
               Explore services

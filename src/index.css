@@ -55,18 +55,19 @@
 
     /* Gradients */
     --gradient-hero: linear-gradient(90deg,
-      hsl(215 78% 11% / 0.96) 0%,
-      hsl(215 78% 11% / 0.85) 42%,
-      hsl(215 78% 11% / 0.25) 72%,
+      hsl(215 78% 11% / 0.98) 0%,
+      hsl(215 78% 11% / 0.88) 35%,
+      hsl(215 78% 11% / 0.3) 65%,
       transparent 100%);
-    --gradient-navy: linear-gradient(135deg, hsl(217 71% 15%), hsl(215 78% 11%));
-    --gradient-brass: linear-gradient(135deg, hsl(41 70% 41%), hsl(44 67% 50%));
-    --gradient-fade-bottom: linear-gradient(to top, hsl(217 71% 15% / 0.55), transparent 55%);
+    --gradient-navy: linear-gradient(135deg, hsl(217 71% 15%), hsl(215 78% 8%));
+    --gradient-brass: linear-gradient(135deg, hsl(41 70% 41%), hsl(44 67% 65%), hsl(41 70% 41%));
+    --gradient-fade-bottom: linear-gradient(to top, hsl(217 71% 15% / 0.65), transparent 60%);
 
-    /* Shadows */
-    --shadow-card: 0 2px 8px hsl(217 71% 15% / 0.06), 0 12px 32px hsl(217 71% 15% / 0.06);
-    --shadow-elev: 0 8px 28px hsl(217 71% 15% / 0.10);
-    --shadow-brass: 0 8px 28px hsl(41 70% 41% / 0.28);
+    /* Shadows & Glass */
+    --shadow-card: 0 4px 12px hsl(217 71% 15% / 0.08), 0 16px 40px hsl(217 71% 15% / 0.08);
+    --shadow-elev: 0 12px 40px hsl(217 71% 15% / 0.15);
+    --shadow-brass: 0 8px 32px hsl(41 70% 41% / 0.35);
+    --shadow-glass: inset 0 1px 1px hsl(0 0% 100% / 0.1), 0 8px 32px hsl(217 71% 15% / 0.15);
 
     /* Motion */
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -151,20 +152,37 @@
   .hairline { @apply border-t border-border-soft; }
 }
 
-/* Page fade-in animation */
+/* Premium UI Animations */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes sweep {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
 }
 
 @layer utilities {
   .animate-fade-in {
-    animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: fadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  .bg-sweep {
+    background-size: 200% auto;
+    animation: sweep 4s linear infinite;
+  }
+  .glass-panel {
+    @apply bg-white/70 dark:bg-black/40 backdrop-blur-md border border-white/40 dark:border-white/10 shadow-[var(--shadow-glass)];
+  }
+  .glass-panel-navy {
+    @apply bg-primary/85 backdrop-blur-xl border border-white/10 shadow-[var(--shadow-glass)];
   }
 }

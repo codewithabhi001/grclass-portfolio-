@@ -19,7 +19,7 @@ export function About() {
             className="relative h-[320px] overflow-hidden sm:h-[420px] md:h-[480px]"
           >
             <img
-              src={aboutImg}
+              src={typeof aboutImg === "string" ? aboutImg : (aboutImg as any).src}
               alt="GR Class surveyor inspecting a vessel hull"
               className="h-full w-full object-cover"
               loading="lazy"
@@ -59,7 +59,12 @@ export function About() {
         </div>
 
         {/* Copy */}
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
           <span className="eyebrow text-secondary">About GR Class</span>
           <h2 className="h-display mt-3 text-[clamp(24px,3.2vw,40px)] text-primary">
             Classified for standards
@@ -79,9 +84,13 @@ export function About() {
 
           <ul className="mt-7 hairline">
             {aboutFeatures.map((f, i) => (
-              <li
+              <motion.li
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
                 key={f.title}
-                className="flex gap-4 border-b border-border-soft py-4"
+                className="flex gap-4 border-b border-border-soft py-4 transition-colors hover:bg-slate-50/50"
               >
                 <span className="min-w-[28px] pt-0.5 font-mono text-[11px] font-medium text-accent">
                   0{i + 1}
@@ -92,10 +101,10 @@ export function About() {
                     {f.body}
                   </p>
                 </div>
-              </li>
+              </motion.li>
             ))}
           </ul>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

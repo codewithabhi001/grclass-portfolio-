@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * Why GR Class | image left, checklist right, with floating stat tile.
  */
@@ -41,7 +43,7 @@ export function WhyUs() {
           className="relative h-[340px] overflow-hidden sm:h-[440px] md:order-1 md:h-[500px]"
         >
           <img
-            src={portImg}
+            src={typeof portImg === "string" ? portImg : (portImg as any).src}
             alt="Aerial view of a busy global shipping port"
             className="h-full w-full object-cover"
             loading="lazy"

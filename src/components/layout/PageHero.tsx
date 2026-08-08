@@ -2,7 +2,7 @@
  * Reusable inner-page hero band | used by Services, About, Contact, etc.
  * Mirrors the original `.page-hero` block.
  */
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
 interface PageHeroProps {
@@ -18,12 +18,12 @@ export function PageHero({ eyebrow, title, subtitle, breadcrumbs = [] }: PageHer
       <div className="container-page py-14 md:py-16">
         {breadcrumbs.length > 0 && (
           <nav aria-label="Breadcrumb" className="mb-4 flex items-center gap-2 text-[12px] text-background/40">
-            <Link to="/" className="transition-colors hover:text-background/70">Home</Link>
+            <Link href="/" className="transition-colors hover:text-background/70">Home</Link>
             {breadcrumbs.map((b) => (
               <span key={b.label} className="flex items-center gap-2">
                 <ChevronRight className="h-3 w-3 text-background/25" />
                 {b.href ? (
-                  <Link to={b.href} className="transition-colors hover:text-background/70">{b.label}</Link>
+                  <Link href={b.href} className="transition-colors hover:text-background/70">{b.label}</Link>
                 ) : (
                   <span className="text-background/65">{b.label}</span>
                 )}

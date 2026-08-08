@@ -4,7 +4,7 @@
  */
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { servicesCatalogue } from "@/data/services";
 
@@ -75,13 +75,16 @@ export function Services() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 key={svc.slug}
-                className="group relative flex flex-col justify-between overflow-hidden border border-border bg-card transition-all duration-300 hover:border-accent hover:shadow-card"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_hsl(var(--primary)/0.12)]"
               >
-                <Link to={`/services/${svc.slug}`} className="flex flex-col h-full">
+                {/* Glowing border effect */}
+                <div className="absolute inset-0 border-2 border-transparent transition-all duration-300 group-hover:border-accent/40 rounded-xl pointer-events-none z-10" />
+                <div className="absolute -inset-2 bg-gradient-to-r from-accent/0 via-accent/15 to-accent/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl pointer-events-none z-0" />
+                <Link href={`/services/${svc.slug}`} className="flex flex-col h-full relative z-20 bg-card">
                   {/* Image container */}
                   <div className="relative h-44 overflow-hidden bg-primary sm:h-48">
                     <img
-                      src={svc.image}
+                      src={typeof svc.image === "string" ? svc.image : (svc.image as any).src}
                       alt={svc.title}
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"

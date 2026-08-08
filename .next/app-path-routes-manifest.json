@@ -1,0 +1,20 @@
+{
+  "/(home)/page": "/",
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/about/page": "/about",
+  "/careers/page": "/careers",
+  "/contact/page": "/contact",
+  "/faq/page": "/faq",
+  "/how-it-works/page": "/how-it-works",
+  "/investors/page": "/investors",
+  "/legal/[doc]/page": "/legal/[doc]",
+  "/news/[slug]/page": "/news/[slug]",
+  "/news/page": "/news",
+  "/press/page": "/press",
+  "/profile/page": "/profile",
+  "/services/[slug]/page": "/services/[slug]",
+  "/services/page": "/services",
+  "/verify/page": "/verify",
+  "/vessel-search/page": "/vessel-search"
+}

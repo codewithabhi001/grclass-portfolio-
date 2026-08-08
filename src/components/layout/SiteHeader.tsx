@@ -3,8 +3,11 @@
  * Mobile: collapses behind a sheet trigger.
  * Desktop: mega dropdown for Services.
  */
+"use client";
+
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, ShieldCheck, UserRound, X } from "lucide-react";
 import { mainNav, site, type NavItem } from "@/lib/site";
 import { BrandLogo } from "./BrandLogo";
@@ -14,7 +17,7 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [expandedMobile, setExpandedMobile] = useState<string | null>(null);
-  const { pathname } = useLocation();
+  const pathname = usePathname();
   const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -52,14 +55,14 @@ export function SiteHeader() {
     <>
       <header
         className={
-          "sticky top-0 z-50 transition-all duration-300 " +
+          "fixed top-0 inset-x-0 z-50 transition-all duration-500 " +
           (scrolled
-            ? "bg-primary/[0.97] backdrop-blur-xl shadow-[0_2px_24px_rgba(0,0,0,0.25)]"
-            : "bg-primary")
+            ? "glass-panel-navy py-1"
+            : "bg-primary/95 backdrop-blur-md py-3")
         }
       >
         {/* Top accent line */}
-        <div className="h-[2px] w-full bg-gradient-to-r from-accent via-accent-bright to-accent" />
+        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-accent via-accent-bright to-accent opacity-90" />
 
         <div className="container-page flex h-16 items-center justify-between gap-4 md:h-20 md:gap-6">
           <BrandLogo variant="light" />
@@ -77,8 +80,8 @@ export function SiteHeader() {
                   onMouseEnter={hasChildren ? openDropdown : undefined}
                   onMouseLeave={hasChildren ? closeDropdown : undefined}
                 >
-                  <NavLink
-                    to={item.href}
+                  <Link
+                    href={item.href}
                     className={
                       "group relative flex items-center px-4 text-[13.5px] font-semibold tracking-wide transition-colors duration-200 " +
                       (active
@@ -100,12 +103,12 @@ export function SiteHeader() {
                         (active ? "w-[60%] opacity-100" : "w-0 opacity-0 group-hover:w-[40%] group-hover:opacity-60")
                       }
                     />
-                  </NavLink>
+                  </Link>
 
                   {/* Mega Dropdown */}
                   {hasChildren && showDropdown && (
                     <div
-                      className="absolute left-0 w-full top-full bg-primary-deep shadow-2xl z-50 animate-in fade-in duration-200"
+                      className="absolute left-0 w-full top-full bg-primary-deep/95 backdrop-blur-2xl shadow-2xl z-50 border-t border-white/10 animate-in fade-in slide-in-from-top-2 duration-300"
                       onMouseEnter={openDropdown}
                       onMouseLeave={closeDropdown}
                     >
@@ -119,7 +122,7 @@ export function SiteHeader() {
                               {cat.items.map((sub) => (
                                 <li key={sub.href + sub.label}>
                                   <Link
-                                    to={sub.href}
+                                    href={sub.href}
                                     className="text-[13.5px] text-white/70 hover:text-white transition-colors"
                                   >
                                     {sub.label}
@@ -140,7 +143,7 @@ export function SiteHeader() {
           {/* Right cluster */}
           <div className="flex items-center gap-1 md:gap-2">
             <Link
-              to="/verify"
+              href="/verify"
               className="hidden items-center gap-1.5 rounded-md px-3 py-2 text-[13px] font-medium text-white/60 transition-colors hover:bg-white/[0.06] hover:text-white lg:flex"
             >
               <ShieldCheck className="h-4 w-4" /> Verify
@@ -156,8 +159,8 @@ export function SiteHeader() {
             <span className="hidden h-6 w-px bg-white/15 mx-2 xl:block" />
 
             <Link
-              to="/contact"
-              className="hidden items-center bg-accent px-5 py-2.5 text-[13px] font-bold tracking-wide text-accent-foreground shadow-brass transition-all hover:bg-accent-bright hover:shadow-[0_6px_20px_hsl(var(--accent)/0.4)] md:inline-flex"
+              href="/contact"
+              className="hidden items-center bg-gradient-to-r from-accent to-accent-bright bg-sweep px-5 py-2.5 text-[13px] font-bold tracking-wide text-primary shadow-brass transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_hsl(var(--accent)/0.6)] md:inline-flex rounded-sm"
             >
               Get in touch
             </Link>
@@ -172,8 +175,6 @@ export function SiteHeader() {
           </div>
         </div>
 
-        {/* Bottom border */}
-        <div className="h-px w-full bg-white/[0.08]" />
       </header>
 
       {/* Mobile menu */}
@@ -213,7 +214,7 @@ export function SiteHeader() {
                                 {cat.items.map((sub) => (
                                   <li key={sub.href + sub.label}>
                                     <Link
-                                      to={sub.href}
+                                      href={sub.href}
                                       onClick={() => setOpen(false)}
                                       className="block px-3 py-1.5 text-[13.5px] text-white/60 hover:text-white transition-colors"
                                     >
@@ -229,7 +230,7 @@ export function SiteHeader() {
                     </>
                   ) : (
                     <Link
-                      to={item.href}
+                      href={item.href}
                       onClick={() => setOpen(false)}
                       className={
                         "flex items-center justify-between border-b border-white/[0.06] py-4 text-[15px] font-medium transition-colors " +
@@ -248,14 +249,14 @@ export function SiteHeader() {
 
             <div className="mt-8 space-y-3">
               <Link
-                to="/contact"
+                href="/contact"
                 onClick={() => setOpen(false)}
                 className="flex items-center justify-center bg-accent px-4 py-3.5 text-sm font-bold text-accent-foreground"
               >
                 Get in touch
               </Link>
               <Link
-                to="/verify"
+                href="/verify"
                 onClick={() => setOpen(false)}
                 className="flex items-center justify-center gap-2 border border-white/15 px-4 py-3 text-sm font-medium text-white/80"
               >

@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * Testimonials | interactive sliding horizontal carousel fetching live portfolio feedback.
  */
@@ -143,7 +145,7 @@ export function Testimonials() {
                   <div className="mt-6 hairline pt-4 flex items-center gap-3">
                     {t.profile_pic_url ? (
                       <img
-                        src={t.profile_pic_url}
+                        src={typeof t.profile_pic_url === "string" ? t.profile_pic_url : (t.profile_pic_url as any).src}
                         alt={t.username}
                         className="h-10 w-10 rounded-full object-cover border border-border"
                       />

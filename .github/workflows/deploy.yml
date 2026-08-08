@@ -34,4 +34,6 @@ jobs:
              git fetch origin ${{ github.ref_name }}; \
              git reset --hard origin/${{ github.ref_name }}; \
              npm install --legacy-peer-deps; \
-             npm run build"
+             npm run build; \
+             rm -rf dist; \
+             mv out dist"
