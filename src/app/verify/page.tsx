@@ -1,11 +1,11 @@
 import VerifyPageClient from "./VerifyPageClient";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "Verify Certificate | Digital Authentication",
-  description: "Instantly authenticate any GR Class maritime certificate using its reference number or QR code. Accepted globally by port state controls.",
+  description:
+    "Instantly authenticate any GR Class maritime certificate or survey status document using its reference number, UTN, IMO, or QR code. Accepted globally by port state controls.",
 };
-
-import { Suspense } from "react";
 
 export default function Page() {
   return (
