@@ -33,6 +33,8 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
 
   return (
     <footer ref={ref} className="bg-primary text-background">
+      {/* Gold accent separator line */}
+      <div className="h-[3px] bg-gradient-to-r from-transparent via-accent to-transparent" />
       <div className="container-page grid gap-10 py-14 sm:gap-12 md:grid-cols-12 md:py-16">
         {/* Brand block */}
         <div className="md:col-span-3">

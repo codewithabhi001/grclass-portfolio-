@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Network section | centered header with delegated flag administrations in a borderless cluster.
+ * Network section | centered header with delegated flag administrations in premium corporate cards.
  */
 import { useState, useEffect } from "react";
 import { fetchPublicFlags } from "@/lib/api";
@@ -108,7 +108,6 @@ export function Network() {
     loadFlags();
   }, []);
 
-  // Filter out any mock "Test" or "TestLand" entries
   const activeFlags = flags.filter(
     (f) =>
       f.flag_state_name &&
@@ -128,67 +127,69 @@ export function Network() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-secondary-soft border-y border-border section-lg">
-      {/* Ambient glow */}
+    <section className="relative overflow-hidden bg-primary-deep py-20 md:py-28">
+      {/* Subtle ambient glow */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-40 right-0 h-[500px] w-[500px] rounded-full bg-accent/5 blur-[120px]"
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-secondary/8 blur-[150px]"
       />
       <div className="container-page">
         {/* Centered Heading */}
         <div className="text-center max-w-3xl mx-auto mb-14 md:mb-18">
-          <span className="eyebrow text-secondary">Global Network</span>
-          <h2 className="h-display mt-3 text-display-lg text-primary">
-            Wherever your vessels call, we're already there.
+          <span className="eyebrow text-accent">Flag State Authorisations</span>
+          <h2 className="h-display mt-3 text-[clamp(28px,4.5vw,44px)] text-background">
+            Wherever your vessels call, we&rsquo;re already there.
           </h2>
-          <p className="mt-5 text-body-sm font-light text-muted-foreground">
-            From Rotterdam to Singapore, Houston to Ajman | our regional offices and exclusive
+          <p className="mt-5 text-[15px] font-light text-background/50">
+            From Rotterdam to Singapore, Houston to Ajman &mdash; our regional offices and exclusive
             surveyor network keep your fleet compliant without delay.
           </p>
         </div>
 
-        {/* Flag Cluster (Borderless Grid/Flex) */}
+        {/* Flag Cards Grid */}
         {loading ? (
           <div className="flex items-center justify-center py-12">
             <div className="h-6 w-6 animate-spin rounded-full border-2 border-accent border-t-transparent" />
           </div>
         ) : (
-          <div className="flex flex-wrap items-stretch justify-center gap-8 md:gap-12 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-5 max-w-6xl mx-auto">
             {displayFlags.map((f) => {
               const logo = getLogoUrl(f);
               return (
                 <div
                   key={f.id}
-                  className="group flex w-[150px] sm:w-[170px] flex-col items-center p-3 text-center transition-all duration-300"
+                  className="group relative flex flex-col items-center rounded-xl bg-white/[0.06] backdrop-blur-sm border border-white/10 p-5 sm:p-6 text-center transition-all duration-500 hover:bg-white/[0.1] hover:border-accent/30 hover:-translate-y-1 hover:shadow-[0_8px_30px_hsl(41_70%_41%/0.15)]"
                 >
-                  {/* Flag Image Container with rounded corners and soft shadow */}
-                  <div className="relative aspect-[3/2] w-[90px] sm:w-[100px] overflow-hidden rounded bg-muted shadow-[0_4px_10px_rgba(0,0,0,0.06)] border border-border-soft transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_8px_16px_rgba(0,0,0,0.12)] flex items-center justify-center">
+                  {/* Flag Image */}
+                  <div className="relative aspect-[3/2] w-full max-w-[120px] overflow-hidden rounded-md shadow-[0_2px_8px_rgba(0,0,0,0.2)] border border-white/20 transition-transform duration-300 group-hover:scale-105">
                     {logo && !failedImages[f.id] ? (
                       <img
                         src={typeof logo === "string" ? logo : (logo as any).src}
                         alt={f.flag_state_name}
-                        className="h-full w-full object-cover animate-fade-in"
+                        className="h-full w-full object-cover"
                         onError={() => {
                           setFailedImages((prev) => ({ ...prev, [f.id]: true }));
                         }}
                         loading="lazy"
                       />
                     ) : (
-                      <div className="flex h-full w-full items-center justify-center bg-muted text-muted-foreground/45">
+                      <div className="flex h-full w-full items-center justify-center bg-white/10 text-background/30">
                         <Flag className="h-6 w-6" />
                       </div>
                     )}
                   </div>
 
-                  {/* Details */}
-                  <span className="mt-4 text-caption font-extrabold tracking-wider text-primary uppercase">
+                  {/* Country Name */}
+                  <span className="mt-4 text-xs font-extrabold tracking-wider text-background uppercase">
                     {f.country}
                   </span>
-                  <span className="mt-0.5 text-[10px] font-bold tracking-wider text-secondary uppercase">
+                  {/* Authority Abbreviation */}
+                  <span className="mt-1 text-[10px] font-bold tracking-widest text-accent uppercase">
                     {f.authority_name}
                   </span>
+                  {/* Full Name */}
                   <span
-                    className="mt-2 text-[11px] font-light leading-snug text-muted-foreground/80 max-w-[130px] line-clamp-2"
+                    className="mt-2 text-[11px] font-light leading-snug text-background/40 line-clamp-2"
                     title={f.flag_state_name}
                   >
                     {f.flag_state_name}

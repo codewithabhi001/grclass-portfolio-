@@ -25,7 +25,7 @@ export function Services() {
   });
 
   return (
-    <section className="bg-secondary-soft section-lg">
+    <section className="bg-background section-lg section-dot-grid border-y border-border-soft">
       <div className="container-page">
         {/* Header */}
         <div className="flex flex-col items-start justify-between gap-5 md:flex-row md:items-end md:gap-12">
