@@ -37,9 +37,9 @@ const localBusinessSchema = {
     "addressCountry": "YOUR COUNTRY"
   },
   "sameAs": [
-    "https://facebook.com/grclass",
+    "https://www.facebook.com/profile.php?id=61593836337234",
     "https://x.com/grclass",
-    "https://instagram.com/grclass",
+    "https://www.instagram.com/grclassofficial/",
     "https://linkedin.com/company/grclass",
     "https://youtube.com/@grclass"
   ]
@@ -53,6 +53,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Fonts | preconnect first so the stylesheet request starts on the
+            first paint pass instead of queuing behind our CSS bundle. */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Gelasio:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600;1,700&display=swap"
+        />
+
         {/* Google Analytics 4 */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"

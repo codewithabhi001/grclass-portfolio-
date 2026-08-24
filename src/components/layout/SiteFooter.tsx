@@ -189,7 +189,7 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@company.com"
-                className="w-full border border-background/10 bg-background/[0.04] px-3 py-2.5 text-[13px] text-background placeholder:text-background/30 focus:border-accent focus:outline-none"
+                className="w-full border border-background/10 bg-background/[0.04] px-3 py-2.5 text-caption text-background placeholder:text-background/30 focus:border-accent focus:outline-none"
               />
               <button
                 type="submit"
@@ -217,9 +217,9 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
             <Link href="/legal/terms" className="transition-colors hover:text-background/70">Terms</Link>
             <Link href="/legal/compliance" className="transition-colors hover:text-background/70">Compliance</Link>
             <div className="flex items-center gap-3 border-l border-white/20 pl-6 ml-2">
-              <a href="https://facebook.com/grclass" target="_blank" rel="noopener" className="transition-colors hover:text-background/70">Facebook</a>
+              <a href="https://www.facebook.com/profile.php?id=61593836337234" target="_blank" rel="noopener" className="transition-colors hover:text-background/70">Facebook</a>
               <a href="https://x.com/grclass" target="_blank" rel="noopener" className="transition-colors hover:text-background/70">X</a>
-              <a href="https://instagram.com/grclass" target="_blank" rel="noopener" className="transition-colors hover:text-background/70">Instagram</a>
+              <a href="https://www.instagram.com/grclassofficial/" target="_blank" rel="noopener" className="transition-colors hover:text-background/70">Instagram</a>
               <a href="https://linkedin.com/company/grclass" target="_blank" rel="noopener" className="transition-colors hover:text-background/70">LinkedIn</a>
               <a href="https://youtube.com/@grclass" target="_blank" rel="noopener" className="transition-colors hover:text-background/70">YouTube</a>
             </div>
