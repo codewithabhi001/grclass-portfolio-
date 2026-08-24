@@ -8,20 +8,54 @@ import { BrandLogo } from "./BrandLogo";
 import { subscribeNewsletter } from "@/lib/api";
 import { toast } from "sonner";
 import { servicesCatalogue } from "@/data/services";
-
+import { validateFormSubmission, recordSubmissionTimestamp } from "@/lib/antiSpam";
 
 export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
   const [email, setEmail] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const [busy, setBusy] = useState(false);
+  const [renderedAt] = useState<number>(() => Date.now());
 
   const subscribe = async (e: FormEvent) => {
     e.preventDefault();
     if (!email) return;
+
+    // 🛡️ Anti-bot & Spam Protection
+    const botCheck = validateFormSubmission({
+      honeypotValue: honeypot,
+      renderedAt,
+      email,
+      formKey: "newsletter",
+      minDurationSeconds: 1.5,
+      cooldownSeconds: 30,
+    });
+
+    if (botCheck.isSpam) {
+      if (botCheck.silentBlock) {
+        // Fake success for bots
+        setBusy(true);
+        setTimeout(() => {
+          setBusy(false);
+          toast.success("Subscribed", { description: "You'll receive the next bulletin." });
+          setEmail("");
+          setHoneypot("");
+        }, 500);
+        return;
+      } else {
+        toast.error("Subscription blocked", {
+          description: botCheck.reason || "Please enter a valid email address.",
+        });
+        return;
+      }
+    }
+
     setBusy(true);
     try {
       await subscribeNewsletter(email, "footer");
+      recordSubmissionTimestamp("newsletter");
       toast.success("Subscribed", { description: "You'll receive the next bulletin." });
       setEmail("");
+      setHoneypot("");
     } catch (err) {
       toast.error("Subscription failed", {
         description: err instanceof Error ? err.message : "Please try again.",
@@ -184,6 +218,17 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
             <label className="block font-mono text-[10px] uppercase tracking-wider text-background/40">
               Technical bulletin
             </label>
+            {/* Invisible Honeypot to trap spam bots */}
+            <div style={{ display: 'none', position: 'absolute', opacity: 0, pointerEvents: 'none' }} aria-hidden="true">
+              <input
+                type="text"
+                name="website_url_hp"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
             <div className="mt-2 flex">
               <input
                 type="email"

@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { submitSurveyorApplication } from "@/lib/api";
 import { Loader2, Upload, X, FileText } from "lucide-react";
+import { validateFormSubmission, recordSubmissionTimestamp } from "@/lib/antiSpam";
 
 interface SurveyorApplicationModalProps {
   open: boolean;
@@ -25,6 +26,7 @@ export function SurveyorApplicationModal({ open, onOpenChange }: SurveyorApplica
   const [cvFile, setCvFile] = useState<File | null>(null);
   const [idFile, setIdFile] = useState<File | null>(null);
   const [certFiles, setCertFiles] = useState<File[]>([]);
+  const [renderedAt] = useState<number>(() => Date.now());
 
   const cvInputRef = useRef<HTMLInputElement>(null);
   const idInputRef = useRef<HTMLInputElement>(null);
@@ -34,6 +36,38 @@ export function SurveyorApplicationModal({ open, onOpenChange }: SurveyorApplica
     e.preventDefault();
     const form = e.currentTarget;
     const fd = new FormData(form);
+
+    const honeypotVal = String(fd.get("website_hp") || "");
+    const emailVal = String(fd.get("email") || "");
+
+    const botCheck = validateFormSubmission({
+      honeypotValue: honeypotVal,
+      renderedAt,
+      email: emailVal,
+      formKey: "surveyor_app",
+      minDurationSeconds: 2.0,
+      cooldownSeconds: 60,
+    });
+
+    if (botCheck.isSpam) {
+      if (botCheck.silentBlock) {
+        setSubmitting(true);
+        setTimeout(() => {
+          setSubmitting(false);
+          toast.success("Application submitted", {
+            description: "Our HR technical committee will review your credentials.",
+          });
+          onOpenChange(false);
+          form.reset();
+        }, 600);
+        return;
+      } else {
+        toast.error("Submission blocked", {
+          description: botCheck.reason || "Please verify your information and try again.",
+        });
+        return;
+      }
+    }
 
     if (!cvFile) {
       toast.error("Validation error", { description: "Curriculum Vitae (CV) is required." });
@@ -48,7 +82,7 @@ export function SurveyorApplicationModal({ open, onOpenChange }: SurveyorApplica
     try {
       const payload = {
         full_name: String(fd.get("full_name")),
-        email: String(fd.get("email")),
+        email: emailVal,
         phone: String(fd.get("phone")),
         nationality: String(fd.get("nationality")),
         qualification: String(fd.get("qualification")),
@@ -60,6 +94,8 @@ export function SurveyorApplicationModal({ open, onOpenChange }: SurveyorApplica
         id_proof: idFile,
         certificates: certFiles.filter((f) => f && f.size > 0),
       });
+
+      recordSubmissionTimestamp("surveyor_app");
 
       toast.success("Application submitted", {
         description: "Our HR technical committee will review your credentials.",
@@ -106,6 +142,11 @@ export function SurveyorApplicationModal({ open, onOpenChange }: SurveyorApplica
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="flex-1 flex flex-col overflow-hidden">
+          {/* Invisible Honeypot to trap spam bots */}
+          <div style={{ display: 'none', position: 'absolute', opacity: 0, pointerEvents: 'none' }} aria-hidden="true">
+            <input type="text" name="website_hp" tabIndex={-1} autoComplete="off" />
+          </div>
+
           {/* Scrollable form body */}
           <div className="flex-1 overflow-y-auto p-6 space-y-6">
             <div className="grid gap-4 sm:grid-cols-2">

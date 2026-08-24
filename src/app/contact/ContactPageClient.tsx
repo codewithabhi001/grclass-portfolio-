@@ -16,6 +16,7 @@ import { Turnstile, TurnstileInstance } from '@marsidev/react-turnstile';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { validateFormSubmission, recordSubmissionTimestamp } from "@/lib/antiSpam";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters.").max(100, "Name cannot exceed 100 characters."),
@@ -31,6 +32,7 @@ type FormValues = z.infer<typeof formSchema>;
 const ContactPageClient = () => {
   const [submitting, setSubmitting] = useState(false);
   const [captchaToken, setCaptchaToken] = useState("");
+  const [renderedAt] = useState<number>(() => Date.now());
   const turnstileRef = useRef<TurnstileInstance>(null);
 
   const {
@@ -52,6 +54,37 @@ const ContactPageClient = () => {
   });
 
   const onSubmit = async (data: FormValues) => {
+    // 🛡️ Multi-layer Bot & Spam Check
+    const botCheck = validateFormSubmission({
+      honeypotValue: data.website,
+      renderedAt,
+      message: `${data.subject || ""} ${data.message}`,
+      email: data.email,
+      formKey: "contact",
+      minDurationSeconds: 2.0,
+      cooldownSeconds: 45,
+    });
+
+    if (botCheck.isSpam) {
+      if (botCheck.silentBlock) {
+        // Fake success to mislead bot scripts so they do not retry
+        setSubmitting(true);
+        setTimeout(() => {
+          setSubmitting(false);
+          toast.success("Enquiry received", {
+            description: "A senior surveyor will respond within one business day.",
+          });
+          reset();
+        }, 600);
+        return;
+      } else {
+        toast.error("Submission blocked", {
+          description: botCheck.reason || "Please verify your details and try again.",
+        });
+        return;
+      }
+    }
+
     const payload = {
       full_name: data.name,
       company: data.company,
@@ -67,6 +100,7 @@ const ContactPageClient = () => {
     setSubmitting(true);
     try {
       await submitContactEnquiry(payload);
+      recordSubmissionTimestamp("contact");
       toast.success("Enquiry received", {
         description: "A senior surveyor will respond within one business day.",
       });
