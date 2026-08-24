@@ -13,6 +13,8 @@ import { validateFormSubmission, recordSubmissionTimestamp } from "@/lib/antiSpa
 export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
   const [email, setEmail] = useState("");
   const [honeypot, setHoneypot] = useState("");
+  const [nlHumanVerified, setNlHumanVerified] = useState(false);
+  const [nlNonce, setNlNonce] = useState("");
   const [busy, setBusy] = useState(false);
   const [renderedAt] = useState<number>(() => Date.now());
 
@@ -20,7 +22,15 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
     e.preventDefault();
     if (!email) return;
 
-    // 🛡️ Anti-bot & Spam Protection
+    // 🛡️ 1. Interactive Human Verification Check
+    if (!nlHumanVerified || !nlNonce.startsWith("gr_nl_human_")) {
+      toast.error("Verification required", {
+        description: "Please check the 'I am human' box to subscribe.",
+      });
+      return;
+    }
+
+    // 🛡️ 2. Multi-layer Anti-bot & Spam Protection
     const botCheck = validateFormSubmission({
       honeypotValue: honeypot,
       renderedAt,
@@ -32,13 +42,15 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
 
     if (botCheck.isSpam) {
       if (botCheck.silentBlock) {
-        // Fake success for bots
+        // Fake success for bots to prevent retries
         setBusy(true);
         setTimeout(() => {
           setBusy(false);
           toast.success("Subscribed", { description: "You'll receive the next bulletin." });
           setEmail("");
           setHoneypot("");
+          setNlHumanVerified(false);
+          setNlNonce("");
         }, 500);
         return;
       } else {
@@ -56,6 +68,8 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
       toast.success("Subscribed", { description: "You'll receive the next bulletin." });
       setEmail("");
       setHoneypot("");
+      setNlHumanVerified(false);
+      setNlNonce("");
     } catch (err) {
       toast.error("Subscription failed", {
         description: err instanceof Error ? err.message : "Please try again.",
@@ -240,13 +254,38 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
               />
               <button
                 type="submit"
-                disabled={busy}
-                className="flex items-center justify-center bg-accent px-3 text-accent-foreground transition-colors hover:bg-accent-bright disabled:opacity-60"
+                disabled={busy || !nlHumanVerified}
+                className={`flex items-center justify-center px-3.5 transition-all duration-300 ${
+                  !nlHumanVerified
+                    ? "bg-white/10 text-white/40 cursor-not-allowed"
+                    : "bg-accent text-accent-foreground hover:bg-accent-bright shadow-brass cursor-pointer"
+                }`}
                 aria-label="Subscribe"
+                title={!nlHumanVerified ? "Check the security verification below to enable" : "Subscribe"}
               >
                 <Send className="h-4 w-4" />
               </button>
             </div>
+
+            {/* Interactive Human Verification */}
+            <label className="mt-2.5 flex items-center gap-2 text-[11px] text-background/60 cursor-pointer select-none hover:text-background/90 transition-colors">
+              <input
+                type="checkbox"
+                checked={nlHumanVerified}
+                onChange={(e) => {
+                  setNlHumanVerified(e.target.checked);
+                  if (e.target.checked) setNlNonce(`gr_nl_human_${Date.now()}`);
+                  else setNlNonce("");
+                }}
+                className="h-3.5 w-3.5 rounded border-white/20 bg-white/5 accent-accent cursor-pointer"
+              />
+              <span className="flex items-center gap-1">
+                <svg className="w-3 h-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                Security check: I am human
+              </span>
+            </label>
           </form>
 
           <p className="mt-5 text-[11px] leading-relaxed text-background/40">
