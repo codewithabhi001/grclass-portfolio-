@@ -195,7 +195,7 @@ const VerifyPageClient = () => {
         breadcrumbs={[{ label: "Verify" }]}
       />
 
-      <section className="container-page py-20 md:py-24">
+      <section className="container-page section">
         <div className="mx-auto max-w-3xl">
           <div className="mb-0 flex border border-border border-b-0">
             <button
@@ -244,7 +244,7 @@ const VerifyPageClient = () => {
                     value={ref}
                     onChange={(e) => setRef(e.target.value)}
                     placeholder="e.g. GR-SOLAS-2024-9482736"
-                    className="flex-1 border border-border bg-background px-4 py-3.5 font-mono text-[14px] text-foreground transition-colors focus:border-accent focus:outline-none"
+                    className="flex-1 border border-border bg-background px-4 py-3.5 font-mono text-body-sm text-foreground transition-colors focus:border-accent focus:outline-none"
                   />
                   <button
                     type="submit"
@@ -276,7 +276,7 @@ const VerifyPageClient = () => {
                   value={utn}
                   onChange={(e) => setUtn(e.target.value)}
                   placeholder="Printed on the Survey Status Report cover"
-                  className="mt-2 w-full border border-border bg-background px-4 py-3.5 font-mono text-[14px] text-foreground transition-colors focus:border-accent focus:outline-none"
+                  className="mt-2 w-full border border-border bg-background px-4 py-3.5 font-mono text-body-sm text-foreground transition-colors focus:border-accent focus:outline-none"
                 />
                 <label className="mt-4 block font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">
                   IMO number
@@ -287,7 +287,7 @@ const VerifyPageClient = () => {
                     value={imo}
                     onChange={(e) => setImo(e.target.value)}
                     placeholder="e.g. 9246891"
-                    className="flex-1 border border-border bg-background px-4 py-3.5 font-mono text-[14px] text-foreground transition-colors focus:border-accent focus:outline-none"
+                    className="flex-1 border border-border bg-background px-4 py-3.5 font-mono text-body-sm text-foreground transition-colors focus:border-accent focus:outline-none"
                   />
                   <button
                     type="submit"
@@ -318,12 +318,12 @@ const VerifyPageClient = () => {
                   <div className="flex items-center gap-3">
                     <CheckCircle2 className="h-6 w-6 text-accent" />
                     <div>
-                      <div className="font-display text-[18px] font-bold text-primary">
+                      <div className="font-display text-title font-bold text-primary">
                         {result.kind === "document"
                           ? "Document verified"
                           : "Certificate is valid"}
                       </div>
-                      <div className="mt-0.5 font-mono text-[12px] text-subtle">
+                      <div className="mt-0.5 font-mono text-xs text-subtle">
                         {result.kind === "document"
                           ? `UTN ${result.reference}`
                           : result.reference}
@@ -403,15 +403,15 @@ const VerifyPageClient = () => {
                   <div className="flex items-center gap-3">
                     <AlertCircle className="h-6 w-6 text-destructive" />
                     <div>
-                      <div className="font-display text-[18px] font-bold text-primary">
+                      <div className="font-display text-title font-bold text-primary">
                         No matching record
                       </div>
-                      <div className="mt-0.5 font-mono text-[12px] text-subtle">
+                      <div className="mt-0.5 font-mono text-xs text-subtle">
                         {result.reference}
                       </div>
                     </div>
                   </div>
-                  <p className="mt-4 text-[14px] font-light text-muted-foreground">
+                  <p className="mt-4 text-body-sm font-light text-muted-foreground">
                     This reference does not appear in the GR Class register.
                     Check the details and try again, or contact us if you
                     believe this is in error.
@@ -437,8 +437,8 @@ const VerifyPageClient = () => {
               },
             ].map((n) => (
               <div key={n.t} className="bg-background p-6">
-                <h4 className="h-display text-[15px] text-primary">{n.t}</h4>
-                <p className="mt-2 text-[13px] font-light leading-relaxed text-muted-foreground">
+                <h4 className="h-display text-body text-primary">{n.t}</h4>
+                <p className="mt-2 text-caption font-light text-muted-foreground">
                   {n.b}
                 </p>
               </div>
@@ -464,7 +464,7 @@ const Detail = ({
       <span className="text-accent">{icon}</span>
       {label}
     </dt>
-    <dd className="mt-2 font-display text-[15px] font-semibold text-primary">
+    <dd className="mt-2 font-display text-body font-semibold text-primary">
       {value}
     </dd>
   </div>

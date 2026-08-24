@@ -53,7 +53,7 @@ const ServicesPageClient = () => {
       />
 
       {/* Big logo display */}
-      <section className="bg-card border-b border-border py-10">
+      <section className="bg-card border-b border-border section-sm">
         <div className="container-page flex items-center justify-center gap-6">
           <img
             src="/grclass-logo.webp"
@@ -67,7 +67,7 @@ const ServicesPageClient = () => {
             <div className="font-display text-[22px] md:text-[26px] font-extrabold tracking-[0.06em] text-primary">
               GR&nbsp;CLASS
             </div>
-            <div className="text-[11px] md:text-[12px] uppercase tracking-[0.14em] text-primary/50">
+            <div className="text-[11px] md:text-xs uppercase tracking-[0.14em] text-primary/50">
               Classified for Standards
             </div>
           </div>
@@ -83,7 +83,7 @@ const ServicesPageClient = () => {
           <section
             key={cat.slug}
             id={cat.slug}
-            className={`py-16 md:py-20 ${catIdx % 2 === 0 ? "bg-background" : "bg-secondary-soft"}`}
+            className={`section ${catIdx % 2 === 0 ? "bg-background" : "bg-secondary-soft"}`}
           >
             <div className="container-page">
               {/* Category heading */}
@@ -98,10 +98,10 @@ const ServicesPageClient = () => {
                   {Icon}
                 </div>
                 <div>
-                  <h2 className="h-display text-[clamp(26px,3vw,38px)] text-primary">
+                  <h2 className="h-display text-display-md text-primary">
                     {cat.heading}
                   </h2>
-                  <p className="mt-1 text-[15px] font-light text-muted-foreground">
+                  <p className="mt-1 text-body font-light text-muted-foreground">
                     {cat.description}
                   </p>
                 </div>
@@ -140,13 +140,13 @@ const ServicesPageClient = () => {
                           </span>
                         </div>
                         <div className="px-6 py-6">
-                          <h3 className="font-display text-[18px] font-bold text-primary group-hover:text-secondary transition-colors">
+                          <h3 className="font-display text-title font-bold text-primary group-hover:text-secondary transition-colors">
                             {svc.title}
                           </h3>
-                          <p className="mt-2 text-[13px] font-light leading-relaxed text-muted-foreground line-clamp-3">
+                          <p className="mt-2 text-caption font-light text-muted-foreground line-clamp-3">
                             {svc.tagline}
                           </p>
-                          <div className="mt-5 inline-flex items-center gap-1.5 text-[12px] font-semibold text-accent transition-all group-hover:gap-2">
+                          <div className="mt-5 inline-flex items-center gap-1.5 text-xs font-semibold text-accent transition-all group-hover:gap-2">
                             View Details <ArrowUpRight className="h-3.5 w-3.5" />
                           </div>
                         </div>
@@ -161,7 +161,7 @@ const ServicesPageClient = () => {
       })}
 
       {/* CTA */}
-      <section className="border-t border-border bg-primary-deep py-20">
+      <section className="border-t border-border bg-primary-deep section">
         <div className="container-page grid gap-10 md:grid-cols-12 md:items-end">
           <div className="md:col-span-7">
             <img
@@ -171,17 +171,17 @@ const ServicesPageClient = () => {
               style={{ filter: "brightness(0) invert(1)" }}
             />
             <span className="eyebrow text-accent">Join the Network</span>
-            <h2 className="h-display mt-3 text-[clamp(24px,2.4vw,36px)] text-background">
+            <h2 className="h-display mt-3 text-display-md text-background">
               Become part of our exclusive surveyor network.
             </h2>
-            <p className="mt-4 text-[15px] font-light text-background/60">
+            <p className="mt-4 text-body font-light text-background/60">
               Contact us: <span className="text-accent font-semibold">+971555324087</span>
             </p>
           </div>
           <div className="md:col-span-5 md:text-right">
             <button
               onClick={() => setModalOpen(true)}
-              className="inline-flex items-center gap-2 bg-accent px-6 py-4 text-[16px] font-bold text-accent-foreground transition-colors hover:bg-accent-bright"
+              className="inline-flex items-center gap-2 bg-accent px-6 py-4 text-body-lg font-bold text-accent-foreground transition-colors hover:bg-accent-bright"
             >
               Become part of our surveyors <ArrowUpRight className="h-5 w-5" />
             </button>

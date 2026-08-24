@@ -24,18 +24,18 @@ const HomePageClient = () => {
       <TrustBar />
 
       {/* Join Surveyor Network banner */}
-      <section className="border-y border-border bg-secondary-soft py-14">
+      <section className="border-y border-border bg-secondary-soft section-sm">
         <div className="container-page grid gap-8 md:grid-cols-12 md:items-center">
           <div className="md:col-span-8">
             <span className="eyebrow text-secondary">Join the Network</span>
-            <h2 className="h-display mt-2 text-[clamp(22px,2.2vw,32px)] text-primary">
+            <h2 className="h-display mt-2 text-display-sm text-primary">
               Become part of our exclusive surveyor network.
             </h2>
           </div>
           <div className="md:col-span-4 md:text-right">
             <button
               onClick={() => setModalOpen(true)}
-              className="inline-flex items-center gap-2 bg-accent px-6 py-3.5 text-[15px] font-bold text-accent-foreground transition-colors hover:bg-accent-bright"
+              className="inline-flex items-center gap-2 bg-accent px-6 py-3.5 text-body font-bold text-accent-foreground transition-colors hover:bg-accent-bright"
             >
               Become part of our surveyors <ArrowUpRight className="h-4 w-4" />
             </button>

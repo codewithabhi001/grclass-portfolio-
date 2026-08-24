@@ -55,20 +55,20 @@ export function SiteHeader() {
     <>
       <header
         className={
-          "fixed top-0 inset-x-0 z-50 transition-all duration-500 " +
+          "fixed inset-x-0 top-0 z-50 h-header transition-[background-color,box-shadow,backdrop-filter] duration-300 " +
           (scrolled
-            ? "glass-panel-navy py-1"
-            : "bg-primary/95 backdrop-blur-md py-3")
+            ? "bg-primary/90 shadow-[0_8px_30px_hsl(var(--primary-deep)/0.35)] backdrop-blur-xl"
+            : "bg-primary/95 backdrop-blur-md")
         }
       >
         {/* Top accent line */}
-        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-accent via-accent-bright to-accent opacity-90" />
+        <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-accent via-accent-bright to-accent opacity-90" />
 
-        <div className="container-page flex h-16 items-center justify-between gap-4 md:h-20 md:gap-6">
+        <div className="container-page flex h-full items-center justify-between gap-4 md:gap-6">
           <BrandLogo variant="light" />
 
           {/* Desktop nav */}
-          <nav className="hidden items-stretch lg:flex" aria-label="Primary">
+          <nav className="hidden items-stretch self-stretch lg:flex" aria-label="Primary">
             {mainNav.map((item) => {
               const active = pathname === item.href;
               const hasChildren = !!item.children;
@@ -82,8 +82,9 @@ export function SiteHeader() {
                 >
                   <Link
                     href={item.href}
+                    aria-current={active ? "page" : undefined}
                     className={
-                      "group relative flex items-center px-4 text-[13.5px] font-semibold tracking-wide transition-colors duration-200 " +
+                      "group relative flex items-center px-3.5 text-body-sm font-semibold tracking-[0.005em] transition-colors duration-200 xl:px-4 " +
                       (active
                         ? "text-white"
                         : "text-white/65 hover:text-white")
@@ -98,8 +99,9 @@ export function SiteHeader() {
                     )}
                     {/* Active indicator — gold bar */}
                     <span
+                      aria-hidden
                       className={
-                        "absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] rounded-full bg-accent transition-all duration-300 " +
+                        "absolute bottom-3 left-1/2 h-[3px] -translate-x-1/2 rounded-full bg-accent transition-all duration-300 " +
                         (active ? "w-[60%] opacity-100" : "w-0 opacity-0 group-hover:w-[40%] group-hover:opacity-60")
                       }
                     />
@@ -108,14 +110,14 @@ export function SiteHeader() {
                   {/* Mega Dropdown */}
                   {hasChildren && showDropdown && (
                     <div
-                      className="absolute left-0 w-full top-full bg-primary-deep/95 backdrop-blur-2xl shadow-2xl z-50 border-t border-white/10 animate-in fade-in slide-in-from-top-2 duration-300"
+                      className="absolute inset-x-0 top-full z-50 border-t border-white/10 bg-primary-deep/95 shadow-2xl backdrop-blur-2xl animate-in fade-in slide-in-from-top-2 duration-300"
                       onMouseEnter={openDropdown}
                       onMouseLeave={closeDropdown}
                     >
-                      <div className="container-page grid grid-cols-4 gap-8 py-10">
+                      <div className="container-page grid grid-cols-2 gap-x-8 gap-y-10 py-10 xl:grid-cols-4">
                         {item.children!.map((cat) => (
                           <div key={cat.heading}>
-                            <h3 className="text-accent font-display text-[13px] font-bold uppercase tracking-[0.14em] mb-4">
+                            <h3 className="mb-4 font-display text-overline font-bold uppercase text-accent">
                               {cat.heading}
                             </h3>
                             <ul className="space-y-2.5">
@@ -123,7 +125,7 @@ export function SiteHeader() {
                                 <li key={sub.href + sub.label}>
                                   <Link
                                     href={sub.href}
-                                    className="text-[13.5px] text-white/70 hover:text-white transition-colors"
+                                    className="text-body-sm text-white/70 transition-colors hover:text-white"
                                   >
                                     {sub.label}
                                   </Link>
@@ -144,29 +146,29 @@ export function SiteHeader() {
           <div className="flex items-center gap-1 md:gap-2">
             <Link
               href="/verify"
-              className="hidden items-center gap-1.5 rounded-md px-3 py-2 text-[13px] font-medium text-white/60 transition-colors hover:bg-white/[0.06] hover:text-white lg:flex"
+              className="hidden items-center gap-1.5 rounded-md px-3 py-2 text-caption font-medium text-white/60 transition-colors hover:bg-white/[0.06] hover:text-white lg:flex"
             >
               <ShieldCheck className="h-4 w-4" /> Verify
             </Link>
             <a
               href={site.ops}
-              className="hidden items-center gap-1.5 rounded-md px-3 py-2 text-[13px] font-medium text-white/60 transition-colors hover:bg-white/[0.06] hover:text-white xl:flex"
+              className="hidden items-center gap-1.5 rounded-md px-3 py-2 text-caption font-medium text-white/60 transition-colors hover:bg-white/[0.06] hover:text-white xl:flex"
             >
               <UserRound className="h-4 w-4" /> Login
             </a>
 
             {/* Divider */}
-            <span className="hidden h-6 w-px bg-white/15 mx-2 xl:block" />
+            <span aria-hidden className="mx-2 hidden h-6 w-px bg-white/15 xl:block" />
 
             <Link
               href="/contact"
-              className="hidden items-center bg-gradient-to-r from-accent to-accent-bright bg-sweep px-5 py-2.5 text-[13px] font-bold tracking-wide text-primary shadow-brass transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_hsl(var(--accent)/0.6)] md:inline-flex rounded-sm"
+              className="hidden items-center rounded-sm bg-gradient-to-r from-accent to-accent-bright bg-sweep px-5 py-2.5 text-caption font-bold tracking-[0.01em] text-primary shadow-brass transition-all duration-300 hover:shadow-[0_0_20px_hsl(var(--accent)/0.6)] md:inline-flex"
             >
               Get in touch
             </Link>
             <button
               onClick={() => setOpen((o) => !o)}
-              className="flex h-10 w-10 items-center justify-center text-white/80 hover:text-white transition-colors lg:hidden"
+              className="-mr-2 flex h-11 w-11 items-center justify-center rounded-md text-white/80 transition-colors hover:bg-white/[0.06] hover:text-white lg:hidden"
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
             >
@@ -179,7 +181,7 @@ export function SiteHeader() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="fixed inset-x-0 top-[66px] md:top-[82px] bottom-0 z-40 overflow-y-auto bg-primary-deep lg:hidden">
+        <div className="fixed inset-x-0 bottom-0 top-header z-40 overflow-y-auto overscroll-contain bg-primary-deep lg:hidden">
           <nav className="container-page flex flex-col py-6" aria-label="Mobile">
             {mainNav.map((item) => {
               const active = pathname === item.href;
@@ -192,31 +194,32 @@ export function SiteHeader() {
                     <>
                       <button
                         onClick={() => setExpandedMobile(isExpanded ? null : item.href)}
+                        aria-expanded={isExpanded}
                         className={
-                          "flex w-full items-center justify-between border-b border-white/[0.06] py-4 text-[15px] font-medium transition-colors " +
+                          "flex w-full items-center justify-between border-b border-white/[0.06] py-4 text-body-lg font-medium transition-colors " +
                           (active ? "text-accent" : "text-white/75 hover:text-white")
                         }
                       >
                         <span>{item.label}</span>
                         <ChevronDown className={
-                          "h-4 w-4 transition-transform duration-200 " +
+                          "h-4 w-4 shrink-0 transition-transform duration-200 " +
                           (isExpanded ? "rotate-180" : "")
                         } />
                       </button>
                       {isExpanded && (
                         <div className="border-b border-white/[0.06] pb-4">
                           {item.children!.map((cat) => (
-                            <div key={cat.heading} className="mt-4 first:mt-2">
-                              <h4 className="text-accent font-display text-[11px] font-bold uppercase tracking-[0.14em] mb-2 px-3">
+                            <div key={cat.heading} className="mt-5 first:mt-3">
+                              <h4 className="mb-2 px-3 font-display text-overline-sm font-bold uppercase text-accent">
                                 {cat.heading}
                               </h4>
-                              <ul className="space-y-1">
+                              <ul>
                                 {cat.items.map((sub) => (
                                   <li key={sub.href + sub.label}>
                                     <Link
                                       href={sub.href}
                                       onClick={() => setOpen(false)}
-                                      className="block px-3 py-1.5 text-[13.5px] text-white/60 hover:text-white transition-colors"
+                                      className="block px-3 py-2 text-body-sm text-white/60 transition-colors hover:text-white"
                                     >
                                       {sub.label}
                                     </Link>
@@ -232,13 +235,14 @@ export function SiteHeader() {
                     <Link
                       href={item.href}
                       onClick={() => setOpen(false)}
+                      aria-current={active ? "page" : undefined}
                       className={
-                        "flex items-center justify-between border-b border-white/[0.06] py-4 text-[15px] font-medium transition-colors " +
+                        "flex items-center justify-between border-b border-white/[0.06] py-4 text-body-lg font-medium transition-colors " +
                         (active ? "text-accent" : "text-white/75 hover:text-white")
                       }
                     >
                       <span>{item.label}</span>
-                      <span className="font-mono text-[10px] text-white/25">
+                      <span aria-hidden className="font-mono text-overline-sm text-white/25">
                         {String(mainNav.indexOf(item) + 1).padStart(2, "0")}
                       </span>
                     </Link>
@@ -247,18 +251,18 @@ export function SiteHeader() {
               );
             })}
 
-            <div className="mt-8 space-y-3">
+            <div className="mt-8 space-y-3 pb-4">
               <Link
                 href="/contact"
                 onClick={() => setOpen(false)}
-                className="flex items-center justify-center bg-accent px-4 py-3.5 text-sm font-bold text-accent-foreground"
+                className="flex items-center justify-center bg-accent px-4 py-3.5 text-body-sm font-bold text-accent-foreground"
               >
                 Get in touch
               </Link>
               <Link
                 href="/verify"
                 onClick={() => setOpen(false)}
-                className="flex items-center justify-center gap-2 border border-white/15 px-4 py-3 text-sm font-medium text-white/80"
+                className="flex items-center justify-center gap-2 border border-white/15 px-4 py-3.5 text-body-sm font-medium text-white/80"
               >
                 <ShieldCheck className="h-4 w-4" /> Verify Certificate
               </Link>

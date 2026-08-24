@@ -41,7 +41,7 @@ const VesselSearchPageClient = () => {
         subtitle="Look up any vessel by IMO number to confirm its current class status with GR Class."
         breadcrumbs={[{ label: "Vessel Search" }]}
       />
-      <section className="container-page py-20 md:py-24">
+      <section className="container-page section">
         <form onSubmit={submit} className="mx-auto max-w-3xl border border-border bg-card p-8 md:p-10">
           <div className="flex items-center gap-3">
             <Anchor className="h-5 w-5 text-accent" />
@@ -51,7 +51,7 @@ const VesselSearchPageClient = () => {
           <div className="mt-2 flex gap-2">
             <input value={imo} onChange={(e) => setImo(e.target.value)} placeholder="e.g. 9482736"
               inputMode="numeric" pattern="\d{7}"
-              className="flex-1 border border-border bg-background px-4 py-3.5 font-mono text-[14px] focus:border-accent focus:outline-none" />
+              className="flex-1 border border-border bg-background px-4 py-3.5 font-mono text-body-sm focus:border-accent focus:outline-none" />
             <button disabled={busy} className="inline-flex items-center gap-2 bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground hover:bg-primary-soft disabled:opacity-60">
               {busy ? "Searching…" : <>Search <Search className="h-4 w-4" /></>}
             </button>
@@ -66,8 +66,8 @@ const VesselSearchPageClient = () => {
             <div className="flex items-center gap-3">
               <Anchor className="h-6 w-6 text-accent" />
               <div>
-                <div className="font-display text-[18px] font-bold text-primary">{data.name}</div>
-                <div className="mt-0.5 font-mono text-[12px] text-subtle">IMO {data.imo}</div>
+                <div className="font-display text-title font-bold text-primary">{data.name}</div>
+                <div className="mt-0.5 font-mono text-xs text-subtle">IMO {data.imo}</div>
               </div>
             </div>
             <dl className="mt-8 grid gap-6 md:grid-cols-2">
@@ -80,7 +80,7 @@ const VesselSearchPageClient = () => {
               ].map(([l, v]) => v ? (
                 <div key={l as string}>
                   <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">{l}</dt>
-                  <dd className="mt-1 font-display text-[15px] font-semibold text-primary">{v}</dd>
+                  <dd className="mt-1 font-display text-body font-semibold text-primary">{v}</dd>
                 </div>
               ) : null)}
             </dl>
@@ -92,8 +92,8 @@ const VesselSearchPageClient = () => {
             <div className="flex items-center gap-3">
               <AlertCircle className="h-6 w-6 text-destructive" />
               <div>
-                <div className="font-display text-[18px] font-bold text-primary">Not found</div>
-                <div className="mt-0.5 font-mono text-[12px] text-subtle">{err}</div>
+                <div className="font-display text-title font-bold text-primary">Not found</div>
+                <div className="mt-0.5 font-mono text-xs text-subtle">{err}</div>
               </div>
             </div>
           </div>

@@ -7,7 +7,7 @@ import { aboutFeatures } from "@/data/home";
 
 export function About() {
   return (
-    <section className="container-page py-16 sm:py-20 md:py-28">
+    <section className="container-page section-lg">
       <div className="grid gap-10 md:grid-cols-2 md:items-center md:gap-14 lg:gap-20">
         {/* Left Column (Image & Quote) */}
         <div className="flex flex-col gap-6">
@@ -48,7 +48,7 @@ export function About() {
           </motion.div>
 
           <blockquote className="border-l-[3px] border-accent bg-accent-soft px-5 py-4">
-            <p className="text-[14px] italic leading-relaxed text-muted-foreground sm:text-[14.5px]">
+            <p className="text-body-sm italic text-muted-foreground">
               "Classification is a contract of trust between owner, flag, and the sea.
               Our role is to keep that contract honest."
             </p>
@@ -66,19 +66,19 @@ export function About() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="eyebrow text-secondary">About GR Class</span>
-          <h2 className="h-display mt-3 text-[clamp(24px,3.2vw,40px)] text-primary">
+          <h2 className="h-display mt-3 text-display-md text-primary">
             Classified for standards
           </h2>
-          <p className="mt-5 text-[14.5px] font-light leading-[1.8] text-muted-foreground sm:text-[15px]">
+          <p className="mt-5 text-body-sm font-light leading-[1.8] text-muted-foreground">
             GR class welcomes you for your asset’s safety and compliances. GR Class is a Recognized Organization (RO), Recognized Security Organization (RSO) and Classification Society (CS) authorized to offer statutory/class certification and services.
           </p>
-          <p className="mt-4 text-[14.5px] font-light leading-[1.8] text-muted-foreground sm:text-[15px]">
+          <p className="mt-4 text-body-sm font-light leading-[1.8] text-muted-foreground">
             We are committed to ensuring the highest standards of safety, reliability, and environmental sustainability in the maritime industry. Our team possesses technical expertise and professionalism guaranteeing dedicated serving our clients.
           </p>
-          <p className="mt-4 text-[14.5px] font-light leading-[1.8] text-muted-foreground sm:text-[15px]">
+          <p className="mt-4 text-body-sm font-light leading-[1.8] text-muted-foreground">
             Our range of services includes the classification of newly built ships, as well as the classification and certification of existing vessels for continued safe operation. We also provide statutory certification services.
           </p>
-          <p className="mt-4 text-[14.5px] font-light leading-[1.8] text-muted-foreground sm:text-[15px]">
+          <p className="mt-4 text-body-sm font-light leading-[1.8] text-muted-foreground">
             We strive to be the trusted partner for ship owners and operators, offering them reliable, cost-effective solutions tailored to their specific needs.
           </p>
 
@@ -96,8 +96,8 @@ export function About() {
                   0{i + 1}
                 </span>
                 <div>
-                  <h3 className="text-[15px] font-semibold text-primary">{f.title}</h3>
-                  <p className="mt-1 text-[13px] font-light leading-relaxed text-muted-foreground sm:text-[13.5px]">
+                  <h3 className="text-body font-semibold text-primary">{f.title}</h3>
+                  <p className="mt-1 text-caption font-light text-muted-foreground">
                     {f.body}
                   </p>
                 </div>

@@ -60,12 +60,12 @@ const CareersPageClient = () => {
         breadcrumbs={[{ label: "Careers" }]}
       />
 
-      <section className="container-page py-20 md:py-24">
+      <section className="container-page section">
         <div className="grid gap-14 md:grid-cols-12">
           <div className="md:col-span-5">
             <img src={typeof careersImg === "string" ? careersImg : (careersImg as any).src} alt="Surveyor at work" className="h-full w-full object-cover" loading="lazy" />
             <div className="mt-6 border-l-[3px] border-accent bg-accent-soft px-5 py-4">
-              <p className="text-[14px] italic leading-relaxed text-foreground/80">
+              <p className="text-body-sm italic text-foreground/80">
                 "We invest in our surveyors' technical development | from IMO rule schools to specialist
                 alternative-fuels training."
               </p>
@@ -77,7 +77,7 @@ const CareersPageClient = () => {
 
           <form onSubmit={submit} className="md:col-span-7">
             <span className="eyebrow text-secondary">Apply now</span>
-            <h2 className="h-display mt-3 text-[clamp(22px,2.2vw,30px)] text-primary">
+            <h2 className="h-display mt-3 text-display-sm text-primary">
               Surveyor & technical staff application
             </h2>
 
@@ -96,7 +96,7 @@ const CareersPageClient = () => {
                   name="summary"
                   rows={4}
                   required
-                  className="mt-2 w-full resize-none border border-border bg-card px-4 py-3 text-[14px] focus:border-accent focus:outline-none"
+                  className="mt-2 w-full resize-none border border-border bg-card px-4 py-3 text-body-sm focus:border-accent focus:outline-none"
                 />
               </div>
 
@@ -111,7 +111,7 @@ const CareersPageClient = () => {
                   multiple
                   accept=".pdf,image/*"
                   onChange={(e) => setCerts(Array.from(e.target.files || []))}
-                  className="mt-2 block w-full text-[13px] file:mr-3 file:border-0 file:bg-primary file:px-4 file:py-2.5 file:text-[12px] file:font-semibold file:text-primary-foreground hover:file:bg-primary-soft"
+                  className="mt-2 block w-full text-caption file:mr-3 file:border-0 file:bg-primary file:px-4 file:py-2.5 file:text-xs file:font-semibold file:text-primary-foreground hover:file:bg-primary-soft"
                 />
                 {certs.length > 0 && (
                   <p className="mt-2 font-mono text-[11px] text-subtle">{certs.length} file(s) attached</p>
@@ -130,7 +130,7 @@ const CareersPageClient = () => {
         </div>
       </section>
 
-      <section className="border-t border-border bg-secondary-soft py-16">
+      <section className="border-t border-border bg-secondary-soft section">
         <div className="container-page grid gap-px bg-border md:grid-cols-3">
           {[
             { t: "Exclusive employment", b: "No sub-contracting. Every surveyor is a GR Class employee." },
@@ -139,8 +139,8 @@ const CareersPageClient = () => {
           ].map((n) => (
             <div key={n.t} className="bg-background p-7">
               <Briefcase className="h-5 w-5 text-accent" />
-              <h4 className="h-display mt-4 text-[17px] text-primary">{n.t}</h4>
-              <p className="mt-2 text-[13.5px] font-light leading-relaxed text-muted-foreground">{n.b}</p>
+              <h4 className="h-display mt-4 text-body-lg text-primary">{n.t}</h4>
+              <p className="mt-2 text-caption font-light text-muted-foreground">{n.b}</p>
             </div>
           ))}
         </div>
@@ -153,14 +153,14 @@ const Field = ({ label, name, type = "text", required, placeholder }: { label: s
   <div>
     <label className="block font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">{label}</label>
     <input type={type} name={name} required={required} placeholder={placeholder}
-      className="mt-2 w-full border border-border bg-card px-4 py-3 text-[14px] focus:border-accent focus:outline-none" />
+      className="mt-2 w-full border border-border bg-card px-4 py-3 text-body-sm focus:border-accent focus:outline-none" />
   </div>
 );
 
 const FileField = ({ label, file, onChange, accept }: { label: string; file: File | null; onChange: (f: File | null) => void; accept?: string }) => (
   <div>
     <label className="block font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">{label}</label>
-    <label className="mt-2 flex cursor-pointer items-center gap-3 border border-dashed border-border bg-card px-4 py-3 text-[13px] text-muted-foreground transition-colors hover:border-accent">
+    <label className="mt-2 flex cursor-pointer items-center gap-3 border border-dashed border-border bg-card px-4 py-3 text-caption text-muted-foreground transition-colors hover:border-accent">
       <Upload className="h-4 w-4 text-accent" />
       <span className="truncate">{file ? file.name : "Choose file"}</span>
       <input type="file" accept={accept} onChange={(e) => onChange(e.target.files?.[0] || null)} className="hidden" />

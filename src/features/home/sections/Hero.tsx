@@ -83,7 +83,7 @@ export function Hero() {
           <motion.h1
             variants={{ hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0 } }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="h-display max-w-[15ch] text-[clamp(30px,7.5vw,56px)] leading-[1.05] text-white lg:text-primary drop-shadow-md"
+            className="h-display max-w-[15ch] text-display-xl leading-[1.05] text-white lg:text-primary drop-shadow-md"
           >
             GR Class Maritime Classification
             <span className="block bg-gradient-to-r from-accent to-accent-bright bg-clip-text text-transparent">
@@ -95,7 +95,7 @@ export function Hero() {
           <motion.p
             variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-4 max-w-xl text-[14px] font-medium leading-relaxed text-white/85 sm:mt-6 sm:text-[16px] lg:text-primary/80 lg:text-lg"
+            className="mt-4 max-w-measure text-body font-medium text-white/85 sm:mt-6 sm:text-lead lg:text-primary/80"
           >
             Our range of services includes the classification of newly built ships, as well as the classification and certification of existing vessels for continued safe operation.
           </motion.p>
@@ -108,21 +108,21 @@ export function Hero() {
           >
             <Link
               href="/contact"
-              className="group inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-gradient-to-r from-accent to-accent-bright bg-sweep px-5 py-3.5 text-[14px] font-semibold tracking-wide text-primary shadow-brass transition-all hover:scale-105 hover:shadow-[0_0_20px_hsl(var(--accent)/0.6)] sm:px-8 sm:py-4 sm:text-[15px] rounded-sm"
+              className="group inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-gradient-to-r from-accent to-accent-bright bg-sweep px-5 py-3.5 text-body-sm font-semibold tracking-wide text-primary shadow-brass transition-all hover:scale-105 hover:shadow-[0_0_20px_hsl(var(--accent)/0.6)] sm:px-8 sm:py-4 rounded-sm"
             >
               Get in Touch
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
               href="/verify"
-              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 border border-white/25 bg-white/[0.06] px-5 py-3.5 text-[14px] font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/10 sm:px-8 sm:py-4 sm:text-[15px] lg:border-primary/20 lg:bg-primary lg:text-white lg:hover:bg-primary-deep"
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 border border-white/25 bg-white/[0.06] px-5 py-3.5 text-body-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/10 sm:px-8 sm:py-4 lg:border-primary/20 lg:bg-primary lg:text-white lg:hover:bg-primary-deep"
             >
               <ShieldCheck className="h-4 w-4 sm:h-5 sm:w-5" />
               Verify Certificate
             </Link>
             <Link
               href="/how-it-works"
-              className="group hidden items-center gap-3 px-4 text-[15px] font-semibold text-primary transition-colors hover:text-primary-soft sm:inline-flex lg:inline-flex"
+              className="group hidden items-center gap-3 px-4 text-body font-semibold text-primary transition-colors hover:text-primary-soft sm:inline-flex lg:inline-flex"
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-accent text-accent transition-transform group-hover:scale-110">
                 <PlayCircle className="h-5 w-5" fill="currentColor" />

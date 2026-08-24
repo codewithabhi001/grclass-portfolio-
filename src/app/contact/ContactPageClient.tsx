@@ -91,39 +91,39 @@ const ContactPageClient = () => {
         breadcrumbs={[{ label: "Contact" }]}
       />
 
-      <section className="container-page py-20 md:py-24">
+      <section className="container-page section">
         <div className="grid gap-14 md:grid-cols-12">
           {/* Form */}
           <form onSubmit={handleSubmit(onSubmit)} className="md:col-span-7">
             <span className="eyebrow text-secondary">Send an enquiry</span>
-            <h2 className="h-display mt-3 text-[clamp(22px,2.2vw,30px)] text-primary">
+            <h2 className="h-display mt-3 text-display-sm text-primary">
               We respond within one business day.
             </h2>
 
             <div className="mt-10 grid gap-5 md:grid-cols-2">
               <div className="">
                 <label className="block font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">Full name</label>
-                <input {...register("name")} className="mt-2 w-full border border-border bg-card px-4 py-3 text-[14px] text-foreground transition-colors focus:border-accent focus:outline-none" />
+                <input {...register("name")} className="mt-2 w-full border border-border bg-card px-4 py-3 text-body-sm text-foreground transition-colors focus:border-accent focus:outline-none" />
                 {errors.name && <p className="mt-1 text-xs text-red-500">{errors.name.message}</p>}
               </div>
               <div className="">
                 <label className="block font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">Company</label>
-                <input {...register("company")} className="mt-2 w-full border border-border bg-card px-4 py-3 text-[14px] text-foreground transition-colors focus:border-accent focus:outline-none" />
+                <input {...register("company")} className="mt-2 w-full border border-border bg-card px-4 py-3 text-body-sm text-foreground transition-colors focus:border-accent focus:outline-none" />
                 {errors.company && <p className="mt-1 text-xs text-red-500">{errors.company.message}</p>}
               </div>
               <div className="">
                 <label className="block font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">Corporate email</label>
-                <input type="email" {...register("email")} className="mt-2 w-full border border-border bg-card px-4 py-3 text-[14px] text-foreground transition-colors focus:border-accent focus:outline-none" />
+                <input type="email" {...register("email")} className="mt-2 w-full border border-border bg-card px-4 py-3 text-body-sm text-foreground transition-colors focus:border-accent focus:outline-none" />
                 {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>}
               </div>
               <div className="">
                 <label className="block font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">Phone</label>
-                <input type="tel" {...register("phone")} className="mt-2 w-full border border-border bg-card px-4 py-3 text-[14px] text-foreground transition-colors focus:border-accent focus:outline-none" />
+                <input type="tel" {...register("phone")} className="mt-2 w-full border border-border bg-card px-4 py-3 text-body-sm text-foreground transition-colors focus:border-accent focus:outline-none" />
                 {errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone.message}</p>}
               </div>
               <div className="md:col-span-2">
                 <label className="block font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">Subject</label>
-                <input {...register("subject")} className="mt-2 w-full border border-border bg-card px-4 py-3 text-[14px] text-foreground transition-colors focus:border-accent focus:outline-none" />
+                <input {...register("subject")} className="mt-2 w-full border border-border bg-card px-4 py-3 text-body-sm text-foreground transition-colors focus:border-accent focus:outline-none" />
                 {errors.subject && <p className="mt-1 text-xs text-red-500">{errors.subject.message}</p>}
               </div>
               <div className="md:col-span-2">
@@ -133,7 +133,7 @@ const ContactPageClient = () => {
                 <textarea
                   {...register("message")}
                   rows={5}
-                  className="mt-2 w-full resize-none border border-border bg-card px-4 py-3 text-[14px] text-foreground transition-colors focus:border-accent focus:outline-none"
+                  className="mt-2 w-full resize-none border border-border bg-card px-4 py-3 text-body-sm text-foreground transition-colors focus:border-accent focus:outline-none"
                 />
                 {errors.message && <p className="mt-1 text-xs text-red-500">{errors.message.message}</p>}
               </div>
@@ -171,7 +171,7 @@ const ContactPageClient = () => {
               <h3 className="font-display text-[11px] font-bold uppercase tracking-[0.18em] text-secondary">
                 Direct lines
               </h3>
-              <div className="mt-6 space-y-5 text-[14px]">
+              <div className="mt-6 space-y-5 text-body-sm">
                 <a href={`mailto:${site.email}`} className="group flex items-start gap-3 text-foreground transition-colors hover:text-secondary">
                   <Mail className="mt-0.5 h-4 w-4 text-accent" />
                   <div>

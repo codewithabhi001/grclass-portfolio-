@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Gelasio:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600;1,700&display=swap');
+/* Fonts are loaded from `app/layout.tsx` with `preconnect` + a plain
+   stylesheet link. A CSS `@import` here would serialise the font request
+   behind this file's download and delay first paint. */
 
 @tailwind base;
 @tailwind components;
@@ -52,6 +54,11 @@
     --ring: 41 70% 41%;
 
     --radius: 0.25rem;
+
+    /* Layout | height of the fixed site header. Every page offset, anchor
+       scroll target, and sticky `top` derives from this one value so the
+       header can never overlap page content again. */
+    --header-h: 4rem;
 
     /* Gradients */
     --gradient-hero: linear-gradient(90deg,
@@ -107,24 +114,75 @@
 
 @layer base {
   * { @apply border-border; }
-  
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  *::-webkit-scrollbar {
-    display: none;
+
+  /* The header grows at `lg`, so the offset token has to grow with it. */
+  @media (min-width: 1024px) {
+    :root { --header-h: 5rem; }
   }
 
-  /* Hide scrollbar for IE, Edge and Firefox */
-  * {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-size-adjust: 100%;
+    /* Anchor navigation clears the fixed header. `scroll-behavior` is
+       deliberately NOT set here — Lenis owns smooth scrolling, and having
+       both fight over the same gesture produced stuttering. */
+    scroll-padding-top: calc(var(--header-h) + 1.5rem);
   }
 
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans antialiased;
     font-feature-settings: "ss01", "cv11";
+    /* Stop iOS/Android from inflating body copy in landscape. */
+    text-rendering: optimizeLegibility;
   }
+
+  /* Any element that can be an in-page anchor target clears the header too. */
+  [id] { scroll-margin-top: calc(var(--header-h) + 1.5rem); }
+
+  /* Headings: balanced ragging, no mid-word breaks. Body: no orphans. */
+  h1, h2, h3, h4, h5, h6 { text-wrap: balance; }
+  p, li, blockquote, figcaption { text-wrap: pretty; }
+
+  /* Slim, on-brand scrollbar. The previous rule hid scrollbars globally,
+     which removed the only cue for how long a page is — use `.no-scrollbar`
+     on the few carousels that genuinely want them gone. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--primary) / 0.22);
+    border: 3px solid transparent;
+    background-clip: content-box;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background-color: hsl(var(--primary) / 0.4); }
+
+  /* Visible keyboard focus everywhere. `--ring` was defined but nothing
+     consumed it, so tabbing through the site was untrackable. */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
   ::selection { background: hsl(var(--accent) / 0.25); color: hsl(var(--primary)); }
+
+  /* Media never blows out its column. */
+  img, svg, video, canvas { max-width: 100%; }
+
+  /* Respect the OS setting instead of animating regardless. */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
 
 @layer components {
@@ -134,22 +192,70 @@
     max-width: 1440px;
   }
 
+  /* Narrow container for long-form reading (legal, articles). */
+  .container-prose {
+    @apply mx-auto w-full px-5 sm:px-8;
+    max-width: 76ch;
+  }
+
+  /* =====================================================================
+     Vertical rhythm.
+
+     Section padding had drifted across py-14/16/20/24 with inconsistent
+     breakpoint variants, so bands of the same importance read at different
+     weights. These three steps are the only ones a section should use.
+     ===================================================================== */
+  .section {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+  .section-lg {
+    @apply py-20 md:py-28 lg:py-32;
+  }
+  .section-sm {
+    @apply py-10 md:py-14;
+  }
+  /* Thin bands: stats strips, trust bars, notices. */
+  .section-band {
+    @apply py-7 md:py-9;
+  }
+
+  /* Standard gap between a section's header block and its content. */
+  .section-head {
+    @apply mb-10 md:mb-14;
+  }
+
   /* Editorial eyebrow tag */
   .eyebrow {
-    @apply inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.18em];
+    @apply inline-flex items-center gap-3 text-overline-sm font-bold uppercase;
   }
   .eyebrow::before {
     content: '';
-    @apply block w-5 h-[2px] bg-accent;
+    @apply block h-[2px] w-5 shrink-0 bg-accent;
   }
 
-  /* Display heading */
+  /* Display heading.
+     Keeps a tight default so any heading still on an ad-hoc size stays
+     compact; the `text-display-*` tokens are utilities and therefore
+     override both the leading and the tracking set here. */
   .h-display {
     @apply font-display font-extrabold tracking-tight leading-[1.08];
+    text-wrap: balance;
+  }
+
+  /* Section header block | eyebrow + title + optional lead, consistently spaced. */
+  .section-title {
+    @apply h-display mt-3 text-display-md text-primary;
+  }
+  .section-lead {
+    @apply mt-4 max-w-measure text-body font-light text-muted-foreground;
   }
 
   /* Hairline divider */
   .hairline { @apply border-t border-border-soft; }
+
+  /* Long-form body copy inside a constrained measure. */
+  .prose-body > * + * { @apply mt-4; }
+  .prose-body p { @apply text-body font-light text-muted-foreground; }
 }
 
 /* Premium UI Animations */
@@ -185,4 +291,45 @@
   .glass-panel-navy {
     @apply bg-primary/85 backdrop-blur-xl border border-white/10 shadow-[var(--shadow-glass)];
   }
+
+  /* Opt-in scrollbar hiding for horizontal carousels and filter rails,
+     replacing the old site-wide `display: none`. */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+
+  /* Clears the fixed header. Use on the first block of any page whose
+     content starts at the very top of the document. */
+  .pt-header { padding-top: var(--header-h); }
+  .top-header { top: var(--header-h); }
+
+  /* Keyboard-only affordance for the skip link. */
+  .sr-only-focusable:not(:focus):not(:focus-within) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}
+
+/* Dark bands need a light focus ring to stay visible against navy.
+   Deliberately OUTSIDE every `@layer` block: Tailwind registers rules inside a
+   layer as variant-able utilities keyed on the class in the selector, so a
+   `.bg-primary <child>` rule there gets re-emitted once per variant used in the
+   codebase — including `.file\:bg-primary::file-selector-button :focus-visible`,
+   a pseudo-element followed by a descendant selector, which Lightning CSS
+   rejects and which failed the whole stylesheet. Plain CSS at the end of the
+   file is not scanned for variants and still wins on order + specificity. */
+.bg-primary :focus-visible,
+.bg-primary-deep :focus-visible,
+header :focus-visible,
+footer :focus-visible {
+  outline-color: hsl(var(--accent-bright));
 }

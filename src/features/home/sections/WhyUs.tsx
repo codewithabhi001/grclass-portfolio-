@@ -10,14 +10,14 @@ import { whyPoints } from "@/data/home";
 
 export function WhyUs() {
   return (
-    <section className="container-page py-16 sm:py-20 md:py-28">
+    <section className="container-page section-lg">
       <div className="grid gap-10 md:grid-cols-2 md:items-center md:gap-14 lg:gap-20">
         <div className="md:order-2">
           <span className="eyebrow text-secondary">Why GR Class</span>
-          <h2 className="h-display mt-3 text-[clamp(24px,3.2vw,40px)] text-primary">
+          <h2 className="h-display mt-3 text-display-md text-primary">
             Engineered for operational reality, not just paperwork.
           </h2>
-          <p className="mt-5 text-[14.5px] font-light leading-[1.8] text-muted-foreground sm:text-[15px]">
+          <p className="mt-5 text-body-sm font-light leading-[1.8] text-muted-foreground">
             Our methodology is built around one principle: a vessel under our class should never wait
             on us to sail. Every workflow | from survey scheduling to certificate issue | is
             engineered around fleet uptime.
@@ -29,7 +29,7 @@ export function WhyUs() {
                 <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center bg-secondary">
                   <Check className="h-3 w-3 text-secondary-foreground" strokeWidth={3} />
                 </span>
-                <span className="text-[13.5px] leading-relaxed text-muted-foreground sm:text-[14px]">{point}</span>
+                <span className="text-body-sm text-muted-foreground">{point}</span>
               </li>
             ))}
           </ul>
@@ -62,7 +62,7 @@ export function WhyUs() {
             <div className="text-[10px] font-bold uppercase tracking-wider text-accent">
               24 / 7 dispatch
             </div>
-            <div className="mt-1 text-[11.5px] font-light leading-relaxed text-background/80 sm:text-[12px]">
+            <div className="mt-1 text-[11px] font-light leading-relaxed text-background/80 sm:text-xs">
               Emergency surveyors deployable from 32 regional hubs.
             </div>
           </div>

@@ -136,7 +136,7 @@ export function SurveyorApplicationModal({ open, onOpenChange }: SurveyorApplica
             </div>
 
             <div className="space-y-4 border-t pt-6">
-              <h4 className="text-[12px] font-bold uppercase tracking-widest text-primary">Supporting Documents</h4>
+              <h4 className="text-xs font-bold uppercase tracking-widest text-primary">Supporting Documents</h4>
               
               <div className="grid gap-4 sm:grid-cols-2">
                 {/* CV upload */}
@@ -146,7 +146,7 @@ export function SurveyorApplicationModal({ open, onOpenChange }: SurveyorApplica
                     <div className="flex items-center justify-between border border-border bg-card px-3 py-2 rounded-md text-sm">
                       <div className="flex items-center gap-2 truncate pr-2">
                         <FileText className="h-4 w-4 text-accent shrink-0" />
-                        <span className="truncate text-foreground font-medium text-[13px]">{cvFile.name}</span>
+                        <span className="truncate text-foreground font-medium text-caption">{cvFile.name}</span>
                         <span className="text-[10px] text-muted-foreground shrink-0">
                           ({(cvFile.size / 1024 / 1024).toFixed(2)} MB)
                         </span>
@@ -189,7 +189,7 @@ export function SurveyorApplicationModal({ open, onOpenChange }: SurveyorApplica
                     <div className="flex items-center justify-between border border-border bg-card px-3 py-2 rounded-md text-sm">
                       <div className="flex items-center gap-2 truncate pr-2">
                         <FileText className="h-4 w-4 text-accent shrink-0" />
-                        <span className="truncate text-foreground font-medium text-[13px]">{idFile.name}</span>
+                        <span className="truncate text-foreground font-medium text-caption">{idFile.name}</span>
                         <span className="text-[10px] text-muted-foreground shrink-0">
                           ({(idFile.size / 1024 / 1024).toFixed(2)} MB)
                         </span>
@@ -255,7 +255,7 @@ export function SurveyorApplicationModal({ open, onOpenChange }: SurveyorApplica
                         <div key={file.name + idx} className="flex items-center justify-between border border-border bg-card px-3 py-1.5 rounded-md text-sm">
                           <div className="flex items-center gap-2 truncate pr-2">
                             <FileText className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
-                            <span className="truncate text-foreground font-light text-[12.5px]">{file.name}</span>
+                            <span className="truncate text-foreground font-light text-xs">{file.name}</span>
                             <span className="text-[10px] text-muted-foreground shrink-0">
                               ({(file.size / 1024 / 1024).toFixed(2)} MB)
                             </span>

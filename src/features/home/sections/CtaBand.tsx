@@ -23,10 +23,10 @@ export function CtaBand() {
         </div>
         <div className="flex flex-col justify-center px-6 py-14 sm:px-10 sm:py-16 md:px-12 md:py-20 lg:px-14">
           <span className="eyebrow text-accent">Begin Class</span>
-          <h2 className="h-display mt-3 text-[clamp(22px,2.8vw,36px)] text-background">
+          <h2 className="h-display mt-3 text-display-md text-background">
             Ready to move your vessel into class with us?
           </h2>
-          <p className="mt-5 max-w-md text-[14.5px] font-light leading-relaxed text-background/65 sm:text-[15px]">
+          <p className="mt-5 max-w-md text-body-sm font-light text-background/65">
             Speak directly with a senior surveyor. Initial consultation, fleet review, and
             transfer-of-class scoping are always complimentary.
           </p>

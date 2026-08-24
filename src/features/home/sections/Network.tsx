@@ -128,7 +128,7 @@ export function Network() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-secondary-soft border-y border-border py-16 sm:py-20 md:py-28">
+    <section className="relative overflow-hidden bg-secondary-soft border-y border-border section-lg">
       {/* Ambient glow */}
       <div
         aria-hidden
@@ -138,10 +138,10 @@ export function Network() {
         {/* Centered Heading */}
         <div className="text-center max-w-3xl mx-auto mb-14 md:mb-18">
           <span className="eyebrow text-secondary">Global Network</span>
-          <h2 className="h-display mt-3 text-[clamp(26px,4.5vw,44px)] leading-tight text-primary">
+          <h2 className="h-display mt-3 text-display-lg text-primary">
             Wherever your vessels call, we're already there.
           </h2>
-          <p className="mt-5 text-[14.5px] font-light leading-relaxed text-muted-foreground sm:text-[15px]">
+          <p className="mt-5 text-body-sm font-light text-muted-foreground">
             From Rotterdam to Singapore, Houston to Ajman | our regional offices and exclusive
             surveyor network keep your fleet compliant without delay.
           </p>
@@ -181,7 +181,7 @@ export function Network() {
                   </div>
 
                   {/* Details */}
-                  <span className="mt-4 text-[13px] font-extrabold tracking-wider text-primary uppercase">
+                  <span className="mt-4 text-caption font-extrabold tracking-wider text-primary uppercase">
                     {f.country}
                   </span>
                   <span className="mt-0.5 text-[10px] font-bold tracking-wider text-secondary uppercase">

@@ -50,7 +50,7 @@ const ServiceDetailPageClient = () => {
         breadcrumbs={[{ label: "Services", href: "/services" }, { label: svc.title }]}
       />
 
-      <section className="container-page py-16 md:py-20">
+      <section className="container-page section">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-7">
             {/* Hero image */}
@@ -64,7 +64,7 @@ const ServiceDetailPageClient = () => {
             />
 
             {/* Description */}
-            <p className="mt-8 text-[16px] font-light leading-relaxed text-muted-foreground">
+            <p className="mt-8 text-body-lg font-light text-muted-foreground">
               {svc.description}
             </p>
 
@@ -77,14 +77,14 @@ const ServiceDetailPageClient = () => {
                   </h3>
                 )}
                 {section.paragraphs?.map((p, pIdx) => (
-                  <p key={pIdx} className="mb-4 text-[15px] font-light leading-relaxed text-muted-foreground">
+                  <p key={pIdx} className="mb-4 text-body font-light text-muted-foreground">
                     {p}
                   </p>
                 ))}
                 {section.list && (
                   <ul className={`mb-4 ${section.list.length > 10 ? "grid gap-x-6 gap-y-2 sm:grid-cols-2" : "space-y-2"}`}>
                     {section.list.map((li, lIdx) => (
-                      <li key={lIdx} className="flex items-start gap-3 text-[14.5px] text-foreground/85">
+                      <li key={lIdx} className="flex items-start gap-3 text-body-sm text-foreground/85">
                         <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent flex-shrink-0" />
                         <span>{li}</span>
                       </li>
@@ -98,7 +98,7 @@ const ServiceDetailPageClient = () => {
             <h2 className="h-display mt-12 text-[24px] text-primary">Scope of Work</h2>
             <ul className="mt-5 space-y-3">
               {svc.scope.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-[14.5px] text-foreground/85">
+                <li key={item} className="flex items-start gap-3 text-body-sm text-foreground/85">
                   <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent" />
                   <span>{item}</span>
                 </li>
@@ -109,7 +109,7 @@ const ServiceDetailPageClient = () => {
             <h2 className="h-display mt-12 text-[24px] text-primary">Deliverables</h2>
             <ul className="mt-5 space-y-3">
               {svc.deliverables.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-[14.5px] text-foreground/85">
+                <li key={item} className="flex items-start gap-3 text-body-sm text-foreground/85">
                   <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent" />
                   <span>{item}</span>
                 </li>
@@ -131,7 +131,7 @@ const ServiceDetailPageClient = () => {
                   }}
                 />
                 <div>
-                  <div className="font-display text-[16px] font-extrabold tracking-[0.06em] text-primary">GR&nbsp;CLASS</div>
+                  <div className="font-display text-body-lg font-extrabold tracking-[0.06em] text-primary">GR&nbsp;CLASS</div>
                   <div className="text-[9px] uppercase tracking-[0.14em] text-primary/50">Classified for Standards</div>
                 </div>
               </div>
@@ -145,14 +145,14 @@ const ServiceDetailPageClient = () => {
                     <Clock className="mt-0.5 h-4 w-4 text-accent" />
                     <div>
                       <div className="text-[11px] uppercase tracking-wider text-subtle">Typical duration</div>
-                      <div className="mt-1 text-[14px] text-foreground">{svc.duration}</div>
+                      <div className="mt-1 text-body-sm text-foreground">{svc.duration}</div>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <ShieldCheck className="mt-0.5 h-4 w-4 text-accent" />
                     <div>
                       <div className="text-[11px] uppercase tracking-wider text-subtle">Standards</div>
-                      <ul className="mt-1.5 space-y-1 text-[13.5px] text-foreground">
+                      <ul className="mt-1.5 space-y-1 text-caption text-foreground">
                         {svc.certifications.map((c) => (
                           <li key={c}>· {c}</li>
                         ))}
@@ -163,7 +163,7 @@ const ServiceDetailPageClient = () => {
                     <Phone className="mt-0.5 h-4 w-4 text-accent" />
                     <div>
                       <div className="text-[11px] uppercase tracking-wider text-subtle">Contact</div>
-                      <a href={`tel:${site.phone}`} className="mt-1 block text-[14px] font-semibold text-accent hover:text-accent-bright transition-colors">
+                      <a href={`tel:${site.phone}`} className="mt-1 block text-body-sm font-semibold text-accent hover:text-accent-bright transition-colors">
                         {site.phone}
                       </a>
                     </div>
@@ -180,7 +180,7 @@ const ServiceDetailPageClient = () => {
 
               <div className="border border-border bg-accent-soft p-7">
                 <span className="font-mono text-[10px] uppercase tracking-wider text-accent">No obligation</span>
-                <p className="mt-3 text-[13.5px] font-light leading-relaxed text-foreground/80">
+                <p className="mt-3 text-caption font-light text-foreground/80">
                   Initial scoping conversations are always complimentary. We'll confirm flag-state delegation and outline the workstream within 48 hours.
                 </p>
               </div>
@@ -191,11 +191,11 @@ const ServiceDetailPageClient = () => {
                   Reach Us
                 </h3>
                 <div className="mt-4 space-y-3">
-                  <a href={`tel:${site.phone}`} className="flex items-center gap-3 text-[14px] text-background/80 hover:text-background transition-colors">
+                  <a href={`tel:${site.phone}`} className="flex items-center gap-3 text-body-sm text-background/80 hover:text-background transition-colors">
                     <Phone className="h-4 w-4 text-accent" />
                     {site.phone}
                   </a>
-                  <a href={`mailto:${site.email}`} className="flex items-center gap-3 text-[14px] text-background/80 hover:text-background transition-colors">
+                  <a href={`mailto:${site.email}`} className="flex items-center gap-3 text-body-sm text-background/80 hover:text-background transition-colors">
                     <ShieldCheck className="h-4 w-4 text-accent" />
                     {site.email}
                   </a>
@@ -207,10 +207,10 @@ const ServiceDetailPageClient = () => {
       </section>
 
       {/* Related Services */}
-      <section className="border-t border-border bg-secondary-soft py-20">
+      <section className="border-t border-border bg-secondary-soft section">
         <div className="container-page">
           <span className="eyebrow text-secondary">More from our practice</span>
-          <h2 className="h-display mt-3 text-[clamp(22px,2vw,30px)] text-primary">Related services</h2>
+          <h2 className="h-display mt-3 text-display-sm text-primary">Related services</h2>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {moreServices.map((s) => (
               <Link
@@ -219,11 +219,11 @@ const ServiceDetailPageClient = () => {
                 className="group bg-card border border-border p-7 transition-all hover:border-accent hover:shadow-card"
               >
                 <span className="eyebrow text-secondary">{s.eyebrow}</span>
-                <h3 className="h-display mt-3 text-[18px] text-primary">{s.title}</h3>
-                <p className="mt-2 text-[13.5px] font-light leading-relaxed text-muted-foreground">
+                <h3 className="h-display mt-3 text-title text-primary">{s.title}</h3>
+                <p className="mt-2 text-caption font-light text-muted-foreground">
                   {s.tagline}
                 </p>
-                <div className="mt-5 flex items-center gap-1.5 text-[12px] font-semibold text-accent">
+                <div className="mt-5 flex items-center gap-1.5 text-xs font-semibold text-accent">
                   View Details <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                 </div>
               </Link>

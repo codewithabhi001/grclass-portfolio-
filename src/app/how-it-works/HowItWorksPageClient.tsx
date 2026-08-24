@@ -34,7 +34,7 @@ const HowItWorksPageClient = () => (
       breadcrumbs={[{ label: "How it Works" }]}
     />
 
-    <section className="container-page py-20 md:py-24">
+    <section className="container-page section">
       <ol className="relative space-y-px bg-border">
         {processSteps.map((step, i) => (
           <motion.li
@@ -51,7 +51,7 @@ const HowItWorksPageClient = () => (
             </div>
             <div className="md:col-span-7">
               <h3 className="h-display text-[22px] text-primary md:text-[26px]">{step.title}</h3>
-              <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-muted-foreground">
+              <p className="mt-3 max-w-2xl text-body font-light text-muted-foreground">
                 {step.body}
               </p>
             </div>
@@ -59,17 +59,17 @@ const HowItWorksPageClient = () => (
               <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-subtle">
                 <Clock className="h-3.5 w-3.5" /> Typical duration
               </div>
-              <div className="mt-2 text-[14px] text-foreground">{step.duration}</div>
+              <div className="mt-2 text-body-sm text-foreground">{step.duration}</div>
             </div>
           </motion.li>
         ))}
       </ol>
     </section>
 
-    <section className="border-t border-border bg-primary py-20">
+    <section className="border-t border-border bg-primary section">
       <div className="container-page text-center">
         <span className="eyebrow justify-center text-accent">Ready to begin</span>
-        <h2 className="h-display mx-auto mt-4 max-w-2xl text-[clamp(24px,2.6vw,38px)] text-background">
+        <h2 className="h-display mx-auto mt-4 max-w-2xl text-display-md text-background">
           The first conversation is always complimentary.
         </h2>
         <Link

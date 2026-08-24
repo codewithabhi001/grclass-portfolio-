@@ -9,7 +9,7 @@ const ICONS = [Globe2, Anchor, Users, ShieldCheck];
 export function StatsStrip() {
   return (
     <div className="relative bg-primary-soft">
-      <div className="container-page grid grid-cols-2 gap-y-8 py-8 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 md:py-10">
+      <div className="container-page section-band grid grid-cols-2 gap-y-8 sm:gap-x-6 md:grid-cols-4 md:gap-y-0">
         {heroStats.map((s, i) => {
           const Icon = ICONS[i];
           return (
@@ -21,10 +21,10 @@ export function StatsStrip() {
                 <Icon className="h-5 w-5" strokeWidth={1.6} />
               </div>
               <div className="min-w-0">
-                <div className="font-display text-[26px] font-extrabold leading-none text-background sm:text-[28px]">
+                <div className="font-display text-display-sm font-extrabold leading-none text-background">
                   {s.value}
                 </div>
-                <div className="mt-1.5 text-[10.5px] uppercase tracking-[0.14em] text-background/50">
+                <div className="mt-1.5 text-overline-sm uppercase text-background/50">
                   {s.label}
                 </div>
               </div>

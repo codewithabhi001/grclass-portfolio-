@@ -1128,7 +1128,7 @@ function Slide6Classification() {
           <h3 className="font-serif font-bold text-lg text-amber-500 uppercase mb-3">
             Entry Survey Requirements
           </h3>
-          <p className="text-[10.5px] font-light text-slate-300 leading-relaxed mb-4">
+          <p className="text-[10px] font-light text-slate-300 leading-relaxed mb-4">
             To commence the class admission process, the following ship documents must be transmitted to GR Class:
           </p>
           <ul className="space-y-1 text-[9.5px] text-slate-300">
@@ -1440,7 +1440,7 @@ function Slide9ComplianceOther() {
             <span className="block text-xs font-bold text-amber-500 uppercase mb-1">
               Port State Control (PSC)
             </span>
-            <p className="text-[10.5px] text-slate-300 leading-relaxed">
+            <p className="text-[10px] text-slate-300 leading-relaxed">
               Recognizing the critical nature of PSC, we collaborate closely with Flag States and ship operators to improve fleets' records. We assist with **PSC pre-arrival checklists**, sharing detention prevention actions, and compliance with the latest Regional MOUs (Paris MoU, Tokyo MoU).
             </p>
           </div>
@@ -1452,7 +1452,7 @@ function Slide9ComplianceOther() {
               <span className="block text-xs font-bold text-amber-500 uppercase mb-1">
                 Technical Advisory Services
               </span>
-              <p className="text-[10.5px] text-slate-300 leading-normal">
+              <p className="text-[10px] text-slate-300 leading-normal">
                 We provide expert marine engineering consultancy, operational optimization, and risk mitigation to help vessels operate safely with reduced cost.
               </p>
             </div>
@@ -2147,7 +2147,7 @@ function Slide12Geographical() {
             Geographical Presence
           </h2>
           <div className="w-8 h-[2px] bg-amber-600 my-3"></div>
-          <p className="text-[10.5px] text-slate-600 leading-relaxed mb-4">
+          <p className="text-[10px] text-slate-600 leading-relaxed mb-4">
             Headquartered in Ajman, UAE, and supported by a global footprint of certified surveyors operating across strategic maritime hubs and ports.
           </p>
 

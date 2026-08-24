@@ -84,7 +84,7 @@ const NewsPageClient = () => {
       />
 
       {loading ? (
-        <section className="container-page py-16 animate-pulse">
+        <section className="container-page section animate-pulse">
           <div className="grid gap-10 md:grid-cols-12 border-b border-border pb-16">
             <div className="md:col-span-5 h-[280px] bg-border-soft rounded"></div>
             <div className="md:col-span-7 space-y-4">
@@ -126,17 +126,17 @@ const NewsPageClient = () => {
                     <span className="bg-accent px-2.5 py-1 text-accent-foreground">{sortedNews[0].category}</span>
                     <span className="text-subtle">Featured</span>
                   </div>
-                  <h2 className="h-display mt-5 text-[clamp(24px,2.6vw,36px)] text-primary transition-colors group-hover:text-secondary">
+                  <h2 className="h-display mt-5 text-display-md text-primary transition-colors group-hover:text-secondary">
                     {sortedNews[0].title}
                   </h2>
-                  <p className="mt-4 max-w-xl text-[15px] font-light leading-relaxed text-muted-foreground">
+                  <p className="mt-4 max-w-xl text-body font-light text-muted-foreground">
                     {sortedNews[0].excerpt}
                   </p>
-                  <div className="mt-6 flex items-center gap-5 text-[12px] text-subtle">
+                  <div className="mt-6 flex items-center gap-5 text-xs text-subtle">
                     <span className="flex items-center gap-1.5"><Calendar className="h-3.5 w-3.5" /> {new Date(sortedNews[0].date).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</span>
                     <span className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5" /> {sortedNews[0].readTime}</span>
                   </div>
-                  <div className="mt-6 inline-flex items-center gap-1.5 text-[13px] font-medium text-secondary">
+                  <div className="mt-6 inline-flex items-center gap-1.5 text-caption font-medium text-secondary">
                     Read article <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </div>
                 </div>
@@ -145,7 +145,7 @@ const NewsPageClient = () => {
           )}
 
           {/* Listing */}
-          <section className="container-page py-16 md:py-20">
+          <section className="container-page section">
             <div className="grid gap-px bg-border md:grid-cols-2 lg:grid-cols-3">
               {sortedNews.slice(1).map((n, i) => (
                 <motion.article
@@ -161,10 +161,10 @@ const NewsPageClient = () => {
                     <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">{n.category}</span>
                     <span className="font-mono text-[10px] text-subtle">{new Date(n.date).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })}</span>
                   </div>
-                  <h3 className="h-display mt-5 text-[18px] leading-snug text-primary transition-colors group-hover:text-secondary">
+                  <h3 className="h-display mt-5 text-title leading-snug text-primary transition-colors group-hover:text-secondary">
                     {n.title}
                   </h3>
-                  <p className="mt-3 text-[13.5px] font-light leading-relaxed text-muted-foreground">
+                  <p className="mt-3 text-caption font-light text-muted-foreground">
                     {n.excerpt}
                   </p>
                   <div className="mt-6 flex items-center justify-between">

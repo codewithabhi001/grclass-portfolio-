@@ -75,7 +75,7 @@ const AboutPageClient = () => {
       />
 
       {/* Logo showcase band */}
-      <section className="bg-card border-b border-border py-10 md:py-14">
+      <section className="bg-card border-b border-border section-sm">
         <div className="container-page flex flex-col items-center text-center">
           <img
             src="/grclass-logo.webp"
@@ -85,17 +85,17 @@ const AboutPageClient = () => {
               filter: "brightness(0) saturate(100%) invert(10%) sepia(60%) saturate(2800%) hue-rotate(200deg) brightness(90%) contrast(100%)"
             }}
           />
-          <h2 className="h-display mt-6 text-[clamp(22px,2.6vw,36px)] text-primary">
+          <h2 className="h-display mt-6 text-display-md text-primary">
             GR Class — Classified for Standards
           </h2>
-          <p className="mt-3 max-w-2xl text-[15px] font-light leading-relaxed text-muted-foreground">
+          <p className="mt-3 max-w-2xl text-body font-light text-muted-foreground">
             A Recognized Organization (RO), Recognized Security Organization (RSO) and Classification Society (CS) authorized to offer statutory/class certification and services.
           </p>
         </div>
       </section>
 
       {/* Intro + image */}
-      <section className="container-page py-20 md:py-24">
+      <section className="container-page section">
         <div className="grid gap-12 md:grid-cols-12 md:items-start">
           <div className="md:col-span-7">
             <span className="eyebrow text-secondary">Introduction</span>
@@ -110,24 +110,24 @@ const AboutPageClient = () => {
               </div>
             ) : aboutData && aboutData.body_html ? (
               <div
-                className="dynamic-html-content mt-6 text-[16px] font-light leading-relaxed text-muted-foreground"
+                className="dynamic-html-content mt-6 text-body-lg font-light text-muted-foreground"
                 dangerouslySetInnerHTML={{ __html: aboutData.body_html }}
               />
             ) : (
               <>
-                <h2 className="h-display mt-3 text-[clamp(24px,2.6vw,38px)] text-primary">
+                <h2 className="h-display mt-3 text-display-md text-primary">
                   Welcome to GR Class
                 </h2>
-                <p className="mt-6 text-[16px] font-light leading-relaxed text-muted-foreground">
+                <p className="mt-6 text-body-lg font-light text-muted-foreground">
                   GR Class welcomes you for your asset's safety and compliances. GR Class is a Recognized Organization (RO), Recognized Security Organization (RSO), and Classification Society (CS) authorized to offer statutory/class certification and services.
                 </p>
-                <p className="mt-4 text-[16px] font-light leading-relaxed text-muted-foreground">
+                <p className="mt-4 text-body-lg font-light text-muted-foreground">
                   We are committed to ensuring the highest standards of safety, reliability, and environmental sustainability in the maritime industry. Our team possesses technical expertise and professionalism guaranteeing dedicated serving our clients.
                 </p>
-                <p className="mt-4 text-[16px] font-light leading-relaxed text-muted-foreground">
+                <p className="mt-4 text-body-lg font-light text-muted-foreground">
                   Our range of services includes the classification of newly built ships, as well as the classification and certification of existing vessels for continued safe operation. We also provide statutory certification services.
                 </p>
-                <p className="mt-4 text-[16px] font-light leading-relaxed text-muted-foreground">
+                <p className="mt-4 text-body-lg font-light text-muted-foreground">
                   We strive to be the trusted partner for ship owners and operators, offering them reliable, cost-effective solutions tailored to their specific needs.
                 </p>
               </>
@@ -157,10 +157,10 @@ const AboutPageClient = () => {
       </section>
 
       {/* Pillars Section */}
-      <section className="border-t border-border bg-card py-20">
+      <section className="border-t border-border bg-card section">
         <div className="container-page">
           <span className="eyebrow text-secondary">Pillars of Excellence</span>
-          <h2 className="h-display mt-3 text-[clamp(24px,2.4vw,34px)] text-primary">
+          <h2 className="h-display mt-3 text-display-sm text-primary">
             Mission, Capabilities & Expertise
           </h2>
           <div className="mt-12 grid gap-8 md:grid-cols-3">
@@ -176,7 +176,7 @@ const AboutPageClient = () => {
                 <Target className="h-7 w-7" />
               </div>
               <h3 className="h-display mt-6 text-[22px] text-primary">Mission</h3>
-              <p className="mt-4 text-[15px] font-light leading-relaxed text-muted-foreground">
+              <p className="mt-4 text-body font-light text-muted-foreground">
                 Ensuring Marine safety, safeguard of lives and property at sea. A comprehensive approach combining international regulations (e.g., SOLAS, ISPS Code), advanced surveillance, rigorous training, and risk management to protect lives, vessels, and the marine environment.
               </p>
             </motion.div>
@@ -193,7 +193,7 @@ const AboutPageClient = () => {
                 <Globe2 className="h-7 w-7" />
               </div>
               <h3 className="h-display mt-6 text-[22px] text-primary">Capabilities</h3>
-              <p className="mt-4 text-[15px] font-light leading-relaxed text-muted-foreground">
+              <p className="mt-4 text-body font-light text-muted-foreground">
                 Being a Class, our geographical presence with certified surveyors makes GR Class stronger and technically capable and gives strength to survey capabilities to standardize regulatory and compliance capabilities. GR Class has good technical infrastructure, maintaining secure and reliable information systems to manage vessel data, survey statuses, and certificates.
               </p>
             </motion.div>
@@ -210,7 +210,7 @@ const AboutPageClient = () => {
                 <Award className="h-7 w-7" />
               </div>
               <h3 className="h-display mt-6 text-[22px] text-primary">Expertise</h3>
-              <p className="mt-4 text-[15px] font-light leading-relaxed text-muted-foreground">
+              <p className="mt-4 text-body font-light text-muted-foreground">
                 We work with values, ethics, and standards. We gain the trust from our valued customers and that builds GR Class with a class standard to the next level. Our surveyors, auditors and technical experts have decades of experience in assessing and verifying ship safety standards and tackling complex maritime issues through clear procedures and cost-effective support for ship operators.
               </p>
             </motion.div>
@@ -219,10 +219,10 @@ const AboutPageClient = () => {
       </section>
 
       {/* Services Overview */}
-      <section className="border-t border-border bg-primary py-20">
+      <section className="border-t border-border bg-primary section">
         <div className="container-page">
           <span className="eyebrow text-accent">Our Services</span>
-          <h2 className="h-display mt-3 text-[clamp(24px,2.4vw,34px)] text-background">
+          <h2 className="h-display mt-3 text-display-sm text-background">
             Comprehensive maritime services under one roof.
           </h2>
           <div className="mt-12 grid gap-px bg-background/10 md:grid-cols-2 lg:grid-cols-4">
@@ -259,10 +259,10 @@ const AboutPageClient = () => {
                 <div className="flex h-12 w-12 items-center justify-center bg-accent/20 text-accent">
                   {cat.icon}
                 </div>
-                <h3 className="h-display mt-5 text-[18px] text-background">{cat.title}</h3>
+                <h3 className="h-display mt-5 text-title text-background">{cat.title}</h3>
                 <ul className="mt-4 space-y-2">
                   {cat.items.map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-[13px] text-background/60">
+                    <li key={item} className="flex items-center gap-2 text-caption text-background/60">
                       <span className="h-1 w-1 rounded-full bg-accent flex-shrink-0" />
                       {item}
                     </li>
@@ -275,15 +275,15 @@ const AboutPageClient = () => {
       </section>
 
       {/* Values */}
-      <section className="border-t border-border bg-secondary-soft py-20">
+      <section className="border-t border-border bg-secondary-soft section">
         <div className="container-page">
           <span className="eyebrow text-secondary">What we stand for</span>
-          <h2 className="h-display mt-3 text-[clamp(24px,2.4vw,34px)] text-primary">Three principles, applied without exception.</h2>
+          <h2 className="h-display mt-3 text-display-sm text-primary">Three principles, applied without exception.</h2>
           <div className="mt-12 grid gap-px bg-border md:grid-cols-3">
             {values.map((v) => (
               <div key={v.title} className="bg-card p-8">
-                <h3 className="h-display text-[19px] text-primary">{v.title}</h3>
-                <p className="mt-3 text-[14px] font-light leading-relaxed text-muted-foreground">{v.body}</p>
+                <h3 className="h-display text-title text-primary">{v.title}</h3>
+                <p className="mt-3 text-body-sm font-light text-muted-foreground">{v.body}</p>
               </div>
             ))}
           </div>
@@ -291,7 +291,7 @@ const AboutPageClient = () => {
       </section>
 
       {/* Contact CTA with phone */}
-      <section className="bg-primary-deep py-16">
+      <section className="bg-primary-deep section">
         <div className="container-page text-center">
           <img
             src="/grclass-logo.webp"
@@ -299,13 +299,13 @@ const AboutPageClient = () => {
             className="mx-auto h-16 md:h-20 w-auto mb-6"
             style={{ filter: "brightness(0) invert(1)" }}
           />
-          <h2 className="h-display text-[clamp(22px,2.4vw,34px)] text-background">
+          <h2 className="h-display text-display-sm text-background">
             Get in Touch
           </h2>
-          <p className="mt-4 text-[18px] font-display font-bold text-accent tracking-wide">
+          <p className="mt-4 text-title font-display font-bold text-accent tracking-wide">
             +971555324087
           </p>
-          <p className="mt-2 text-[14px] text-background/50">
+          <p className="mt-2 text-body-sm text-background/50">
             info@grclass.com
           </p>
         </div>

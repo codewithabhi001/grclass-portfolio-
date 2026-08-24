@@ -16,15 +16,15 @@ interface ComingSoonProps {
 const ComingSoon = ({ eyebrow, title, subtitle }: ComingSoonProps) => (
   <SiteShell>
     <PageHero eyebrow={eyebrow} title={title} subtitle={subtitle} />
-    <section className="container-page py-24 md:py-28">
+    <section className="container-page section-lg">
       <div className="mx-auto max-w-2xl text-center">
         <span className="font-mono text-[11px] uppercase tracking-wider text-accent">
           Page in build
         </span>
-        <h2 className="h-display mt-4 text-[clamp(22px,2.2vw,32px)] text-primary">
+        <h2 className="h-display mt-4 text-display-sm text-primary">
           This section is being prepared.
         </h2>
-        <p className="mt-4 text-[15px] font-light leading-relaxed text-muted-foreground">
+        <p className="mt-4 text-body font-light text-muted-foreground">
           The home page redesign is the V1 milestone. Inner pages | full service detail,
           how-it-works, news, and verification | will follow the same editorial system.
         </p>

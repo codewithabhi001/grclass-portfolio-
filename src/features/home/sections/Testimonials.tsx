@@ -83,11 +83,11 @@ export function Testimonials() {
   }
 
   return (
-    <section className="container-page py-16 sm:py-20 md:py-28 bg-secondary-soft/30 border-t border-b border-border-soft">
+    <section className="container-page section-lg bg-secondary-soft/30 border-t border-b border-border-soft">
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
         <div className="max-w-2xl">
           <span className="eyebrow text-secondary">Trusted by Fleet Leaders</span>
-          <h2 className="h-display mt-3 text-[clamp(24px,3.2vw,40px)] text-primary">
+          <h2 className="h-display mt-3 text-display-md text-primary">
             From bulkers to LNG carriers | measured in cycles, not promises.
           </h2>
         </div>
@@ -139,7 +139,7 @@ export function Testimonials() {
                       ))}
                     </div>
                   </div>
-                  <p className="mt-4 flex-1 text-[14px] italic leading-relaxed text-muted-foreground sm:text-[14.5px] line-clamp-4 group-hover:line-clamp-none transition-all duration-300">
+                  <p className="mt-4 flex-1 text-body-sm italic text-muted-foreground line-clamp-4 group-hover:line-clamp-none transition-all duration-300">
                     "{t.comment}"
                   </p>
                   <div className="mt-6 hairline pt-4 flex items-center gap-3">
@@ -151,8 +151,8 @@ export function Testimonials() {
                       />
                     ) : null}
                     <div>
-                      <div className="text-[13px] font-semibold text-primary">{t.username}</div>
-                      <div className="mt-0.5 text-[12px] text-subtle">{t.company_name}</div>
+                      <div className="text-caption font-semibold text-primary">{t.username}</div>
+                      <div className="mt-0.5 text-xs text-subtle">{t.company_name}</div>
                       {t.company_country && (
                         <div className="mt-1 text-[11px] font-medium text-secondary">{t.company_country}</div>
                       )}

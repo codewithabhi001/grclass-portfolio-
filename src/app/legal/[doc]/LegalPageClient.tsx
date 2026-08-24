@@ -230,7 +230,7 @@ const LegalPageClient = () => {
         breadcrumbs={[{ label: "Legal" }, { label: displayTitle }]}
       />
 
-      <section className="container-page py-20 md:py-24">
+      <section className="container-page section">
         <div className="grid gap-12 md:grid-cols-12">
           <aside className="md:col-span-3">
             <div className="sticky top-24">
@@ -241,7 +241,7 @@ const LegalPageClient = () => {
                     <Link
                       href={`/legal/${d.slug}`}
                       className={
-                        "block border-l-2 pl-3 text-[13.5px] transition-colors " +
+                        "block border-l-2 pl-3 text-caption transition-colors " +
                         (d.slug === staticData.slug
                           ? "border-accent text-primary"
                           : "border-transparent text-muted-foreground hover:border-border hover:text-primary")
@@ -268,7 +268,7 @@ const LegalPageClient = () => {
               </div>
             ) : apiData && apiData.body_html ? (
               <div
-                className="dynamic-html-content max-w-none text-[15px] font-light leading-[1.75] text-muted-foreground"
+                className="dynamic-html-content max-w-none text-body font-light leading-[1.75] text-muted-foreground"
                 dangerouslySetInnerHTML={{ __html: apiData.body_html }}
               />
             ) : (
@@ -280,7 +280,7 @@ const LegalPageClient = () => {
                     </h2>
                     <div className="mt-5 space-y-4">
                       {s.body.map((p, i) => (
-                        <p key={i} className="text-[15px] font-light leading-[1.75] text-muted-foreground">
+                        <p key={i} className="text-body font-light leading-[1.75] text-muted-foreground">
                           {p}
                         </p>
                       ))}
