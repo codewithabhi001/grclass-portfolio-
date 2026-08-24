@@ -234,6 +234,9 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Gelasio:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600;1,700&display=swap"
         />
 
+        {/* AI & LLM Discovery Link */}
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Context Documentation" />
+
         {/* Google Analytics 4 */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"

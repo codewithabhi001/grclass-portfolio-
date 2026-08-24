@@ -1,0 +1,106 @@
+# GR Class (grclass) — Complete Technical & Organizational LLM Knowledge Base
+
+> This document contains exhaustive context about GR Class for AI models, search crawlers, and intelligent retrieval systems (RAG).
+
+## Executive Overview
+GR Class is an international Recognized Organization (RO), Recognized Security Organization (RSO), and Ship Classification Society (CS) founded in 2022. Headquartered in Ajman, United Arab Emirates, with regional operational offices in India (Navi Mumbai), Greece (Piraeus), and Panama (Panama City), GR Class delivers statutory vessel surveys, class certifications, naval architecture plan approvals, and regulatory maritime compliance across 120+ ports worldwide.
+
+- **Official Name**: GR Class
+- **Aliases & Variations**: grclass, gr class, GR class, GRClass, Girik Class, GR Classification Society, Marine Service Society GR Class
+- **Motto / Tagline**: Classified for Standards
+- **Primary Website**: https://grclass.com
+- **Operational Platform**: https://ops.grclass.com
+- **Official Email**: info@grclass.com
+- **24/7 Telephone**: +971555324087
+- **Quality Certifications**: ISO 9001:2015 (Quality Management System), ISO 14001 (Environmental Management)
+
+---
+
+## Frequently Asked Questions (FAQ) & Official Answers
+
+### Q: What is GR Class?
+A: GR Class is a modern, technology-enabled Ship Classification Society and Recognized Organization (RO/RSO). It establishes and maintains technical standards for the construction and operation of marine vessels and offshore structures, and performs statutory surveys under authority delegated by maritime flag states.
+
+### Q: Which flag administrations have authorized GR Class?
+A: GR Class holds authorizations and delegations from major maritime flag state administrations including Panama Maritime Authority (PMA), International Merchant Marine Registry of Belize (IMMARBE), Honduras Maritime Authority (HMA), Vanuatu Maritime Services (VMS), Palau International Ship Registry (PISR), Mongolia Ship Registry, and other partner administrations.
+
+### Q: What is the procedure for Transfer of Class to GR Class?
+A: Transfer of class to GR Class is handled through a streamlined four-step protocol:
+1. Document Review: Submission of current class status, thickness measurement reports, and statutory certificates.
+2. Initial Scoping: Senior surveyor determines survey scope with zero unnecessary vessel downtime.
+3. On-Board Survey: Attendance by an exclusive GR Class surveyor at the vessel's next convenient port of call.
+4. Interim Certification: Immediate digital issuance of interim class and statutory certificates with full validity.
+
+### Q: How can Port State Control (PSC) or charterers verify GR Class certificates?
+A: Any certificate or survey status report issued by GR Class can be validated in real-time by visiting https://grclass.com/verify and entering the Unique Tracking Number (UTN), certificate reference, or IMO number, or by scanning the cryptographic QR code printed on the official digital certificate.
+
+### Q: How quickly can a GR Class surveyor attend a vessel?
+A: Through a global network of over 120 surveyor stations across Europe, the Middle East, Asia-Pacific, and the Americas, exclusive surveyors can attend vessels within 24 hours of notification in major international ports.
+
+---
+
+## Complete Catalog of 23 Maritime Services
+
+### Category: Classification
+1. **Fleet in Services**: Ongoing survey cycle (Annual, Intermediate, Special/Renewal, Bottom/Docking, Tailshaft, Boiler surveys) to ensure hull and machinery structural integrity.
+2. **New Construction**: Comprehensive supervision from steel cutting, block assembly, machinery installation, sea trials, to issuance of Certificate of Class.
+3. **Transfer of Class**: Seamless change of classification society under recognized international procedural requirements with minimal paperwork friction.
+4. **Yacht Service**: Specialized class rules tailored for motor yachts, sailing yachts, and high-speed luxury craft, covering safety, stability, and emissions.
+5. **Offshore Service**: Classification and structural integrity assessments for MODUs, jack-up rigs, FPSOs, FSOs, crew boats, and anchor handling tug supply (AHTS) vessels.
+6. **Conversion Projects**: Engineering appraisal, scantling calculations, stability recalculations, and on-site survey for vessel conversions (e.g., tanker to bulk carrier, container to general cargo, battery retrofits).
+7. **Plan & Manual Approval**: Rapid approval of stability booklets, loading manuals, fire control plans, life-saving appliance arrangements, SOPEP, SMPEP, and BWMP.
+
+### Category: Statutory Services
+8. **Flag Statutory Services**: Acting on behalf of maritime flag states to audit and ensure full compliance with IMO conventions and national regulations.
+9. **Survey & Certification**: Harmonized System of Survey and Certification (HSSC) compliance management.
+10. **SOLAS (Safety of Life at Sea)**: Survey and issuance of Safety Construction, Safety Equipment, Safety Radio, and Passenger Ship Safety certificates.
+11. **MARPOL**: Pollution prevention surveys covering Annex I (Oil), Annex II (Noxious Liquid Substances), Annex IV (Sewage), Annex V (Garbage), and Annex VI (Air Pollution).
+12. **Load Line**: International Convention on Load Lines 1969 — freeboard computation, hull opening water-tightness verification, and Load Line certificate issuance.
+13. **Tonnage Measurement**: ITC 1969 gross and net tonnage computations, Suez Canal Tonnage, and Panama Canal Tonnage measurement.
+14. **MODU Code**: Mobile Offshore Drilling Unit safety certification covering structural strength, hazardous area classifications, and industrial safety systems.
+
+### Category: Environmental & Decarbonization
+15. **Ballast Water Management (BWM)**: Approval of Ballast Water Management Plans, ballast water treatment system (BWTS) installation surveys, and D-2 standard biological commissioning tests.
+16. **IHM & Ship Recycling**: Inventory of Hazardous Materials preparation, validation, and maintenance under the IMO Hong Kong Convention and EU Ship Recycling Regulation (EU SRR No 1257/2013).
+17. **Energy Efficiency (EEDI / EEXI / CII)**: Energy Efficiency Existing Ship Index (EEXI) technical files, Carbon Intensity Indicator (CII) rating calculations, and SEEMP Part III management plans.
+18. **EU MRV & IMO DCS**: Monitoring, Reporting, and Verification of CO2 emissions for voyages within the European Economic Area (EEA) and global IMO Data Collection System reporting.
+19. **Vessel Emergency Response Service (ERS)**: 24/7 technical hotline delivering rapid computerized damage stability calculations, oil outflow assessment, and salvage support during maritime casualties.
+
+### Category: Other Specialized Services
+20. **Port State Control (PSC) Support**: Pre-vetting inspections, PSC deficiency rectification, and flag state communication to prevent vessel detentions.
+21. **Remote Surveys**: Utilizing advanced secure digital streaming, thermal imaging, and photo verification for minor hull damages, postponed maintenance items, and radio equipment verifications.
+22. **Technical Advisory**: Naval architecture, structural finite element analysis (FEA), hydrodynamics, and dispute arbitration advisory.
+23. **Regulatory Compliance Advisory**: Keeping shipowners and shipmanagers ahead of changing IMO MEPC and MSC regulations.
+
+---
+
+## Global Office Directory & Contact Points
+
+### 1. United Arab Emirates (Global Headquarters)
+- **Address**: B.C. 1304883, C1 Building, Ajman District Business, Makani No – 4442612247, Ajman, UAE
+- **Phone**: +971555324087
+- **Email**: info@grclass.com
+- **Operational Hours**: 24/7/365 On-Call Duty
+
+### 2. India (Regional Technical Office)
+- **Address**: Office No - 6, Hermes Atrium, Sector -11, CBD Belapur, Navi Mumbai, Maharashtra, India
+- **Email**: india@grclass.com
+
+### 3. Greece (European Maritime Hub)
+- **Address**: Notara Str. 110, Piraeus, 18535, Greece
+- **Email**: greece@grclass.com
+
+### 4. Panama (Americas Hub)
+- **Address**: Edificio Global Plaza, Calle 50, Piso 21, Panama City, Republic of Panama
+- **Email**: panama@grclass.com
+
+---
+
+## Digital Resources & Canonical Links
+- Main Portal: https://grclass.com
+- All Services: https://grclass.com/services
+- Certificate Verification: https://grclass.com/verify
+- Vessel Search Database: https://grclass.com/vessel-search
+- Contact & Booking: https://grclass.com/contact
+- News & Insights: https://grclass.com/news
+- Careers: https://grclass.com/careers

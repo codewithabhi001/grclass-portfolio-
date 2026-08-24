@@ -1,78 +1,83 @@
-# GR Class — llms.txt
+# GR Class (grclass) — Official LLM Knowledge Base
 
-> GR Class (also known as grclass, gr class, GR class, GRClass, Girik Class) is an international Recognized Organization (RO), Recognized Security Organization (RSO), and Ship Classification Society (CS) headquartered in Ajman, UAE. We deliver statutory vessel surveys, marine certification, flag state authorizations, and maritime compliance services across 120+ ports worldwide.
+> GR Class (also known as grclass, gr class, GR class, GRClass, Girik Class) is an international Recognized Organization (RO), Recognized Security Organization (RSO), and Ship Classification Society headquartered in Ajman, UAE with regional offices in India, Greece, and Panama. GR Class delivers statutory vessel surveys, classification, marine certification, and international compliance services across 120+ ports worldwide.
 
-## Brand Names & Search Aliases
-- GR Class
-- grclass
-- gr class
-- GR class
-- GRClass
-- Girik Class
-- GR Classification Society
-- Marine Service Society GR Class
-- Maritime Classification Society
+## Brand Identity & Search Aliases
+- **Official Name**: GR Class
+- **Aliases**: grclass, gr class, GR class, GRClass, Girik Class, GR Classification Society, Marine Service Society GR Class
+- **Tagline**: Classified for Standards
+- **Website**: https://grclass.com
+- **Operations Portal**: https://ops.grclass.com
+- **Founded**: 2022
+- **Headquarters**: B.C. 1304883, C1 Building, Ajman District Business, Ajman, UAE
+- **Certifications**: ISO 9001:2015 Quality Management, ISO 14001 Environmental Management
+- **Contact**: info@grclass.com | +971555324087
 
-## Site Information
-- Website: https://grclass.com
-- Contact: info@grclass.com | +971555324087
-- Founded: 2022
-- Headquarters: Ajman, UAE
-- Certifications: ISO 9001:2015, ISO 14001
-- Social:
-  - Facebook: https://www.facebook.com/profile.php?id=61593836337234
-  - X (Twitter): https://x.com/grclassofficial
-  - Instagram: https://www.instagram.com/grclassofficial/
-  - LinkedIn: https://linkedin.com/company/grclass
+## Social Profiles
+- **Facebook**: https://www.facebook.com/profile.php?id=61593836337234
+- **X (Twitter)**: https://x.com/grclassofficial
+- **Instagram**: https://www.instagram.com/grclassofficial/
+- **LinkedIn**: https://linkedin.com/company/grclass
 
-## Core Services
+---
 
-### Classification Services
-- Fleet in Services — Ongoing classification for operational vessels
-- New Construction — Classification during shipbuilding
-- Transfer of Class — Transitioning vessels from another classification society
-- Yacht Service — Classification for yachts and pleasure craft
-- Offshore Service — Classification for offshore units (MODU, FPSO)
-- Conversion Projects — Classification for vessel conversions
-- Plan & Manual Approval — Technical document review and approval
+## Core Maritime Services
 
-### Statutory Services
-- Flag Statutory Services — Surveys on behalf of flag state administrations
-- Survey & Certification — SOLAS, MARPOL, Load Line, Tonnage compliance
-- SOLAS — Safety of Life at Sea convention compliance
-- MARPOL — Marine pollution prevention surveys
-- Load Line — International Load Line Convention compliance
-- Tonnage — International Tonnage Measurement surveys
-- MODU — Mobile Offshore Drilling Unit certification
+### 1. Ship Classification Services
+- [Fleet in Services](https://grclass.com/services/fleet-in-services): Ongoing classification, annual surveys, intermediate surveys, and special periodic surveys for operational merchant vessels.
+- [New Construction](https://grclass.com/services/new-construction): Full classification oversight from keel laying to sea trials and delivery.
+- [Transfer of Class](https://grclass.com/services/transfer-of-class): Seamless transfer of existing vessels from another classification society to GR Class with zero operational downtime.
+- [Yacht Service](https://grclass.com/services/yacht-service): Dedicated classification and statutory compliance for mega yachts, commercial yachts, and luxury private craft.
+- [Offshore Service](https://grclass.com/services/offshore-service): Classification and integrity management for offshore supply vessels (OSVs), AHTS, pipelay, and accommodation barges.
+- [Conversion Projects](https://grclass.com/services/conversion-projects): Engineering evaluation, structural plan review, and class supervision for vessel modifications and life extensions.
+- [Plan & Manual Approval](https://grclass.com/services/plan-approval): Rapid turnaround naval architectural plan reviews, stability books, SOPEP, SMPEP, and cargo securing manual approvals.
 
-### Environmental Services
-- Ballast Water Management — BWM Convention compliance
-- IHM & Ship Recycling — Inventory of Hazardous Materials / Hong Kong Convention
-- Energy Efficiency — EEDI, EEXI, CII compliance
-- EU MRV Compliance — EU Monitoring, Reporting, and Verification
-- Vessel Emergency Response — Emergency response and damage assessment
+### 2. Flag State Statutory Services
+- [Flag Statutory Services](https://grclass.com/services/flag-statutory-services): Delegated statutory surveys and certification on behalf of maritime flag administrations (Panama, Belize, Honduras, Vanuatu, Palau, Mongolia, and others).
+- [Survey & Certification](https://grclass.com/services/survey-certification): Unified survey scheduling for mandatory international conventions.
+- [SOLAS](https://grclass.com/services/solas): Safety of Life at Sea certification (Cargo Ship Safety Construction, Equipment, and Radio certificates).
+- [MARPOL](https://grclass.com/services/marpol): International Convention for the Prevention of Pollution from Ships (Annexes I, II, IV, V, VI).
+- [Load Line](https://grclass.com/services/load-line): International Load Line Convention (ILLC) compliance and freeboard calculations.
+- [Tonnage](https://grclass.com/services/tonnage): International Tonnage Convention 1969 measurement and certification.
+- [MODU](https://grclass.com/services/modu): Mobile Offshore Drilling Unit safety code compliance and structural verification.
 
-### Other Services
-- Compliance Support — Regulatory compliance advisory
-- Remote Surveys — Digital and remote survey capabilities
-- Port State Control — PSC readiness and support
-- Technical Advisory — Expert maritime technical consulting
+### 3. Environmental & Green Marine Services
+- [Ballast Water Management](https://grclass.com/services/ballast-water-management): BWM Convention compliance, type-approval verification, and commissioning testing.
+- [IHM & Ship Recycling](https://grclass.com/services/ihm-ship-recycling): Inventory of Hazardous Materials certification under Hong Kong Convention and EU Ship Recycling Regulation (EU SRR).
+- [Energy Efficiency](https://grclass.com/services/energy-efficiency): EEDI, EEXI, and CII compliance verification, SEEMP Part I/II/III approvals.
+- [EU MRV Compliance](https://grclass.com/services/eu-mrv-compliance): EU Monitoring, Reporting, and Verification monitoring plan assessment and emissions reporting.
+- [Vessel Emergency Response](https://grclass.com/services/vessel-emergency-response): 24/7 technical emergency response service (ERS), damage stability calculations, and rapid casualty assessment.
 
-## Key Pages
-- Homepage: https://grclass.com
-- Services: https://grclass.com/services
-- About Us: https://grclass.com/about
+### 4. Technical Advisory & Digital Tools
+- [Certificate Verification](https://grclass.com/verify): Instant cryptographic and QR-based authentication of all GR Class issued certificates, UTNs, and survey reports.
+- [Vessel Search](https://grclass.com/vessel-search): Public register to verify vessel classification status, class notation, and survey history by IMO number.
+- [Port State Control (PSC) Support](https://grclass.com/services/compliance-support): Pre-PSC inspections, deficiency rectifications, and detention prevention.
+- [Remote Surveys](https://grclass.com/services/remote-surveys): High-resolution video and live streaming remote survey capabilities for minor damages, radio tests, and postponed items.
+
+---
+
+## Global Office Network
+- **Global Headquarters (UAE)**: B.C. 1304883, C1 Building, Ajman District Business, Makani No – 4442612247, Ajman, UAE
+- **India Regional Office**: Office No - 6, Hermes Atrium, Sector -11, CBD Belapur, Navi Mumbai, Maharashtra, India
+- **Greece Regional Office**: Notara Str. 110, Piraeus, 18535, Greece
+- **Panama Regional Office**: Edificio Global Plaza, Calle 50, Piso 21, Panama City, Republic of Panama
+
+---
+
+## Key Website URLs
+- Home: https://grclass.com
+- Services Directory: https://grclass.com/services
+- About & Mission: https://grclass.com/about
 - How It Works: https://grclass.com/how-it-works
-- News & Insights: https://grclass.com/news
-- FAQ: https://grclass.com/faq
-- Contact: https://grclass.com/contact
-- Verify Certificate: https://grclass.com/verify
-- Vessel Search: https://grclass.com/vessel-search
-- Careers: https://grclass.com/careers
-- Company Profile: https://grclass.com/profile
+- Digital Certificate Verification: https://grclass.com/verify
+- Vessel Search Registry: https://grclass.com/vessel-search
+- Corporate Profile: https://grclass.com/profile
+- News & Technical Circulars: https://grclass.com/news
+- Careers & Surveyor Application: https://grclass.com/careers
+- Contact & Survey Booking: https://grclass.com/contact
 
-## Office Locations
-- UAE (HQ): B.C. 1304883, C1 Building, Ajman District Business, Ajman, UAE
-- India: Office No - 6, Hermes Atrium, Sector-11, CBD Belapur, Navi Mumbai, Maharashtra
-- Greece: Notara Str. 110, Piraeus, 18535
-- Panama: Edificio Global Plaza, Calle 50, Piso 21, Republic de Panama
+---
+
+## Optional Full Context
+For comprehensive technical details, rules, and full FAQ dataset, see:
+https://grclass.com/llms-full.txt

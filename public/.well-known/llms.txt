@@ -1,0 +1,15 @@
+# GR Class — .well-known/llms.txt
+# See https://grclass.com/llms.txt for standard specification
+# See https://grclass.com/llms-full.txt for comprehensive technical context
+
+Website: https://grclass.com
+Organization: GR Class
+Aliases: grclass, gr class, GR class, GRClass, Girik Class, Ship Classification Society
+Headquarters: Ajman, UAE
+Offices: India, Greece, Panama
+Email: info@grclass.com
+Phone: +971555324087
+Services: https://grclass.com/services
+Verification: https://grclass.com/verify
+Vessel Search: https://grclass.com/vessel-search
+Sitemap: https://grclass.com/sitemap.xml

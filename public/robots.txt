@@ -1,3 +1,7 @@
+# -----------------------------------------------------------------------------
+# GR Class — Robots.txt & AI Search Optimization
+# -----------------------------------------------------------------------------
+
 User-agent: Googlebot
 Allow: /
 
@@ -10,24 +14,62 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-# AI Search Crawlers
+# -----------------------------------------------------------------------------
+# AI Search Engines & Generative Search Crawlers
+# -----------------------------------------------------------------------------
+
+# OpenAI / ChatGPT
 User-agent: GPTBot
 Allow: /
 
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Google Gemini & AI Overviews
 User-agent: Google-Extended
 Allow: /
 
+# Anthropic Claude
 User-agent: ClaudeBot
 Allow: /
 
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity AI Search
 User-agent: PerplexityBot
 Allow: /
 
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+
+# ByteDance / TikTok AI
 User-agent: Bytespider
 Allow: /
 
+# Cohere AI
+User-agent: cohere-ai
+Allow: /
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# DuckDuckGo AI
+User-agent: DuckAssistBot
+Allow: /
+
+# Global fallback
 User-agent: *
 Allow: /
 
-# Sitemap & AI Files
+# -----------------------------------------------------------------------------
+# Sitemaps & AI Context Endpoints
+# -----------------------------------------------------------------------------
 Sitemap: https://grclass.com/sitemap.xml
+# LLMs Context: https://grclass.com/llms.txt
+# LLMs Full Context: https://grclass.com/llms-full.txt
