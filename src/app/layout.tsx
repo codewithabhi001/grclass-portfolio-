@@ -38,10 +38,9 @@ const localBusinessSchema = {
   },
   "sameAs": [
     "https://www.facebook.com/profile.php?id=61593836337234",
-    "https://x.com/grclass",
+    "https://x.com/grclassofficial",
     "https://www.instagram.com/grclassofficial/",
-    "https://linkedin.com/company/grclass",
-    "https://youtube.com/@grclass"
+    "https://linkedin.com/company/grclass"
   ]
 };
 

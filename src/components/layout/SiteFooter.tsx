@@ -218,10 +218,9 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
             <Link href="/legal/compliance" className="transition-colors hover:text-background/70">Compliance</Link>
             <div className="flex items-center gap-3 border-l border-white/20 pl-6 ml-2">
               <a href="https://www.facebook.com/profile.php?id=61593836337234" target="_blank" rel="noopener" className="transition-colors hover:text-background/70">Facebook</a>
-              <a href="https://x.com/grclass" target="_blank" rel="noopener" className="transition-colors hover:text-background/70">X</a>
+              <a href="https://x.com/grclassofficial" target="_blank" rel="noopener" className="transition-colors hover:text-background/70">X</a>
               <a href="https://www.instagram.com/grclassofficial/" target="_blank" rel="noopener" className="transition-colors hover:text-background/70">Instagram</a>
               <a href="https://linkedin.com/company/grclass" target="_blank" rel="noopener" className="transition-colors hover:text-background/70">LinkedIn</a>
-              <a href="https://youtube.com/@grclass" target="_blank" rel="noopener" className="transition-colors hover:text-background/70">YouTube</a>
             </div>
           </div>
         </div>
