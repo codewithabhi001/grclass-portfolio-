@@ -158,10 +158,10 @@ export function Network() {
               return (
                 <div
                   key={f.id}
-                  className="group relative flex flex-col items-center rounded-2xl bg-[#0a203b]/90 backdrop-blur-md border-2 border-white/15 p-5 text-center transition-all duration-300 hover:bg-[#0f2d52] hover:border-accent hover:-translate-y-1.5 hover:shadow-[0_12px_36px_rgba(181,137,31,0.3)]"
+                  className="group relative flex flex-col items-center rounded-xl bg-white/[0.06] backdrop-blur-sm border border-white/10 p-5 sm:p-6 text-center transition-all duration-500 hover:bg-white/[0.1] hover:border-accent/30 hover:-translate-y-1 hover:shadow-[0_8px_30px_hsl(41_70%_41%/0.15)]"
                 >
                   {/* Flag Image */}
-                  <div className="relative aspect-[3/2] w-full max-w-[120px] overflow-hidden rounded-lg shadow-md border-2 border-white/20 transition-transform duration-300 group-hover:scale-105">
+                  <div className="relative aspect-[3/2] w-full max-w-[120px] overflow-hidden rounded-md shadow-[0_2px_8px_rgba(0,0,0,0.2)] border border-white/20 transition-transform duration-300 group-hover:scale-105">
                     {logo && !failedImages[f.id] ? (
                       <img
                         src={typeof logo === "string" ? logo : (logo as any).src}
@@ -173,23 +173,23 @@ export function Network() {
                         loading="lazy"
                       />
                     ) : (
-                      <div className="flex h-full w-full items-center justify-center bg-white/10 text-white/40">
+                      <div className="flex h-full w-full items-center justify-center bg-white/10 text-background/30">
                         <Flag className="h-6 w-6" />
                       </div>
                     )}
                   </div>
 
                   {/* Country Name */}
-                  <span className="mt-4 text-xs font-black tracking-wider text-white uppercase">
+                  <span className="mt-4 text-xs font-extrabold tracking-wider text-background uppercase">
                     {f.country}
                   </span>
                   {/* Authority Abbreviation */}
-                  <span className="mt-1 text-[10px] font-extrabold tracking-widest text-accent uppercase">
+                  <span className="mt-1 text-[10px] font-bold tracking-widest text-accent uppercase">
                     {f.authority_name}
                   </span>
                   {/* Full Name */}
                   <span
-                    className="mt-2 text-[11px] font-normal leading-snug text-white/70 line-clamp-2"
+                    className="mt-2 text-[11px] font-light leading-snug text-background/40 line-clamp-2"
                     title={f.flag_state_name}
                   >
                     {f.flag_state_name}

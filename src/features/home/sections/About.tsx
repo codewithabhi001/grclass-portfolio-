@@ -16,7 +16,7 @@ export function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="relative h-[320px] overflow-hidden rounded-2xl border border-border shadow-xl sm:h-[420px] md:h-[480px]"
+            className="relative h-[320px] overflow-hidden sm:h-[420px] md:h-[480px]"
           >
             <img
               src={typeof aboutImg === "string" ? aboutImg : (aboutImg as any).src}
@@ -26,7 +26,7 @@ export function About() {
               width={1280}
               height={1280}
             />
-            <div className="absolute bottom-0 left-0 flex gap-5 rounded-tr-xl bg-primary/95 px-5 py-4 backdrop-blur-md sm:gap-7 sm:px-6 sm:py-5">
+            <div className="absolute bottom-0 left-0 flex gap-5 bg-primary px-5 py-4 sm:gap-7 sm:px-6 sm:py-5">
               <div>
                 <div className="font-display text-[22px] font-extrabold leading-none text-background sm:text-[26px]">
                   25+
@@ -47,7 +47,7 @@ export function About() {
             </div>
           </motion.div>
 
-          <blockquote className="rounded-xl border-l-[4px] border-accent bg-accent-soft/80 px-5 py-4 shadow-sm">
+          <blockquote className="border-l-[3px] border-accent bg-accent-soft px-5 py-4">
             <p className="text-body-sm italic text-muted-foreground">
               "Classification is a contract of trust between owner, flag, and the sea.
               Our role is to keep that contract honest."

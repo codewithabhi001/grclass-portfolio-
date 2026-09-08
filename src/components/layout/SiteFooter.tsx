@@ -88,39 +88,39 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
         <div className="md:col-span-3">
           <BrandLogo variant="light" size="large" layout="vertical" />
           <div className="mb-2" />
-          <p className="mt-6 max-w-sm text-sm font-normal leading-relaxed text-white/80">
+          <p className="mt-6 max-w-sm text-sm font-light leading-relaxed text-background/55">
             {site.description}
           </p>
-          <div className="mt-6 space-y-3 text-sm text-white/90">
-            <a href={`mailto:${site.email}`} className="flex items-center gap-3 transition-colors hover:text-accent font-medium">
-              <Mail className="h-4 w-4 text-accent shrink-0" /> {site.email}
+          <div className="mt-8 space-y-3 text-sm text-background/70">
+            <a href={`mailto:${site.email}`} className="flex items-center gap-3 transition-colors hover:text-background">
+              <Mail className="h-4 w-4 text-accent" /> {site.email}
             </a>
-            <a href={`tel:${site.phone}`} className="flex items-center gap-3 transition-colors hover:text-accent font-medium">
-              <Phone className="h-4 w-4 text-accent shrink-0" /> {site.phone}
+            <a href={`tel:${site.phone}`} className="flex items-center gap-3 transition-colors hover:text-background">
+              <Phone className="h-4 w-4 text-accent" /> {site.phone}
             </a>
-            <div className="flex items-center gap-3 pt-2 text-xs text-accent font-semibold">
-              <MapPin className="h-4 w-4 text-accent shrink-0" />
-              <span>HQ in Ajman, UAE · Global Surveyor Network</span>
+            <div className="flex items-start gap-3">
+              <MapPin className="mt-1 h-4 w-4 shrink-0 text-accent" />
+              <span className="leading-relaxed text-background/70">{site.address}</span>
             </div>
           </div>
         </div>
 
         {/* Sitemap */}
         <div className="md:col-span-2">
-          <h4 className="mb-5 font-display text-xs font-bold uppercase tracking-[0.2em] text-accent">
+          <h4 className="mb-5 font-display text-[11px] font-bold uppercase tracking-[0.18em] text-accent">
             Quick Links
           </h4>
-          <ul className="space-y-3 text-sm text-white/80">
+          <ul className="space-y-2.5 text-sm text-background/65">
             {mainNav.map((i) => (
               <li key={i.href}>
-                <Link href={i.href} className="transition-colors hover:text-accent font-medium">
+                <Link href={i.href} className="transition-colors hover:text-background">
                   {i.label}
                 </Link>
               </li>
             ))}
             <li>
-              <Link href="/profile" className="transition-colors hover:text-accent font-medium text-accent">
-                Company Profile &rarr;
+              <Link href="/profile" className="transition-colors hover:text-background">
+                Company Profile
               </Link>
             </li>
           </ul>
@@ -128,7 +128,7 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
 
         {/* Services — grouped by category */}
         <div className="md:col-span-4">
-          <h4 className="mb-5 font-display text-xs font-bold uppercase tracking-[0.2em] text-accent">
+          <h4 className="mb-5 font-display text-[11px] font-bold uppercase tracking-[0.18em] text-accent">
             Services
           </h4>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
@@ -136,17 +136,17 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
             <div className="space-y-6">
               {/* Classification */}
               <div>
-                <h5 className="mb-2.5 text-[11px] font-bold uppercase tracking-wider text-accent/90">
+                <h5 className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-background/45">
                   Classification
                 </h5>
-                <ul className="space-y-2 text-xs text-white/80">
+                <ul className="space-y-1.5 text-xs text-background/65">
                   {servicesCatalogue
                     .filter((s) => s.category === "classification")
                     .map((svc) => (
                       <li key={svc.slug}>
                         <Link
                           href={`/services/${svc.slug}`}
-                          className="transition-colors hover:text-accent block font-medium"
+                          className="transition-colors hover:text-background block"
                         >
                           {svc.title}
                         </Link>
@@ -156,17 +156,17 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
               </div>
               {/* Other */}
               <div>
-                <h5 className="mb-2.5 text-[11px] font-bold uppercase tracking-wider text-accent/90">
+                <h5 className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-background/45">
                   Other Services
                 </h5>
-                <ul className="space-y-2 text-xs text-white/80">
+                <ul className="space-y-1.5 text-xs text-background/65">
                   {servicesCatalogue
                     .filter((s) => s.category === "other")
                     .map((svc) => (
                       <li key={svc.slug}>
                         <Link
                           href={`/services/${svc.slug}`}
-                          className="transition-colors hover:text-accent block font-medium"
+                          className="transition-colors hover:text-background block"
                         >
                           {svc.title}
                         </Link>
@@ -180,17 +180,17 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
             <div className="space-y-6">
               {/* Statutory */}
               <div>
-                <h5 className="mb-2.5 text-[11px] font-bold uppercase tracking-wider text-accent/90">
+                <h5 className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-background/45">
                   Statutory
                 </h5>
-                <ul className="space-y-2 text-xs text-white/80">
+                <ul className="space-y-1.5 text-xs text-background/65">
                   {servicesCatalogue
                     .filter((s) => s.category === "statutory")
                     .map((svc) => (
                       <li key={svc.slug}>
                         <Link
                           href={`/services/${svc.slug}`}
-                          className="transition-colors hover:text-accent block font-medium"
+                          className="transition-colors hover:text-background block"
                         >
                           {svc.title}
                         </Link>
@@ -200,17 +200,17 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
               </div>
               {/* Environmental */}
               <div>
-                <h5 className="mb-2.5 text-[11px] font-bold uppercase tracking-wider text-accent/90">
+                <h5 className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-background/45">
                   Environmental
                 </h5>
-                <ul className="space-y-2 text-xs text-white/80">
+                <ul className="space-y-1.5 text-xs text-background/65">
                   {servicesCatalogue
                     .filter((s) => s.category === "environmental")
                     .map((svc) => (
                       <li key={svc.slug}>
                         <Link
                           href={`/services/${svc.slug}`}
-                          className="transition-colors hover:text-accent block font-medium"
+                          className="transition-colors hover:text-background block"
                         >
                           {svc.title}
                         </Link>
@@ -224,12 +224,12 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
 
         {/* Status */}
         <div className="md:col-span-3">
-          <h4 className="mb-5 font-display text-xs font-bold uppercase tracking-[0.2em] text-accent">
+          <h4 className="mb-5 font-display text-[11px] font-bold uppercase tracking-[0.18em] text-accent">
             Operations
           </h4>
 
           <form onSubmit={subscribe} className="mt-2">
-            <label className="block font-mono text-[10px] uppercase tracking-wider text-white/70">
+            <label className="block font-mono text-[10px] uppercase tracking-wider text-background/40">
               Technical bulletin
             </label>
             {/* Invisible Honeypot to trap spam bots */}
@@ -250,15 +250,15 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@company.com"
-                className="w-full border border-white/20 bg-white/10 px-3 py-2.5 text-sm text-white placeholder:text-white/40 focus:border-accent focus:outline-none rounded-l-lg"
+                className="w-full border border-background/10 bg-background/[0.04] px-3 py-2.5 text-caption text-background placeholder:text-background/30 focus:border-accent focus:outline-none rounded-none"
               />
               <button
                 type="submit"
                 disabled={busy || !nlHumanVerified}
-                className={`flex items-center justify-center px-4 rounded-r-lg transition-all duration-300 ${
+                className={`flex items-center justify-center px-3.5 transition-all duration-300 rounded-none ${
                   !nlHumanVerified
-                    ? "bg-white/20 text-white/50 cursor-not-allowed"
-                    : "bg-accent text-primary font-bold hover:bg-accent-bright shadow-brass cursor-pointer"
+                    ? "bg-white/10 text-white/40 cursor-not-allowed"
+                    : "bg-accent text-accent-foreground hover:bg-accent-bright shadow-brass cursor-pointer"
                 }`}
                 aria-label="Subscribe"
                 title={!nlHumanVerified ? "Check the security verification below to enable" : "Subscribe"}
@@ -268,7 +268,7 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
             </div>
 
             {/* Interactive Human Verification */}
-            <label className="mt-2.5 flex items-center gap-2 text-xs text-white/80 cursor-pointer select-none hover:text-white transition-colors">
+            <label className="mt-2.5 flex items-center gap-2 text-[11px] text-background/60 cursor-pointer select-none hover:text-background/90 transition-colors">
               <input
                 type="checkbox"
                 checked={nlHumanVerified}
@@ -277,10 +277,10 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
                   if (e.target.checked) setNlNonce(`gr_nl_human_${Date.now()}`);
                   else setNlNonce("");
                 }}
-                className="h-3.5 w-3.5 rounded border-white/30 bg-white/10 accent-accent cursor-pointer"
+                className="h-3.5 w-3.5 rounded border-white/20 bg-white/5 accent-accent cursor-pointer"
               />
-              <span className="flex items-center gap-1.5 font-medium">
-                <svg className="w-3.5 h-3.5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <span className="flex items-center gap-1">
+                <svg className="w-3 h-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
                 Security check: I am human
@@ -288,118 +288,63 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
             </label>
           </form>
 
-          <div className="mt-6 rounded-lg border border-white/15 bg-white/[0.05] p-3 text-xs text-white/80">
-            <span className="font-bold text-accent">ISO Certified:</span> ISO 9001:2015 &amp; ISO 14001 Standards
-          </div>
+          <p className="mt-5 text-[11px] leading-relaxed text-background/40">
+            ISO 9001:2015 & ISO 14001 Certified · Founded 2022
+          </p>
         </div>
       </div>
 
-      {/* High-Contrast Global Presence & Offices Showcase Grid */}
-      <div className="border-t-2 border-b border-accent/30 bg-gradient-to-b from-[#07192f] via-[#091f3a] to-[#061527] py-12 sm:py-14">
+      {/* Strategic Offices / Global Presence — Simple, Clean, Sharp */}
+      <div className="border-t border-background/10 bg-background/[0.02] py-8">
         <div className="container-page">
-          <div className="mb-8 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between border-b border-white/10 pb-6">
-            <div>
-              <span className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-[0.25em] text-accent">
-                <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
-                Global Presence &amp; Operational Network
-              </span>
-              <h4 className="font-display text-xl sm:text-2xl font-extrabold text-white tracking-tight mt-1">
-                Headquarters &amp; Strategic Regional Offices
-              </h4>
-            </div>
-            <p className="text-xs sm:text-sm text-white/75 max-w-md font-light leading-relaxed">
-              Positioned across strategic international trade lanes to guarantee rapid surveyor mobilization and uninterrupted fleet operations.
-            </p>
+          <div className="mb-4 flex items-center justify-between">
+            <span className="text-[10px] font-mono uppercase tracking-[0.18em] text-accent font-semibold">
+              Global Presence · Strategic Offices
+            </span>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {/* Headquarters (Ajman, UAE) - High Priority Gold Elevation */}
-            <div className="group relative overflow-hidden rounded-2xl border-2 border-accent bg-[#0e2c52] p-6 shadow-[0_10px_35px_rgba(0,0,0,0.5)] transition-all duration-300 hover:bg-[#123663] hover:shadow-[0_14px_45px_rgba(181,137,31,0.35)] hover:-translate-y-1">
-              <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-accent via-accent-bright to-accent" />
-              <div className="flex items-center justify-between mb-3.5">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-[10px] font-black uppercase tracking-wider text-primary shadow-sm">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary animate-ping" />
-                  Headquarters
-                </span>
-                <span className="text-xs font-bold text-white bg-white/15 px-2.5 py-0.5 rounded-md">UAE 🇦🇪</span>
-              </div>
-              <h5 className="text-base sm:text-lg font-extrabold text-white group-hover:text-accent transition-colors">
-                Ajman Global HQ
-              </h5>
-              <p className="mt-2.5 text-xs sm:text-[13px] leading-relaxed text-white/90 font-medium">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Headquarters */}
+            <div className="border border-white/15 bg-white/[0.04] p-4 rounded-sm">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-accent block">
+                Headquarters · UAE 🇦🇪
+              </span>
+              <p className="mt-1.5 text-xs text-background/80 leading-relaxed font-light">
                 {site.address}
               </p>
-              <div className="mt-5 pt-3.5 border-t border-white/20 flex items-center justify-between text-xs">
-                <span className="text-accent font-bold tracking-wide flex items-center gap-1">
-                  <Phone className="h-3 w-3" /> {site.phone}
-                </span>
-                <span className="text-white/80 bg-white/10 px-2 py-0.5 rounded text-[10px] font-mono">
-                  Makani 4442612247
-                </span>
+              <div className="mt-2.5 text-[11px] text-accent/90">
+                {site.phone}
               </div>
             </div>
 
             {/* India Office */}
-            <div className="group relative overflow-hidden rounded-2xl border-2 border-white/20 bg-[#0a213e] p-6 shadow-[0_10px_35px_rgba(0,0,0,0.4)] transition-all duration-300 hover:border-accent hover:bg-[#0f2d52] hover:shadow-[0_14px_45px_rgba(0,0,0,0.6)] hover:-translate-y-1">
-              <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-secondary via-white/40 to-secondary" />
-              <div className="flex items-center justify-between mb-3.5">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 border border-white/25 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
-                  Regional Office
-                </span>
-                <span className="text-xs font-bold text-white bg-white/15 px-2.5 py-0.5 rounded-md">India 🇮🇳</span>
-              </div>
-              <h5 className="text-base sm:text-lg font-extrabold text-white group-hover:text-accent transition-colors">
-                Navi Mumbai Office
-              </h5>
-              <p className="mt-2.5 text-xs sm:text-[13px] leading-relaxed text-white/90 font-medium">
+            <div className="border border-white/10 bg-white/[0.02] p-4 rounded-sm">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-accent/80 block">
+                India Office 🇮🇳
+              </span>
+              <p className="mt-1.5 text-xs text-background/70 leading-relaxed font-light">
                 {site.additionalOffices[0].address}
               </p>
-              <div className="mt-5 pt-3.5 border-t border-white/15 flex items-center gap-2 text-xs text-accent font-semibold">
-                <MapPin className="h-3.5 w-3.5 shrink-0" />
-                <span>CBD Belapur, Maharashtra Hub</span>
-              </div>
             </div>
 
             {/* Greece Office */}
-            <div className="group relative overflow-hidden rounded-2xl border-2 border-white/20 bg-[#0a213e] p-6 shadow-[0_10px_35px_rgba(0,0,0,0.4)] transition-all duration-300 hover:border-accent hover:bg-[#0f2d52] hover:shadow-[0_14px_45px_rgba(0,0,0,0.6)] hover:-translate-y-1">
-              <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-secondary via-white/40 to-secondary" />
-              <div className="flex items-center justify-between mb-3.5">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 border border-white/25 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
-                  Regional Office
-                </span>
-                <span className="text-xs font-bold text-white bg-white/15 px-2.5 py-0.5 rounded-md">Greece 🇬🇷</span>
-              </div>
-              <h5 className="text-base sm:text-lg font-extrabold text-white group-hover:text-accent transition-colors">
-                Piraeus Office
-              </h5>
-              <p className="mt-2.5 text-xs sm:text-[13px] leading-relaxed text-white/90 font-medium">
+            <div className="border border-white/10 bg-white/[0.02] p-4 rounded-sm">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-accent/80 block">
+                Greece Office 🇬🇷
+              </span>
+              <p className="mt-1.5 text-xs text-background/70 leading-relaxed font-light">
                 {site.additionalOffices[1].address}
               </p>
-              <div className="mt-5 pt-3.5 border-t border-white/15 flex items-center gap-2 text-xs text-accent font-semibold">
-                <MapPin className="h-3.5 w-3.5 shrink-0" />
-                <span>Mediterranean &amp; European Corridor</span>
-              </div>
             </div>
 
             {/* Panama Office */}
-            <div className="group relative overflow-hidden rounded-2xl border-2 border-white/20 bg-[#0a213e] p-6 shadow-[0_10px_35px_rgba(0,0,0,0.4)] transition-all duration-300 hover:border-accent hover:bg-[#0f2d52] hover:shadow-[0_14px_45px_rgba(0,0,0,0.6)] hover:-translate-y-1">
-              <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-secondary via-white/40 to-secondary" />
-              <div className="flex items-center justify-between mb-3.5">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 border border-white/25 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
-                  Regional Office
-                </span>
-                <span className="text-xs font-bold text-white bg-white/15 px-2.5 py-0.5 rounded-md">Panama 🇵🇦</span>
-              </div>
-              <h5 className="text-base sm:text-lg font-extrabold text-white group-hover:text-accent transition-colors">
-                Panama City Office
-              </h5>
-              <p className="mt-2.5 text-xs sm:text-[13px] leading-relaxed text-white/90 font-medium">
+            <div className="border border-white/10 bg-white/[0.02] p-4 rounded-sm">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-accent/80 block">
+                Panama Office 🇵🇦
+              </span>
+              <p className="mt-1.5 text-xs text-background/70 leading-relaxed font-light">
                 {site.additionalOffices[2].address}
               </p>
-              <div className="mt-5 pt-3.5 border-t border-white/15 flex items-center gap-2 text-xs text-accent font-semibold">
-                <MapPin className="h-3.5 w-3.5 shrink-0" />
-                <span>Canal &amp; Americas Flag Authority</span>
-              </div>
             </div>
           </div>
         </div>

@@ -1,203 +1,139 @@
 /**
- * Hero | Aggressive, Ultra-Clean Maritime Command Center UI/UX.
- * Showcases the modern 8K cinematic vessel with high-contrast executive hierarchy.
+ * Hero | full-bleed cinematic vessel with editorial gradient.
+ * Video background + framer-motion content reveal.
+ * Desktop: cream wave overlay on left, video right.
+ * Mobile: full video bg with gradient overlay for readability.
  */
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, PlayCircle, Anchor, Globe2, Clock, CheckCircle2 } from "lucide-react";
+import { ArrowRight, ShieldCheck, PlayCircle } from "lucide-react";
 import heroImg from "@/assets/hero-vessel-modern.jpg";
 
 export function Hero() {
-  const imgSrc = typeof heroImg === "string" ? heroImg : (heroImg as any).src;
-
   return (
-    <section className="relative min-h-[100svh] w-full overflow-hidden bg-primary-deep sm:min-h-[760px] lg:h-[96vh] lg:min-h-[760px]">
-      {/* Background Image Layer with Cinematic Scaling */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={imgSrc}
-          alt="Modern GR Class maritime container vessel sailing oceanic waters"
-          className="h-full w-full object-cover object-[62%_45%] scale-105 transition-transform duration-1000 ease-out brightness-95"
-          loading="eager"
-          decoding="async"
-        />
+    <section className="relative min-h-[100svh] w-full overflow-hidden bg-[#F6F4EB] sm:min-h-[720px] lg:h-[92vh] lg:min-h-[720px]">
 
-        {/* Aggressive Maritime Scrims: Dark gradient on text side, transparent over the ship */}
-        <div className="absolute inset-0 bg-gradient-to-t from-primary-deep via-primary-deep/85 to-primary-deep/60 lg:hidden" />
-        <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-primary-deep/95 via-primary-deep/80 via-45% to-transparent" />
-        
-        {/* Bottom subtle blend into StatsStrip */}
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-primary-deep to-transparent" />
+      {/* Mobile/Tablet Background: full-bleed image */}
+      <div className="absolute inset-0 z-0 lg:hidden">
+        <img src={typeof heroImg === "string" ? heroImg : (heroImg as any).src} alt="Maritime vessel" className="h-full w-full object-cover object-right-bottom" />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary-deep/95 via-primary-deep/70 to-primary-deep/40" />
+      </div>
+
+      {/* Desktop Background: 50/50 Split Layout */}
+      <div className="absolute inset-0 z-0 hidden lg:grid lg:grid-cols-2">
+        {/* Left Column Background (Cream) */}
+        <div className="bg-[#F6F4EB] h-full w-full relative">
+          {/* Removed watermark logo per user request */}
+        </div>
+
+        {/* Right Column Background (Ship Image + Mask) */}
+        <div className="h-full w-full relative overflow-hidden bg-primary-deep">
+          <img src={typeof heroImg === "string" ? heroImg : (heroImg as any).src} alt="Maritime vessel" className="h-full w-full object-cover object-[52%_50%] scale-105" />
+
+          {/* Beautiful Curved Wave Transition Mask */}
+          <div className="absolute top-0 bottom-0 left-0 w-[8vw] pointer-events-none text-[#F6F4EB] z-10">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full">
+              <path d="M0,0 L100,0 C40,30 40,70 100,100 L0,100 Z" fill="currentColor" />
+            </svg>
+          </div>
+
+          {/* Concentric circles decoration — centered on ship */}
+          <div className="absolute inset-y-0 right-0 w-[110%] flex items-center justify-center pointer-events-none opacity-20 overflow-hidden">
+            <div className="absolute w-[120vh] aspect-square rounded-full border border-white/10" />
+            <div className="absolute w-[80vh] aspect-square rounded-full border border-white/15" />
+            <div className="absolute w-[50vh] aspect-square rounded-full border border-white/20" />
+          </div>
+
+          {/* Sparkle */}
+          <div className="absolute bottom-10 right-10 opacity-70">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 0C12 6.62742 17.3726 12 24 12C17.3726 12 12 17.3726 12 24C12 17.3726 6.62742 12 0 12C6.62742 12 12 6.62742 12 0Z" />
+            </svg>
+          </div>
+        </div>
       </div>
 
       {/* Content Container */}
-      <div className="container-page relative z-10 flex min-h-[inherit] flex-col justify-center pt-28 pb-14 sm:pt-36 sm:pb-16 lg:h-full lg:justify-center lg:pt-16 lg:pb-6">
-        <div className="grid lg:grid-cols-12 lg:items-center lg:gap-12">
-          {/* Left Column: Aggressive Typography & Actions */}
+      <div className="container-page relative z-10 flex min-h-[inherit] flex-col justify-center pt-32 pb-12 sm:pt-40 sm:pb-16 lg:h-full lg:justify-center lg:pt-24 lg:pb-0">
+        <motion.div
+          initial="hidden"
+          animate="show"
+          variants={{
+            hidden: {},
+            show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+          }}
+          className="max-w-3xl lg:w-[43%]"
+        >
+
+          {/* Eyebrow badge */}
           <motion.div
-            initial="hidden"
-            animate="show"
-            variants={{
-              hidden: {},
-              show: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
-            }}
-            className="lg:col-span-7 xl:col-span-7"
+            variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-5 inline-flex items-center gap-2 bg-[#EAE5D5]/90 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.1em] text-primary sm:mb-6 sm:gap-3 sm:px-4 sm:py-2 sm:text-[11px] sm:tracking-[0.15em] lg:bg-[#EAE5D5]"
           >
-            {/* Live Authority Status Badge */}
-            <motion.div
-              variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="mb-4 inline-flex items-center gap-2.5 rounded-full border border-accent/40 bg-[#0e2747]/90 px-4 py-1.5 shadow-[0_0_20px_rgba(181,137,31,0.25)] backdrop-blur-md sm:mb-5"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-85" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-              </span>
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-accent sm:text-[11px]">
-                Recognised Classification Society
-              </span>
-              <span className="h-3 w-px bg-white/30" />
-              <span className="text-[10px] font-bold tracking-wider text-white/90 sm:text-[11px]">
-                RO · RSO · EST. 2022
-              </span>
-            </motion.div>
-
-            {/* Aggressive Punchy Heading */}
-            <motion.h1
-              variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="h-display text-[clamp(2.3rem,5.2vw,4.2rem)] font-black leading-[1.04] tracking-tight text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.85)]"
-            >
-              MARITIME CLASSIFICATION.
-              <span className="block mt-1 bg-gradient-to-r from-[#F0C05A] via-[#FFD782] to-[#B5891F] bg-clip-text text-transparent">
-                UNCOMPROMISED SAFETY.
-              </span>
-            </motion.h1>
-
-            {/* Sharp Subtitle */}
-            <motion.p
-              variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-4 max-w-xl text-[15px] font-normal leading-relaxed text-white/90 sm:text-base md:text-[17px]"
-            >
-              GR Class delivers world-class vessel classification, statutory audits, and emergency surveyor mobilization. Engineered for fleet uptime, compliance certainty, and maritime excellence.
-            </motion.p>
-
-            {/* High-Impact CTA Action Row */}
-            <motion.div
-              variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4"
-            >
-              <Link
-                href="/contact"
-                className="group inline-flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-accent via-accent-bright to-accent px-7 py-4 text-sm font-black tracking-wide text-primary shadow-[0_8px_30px_rgba(181,137,31,0.5)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_12px_40px_rgba(181,137,31,0.7)]"
-              >
-                <span>Request Survey / Class</span>
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-
-              <Link
-                href="/verify"
-                className="inline-flex items-center justify-center gap-2.5 rounded-xl border-2 border-white/30 bg-[#0e2747]/80 px-7 py-4 text-sm font-bold text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:border-accent hover:bg-[#123663] hover:text-accent"
-              >
-                <ShieldCheck className="h-4 w-4 text-accent" />
-                <span>Verify Certificate</span>
-              </Link>
-
-              <Link
-                href="/how-it-works"
-                className="group hidden items-center gap-2.5 px-3 text-sm font-bold text-white/90 transition-colors hover:text-white sm:inline-flex"
-              >
-                <div className="flex h-10 w-10 items-center justify-center rounded-full border border-accent/60 bg-accent/20 text-accent transition-transform group-hover:scale-110">
-                  <PlayCircle className="h-5 w-5" />
-                </div>
-                <span>How It Works</span>
-              </Link>
-            </motion.div>
-
-            {/* Micro Badges */}
-            <motion.div
-              variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
-              transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-8 flex flex-wrap items-center gap-3 border-t border-white/15 pt-5 text-xs font-semibold text-white/80"
-            >
-              <div className="flex items-center gap-1.5 text-accent">
-                <CheckCircle2 className="h-4 w-4 text-accent" />
-                <span>IMO &amp; Flag State Aligned</span>
-              </div>
-              <span className="h-1 w-1 rounded-full bg-white/30" />
-              <div className="flex items-center gap-1.5 text-white/90">
-                <Globe2 className="h-4 w-4 text-accent" />
-                <span>4 Strategic Global Hubs</span>
-              </div>
-              <span className="h-1 w-1 rounded-full bg-white/30" />
-              <div className="flex items-center gap-1.5 text-white/90">
-                <Clock className="h-4 w-4 text-accent" />
-                <span>24/7 Global Dispatch</span>
-              </div>
-            </motion.div>
+            <span className="h-1.5 w-1.5 rounded-full bg-accent sm:h-2 sm:w-2" />
+            RECOGNISED CLASSIFICATION SOCIETY
+            <span className="hidden h-3 w-px bg-primary/20 sm:block" />
+            <span className="hidden sm:inline">EST. 2022</span>
           </motion.div>
 
-          {/* Right Column: Aggressive Floating Command Cards (Desktop) */}
-          <div className="hidden lg:col-span-5 lg:flex flex-col gap-4 pl-4 xl:pl-8">
-            {/* Command Card 1 */}
-            <motion.div
-              initial={{ opacity: 0, x: 25 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.25 }}
-              className="rounded-2xl border-2 border-accent/40 bg-[#071d38]/85 p-5 shadow-[0_12px_36px_rgba(0,0,0,0.6)] backdrop-blur-xl transition-all duration-300 hover:border-accent hover:bg-[#0c294e]"
-            >
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-black uppercase tracking-wider text-accent bg-accent/20 px-2.5 py-0.5 rounded-full">
-                  Survey Reliability
-                </span>
-                <span className="font-display text-2xl font-black text-white">99.4%</span>
-              </div>
-              <div className="mt-2 text-xs font-semibold text-white/90">On-Time Survey Dispatch</div>
-              <div className="mt-1 text-[11px] font-light text-white/70">
-                Emergency marine surveyors deployable immediately across international hubs.
-              </div>
-            </motion.div>
+          {/* Heading */}
+          <motion.h1
+            variants={{ hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0 } }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="h-display max-w-[15ch] text-display-xl leading-[1.05] text-white lg:text-primary drop-shadow-md"
+          >
+            GR Class Maritime Classification
+            <span className="block bg-gradient-to-r from-accent to-accent-bright bg-clip-text text-transparent">
+              &amp; Certification.
+            </span>
+          </motion.h1>
 
-            {/* Command Card 2 */}
-            <motion.div
-              initial={{ opacity: 0, x: 25 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.35 }}
-              className="rounded-2xl border-2 border-white/20 bg-[#071d38]/85 p-5 shadow-[0_12px_36px_rgba(0,0,0,0.6)] backdrop-blur-xl transition-all duration-300 hover:border-accent hover:bg-[#0c294e]"
-            >
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-black uppercase tracking-wider text-white/90 bg-white/15 px-2.5 py-0.5 rounded-full">
-                  Global Oversight
-                </span>
-                <span className="font-display text-lg font-black text-accent">4 Strategic Hubs</span>
-              </div>
-              <div className="mt-2 text-xs font-semibold text-white/90">UAE (HQ) · India · Greece · Panama</div>
-              <div className="mt-1 text-[11px] font-light text-white/70">
-                Full-service statutory and classification oversight spanning primary maritime corridors.
-              </div>
-            </motion.div>
+          {/* Paragraph */}
+          <motion.p
+            variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-4 max-w-measure text-body font-medium text-white/85 sm:mt-6 sm:text-lead lg:text-primary/80"
+          >
+            Our range of services includes the classification of newly built ships, as well as the classification and certification of existing vessels for continued safe operation.
+          </motion.p>
 
-            {/* Command Card 3: Flag States Strip */}
-            <motion.div
-              initial={{ opacity: 0, x: 25 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.45 }}
-              className="rounded-2xl border-2 border-white/15 bg-[#071d38]/75 p-4 shadow-[0_12px_36px_rgba(0,0,0,0.6)] backdrop-blur-xl"
+          {/* CTA Buttons */}
+          <motion.div
+            variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-7 flex flex-col gap-2.5 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4"
+          >
+            <Link
+              href="/contact"
+              className="group inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-gradient-to-r from-accent to-accent-bright bg-sweep px-5 py-3.5 text-body-sm font-semibold tracking-wide text-primary shadow-brass transition-all hover:scale-105 hover:shadow-[0_0_20px_hsl(var(--accent)/0.6)] sm:px-8 sm:py-4 rounded-sm"
             >
-              <div className="text-[10px] font-bold uppercase tracking-wider text-white/60 mb-2">
-                Authorised Flag Administrations
+              Get in Touch
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+            <Link
+              href="/verify"
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 border border-white/25 bg-white/[0.06] px-5 py-3.5 text-body-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/10 sm:px-8 sm:py-4 lg:border-primary/20 lg:bg-primary lg:text-white lg:hover:bg-primary-deep rounded-sm"
+            >
+              <ShieldCheck className="h-4 w-4 sm:h-5 sm:w-5" />
+              Verify Certificate
+            </Link>
+            <Link
+              href="/how-it-works"
+              className="group hidden items-center gap-3 px-4 text-body font-semibold text-primary transition-colors hover:text-primary-soft sm:inline-flex lg:inline-flex"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-accent text-accent transition-transform group-hover:scale-110">
+                <PlayCircle className="h-5 w-5" fill="currentColor" />
               </div>
-              <div className="flex flex-wrap gap-1.5 text-[11px] font-bold text-white">
-                <span className="bg-white/10 px-2 py-0.5 rounded border border-white/10">Panama</span>
-                <span className="bg-white/10 px-2 py-0.5 rounded border border-white/10">Belize</span>
-                <span className="bg-white/10 px-2 py-0.5 rounded border border-white/10">Honduras</span>
-                <span className="bg-white/10 px-2 py-0.5 rounded border border-white/10">Palau</span>
-                <span className="bg-white/10 px-2 py-0.5 rounded border border-white/10">Vanuatu</span>
-              </div>
-            </motion.div>
-          </div>
+              <span className="text-white/80 lg:text-primary">How it works</span>
+            </Link>
+          </motion.div>
+        </motion.div>
+
+        {/* Scroll hint */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-white/50 sm:bottom-8 sm:text-[11px] lg:text-primary/50 lg:left-[40%]">
+          Scroll for More
+          <ArrowRight className="h-3 w-3 rotate-90 text-accent" />
         </div>
       </div>
     </section>

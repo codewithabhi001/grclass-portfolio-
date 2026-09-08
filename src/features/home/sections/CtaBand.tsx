@@ -33,14 +33,14 @@ export function CtaBand() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <Link
               href="/contact"
-              className="group inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-accent to-accent-bright px-6 py-3.5 text-sm font-bold tracking-wide text-primary shadow-brass transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_12px_32px_hsl(var(--accent)/0.5)]"
+              className="group inline-flex items-center justify-center gap-2 bg-accent px-6 py-3.5 text-sm font-semibold tracking-wide text-accent-foreground shadow-brass transition-all hover:bg-accent-bright hover:shadow-[0_12px_32px_hsl(var(--accent)/0.45)]"
             >
-              <span>Request consultation</span>
+              Request consultation
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
               href="/services"
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-background/25 px-6 py-3.5 text-sm font-medium text-background backdrop-blur-sm transition-all duration-300 hover:border-background hover:bg-background/10"
+              className="inline-flex items-center justify-center gap-2 border border-background/25 px-6 py-3.5 text-sm font-medium text-background transition-colors hover:border-background hover:bg-background/5"
             >
               Explore services
             </Link>

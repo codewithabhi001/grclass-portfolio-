@@ -1,22 +1,21 @@
+/**
+ * Trust strip beneath the hero | flag/certification chips on a dark band.
+ */
 import { trustTags } from "@/data/home";
-import { Shield } from "lucide-react";
 
 export function TrustBar() {
   return (
-    <div className="border-b border-white/10 bg-primary/90 backdrop-blur-sm">
-      <div className="container-page flex flex-wrap items-center gap-3 py-4 md:gap-4">
-        <div className="flex items-center gap-2">
-          <Shield className="h-3.5 w-3.5 text-accent" />
-          <span className="whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.2em] text-accent">
-            Recognised under
-          </span>
-        </div>
-        <span className="hidden h-4 w-px bg-white/15 sm:block" />
-        <div className="flex flex-wrap gap-2">
+    <div className="bg-primary-deep">
+      <div className="container-page flex flex-wrap items-center gap-3 py-3.5 md:gap-4">
+        <span className="whitespace-nowrap text-[9.5px] font-semibold uppercase tracking-[0.18em] text-background/40">
+          Recognised under
+        </span>
+        <span className="hidden h-3 w-px bg-background/10 sm:block" />
+        <div className="flex flex-wrap gap-1.5 md:gap-2">
           {trustTags.map((t) => (
             <span
               key={t}
-              className="rounded-md border border-white/10 bg-white/[0.04] px-3 py-1 text-[11px] font-medium tracking-wide text-background/80 transition-all duration-300 hover:border-accent/60 hover:bg-accent/10 hover:text-accent"
+              className="border border-background/15 bg-background/[0.03] px-2.5 py-1 text-[10px] font-medium tracking-wide text-background/70 transition-colors hover:border-accent/50 hover:text-background"
             >
               {t}
             </span>
