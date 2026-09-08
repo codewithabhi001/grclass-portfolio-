@@ -1,62 +1,43 @@
 /**
- * Hero | full-bleed cinematic vessel with editorial gradient.
- * Video background + framer-motion content reveal.
- * Desktop: cream wave overlay on left, video right.
- * Mobile: full video bg with gradient overlay for readability.
+ * Hero | Modern cinematic vessel with editorial gradient and executive typography.
+ * Showcases the newly generated state-of-the-art container ship asset.
  */
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, PlayCircle } from "lucide-react";
-import heroImg from "@/assets/hero-vessel.jpg";
+import { ArrowRight, ShieldCheck, PlayCircle, Anchor, Globe2, Clock } from "lucide-react";
+import heroImg from "@/assets/hero-vessel-modern.jpg";
 
 export function Hero() {
+  const imgSrc = typeof heroImg === "string" ? heroImg : (heroImg as any).src;
+
   return (
-    <section className="relative min-h-[100svh] w-full overflow-hidden bg-[#F6F4EB] sm:min-h-[720px] lg:h-[92vh] lg:min-h-[720px]">
+    <section className="relative min-h-[100svh] w-full overflow-hidden bg-primary-deep sm:min-h-[740px] lg:h-[94vh] lg:min-h-[740px]">
+      {/* Background Image Layer with Cinematic Scaling */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={imgSrc}
+          alt="Modern GR Class maritime container vessel sailing oceanic waters"
+          className="h-full w-full object-cover object-[65%_50%] lg:object-[60%_45%] scale-105 transition-transform duration-1000 ease-out"
+          loading="eager"
+          decoding="async"
+        />
 
-      {/* Mobile/Tablet Background: full-bleed image */}
-      <div className="absolute inset-0 z-0 lg:hidden">
-        <img src={typeof heroImg === "string" ? heroImg : (heroImg as any).src} alt="Maritime vessel" className="h-full w-full object-cover object-right-bottom" />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary-deep/95 via-primary-deep/70 to-primary-deep/40" />
-      </div>
+        {/* Multi-stage High-End Scrim & Contrast Gradients */}
+        {/* Mobile scrim: Dark gradient top-to-bottom */}
+        <div className="absolute inset-0 bg-gradient-to-t from-primary-deep via-primary-deep/80 to-primary-deep/50 lg:hidden" />
 
-      {/* Desktop Background: 50/50 Split Layout */}
-      <div className="absolute inset-0 z-0 hidden lg:grid lg:grid-cols-2">
-        {/* Left Column Background (Cream) */}
-        <div className="bg-[#F6F4EB] h-full w-full relative">
-          {/* Removed watermark logo per user request */}
-        </div>
+        {/* Desktop scrim: Elegant directional scrim that preserves the ship's golden hour lighting on the right */}
+        <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-primary-deep via-primary-deep/90 via-50% to-transparent" />
+        
+        {/* Soft bottom vignette to merge seamlessly into StatsStrip */}
+        <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-primary-deep via-primary-deep/60 to-transparent" />
 
-        {/* Right Column Background (Ship Image + Mask) */}
-        <div className="h-full w-full relative overflow-hidden bg-primary-deep">
-          <img src={typeof heroImg === "string" ? heroImg : (heroImg as any).src} alt="Maritime vessel" className="h-full w-full object-cover object-[52%_50%] scale-105" />
-
-          {/* Beautiful Curved Wave Transition Mask */}
-          <div className="absolute top-0 bottom-0 left-0 w-[8vw] pointer-events-none text-[#F6F4EB] z-10">
-            <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full">
-              <path d="M0,0 L100,0 C40,30 40,70 100,100 L0,100 Z" fill="currentColor" />
-            </svg>
-          </div>
-
-          {/* Concentric circles decoration — centered on ship */}
-          <div className="absolute inset-y-0 right-0 w-[110%] flex items-center justify-center pointer-events-none opacity-20 overflow-hidden">
-            <div className="absolute w-[120vh] aspect-square rounded-full border border-white/10" />
-            <div className="absolute w-[80vh] aspect-square rounded-full border border-white/15" />
-            <div className="absolute w-[50vh] aspect-square rounded-full border border-white/20" />
-          </div>
-
-          {/* Sparkle */}
-          <div className="absolute bottom-10 right-10 opacity-70">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 0C12 6.62742 17.3726 12 24 12C17.3726 12 12 17.3726 12 24C12 17.3726 6.62742 12 0 12C6.62742 12 12 6.62742 12 0Z" />
-            </svg>
-          </div>
-
-
-        </div>
+        {/* Subtle decorative grid overlay */}
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff08_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-40" />
       </div>
 
       {/* Content Container */}
-      <div className="container-page relative z-10 flex min-h-[inherit] flex-col justify-center pt-32 pb-12 sm:pt-40 sm:pb-16 lg:h-full lg:justify-center lg:pt-24 lg:pb-0">
+      <div className="container-page relative z-10 flex min-h-[inherit] flex-col justify-center pt-28 pb-16 sm:pt-36 sm:pb-20 lg:h-full lg:justify-center lg:pt-20 lg:pb-8">
         <motion.div
           initial="hidden"
           animate="show"
@@ -64,30 +45,36 @@ export function Hero() {
             hidden: {},
             show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
           }}
-          className="max-w-3xl lg:w-[43%]"
+          className="max-w-3xl lg:w-[54%] xl:w-[50%]"
         >
-
           {/* Eyebrow badge */}
           <motion.div
-            variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }}
+            variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-5 inline-flex items-center gap-2 bg-[#EAE5D5]/90 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.1em] text-primary sm:mb-6 sm:gap-3 sm:px-4 sm:py-2 sm:text-[11px] sm:tracking-[0.15em] lg:bg-[#EAE5D5]"
+            className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 backdrop-blur-md sm:mb-6"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-accent sm:h-2 sm:w-2" />
-            RECOGNISED CLASSIFICATION SOCIETY
-            <span className="hidden h-3 w-px bg-primary/20 sm:block" />
-            <span className="hidden sm:inline">EST. 2022</span>
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+            </span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-accent sm:text-[11px]">
+              Recognised Classification Society
+            </span>
+            <span className="h-3 w-px bg-white/20" />
+            <span className="text-[10px] font-medium tracking-wider text-white/70 sm:text-[11px]">
+              RO · RSO · EST. 2022
+            </span>
           </motion.div>
 
           {/* Heading */}
           <motion.h1
             variants={{ hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0 } }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="h-display max-w-[15ch] text-display-xl leading-[1.05] text-white lg:text-primary drop-shadow-md"
+            className="h-display text-[clamp(2rem,5.2vw,3.75rem)] font-extrabold leading-[1.08] tracking-tight text-white drop-shadow-sm"
           >
             GR Class Maritime Classification
-            <span className="block bg-gradient-to-r from-accent to-accent-bright bg-clip-text text-transparent">
-              &amp; Certification.
+            <span className="block mt-1.5 bg-gradient-to-r from-accent via-accent-bright to-accent bg-clip-text text-transparent">
+              &amp; Fleet Certification.
             </span>
           </motion.h1>
 
@@ -95,46 +82,71 @@ export function Hero() {
           <motion.p
             variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-4 max-w-measure text-body font-medium text-white/85 sm:mt-6 sm:text-lead lg:text-primary/80"
+            className="mt-5 max-w-xl text-[15px] font-normal leading-relaxed text-white/80 sm:text-base md:text-[17px] md:leading-relaxed"
           >
-            Our range of services includes the classification of newly built ships, as well as the classification and certification of existing vessels for continued safe operation.
+            Setting world-class benchmarks in maritime safety, hull integrity, and statutory compliance.
+            Providing prompt technical surveys and certified classification for newly built ships and active fleets globally.
           </motion.p>
 
           {/* CTA Buttons */}
           <motion.div
-            variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }}
+            variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-7 flex flex-col gap-2.5 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4"
+            className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4"
           >
             <Link
               href="/contact"
-              className="group inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-gradient-to-r from-accent to-accent-bright bg-sweep px-5 py-3.5 text-body-sm font-semibold tracking-wide text-primary shadow-brass transition-all hover:scale-105 hover:shadow-[0_0_20px_hsl(var(--accent)/0.6)] sm:px-8 sm:py-4 rounded-sm"
+              className="group inline-flex items-center justify-center gap-2.5 rounded-lg bg-gradient-to-r from-accent to-accent-bright px-6 py-3.5 text-sm font-bold tracking-wide text-primary shadow-[0_8px_24px_hsl(var(--accent)/0.35)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_12px_32px_hsl(var(--accent)/0.5)] sm:px-7 sm:py-4"
             >
-              Get in Touch
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <span>Get in Touch</span>
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
+
             <Link
               href="/verify"
-              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 border border-white/25 bg-white/[0.06] px-5 py-3.5 text-body-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/10 sm:px-8 sm:py-4 lg:border-primary/20 lg:bg-primary lg:text-white lg:hover:bg-primary-deep"
+              className="inline-flex items-center justify-center gap-2.5 rounded-lg border border-white/20 bg-white/[0.08] px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition-all duration-300 hover:border-white/40 hover:bg-white/[0.16] sm:px-7 sm:py-4"
             >
-              <ShieldCheck className="h-4 w-4 sm:h-5 sm:w-5" />
-              Verify Certificate
+              <ShieldCheck className="h-4 w-4 text-accent" />
+              <span>Verify Certificate</span>
             </Link>
+
             <Link
               href="/how-it-works"
-              className="group hidden items-center gap-3 px-4 text-body font-semibold text-primary transition-colors hover:text-primary-soft sm:inline-flex lg:inline-flex"
+              className="group hidden items-center gap-3 px-3 text-sm font-semibold text-white/85 transition-colors hover:text-white sm:inline-flex"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-accent text-accent transition-transform group-hover:scale-110">
-                <PlayCircle className="h-5 w-5" fill="currentColor" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-full border border-accent/40 bg-accent/10 text-accent transition-transform group-hover:scale-110">
+                <PlayCircle className="h-5 w-5" />
               </div>
-              <span className="text-white/80 lg:text-primary">How it works</span>
+              <span>How it works</span>
             </Link>
+          </motion.div>
+
+          {/* Value Micro-Pills */}
+          <motion.div
+            variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-10 flex flex-wrap items-center gap-2.5 sm:gap-4 border-t border-white/10 pt-6"
+          >
+            <div className="flex items-center gap-2 text-xs text-white/70">
+              <Anchor className="h-3.5 w-3.5 text-accent" />
+              <span>IMO Aligned Ruleset</span>
+            </div>
+            <span className="h-1 w-1 rounded-full bg-white/20" />
+            <div className="flex items-center gap-2 text-xs text-white/70">
+              <Globe2 className="h-3.5 w-3.5 text-accent" />
+              <span>4 Global Strategic Hubs</span>
+            </div>
+            <span className="h-1 w-1 rounded-full bg-white/20" />
+            <div className="flex items-center gap-2 text-xs text-white/70">
+              <Clock className="h-3.5 w-3.5 text-accent" />
+              <span>Rapid Survey Dispatch</span>
+            </div>
           </motion.div>
         </motion.div>
 
         {/* Scroll hint */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-white/50 sm:bottom-8 sm:text-[11px] lg:text-primary/50 lg:left-[40%]">
-          Scroll for More
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/40">
+          <span>Explore Platform</span>
           <ArrowRight className="h-3 w-3 rotate-90 text-accent" />
         </div>
       </div>

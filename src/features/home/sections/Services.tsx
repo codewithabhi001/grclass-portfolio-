@@ -42,17 +42,17 @@ export function Services() {
         </div>
 
         {/* Tab Filters */}
-        <div className="mt-10 flex flex-wrap gap-2 sm:gap-3">
+        <div className="mt-8 flex flex-wrap gap-2 sm:gap-3">
           {CATEGORY_TABS.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-4 py-2 sm:px-5 sm:py-2.5 text-[10px] sm:text-xs font-mono uppercase tracking-widest transition-all duration-300 border ${
+                className={`rounded-full px-4 py-2 text-[11px] sm:text-xs font-medium tracking-wider uppercase transition-all duration-300 border ${
                   isActive
-                    ? "bg-primary border-primary text-background font-semibold shadow-sm"
-                    : "bg-background border-border text-muted-foreground hover:border-accent hover:text-primary"
+                    ? "bg-primary border-primary text-background font-semibold shadow-md"
+                    : "bg-card border-border text-muted-foreground hover:border-accent hover:text-primary"
                 }`}
               >
                 {tab.label}

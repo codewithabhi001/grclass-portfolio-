@@ -40,7 +40,7 @@ export function WhyUs() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="relative h-[340px] overflow-hidden sm:h-[440px] md:order-1 md:h-[500px]"
+          className="relative h-[340px] overflow-hidden rounded-2xl border border-border shadow-xl sm:h-[440px] md:order-1 md:h-[500px]"
         >
           <img
             src={typeof portImg === "string" ? portImg : (portImg as any).src}
@@ -50,19 +50,19 @@ export function WhyUs() {
             width={1280}
             height={1280}
           />
-          <div className="absolute right-4 top-4 bg-primary px-4 py-3.5 text-right sm:right-5 sm:top-5">
+          <div className="absolute right-4 top-4 rounded-xl border border-white/15 bg-primary/95 px-4 py-3.5 text-right backdrop-blur-md shadow-lg sm:right-5 sm:top-5">
             <div className="font-display text-[26px] font-extrabold leading-none text-background sm:text-[30px]">
               99.4%
             </div>
-            <div className="mt-1 text-[9px] uppercase tracking-wider text-background/50">
+            <div className="mt-1 text-[9px] uppercase tracking-wider text-background/60 font-medium">
               Survey on-time rate
             </div>
           </div>
-          <div className="absolute bottom-4 left-4 max-w-[220px] border-l-2 border-accent bg-primary/90 px-4 py-3 backdrop-blur-sm sm:bottom-5 sm:left-5 sm:max-w-[240px]">
+          <div className="absolute bottom-4 left-4 max-w-[220px] rounded-xl border-l-[3px] border-accent border-white/10 bg-primary/95 px-4 py-3.5 backdrop-blur-md shadow-lg sm:bottom-5 sm:left-5 sm:max-w-[240px]">
             <div className="text-[10px] font-bold uppercase tracking-wider text-accent">
               24 / 7 dispatch
             </div>
-            <div className="mt-1 text-[11px] font-light leading-relaxed text-background/80 sm:text-xs">
+            <div className="mt-1 text-[11px] font-light leading-relaxed text-background/85 sm:text-xs">
               Emergency surveyors deployable from 32 regional hubs.
             </div>
           </div>

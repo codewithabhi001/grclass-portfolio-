@@ -88,19 +88,19 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
         <div className="md:col-span-3">
           <BrandLogo variant="light" size="large" layout="vertical" />
           <div className="mb-2" />
-          <p className="mt-6 max-w-sm text-sm font-light leading-relaxed text-background/55">
+          <p className="mt-6 max-w-sm text-sm font-light leading-relaxed text-background/60">
             {site.description}
           </p>
-          <div className="mt-8 space-y-3 text-sm text-background/70">
-            <a href={`mailto:${site.email}`} className="flex items-center gap-3 transition-colors hover:text-background">
+          <div className="mt-6 space-y-2.5 text-sm text-background/70">
+            <a href={`mailto:${site.email}`} className="flex items-center gap-3 transition-colors hover:text-accent">
               <Mail className="h-4 w-4 text-accent" /> {site.email}
             </a>
-            <a href={`tel:${site.phone}`} className="flex items-center gap-3 transition-colors hover:text-background">
+            <a href={`tel:${site.phone}`} className="flex items-center gap-3 transition-colors hover:text-accent">
               <Phone className="h-4 w-4 text-accent" /> {site.phone}
             </a>
-            <div className="flex items-start gap-3">
-              <MapPin className="mt-1 h-4 w-4 shrink-0 text-accent" />
-              <span className="leading-relaxed text-background/70">{site.address}</span>
+            <div className="flex items-center gap-3 pt-2 text-xs text-background/50">
+              <MapPin className="h-4 w-4 text-accent/80 shrink-0" />
+              <span>HQ in Ajman, UAE · Worldwide Surveyors</span>
             </div>
           </div>
         </div>
@@ -291,6 +291,98 @@ export const SiteFooter = forwardRef<HTMLElement>((_, ref) => {
           <p className="mt-5 text-[11px] leading-relaxed text-background/40">
             ISO 9001:2015 & ISO 14001 Certified · Founded 2022
           </p>
+        </div>
+      </div>
+
+      {/* Global Presence & Offices Showcase Grid */}
+      <div className="border-t border-background/10 bg-black/20 py-10 sm:py-12">
+        <div className="container-page">
+          <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-accent">Global Presence</span>
+              <h4 className="font-display text-base font-bold text-background tracking-tight sm:text-lg">
+                Strategic Regional Offices &amp; Global Headquarters
+              </h4>
+            </div>
+            <p className="text-xs text-background/50 max-w-md">
+              Positioned across major maritime trade routes and international hubs to ensure rapid surveyor deployment.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Headquarters */}
+            <div className="group rounded-xl border border-accent/35 bg-background/[0.04] p-5 transition-all duration-300 hover:border-accent hover:bg-background/[0.08] hover:shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-accent/20 px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-accent">
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+                  Headquarters
+                </span>
+                <span className="text-xs font-semibold text-background/60">UAE 🇦🇪</span>
+              </div>
+              <h5 className="text-sm font-bold text-background group-hover:text-accent transition-colors">Ajman Global HQ</h5>
+              <p className="mt-2 text-xs leading-relaxed text-background/65 font-light">
+                {site.address}
+              </p>
+              <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[11px]">
+                <span className="text-accent font-medium">{site.phone}</span>
+                <span className="text-background/40">Makani 4442612247</span>
+              </div>
+            </div>
+
+            {/* India Office */}
+            <div className="group rounded-xl border border-white/10 bg-background/[0.03] p-5 transition-all duration-300 hover:border-accent/50 hover:bg-background/[0.06] hover:shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white/80">
+                  Regional Office
+                </span>
+                <span className="text-xs font-semibold text-background/60">India 🇮🇳</span>
+              </div>
+              <h5 className="text-sm font-bold text-background group-hover:text-accent transition-colors">Navi Mumbai Office</h5>
+              <p className="mt-2 text-xs leading-relaxed text-background/65 font-light">
+                {site.additionalOffices[0].address}
+              </p>
+              <div className="mt-4 pt-3 border-t border-white/10 flex items-center gap-2 text-[11px] text-background/50">
+                <MapPin className="h-3 w-3 text-accent/70 shrink-0" />
+                <span>CBD Belapur, Maharashtra</span>
+              </div>
+            </div>
+
+            {/* Greece Office */}
+            <div className="group rounded-xl border border-white/10 bg-background/[0.03] p-5 transition-all duration-300 hover:border-accent/50 hover:bg-background/[0.06] hover:shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white/80">
+                  Regional Office
+                </span>
+                <span className="text-xs font-semibold text-background/60">Greece 🇬🇷</span>
+              </div>
+              <h5 className="text-sm font-bold text-background group-hover:text-accent transition-colors">Piraeus Office</h5>
+              <p className="mt-2 text-xs leading-relaxed text-background/65 font-light">
+                {site.additionalOffices[1].address}
+              </p>
+              <div className="mt-4 pt-3 border-t border-white/10 flex items-center gap-2 text-[11px] text-background/50">
+                <MapPin className="h-3 w-3 text-accent/70 shrink-0" />
+                <span>Mediterranean &amp; European Hub</span>
+              </div>
+            </div>
+
+            {/* Panama Office */}
+            <div className="group rounded-xl border border-white/10 bg-background/[0.03] p-5 transition-all duration-300 hover:border-accent/50 hover:bg-background/[0.06] hover:shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
+              <div className="flex items-center justify-between mb-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white/80">
+                  Regional Office
+                </span>
+                <span className="text-xs font-semibold text-background/60">Panama 🇵🇦</span>
+              </div>
+              <h5 className="text-sm font-bold text-background group-hover:text-accent transition-colors">Panama City Office</h5>
+              <p className="mt-2 text-xs leading-relaxed text-background/65 font-light">
+                {site.additionalOffices[2].address}
+              </p>
+              <div className="mt-4 pt-3 border-t border-white/10 flex items-center gap-2 text-[11px] text-background/50">
+                <MapPin className="h-3 w-3 text-accent/70 shrink-0" />
+                <span>Canal &amp; Americas Hub</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
