@@ -75,11 +75,11 @@ export function Services() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 key={svc.slug}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_hsl(var(--primary)/0.12)]"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border-2 border-border/80 bg-card shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-accent hover:shadow-[0_20px_45px_rgba(11,36,67,0.14)]"
               >
                 {/* Glowing border effect */}
-                <div className="absolute inset-0 border-2 border-transparent transition-all duration-300 group-hover:border-accent/40 rounded-xl pointer-events-none z-10" />
-                <div className="absolute -inset-2 bg-gradient-to-r from-accent/0 via-accent/15 to-accent/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl pointer-events-none z-0" />
+                <div className="absolute inset-0 border-2 border-transparent transition-all duration-300 group-hover:border-accent rounded-2xl pointer-events-none z-10" />
+                <div className="absolute -inset-2 bg-gradient-to-r from-accent/0 via-accent/20 to-accent/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl pointer-events-none z-0" />
                 <Link href={`/services/${svc.slug}`} className="flex flex-col h-full relative z-20 bg-card">
                   {/* Image container */}
                   <div className="relative h-44 overflow-hidden bg-primary sm:h-48">

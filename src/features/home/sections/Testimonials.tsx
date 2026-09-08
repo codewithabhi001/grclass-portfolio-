@@ -123,7 +123,7 @@ export function Testimonials() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -50 }}
                   transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className="group flex flex-col border border-border border-t-[3px] border-t-secondary bg-card p-6 transition-all duration-300 hover:border-t-accent hover:shadow-card sm:p-7"
+                  className="group flex flex-col rounded-2xl border-2 border-border/80 border-t-4 border-t-accent bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:shadow-[0_16px_36px_rgba(11,36,67,0.1)] sm:p-7"
                 >
                   <div className="flex justify-between items-start">
                     <Quote className="h-6 w-6 text-accent/60 transition-colors group-hover:text-accent" />
