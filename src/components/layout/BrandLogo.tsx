@@ -14,14 +14,14 @@ interface BrandLogoProps {
 
 const sizeMap = {
   default: {
-    logo: "h-12 w-auto sm:h-16 md:h-18 lg:h-[88px]",
-    brand: "text-body-lg sm:text-[20px] md:text-[24px]",
-    tagline: "text-[7.5px] sm:text-[9.5px] md:text-[11px]",
+    logo: "h-10 w-auto sm:h-11 md:h-12 lg:h-13",
+    brand: "text-lg sm:text-xl md:text-2xl font-extrabold",
+    tagline: "text-[8px] sm:text-[9px] md:text-[10px]",
   },
   large: {
-    logo: "h-24 w-auto md:h-32",
-    brand: "text-[30px]",
-    tagline: "text-xs md:text-caption",
+    logo: "h-16 w-auto sm:h-20 md:h-24",
+    brand: "text-2xl sm:text-3xl md:text-4xl font-extrabold",
+    tagline: "text-xs sm:text-sm",
   },
 } as const;
 

@@ -133,7 +133,7 @@ export function Testimonials() {
                         <Star
                           key={i}
                           className={`h-3.5 w-3.5 ${
-                            i < t.rating ? "fill-accent text-accent animate-pulse" : "text-border"
+                            i < t.rating ? "fill-accent text-accent" : "text-border"
                           }`}
                         />
                       ))}

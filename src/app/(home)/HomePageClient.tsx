@@ -5,6 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { TrustBar } from "@/components/layout/TrustBar";
 import { Hero } from "@/features/home/sections/Hero";
+import { WhatsNewTicker } from "@/features/home/sections/WhatsNewTicker";
 import { StatsStrip } from "@/features/home/sections/StatsStrip";
 import { About } from "@/features/home/sections/About";
 import { Services } from "@/features/home/sections/Services";
@@ -20,6 +21,7 @@ const HomePageClient = () => {
   return (
     <SiteShell>
       <Hero />
+      <WhatsNewTicker />
       <StatsStrip />
       <TrustBar />
 
@@ -35,7 +37,7 @@ const HomePageClient = () => {
           <div className="md:col-span-4 md:text-right">
             <button
               onClick={() => setModalOpen(true)}
-              className="inline-flex items-center gap-2 bg-accent px-6 py-3.5 text-body font-bold text-accent-foreground transition-colors hover:bg-accent-bright"
+              className="inline-flex items-center gap-2 rounded-xs bg-accent px-6 py-3.5 text-sm font-semibold tracking-wide text-accent-foreground shadow-sm transition-all hover:bg-accent-bright hover:shadow-md active:scale-[0.99]"
             >
               Become part of our surveyors <ArrowUpRight className="h-4 w-4" />
             </button>

@@ -1,21 +1,23 @@
 /**
- * Trust strip beneath the hero | flag/certification chips on a dark band.
+ * Trust strip beneath the stats strip | flag/certification chips on a clean corporate band.
  */
 import { trustTags } from "@/data/home";
 
 export function TrustBar() {
   return (
-    <div className="bg-primary-deep">
-      <div className="container-page flex flex-wrap items-center gap-3 py-3.5 md:gap-4">
-        <span className="whitespace-nowrap text-[9.5px] font-semibold uppercase tracking-[0.18em] text-background/40">
-          Recognised under
-        </span>
-        <span className="hidden h-3 w-px bg-background/10 sm:block" />
-        <div className="flex flex-wrap gap-1.5 md:gap-2">
+    <div className="border-b border-border-soft bg-slate-50/80 py-3">
+      <div className="container-page flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-2">
+          <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+          <span className="whitespace-nowrap text-[10.5px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
+            Recognised &amp; Certified Under International Conventions
+          </span>
+        </div>
+        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
           {trustTags.map((t) => (
             <span
               key={t}
-              className="border border-background/15 bg-background/[0.03] px-2.5 py-1 text-[10px] font-medium tracking-wide text-background/70 transition-colors hover:border-accent/50 hover:text-background"
+              className="rounded-xs border border-border/80 bg-white px-2.5 py-0.5 text-[10.5px] font-semibold tracking-wide text-primary shadow-2xs transition-colors hover:border-accent"
             >
               {t}
             </span>

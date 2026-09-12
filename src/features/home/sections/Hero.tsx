@@ -1,152 +1,229 @@
-/**
- * Hero | Clean Corporate Maritime Classification & Certification.
- * Light mode #F6F4EB with crisp typography, sharp container framing,
- * and a single modern vessel visual (no wavy masks, no AI watermarks).
- */
-import { motion } from "framer-motion";
+"use client";
+
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, PlayCircle } from "lucide-react";
-import heroImg from "@/assets/hero-vessel-modern.jpg";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ArrowRight,
+  ShieldCheck,
+  ChevronLeft,
+  ChevronRight,
+  Pause,
+  Play,
+} from "lucide-react";
+
+import flagshipImg from "@/assets/hero-banner-flagship.jpg";
+import modernVesselImg from "@/assets/hero-vessel-modern.jpg";
+import surveyorImg from "@/assets/about-surveyor.jpg";
+
+interface SlideData {
+  id: number;
+  image: any;
+  badge: string;
+  title: string;
+  description: string;
+  primaryCta: string;
+  primaryHref: string;
+  secondaryCta: string;
+  secondaryHref: string;
+}
+
+const SLIDES: SlideData[] = [
+  {
+    id: 0,
+    image: flagshipImg,
+    badge: "MARITIME CLASSIFICATION & CERTIFICATION",
+    title: "Setting the Standard in Ship Classification and Marine Safety",
+    description:
+      "Authorised classification for new construction and fleet in service, technical plan approvals, and comprehensive hull surveys delivered with international compliance.",
+    primaryCta: "Explore Services",
+    primaryHref: "/services",
+    secondaryCta: "Verify Certificate",
+    secondaryHref: "/verify",
+  },
+  {
+    id: 1,
+    image: modernVesselImg,
+    badge: "STATUTORY SURVEYS & FLAG AUTHORISATIONS",
+    title: "Global Statutory Compliance Under IMO, SOLAS & MARPOL",
+    description:
+      "Delivering authorized surveys, international conventions compliance, and official certificates on behalf of major flag administrations and worldwide trading fleets.",
+    primaryCta: "Statutory Services",
+    primaryHref: "/services/statutory-services",
+    secondaryCta: "Request Survey",
+    secondaryHref: "/contact",
+  },
+  {
+    id: 2,
+    image: surveyorImg,
+    badge: "EXCLUSIVE SURVEYOR NETWORK",
+    title: "Qualified Marine Surveyors Stationed Across Strategic Hub Ports",
+    description:
+      "Direct attendance by seasoned naval architects and certified marine surveyors covering 40+ international ports for rapid emergency response and condition assessments.",
+    primaryCta: "Join Surveyor Network",
+    primaryHref: "/careers",
+    secondaryCta: "Find a Surveyor",
+    secondaryHref: "/contact",
+  },
+];
 
 export function Hero() {
+  const [current, setCurrent] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const nextSlide = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % SLIDES.length);
+  }, []);
+
+  const prevSlide = useCallback(() => {
+    setCurrent((prev) => (prev - 1 + SLIDES.length) % SLIDES.length);
+  }, []);
+
+  // Autoplay ticker
+  useEffect(() => {
+    if (!isPlaying || isHovered) return;
+    const interval = setInterval(nextSlide, 7000);
+    return () => clearInterval(interval);
+  }, [isPlaying, isHovered, nextSlide]);
+
+  const slide = SLIDES[current];
+
   return (
-    <section className="relative w-full overflow-hidden bg-[#F6F4EB] min-h-[calc(100vh-5rem)] flex items-center pt-28 pb-14 sm:pt-32 sm:pb-16 lg:pt-28 lg:pb-16">
-      <div className="container-page relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 xl:gap-12 items-center">
-          
-          {/* Left Column: Corporate Content */}
+    <section
+      aria-label="GR Class Maritime Classification Hero"
+      className="relative w-full overflow-hidden bg-primary-deep text-white min-h-[580px] sm:min-h-[640px] lg:min-h-[680px] flex items-center pt-header"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Background Image Carousel with cross-fade */}
+      <div className="absolute inset-0 z-0">
+        <AnimatePresence mode="wait">
           <motion.div
-            initial="hidden"
-            animate="show"
-            variants={{
-              hidden: {},
-              show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
-            }}
-            className="lg:col-span-7 xl:col-span-6"
+            key={slide.id}
+            initial={{ opacity: 0, scale: 1.04 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute inset-0"
           >
-            {/* Eyebrow badge */}
-            <motion.div
-              variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="inline-flex items-center gap-2.5 bg-[#EAE5D5] border border-primary/10 px-3.5 py-1.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.14em] text-primary rounded-sm shadow-xs"
-            >
-              <span className="h-2 w-2 rounded-full bg-accent" />
-              <span>RECOGNISED CLASSIFICATION SOCIETY</span>
-              <span className="h-3 w-px bg-primary/20" />
-              <span className="text-primary/70">EST. 2022</span>
-            </motion.div>
-
-            {/* Heading */}
-            <motion.h1
-              variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-5 font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-primary leading-[1.08]"
-            >
-              GR Class Maritime Classification{" "}
-              <span className="bg-gradient-to-r from-accent to-accent-bright bg-clip-text text-transparent block sm:inline">
-                &amp; Certification.
-              </span>
-            </motion.h1>
-
-            {/* Paragraph */}
-            <motion.p
-              variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-5 text-base sm:text-lg leading-relaxed text-primary/80 font-normal max-w-xl"
-            >
-              Our range of services includes the classification of newly built ships, as well as the classification and certification of existing vessels for continued safe operation.
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-8 flex flex-col sm:flex-row sm:items-center gap-3.5"
-            >
-              <Link
-                href="/contact"
-                className="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-accent to-accent-bright bg-sweep px-7 py-3.5 text-body-sm font-bold tracking-wide text-primary shadow-sm hover:shadow-md transition-all rounded-sm"
-              >
-                Get in Touch
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-              <Link
-                href="/verify"
-                className="inline-flex items-center justify-center gap-2 bg-primary px-7 py-3.5 text-body-sm font-semibold text-white transition-colors hover:bg-primary-deep rounded-sm border border-primary/20 shadow-sm"
-              >
-                <ShieldCheck className="h-4 w-4 text-accent" />
-                Verify Certificate
-              </Link>
-              <Link
-                href="/how-it-works"
-                className="group inline-flex items-center gap-2.5 px-3 py-2 text-body-sm font-semibold text-primary transition-colors hover:text-primary-soft"
-              >
-                <div className="flex h-9 w-9 items-center justify-center rounded-full border border-accent text-accent transition-transform group-hover:scale-105">
-                  <PlayCircle className="h-4 w-4" fill="currentColor" />
-                </div>
-                <span>How it works</span>
-              </Link>
-            </motion.div>
-
-            {/* Corporate Trust Indicators */}
-            <motion.div
-              variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-10 pt-6 border-t border-primary/15 grid grid-cols-3 gap-4"
-            >
-              <div>
-                <div className="font-display text-lg sm:text-xl font-bold text-primary">IACS</div>
-                <div className="text-[10px] sm:text-[11px] uppercase tracking-wider text-primary/60 font-semibold mt-0.5">
-                  Compliant Standards
-                </div>
-              </div>
-              <div>
-                <div className="font-display text-lg sm:text-xl font-bold text-primary">Global</div>
-                <div className="text-[10px] sm:text-[11px] uppercase tracking-wider text-primary/60 font-medium mt-0.5">
-                  Surveyor Network
-                </div>
-              </div>
-              <div>
-                <div className="font-display text-lg sm:text-xl font-bold text-primary">24/7</div>
-                <div className="text-[10px] sm:text-[11px] uppercase tracking-wider text-primary/60 font-medium mt-0.5">
-                  Technical Support
-                </div>
-              </div>
-            </motion.div>
+            <img
+              src={typeof slide.image === "string" ? slide.image : slide.image.src}
+              alt={slide.title}
+              className="h-full w-full object-cover object-center"
+            />
           </motion.div>
+        </AnimatePresence>
 
-          {/* Right Column: Single High-Res Corporate Vessel Visual */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 xl:col-span-6"
-          >
-            <div className="relative overflow-hidden rounded-sm border border-primary/15 shadow-xl bg-primary-deep group">
-              <img
-                src={typeof heroImg === "string" ? heroImg : (heroImg as any).src}
-                alt="Modern commercial container vessel under GR Class classification"
-                className="w-full h-[320px] sm:h-[420px] lg:h-[460px] xl:h-[500px] object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
-              />
+        {/* Deep navy atmospheric overlay matching GR Class branding */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-deep/95 via-primary-deep/85 sm:via-primary-deep/75 to-primary-deep/25 lg:to-transparent" />
+        {/* Subtle bottom fade to seamlessly meet the ticker */}
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-primary-deep via-primary-deep/60 to-transparent" />
+      </div>
 
-              {/* Clean bottom corporate caption bar */}
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary-deep/95 via-primary-deep/60 to-transparent p-4 sm:p-5 flex items-center justify-between">
-                <div className="flex items-center gap-2.5">
-                  <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
-                  <span className="text-xs font-semibold text-white tracking-wide">
-                    Commercial Fleet Survey &amp; Classification
-                  </span>
-                </div>
-                <span className="text-[11px] font-mono font-medium uppercase tracking-widest text-accent hidden sm:inline">
-                  IMO / SOLAS
+      {/* Main Hero Content */}
+      <div className="container-page relative z-10 w-full py-14 sm:py-18 lg:py-20">
+        <div className="max-w-2xl lg:max-w-3xl">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={slide.id}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {/* Clean, editorial Eyebrow text in Amber Accent */}
+              <div className="flex items-center gap-3">
+                <span className="h-[2px] w-5 sm:w-6 bg-accent shrink-0" />
+                <span className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-accent">
+                  {slide.badge}
                 </span>
               </div>
-            </div>
-          </motion.div>
 
+              {/* Solid White Serif Headline (timeless, authoritative, high-contrast) */}
+              <h1 className="mt-4 font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold tracking-tight text-white leading-[1.15] max-w-2xl text-balance">
+                {slide.title}
+              </h1>
+
+              {/* Clear, professional maritime description */}
+              <p className="mt-5 max-w-xl text-base sm:text-lg leading-relaxed text-white/85 font-normal">
+                {slide.description}
+              </p>
+
+              {/* Clean CTA Action Buttons */}
+              <div className="mt-8 flex flex-wrap items-center gap-3.5">
+                <Link
+                  href={slide.primaryHref}
+                  className="group inline-flex items-center justify-center gap-2 rounded-xs bg-accent hover:bg-accent-bright px-6 sm:px-7 py-3.5 text-body-sm font-semibold tracking-wide text-accent-foreground shadow-sm transition-all hover:shadow-md active:scale-[0.99]"
+                >
+                  <span>{slide.primaryCta}</span>
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+
+                <Link
+                  href={slide.secondaryHref}
+                  className="inline-flex items-center justify-center gap-2 rounded-xs border border-white/30 bg-white/5 px-6 py-3.5 text-body-sm font-medium text-white backdrop-blur-xs transition-colors hover:border-white hover:bg-white/15 active:scale-[0.99]"
+                >
+                  <ShieldCheck className="h-4 w-4 text-accent" />
+                  <span>{slide.secondaryCta}</span>
+                </Link>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
+      </div>
+
+      {/* Carousel Controls (Bottom Center) matching reference portal layout */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2.5 rounded-full border border-white/15 bg-primary-deep/85 px-3.5 py-1.5 shadow-lg backdrop-blur-md">
+        {/* Previous Button */}
+        <button
+          onClick={prevSlide}
+          aria-label="Previous slide"
+          className="flex h-6 w-6 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+        >
+          <ChevronLeft className="h-4 w-4" />
+        </button>
+
+        {/* Slide Indicators: Accent Pill for active, dots for inactive */}
+        <div className="flex items-center gap-1.5 px-1">
+          {SLIDES.map((s, idx) => (
+            <button
+              key={s.id}
+              onClick={() => setCurrent(idx)}
+              aria-label={`Go to slide ${idx + 1}`}
+              className="focus:outline-hidden"
+            >
+              {current === idx ? (
+                <span className="block h-2 w-6 rounded-full bg-accent transition-all duration-300" />
+              ) : (
+                <span className="block h-2 w-2 rounded-full bg-white/40 transition-all duration-300 hover:bg-white/70" />
+              )}
+            </button>
+          ))}
+        </div>
+
+        {/* Play/Pause Button */}
+        <button
+          onClick={() => setIsPlaying(!isPlaying)}
+          aria-label={isPlaying ? "Pause carousel" : "Play carousel"}
+          className="flex h-6 w-6 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+        >
+          {isPlaying ? (
+            <Pause className="h-3 w-3" />
+          ) : (
+            <Play className="h-3 w-3" />
+          )}
+        </button>
+
+        {/* Next Button */}
+        <button
+          onClick={nextSlide}
+          aria-label="Next slide"
+          className="flex h-6 w-6 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+        >
+          <ChevronRight className="h-4 w-4" />
+        </button>
       </div>
     </section>
   );
 }
-
