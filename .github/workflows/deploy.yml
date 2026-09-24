@@ -6,6 +6,10 @@ on:
       - main
   workflow_dispatch: {}
 
+concurrency:
+  group: deploy-portfolio
+  cancel-in-progress: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -31,7 +35,10 @@ jobs:
             ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
             "set -e; \
              cd /var/www/grclass-portfolio-; \
-             git fetch origin ${{ github.ref_name }}; \
+             rm -f .git/index.lock .git/refs/remotes/origin/${{ github.ref_name }}.lock .git/packed-refs.lock 2>/dev/null || true; \
+             git remote prune origin || true; \
+             git fetch --prune origin ${{ github.ref_name }} || { rm -f .git/refs/remotes/origin/${{ github.ref_name }}; git fetch origin ${{ github.ref_name }}; }; \
              git reset --hard origin/${{ github.ref_name }}; \
              npm install --legacy-peer-deps; \
              npm run build"
+
