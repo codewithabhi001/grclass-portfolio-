@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent, useRef } from "react";
+import { useState, FormEvent, useRef, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -31,6 +31,21 @@ export function SurveyorApplicationModal({ open, onOpenChange }: SurveyorApplica
   const cvInputRef = useRef<HTMLInputElement>(null);
   const idInputRef = useRef<HTMLInputElement>(null);
   const certInputRef = useRef<HTMLInputElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      e.stopPropagation();
+    };
+
+    el.addEventListener("wheel", handleWheel, { passive: true });
+    return () => {
+      el.removeEventListener("wheel", handleWheel);
+    };
+  }, [open]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -133,7 +148,7 @@ export function SurveyorApplicationModal({ open, onOpenChange }: SurveyorApplica
       }
       onOpenChange(val);
     }}>
-      <DialogContent className="sm:max-w-[550px] p-0 overflow-hidden">
+      <DialogContent data-lenis-prevent className="sm:max-w-[550px] p-0 overflow-hidden">
         <DialogHeader className="p-6 pb-4 border-b shrink-0">
           <DialogTitle>Become part of our surveyors</DialogTitle>
           <DialogDescription>
@@ -141,14 +156,19 @@ export function SurveyorApplicationModal({ open, onOpenChange }: SurveyorApplica
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="flex-1 flex flex-col min-h-0 overflow-hidden">
+        <form onSubmit={handleSubmit} data-lenis-prevent className="flex-1 flex flex-col min-h-0 overflow-hidden">
           {/* Invisible Honeypot to trap spam bots */}
           <div style={{ display: 'none', position: 'absolute', opacity: 0, pointerEvents: 'none' }} aria-hidden="true">
             <input type="text" name="website_hp" tabIndex={-1} autoComplete="off" />
           </div>
 
           {/* Scrollable form body */}
-          <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain p-6 space-y-6 scroll-smooth">
+          <div
+            ref={scrollContainerRef}
+            data-lenis-prevent
+            className="flex-1 min-h-0 overflow-y-auto overscroll-contain p-6 space-y-6"
+            style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}
+          >
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="full_name" className="text-[11px] uppercase tracking-wider text-muted-foreground">Full Name *</Label>

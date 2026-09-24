@@ -12,6 +12,12 @@ import Lenis from "lenis";
  *  - The rAF loop is cancelled on unmount. Previously it kept calling into a
  *    destroyed Lenis instance for the life of the tab.
  */
+declare global {
+  interface Window {
+    __lenis?: Lenis;
+  }
+}
+
 export const SmoothScroll = () => {
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -25,7 +31,19 @@ export const SmoothScroll = () => {
       smoothWheel: true,
       wheelMultiplier: 1,
       touchMultiplier: 2,
+      allowNestedScroll: true,
+      prevent: (node) => {
+        return (
+          node.hasAttribute("data-lenis-prevent") ||
+          Boolean(node.closest?.("[data-lenis-prevent]")) ||
+          Boolean(node.closest?.('[role="dialog"]')) ||
+          Boolean(node.closest?.("[data-radix-portal]")) ||
+          Boolean(node.closest?.(".overflow-y-auto"))
+        );
+      },
     });
+
+    window.__lenis = lenis;
 
     let frame = 0;
     const raf = (time: number) => {
@@ -36,6 +54,7 @@ export const SmoothScroll = () => {
 
     return () => {
       cancelAnimationFrame(frame);
+      window.__lenis = undefined;
       lenis.destroy();
     };
   }, []);
