@@ -34,11 +34,9 @@ export const SmoothScroll = () => {
       allowNestedScroll: true,
       prevent: (node) => {
         return (
-          node.hasAttribute("data-lenis-prevent") ||
+          Boolean(node.hasAttribute?.("data-lenis-prevent")) ||
           Boolean(node.closest?.("[data-lenis-prevent]")) ||
-          Boolean(node.closest?.('[role="dialog"]')) ||
-          Boolean(node.closest?.("[data-radix-portal]")) ||
-          Boolean(node.closest?.(".overflow-y-auto"))
+          Boolean(node.closest?.('[role="dialog"]'))
         );
       },
     });

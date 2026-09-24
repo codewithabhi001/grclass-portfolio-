@@ -22,6 +22,8 @@ interface SurveyorApplicationModalProps {
 }
 
 export function SurveyorApplicationModal({ open, onOpenChange }: SurveyorApplicationModalProps) {
+  if (!open) return null;
+
   const [submitting, setSubmitting] = useState(false);
   const [cvFile, setCvFile] = useState<File | null>(null);
   const [idFile, setIdFile] = useState<File | null>(null);
