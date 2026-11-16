@@ -84,6 +84,12 @@ const flagUrlMap: Record<string, string> = {
   vanuatu: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Vanuatu.svg",
   palau: "https://upload.wikimedia.org/wikipedia/commons/4/48/Flag_of_Palau.svg",
   mongolia: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Flag_of_Mongolia.svg",
+  india: "https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg",
+  "the gambia": "https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_The_Gambia.svg",
+  gambia: "https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_The_Gambia.svg",
+  singapore: "https://upload.wikimedia.org/wikipedia/commons/4/48/Flag_of_Singapore.svg",
+  liberia: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Flag_of_Liberia.svg",
+  "marshall islands": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Flag_of_the_Marshall_Islands.svg",
 };
 
 export function Network() {
@@ -119,11 +125,14 @@ export function Network() {
   const displayFlags = activeFlags.length > 0 ? activeFlags : REAL_FLAGS;
 
   const getLogoUrl = (f: FlagItem) => {
+    if (f.logo_url && typeof f.logo_url === "string" && f.logo_url.trim()) {
+      return f.logo_url;
+    }
     const key = f.country.toLowerCase().trim();
     if (flagUrlMap[key]) {
       return flagUrlMap[key];
     }
-    return f.logo_url;
+    return "";
   };
 
   return (
@@ -146,50 +155,53 @@ export function Network() {
           </p>
         </div>
 
-        {/* Flag Cards Grid */}
+        {/* Flag Cards - Centered Flex Container */}
         {loading ? (
           <div className="flex items-center justify-center py-12">
             <div className="h-6 w-6 animate-spin rounded-full border-2 border-accent border-t-transparent" />
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-5 max-w-6xl mx-auto">
+          <div className="flex flex-wrap justify-center items-stretch gap-5 sm:gap-6 max-w-5xl mx-auto">
             {displayFlags.map((f) => {
               const logo = getLogoUrl(f);
               return (
                 <div
                   key={f.id}
-                  className="group relative flex flex-col items-center rounded-xl bg-white/[0.06] backdrop-blur-sm border border-white/10 p-5 sm:p-6 text-center transition-all duration-500 hover:bg-white/[0.1] hover:border-accent/30 hover:-translate-y-1 hover:shadow-[0_8px_30px_hsl(41_70%_41%/0.15)]"
+                  className="group relative flex flex-col items-center justify-between rounded-2xl bg-white/[0.06] backdrop-blur-md border border-white/10 p-6 sm:p-7 text-center transition-all duration-500 hover:bg-white/[0.1] hover:border-accent/40 hover:-translate-y-1.5 hover:shadow-[0_12px_36px_hsl(41_70%_41%/0.18)] w-[240px] max-w-full"
                 >
-                  {/* Flag Image */}
-                  <div className="relative aspect-[3/2] w-full max-w-[120px] overflow-hidden rounded-md shadow-[0_2px_8px_rgba(0,0,0,0.2)] border border-white/20 transition-transform duration-300 group-hover:scale-105">
-                    {logo && !failedImages[f.id] ? (
-                      <img
-                        src={typeof logo === "string" ? logo : (logo as any).src}
-                        alt={f.flag_state_name}
-                        className="h-full w-full object-cover"
-                        onError={() => {
-                          setFailedImages((prev) => ({ ...prev, [f.id]: true }));
-                        }}
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="flex h-full w-full items-center justify-center bg-white/10 text-background/30">
-                        <Flag className="h-6 w-6" />
-                      </div>
-                    )}
+                  <div className="flex flex-col items-center w-full">
+                    {/* Flag Image */}
+                    <div className="relative aspect-[3/2] w-full max-w-[130px] overflow-hidden rounded-lg shadow-[0_4px_12px_rgba(0,0,0,0.25)] border border-white/20 transition-transform duration-300 group-hover:scale-105 bg-white/5">
+                      {logo && !failedImages[f.id] ? (
+                        <img
+                          src={typeof logo === "string" ? logo : (logo as any).src}
+                          alt={f.flag_state_name}
+                          className="h-full w-full object-cover"
+                          onError={() => {
+                            setFailedImages((prev) => ({ ...prev, [f.id]: true }));
+                          }}
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center bg-white/10 text-background/30">
+                          <Flag className="h-6 w-6" />
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Country Name */}
+                    <span className="mt-5 text-xs font-black tracking-wider text-background uppercase">
+                      {f.country}
+                    </span>
+                    {/* Authority Abbreviation */}
+                    <span className="mt-1.5 text-[11px] font-bold tracking-widest text-accent uppercase">
+                      {f.authority_name}
+                    </span>
                   </div>
 
-                  {/* Country Name */}
-                  <span className="mt-4 text-xs font-extrabold tracking-wider text-background uppercase">
-                    {f.country}
-                  </span>
-                  {/* Authority Abbreviation */}
-                  <span className="mt-1 text-[10px] font-bold tracking-widest text-accent uppercase">
-                    {f.authority_name}
-                  </span>
                   {/* Full Name */}
                   <span
-                    className="mt-2 text-[11px] font-light leading-snug text-background/40 line-clamp-2"
+                    className="mt-4 text-[11px] font-light leading-relaxed text-background/50 line-clamp-2"
                     title={f.flag_state_name}
                   >
                     {f.flag_state_name}
