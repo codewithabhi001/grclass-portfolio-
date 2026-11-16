@@ -142,7 +142,7 @@ export function Network() {
         aria-hidden
         className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-secondary/8 blur-[150px]"
       />
-      <div className="container-page">
+      <div className="container-page flex flex-col items-center">
         {/* Centered Heading */}
         <div className="text-center max-w-3xl mx-auto mb-14 md:mb-18">
           <span className="eyebrow text-accent">Flag State Authorisations</span>
@@ -161,54 +161,73 @@ export function Network() {
             <div className="h-6 w-6 animate-spin rounded-full border-2 border-accent border-t-transparent" />
           </div>
         ) : (
-          <div className="flex flex-wrap justify-center items-stretch gap-5 sm:gap-6 max-w-5xl mx-auto">
-            {displayFlags.map((f) => {
-              const logo = getLogoUrl(f);
-              return (
-                <div
-                  key={f.id}
-                  className="group relative flex flex-col items-center justify-between rounded-2xl bg-white/[0.06] backdrop-blur-md border border-white/10 p-6 sm:p-7 text-center transition-all duration-500 hover:bg-white/[0.1] hover:border-accent/40 hover:-translate-y-1.5 hover:shadow-[0_12px_36px_hsl(41_70%_41%/0.18)] w-[240px] max-w-full"
-                >
-                  <div className="flex flex-col items-center w-full">
-                    {/* Flag Image */}
-                    <div className="relative aspect-[3/2] w-full max-w-[130px] overflow-hidden rounded-lg shadow-[0_4px_12px_rgba(0,0,0,0.25)] border border-white/20 transition-transform duration-300 group-hover:scale-105 bg-white/5">
-                      {logo && !failedImages[f.id] ? (
-                        <img
-                          src={typeof logo === "string" ? logo : (logo as any).src}
-                          alt={f.flag_state_name}
-                          className="h-full w-full object-cover"
-                          onError={() => {
-                            setFailedImages((prev) => ({ ...prev, [f.id]: true }));
-                          }}
-                          loading="lazy"
-                        />
-                      ) : (
-                        <div className="flex h-full w-full items-center justify-center bg-white/10 text-background/30">
-                          <Flag className="h-6 w-6" />
-                        </div>
-                      )}
+          <div className="w-full flex justify-center">
+            <div
+              className="flex flex-wrap justify-center items-stretch gap-6 w-full max-w-5xl mx-auto"
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "center",
+                alignItems: "stretch",
+                gap: "1.5rem",
+                width: "100%",
+                maxWidth: "1000px",
+                margin: "0 auto",
+              }}
+            >
+              {displayFlags.map((f) => {
+                const logo = getLogoUrl(f);
+                return (
+                  <div
+                    key={f.id}
+                    className="group relative flex flex-col items-center justify-between rounded-2xl bg-white/[0.06] backdrop-blur-md border border-white/10 p-6 sm:p-7 text-center transition-all duration-500 hover:bg-white/[0.1] hover:border-accent/40 hover:-translate-y-1.5 hover:shadow-[0_12px_36px_hsl(41_70%_41%/0.18)]"
+                    style={{
+                      width: "260px",
+                      maxWidth: "100%",
+                      flex: "0 0 260px",
+                    }}
+                  >
+                    <div className="flex flex-col items-center w-full">
+                      {/* Flag Image */}
+                      <div className="relative aspect-[3/2] w-full max-w-[140px] overflow-hidden rounded-lg shadow-[0_4px_12px_rgba(0,0,0,0.25)] border border-white/20 transition-transform duration-300 group-hover:scale-105 bg-white/5">
+                        {logo && !failedImages[f.id] ? (
+                          <img
+                            src={typeof logo === "string" ? logo : (logo as any).src}
+                            alt={f.flag_state_name}
+                            className="h-full w-full object-cover"
+                            onError={() => {
+                              setFailedImages((prev) => ({ ...prev, [f.id]: true }));
+                            }}
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div className="flex h-full w-full items-center justify-center bg-white/10 text-background/30">
+                            <Flag className="h-6 w-6" />
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Country Name */}
+                      <span className="mt-5 text-xs font-black tracking-wider text-background uppercase">
+                        {f.country}
+                      </span>
+                      {/* Authority Abbreviation */}
+                      <span className="mt-1.5 text-[11px] font-bold tracking-widest text-accent uppercase">
+                        {f.authority_name}
+                      </span>
                     </div>
 
-                    {/* Country Name */}
-                    <span className="mt-5 text-xs font-black tracking-wider text-background uppercase">
-                      {f.country}
-                    </span>
-                    {/* Authority Abbreviation */}
-                    <span className="mt-1.5 text-[11px] font-bold tracking-widest text-accent uppercase">
-                      {f.authority_name}
+                    {/* Full Name */}
+                    <span
+                      className="mt-4 text-[11px] font-light leading-relaxed text-background/50 line-clamp-2"
+                      title={f.flag_state_name}
+                    >
+                      {f.flag_state_name}
                     </span>
                   </div>
-
-                  {/* Full Name */}
-                  <span
-                    className="mt-4 text-[11px] font-light leading-relaxed text-background/50 line-clamp-2"
-                    title={f.flag_state_name}
-                  >
-                    {f.flag_state_name}
-                  </span>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         )}
       </div>
